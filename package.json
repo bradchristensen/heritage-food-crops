@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "hfcrt-node",
   "main": "index.js",
-  "repository": "https://github.com/bradchristensen/heritage-food-crops-research-trust",
+  "repository": "https://github.com/bradchristensen/heritage-food-crops",
   "author": {
     "name": "Brad Christensen",
     "email": "brad@christensen.co.nz"
