@@ -1,0 +1,9 @@
+import gulp from 'gulp';
+
+import config from 'app/config/gulp.json';
+
+export default gulp.task('watch', function () {
+    gulp.watch(config.src.styles + '**/*.less', ['styles']);
+    gulp.watch(config.src.scripts + '**/*.js', ['scripts']);
+    gulp.watch(config.src.app + '**/*.js', ['app:lint']);
+});

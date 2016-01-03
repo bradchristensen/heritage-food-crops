@@ -1,0 +1,28 @@
+{
+  "name": "hfcrt-node",
+  "version": "0.0.0",
+  "authors": [
+    "Brad Christensen <brad@christensen.co.nz>"
+  ],
+  "main": "gulpfile.js",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.14.5",
+    "reflux": "~0.3.0",
+    "requirejs": "~2.1.22",
+    "react-select": "~0.9.1",
+    "react-router": "~0.13.5",
+    "lodash": "~3.10.1",
+    "numeral": "~1.5.3"
+  }
+}

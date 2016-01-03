@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 9 ]><html class="no-js ie8 lt-ie11 lt-ie10 lt-ie9"><![endif]-->
+<!--[if IE 9 ]><html class="no-js ie9 lt-ie11 lt-ie10"><![endif]-->
+<!--[if IE 10 ]><html class="no-js ie10 lt-ie11"><![endif]-->
+<!--[if (gt IE 10)|!(IE)]><!--><html class="no-js"><!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <meta name="keywords" content="Central, Tree Crops, Research, Trust, Monty's Surprise, Apple, Trees, Heritage, Heirloom, Tomatoes, Lycopene, Tetra-cis-lycopene, Prolycopene, All-trans-lycopene, Beans, Climbing Beans, Huntington's, Disease, Trehalose, Health, Cancer, Anti-cancer" />
+        <meta name="description" content="Established to research the early prevention and treatment of disease through natural, plant-based medicine. This includes research into the anti-cancer apple, Monty's Surprise; heirloom tomatoes; heirloom beans; and Huntington's Disease." />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" type="text/css" href="/static/styles/global.css" />
+
+        <title><%= title %></title>
+    </head>
+    <body>
+        <div id="page">
+            <%- content %>
+        </div>
+
+        <script src="/static/scripts/main.js?build=<%= config.version %>"></script>
+        <script>
+            define('config', [], function () {
+                return <%- JSON.stringify(config, undefined, config.debug ? 4 : undefined); %>;
+            });
+
+            // infrastructure/config is a named module when bundled
+            require(['config', 'infrastructure/config'], function () {
+                require(['analytics', 'main'], function (analytics) {
+                    analytics.default('send', 'pageview');
+                });
+            });
+        </script>
+    </body>
+</html>

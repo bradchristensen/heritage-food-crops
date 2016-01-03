@@ -1,0 +1,39 @@
+{
+    "src": {
+        "app": "app/",
+        "bower": "bower_components/",
+        "styles": "static/styles/",
+        "scripts": "static/scripts/",
+        "vendor": "static/scripts/vendor/"
+    },
+
+    "requirejsConfigFilePath": "infrastructure/config.js",
+
+    "dest": {
+        "styles": "dist/styles/",
+        "scripts": "dist/scripts/"
+    },
+
+    "bowerScripts": {
+        "react/react-with-addons": "react",
+        "reflux/dist/reflux": "reflux",
+        "requirejs-text/text": "text",
+        "react-router/build/umd/ReactRouter": "react-router",
+        "lodash/lodash": "lodash",
+        "react-input-autosize/lib/AutosizeInput": "react-input-autosize",
+        "react-select/lib/Select": "react-select",
+        "react-select/lib/Value": "react-select-value",
+        "classnames/index": "classnames",
+        "numeral/numeral": "numeral"
+    },
+
+    "renameMap": {
+        "./Value": "react-select-value"
+    },
+
+    "shimSynchronousRequires": {
+        "react-select": "all",
+        "react-select-value": "all",
+        "react-input-autosize": "all"
+    }
+}
