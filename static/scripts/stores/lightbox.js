@@ -13,13 +13,15 @@ export default Reflux.createStore({
     getState () {
         return {
             visible: this.visible,
-            content: this.content
+            content: this.content,
+            caption: this.caption
         };
     },
 
-    openLightbox (content) {
+    openLightbox (content, caption) {
         this.visible = true;
         this.content = content;
+        this.caption = caption;
         this.trigger(this.getState());
     },
 

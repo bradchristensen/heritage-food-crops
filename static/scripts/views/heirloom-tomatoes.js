@@ -3,16 +3,20 @@ import Actions from 'stores/actions';
 import Article from 'components/article';
 import Contents from 'components/tableOfContents';
 import References from 'components/references';
-import Gallery from 'components/gallery';
 import SectionHeading from 'components/sectionHeading';
 import SectionSubheading from 'components/sectionSubheading';
 import Reference from 'components/reference';
+import DownloadLink from 'components/downloadLink';
+import _ from 'lodash';
 
 export default React.createClass({
     openLightbox (event) {
-        var link = event.currentTarget.href;
-        Actions.openLightbox(link);
-        event.preventDefault();
+        if (event.button === 0) {
+            var img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
+            var caption = img ? img.alt : event.currentTarget.title;
+            Actions.openLightbox(event.currentTarget.href, caption);
+            event.preventDefault();
+        }
     },
 
     render () {
@@ -52,23 +56,25 @@ export default React.createClass({
             <div className='box'>
                 <SectionHeading>Research Papers</SectionHeading>
 
-                <blockquote className='highlight'>
-                    <h3>
-                        <a href='/files/2015-carotenoid-composition-of-tomatoes.pdf' className='freader' title='PDF Document &mdash; Adobe Reader is required to view this file.'>
-                            2015 Report - Carotenoid composition of tomatoes
-                        </a>
-                    </h3>
-                </blockquote>
+                <DownloadLink href='/files/2015-carotenoid-composition-of-tomatoes.pdf'
+                    title='2015 Report - Carotenoid composition of tomatoes' />
 
-                <blockquote className='highlight'><h3 className='exclude'><a href='/files/2014-bioavailability-of-tetra-cis-lycopene-in-humans.pdf' className='freader' title='PDF Document &mdash; Adobe Reader is required to view this file.'>2014 Report - The bioavailability of tetra-cis-lycopene in humans and tetra-cis lycopene concentrations in selections of heritage tomatoes</a></h3></blockquote>
+                <DownloadLink href='/files/2014-bioavailability-of-tetra-cis-lycopene-in-humans.pdf'
+                    title='2014 Report - The bioavailability of tetra-cis-lycopene in humans and tetra-cis lycopene concentrations in selections of heritage tomatoes' />
 
-                [file=152]
+                <DownloadLink href='/files/2013reportgrapefruitandtomatometabolitesforhealth.pdf'
+                    title='2013 Report - Grapefruit and Tomato Metabolites for Health' />
+
                 <aside>
-                    [file=153]
-                    [file=154]
+                    <DownloadLink href='/files/appendix1.pdf' title='2013 Report - Appendix 1'
+                        description='Tangerine tomatoes increase total and tetra-cis-lycopene isomer concentrations more than red tomatoes in healthy adult humans' />
+
+                    <DownloadLink href='/files/appendix2.pdf' title='2013 Report - Appendix 2'
+                        description='Processing Tangerine Tomatoes: Effects of Lycopene-Isomer Concentrations and Profile' />
                 </aside>
 
-                [file=128]
+                <DownloadLink href='/files/2009-tomato-top-varieties.pdf'
+                    title='2009 Summary of Top Tomato Varieties' />
             </div>
 
             <div className='box'>
@@ -261,7 +267,7 @@ export default React.createClass({
 
             <p>In our search for the best medicinal tomato, we are trying to find a tomato that has retained the purity of its genetic blueprint over a considerable period of time; a variety that has not been changed through human manipulation. We believe that we have found just that in some heirloom orange tomatoes, varieties we think are closely linked to the 'golden fruits' or pomodoro that appear in the 1544 herbal of Matioli. They were the first tomatoes introduced to Europe following Hernan Cortes's conquest of Mexico (and tomatoes are still known by that name today in Italy). Our hypothesis is that these tomatoes will provide superior health benefits.</p>
 
-            <p>Because the health benefits of lycopene are widely recognized in scientific literature, it is one of the key compounds we looked for in the chemical analysis of our heirloom tomato samples. However the all-trans-lycopene present in today's red tomatoes is a molecule whose linear structure seems to hinder its absorption within the body. This is why we hear recommendations to cook tomatoes and combine them with fat, in order to improve our absorption of lycopene<Reference source={<a href='http://researchnews.osu.edu/archive/lycoproc.htm'>Turning up the heat on tomatoes boosts absorption of lycopene</a>} />. This has always seemed to me to be unusual, given that natural food in its raw state is typically better for us, and each stage of processing of food does diminish the medicinal quality of that food.</p>
+            <p>Because the health benefits of lycopene are widely recognized in scientific literature, it is one of the key compounds we looked for in the chemical analysis of our heirloom tomato samples. However the all-trans-lycopene present in today's red tomatoes is a molecule whose linear structure seems to hinder its absorption within the body. This is why we hear recommendations to cook tomatoes and combine them with fat, in order to improve our absorption of lycopene<Reference source='Turning up the heat on tomatoes boosts absorption of lycopene' href='http://researchnews.osu.edu/archive/lycoproc.htm' />. This has always seemed to me to be unusual, given that natural food in its raw state is typically better for us, and each stage of processing of food does diminish the medicinal quality of that food.</p>
 
             <h3>Discovered: tetra-cis-lycopene</h3>
 
@@ -297,12 +303,14 @@ export default React.createClass({
         </div>
 
         <div className='box'>
-            <SectionHeading>Photo Gallery of Featured Tomato Varieties</SectionHeading>
-            <Gallery />
-        </div>
-
-        <div className='box'>
             <SectionHeading>Invitation to New Zealand Tomato Growers (April 2013)</SectionHeading>
+
+            <p className='right'>
+                <a href='/files/tomato-selection_800.jpg' className='b300' onClick={this.openLightbox} title='Just a few of the 100 heirloom tomato varieties grown in 2009 for scientific analysis.'>
+                    <img src='/files/tomato-selection_300.jpg' alt='Just a few of the 100 heirloom tomato varieties grown in 2009 for scientific analysis.' />
+                </a>
+            </p>
+
             <p>We invite keen tomato growers to join us and be part of our ongoing tomato research.</p>
 
             <p>The Heritage Food Crops Research Trust has completed 7 years of research into heirloom tomatoes.  This has culminated with the finding of 12 varieties that contain a better form of lycopene (known as tetra-cis-lycopene) that has been shown in studies in the United States to be 2.5 times more efficiently absorbed by the body than the all-trans-lycopene found in red tomatoes.  The tetra-cis-lycopene is found in certain golden orange heirloom tomatoes and the Trust had imported seed of these varieties for its research.</p>

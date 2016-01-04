@@ -16,7 +16,8 @@ export default React.createClass({
 
     getDefaultProps () {
         return {
-            exclude: false
+            exclude: false,
+            tag: 'h2'
         };
     },
 
@@ -34,6 +35,6 @@ export default React.createClass({
         if (!props.exclude) {
             props.id = 'section-' + this.state.headingNumber;
         }
-        return React.createElement('h2', props, this.props.children);
+        return React.createElement(this.props.tag, props, this.props.children);
     }
 });

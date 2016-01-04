@@ -19,7 +19,8 @@ export default React.createClass({
         return {
             currentlyVisibleSubmenu: null,
             lightboxVisible: LightboxStore.getState().visible,
-            lightboxContent: LightboxStore.getState().content
+            lightboxContent: LightboxStore.getState().content,
+            lightboxCaption: LightboxStore.getState().caption
         };
     },
 
@@ -28,7 +29,8 @@ export default React.createClass({
             if (this.isMounted()) {
                 this.setState({
                     lightboxVisible: state.visible,
-                    lightboxContent: state.content
+                    lightboxContent: state.content,
+                    lightboxCaption: state.caption
                 });
             }
         });
@@ -169,7 +171,9 @@ export default React.createClass({
                     </div>
                 </div>
 
-                <Lightbox visible={this.state.lightboxVisible} content={this.state.lightboxContent} />
+                <Lightbox visible={this.state.lightboxVisible}
+                    content={this.state.lightboxContent}
+                    caption={this.state.lightboxCaption} />
             </div>
         );
     }

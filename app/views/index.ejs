@@ -18,7 +18,6 @@
 
         <script src="/static/scripts/main.js?build=<%= version %>"></script>
         <script>
-            // infrastructure/config is a named module when bundled
             require(['infrastructure/config'], function () {
                 require(['infrastructure/analytics', 'main'], function (analytics) {
                     analytics.default('send', 'pageview');

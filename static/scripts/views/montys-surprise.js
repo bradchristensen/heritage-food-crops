@@ -3,16 +3,31 @@ import Actions from 'stores/actions';
 import Article from 'components/article';
 import Contents from 'components/tableOfContents';
 import References from 'components/references';
-import Gallery from 'components/gallery';
 import SectionHeading from 'components/sectionHeading';
 import SectionSubheading from 'components/sectionSubheading';
 import Reference from 'components/reference';
+import DownloadLink from 'components/downloadLink';
+import _ from 'lodash';
+
+var galleryPaths = [
+    'ms-flowers',
+    'ms-flowerskzji',
+    'ms-tipbearing',
+    'floweressence',
+    'ms-tree',
+    'ms-promo',
+    'ms-promofx0z',
+    'leaf-comparison'
+];
 
 export default React.createClass({
     openLightbox (event) {
-        var link = event.currentTarget.href;
-        Actions.openLightbox(link);
-        event.preventDefault();
+        if (event.button === 0) {
+            var img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
+            var caption = img ? img.alt : undefined;
+            Actions.openLightbox(event.currentTarget.href, caption);
+            event.preventDefault();
+        }
     },
 
     render () {
@@ -50,7 +65,11 @@ export default React.createClass({
                 </SectionHeading>
                 <p>Following work done at Cornell University, which had identified the ability of Red Delicious apples to inhibit cancer cell proliferation, plus work in Finland that identified in a long-term human population trial the reduced incidence of chronic disease, including cancer, in those individuals who ate the most apples, researchers for the Heritage Food Crops Research Trust in New Zealand decided to find out how apple varieties growing in New Zealand might compare to apple varieties tested elsewhere in the world for their levels of polyphenolic compounds and ability to prevent cancer.</p>
 
-                <p className='right'>[image=168 size=300 rel=article]</p>
+                <p className='right'>
+                    <a href='/files/06markfrancesandtony_800.jpg' className='b300' onClick={this.openLightbox}>
+                        <img src='/files/06markfrancesandtony_300.jpg' alt='Mark Christensen (Central Tree Crops Research Trust), Dr Frances Raul (Ircad, Strasbourg, France), and Dr Tony McGhie (Plant and Food Research)' title='Mark Christensen, Dr Frances Raul and Dr Tony McGhie' />
+                    </a>
+                </p>
 
                 <p>The New Zealand researchers at the Heritage Food Crops Research Trust employed the services of Dr Tony McGhie at the Plant &amp; Food Research Institute to chemically analyse over 250 apple varieties. Because many of New Zealand's modern commercial apple cultivars had already been chemically analysed, this study focused principally on heritage varieties. The data readily confirmed that superior levels of beneficial polyphenolic compounds existed in these old heritage cultivars. From the 250 apple cultivars tested, three were selected as having the most likely potential for benefiting human health and reducing the incidence of cancer. These varieties were Monty's Surprise, a unique and versatile New Zealand seedling variety; Hetlina, an old European eating apple; and Fuero Rous, a traditional European cider apple.</p>
 
@@ -173,7 +192,11 @@ export default React.createClass({
 
                 <p>This research has been able to identify certain types of varieties, in particular seedling varieties, with more likelihood of containing substantially higher levels of compounds than other varieties. Over 250 apple varieties were collected and chemically analysed, in these attempts to find the best apples high in medicinal potential and anti-cancer effectiveness.</p>
 
-                <p className='left'>[image=173 size=300 rel=article]</p>
+                <p className='left'>
+                    <a href='/files/10rivertradersmarket_800.jpg' className='b300' onClick={this.openLightbox}>
+                        <img src='/files/10rivertradersmarket_300.jpg' alt={'Local Whanganui people growing Monty\'s Surprise apples'} title={'Local Whanganui people growing Monty\'s Surprise apples'} />
+                    </a>
+                </p>
 
                 <p>The weight of evidence indicating the superior medicinal qualities of the Monty's Surprise apple variety has seen Trust members initiate the free distribution of thousands of these trees to residents of Whanganui and surrounding districts. Whanganui has been our starting point, and as funding has become available, we have been able to ripple outwards, with distributions throughout the region (to the townships of Waverley and Patea to the north, Ohakune, Raetihi and Taihape to the east, and Hunterville and Marton to the south).</p>
 
@@ -191,7 +214,9 @@ export default React.createClass({
                 <h3>Community Partnerships</h3>
 
                 <p className='right'>
-                    <img src='/static/images/layout/montys-surprise/market-stall.jpg' alt='' width='400' />
+                    <a href='/static/images/layout/montys-surprise/market-stall.jpg' className='b300' onClick={this.openLightbox}>
+                        <img src='/static/images/layout/montys-surprise/market-stall.jpg' alt='' width='400' />
+                    </a>
                 </p>
 
                 <p>We work very closely in partnership with the Whanganui Regional Health Network (WRHN) with the distribution of high health Monty's Surprise apple trees throughout the community and region. The involvement of WRHN has been wonderfully positive and enabled all schools, kindergartens, Koanga Reo, Maori preschools, iwi (Maori tribal groups), as well as Pasifika groups within the Whanganui region to receive trees. Distributions have also gone out through GP's (general medical practicioners), and been offered to our hospital staff. We try to assist those most in need as well as having distributions to the general public, so that everyone may benefit from the health-giving potential of this tree. We also work with Murray Jones and Melinda Hatherly-Jones of TreeLife Organic Nursery in Whanganui, and they expertly graft the Monty's Surprise trees for us for these distributions. We are very fortunate to have a local organic nursery in Whanganui and one that shares so closely our own ethos for nature and the environment.</p>
@@ -255,7 +280,11 @@ export default React.createClass({
 
                 <p>Initial testing of the flowers of the Monty's Surprise variety, in a flower essence, established that they contain the same compounds as found in the apple, as well as additional compounds with potential health benefits.</p>
 
-                <p className='right'>[image=175 size=300 rel=article]</p>
+                <p className='right'>
+                    <a href='/files/09flowers_800.jpg' className='b300' onClick={this.openLightbox}>
+                        <img src='/files/09flowers_300.jpg' alt={'Monty\'s Surprise flowers'} title={'Monty\'s Surprise flowers'} />
+                    </a>
+                </p>
 
                 <p>Testing in 2006 to identify and quantify the levels of polyphenolic compounds in apple pips continued to identify the high levels apparent in the Monty's Surprise variety. This variety tested with a very high level of phloridzin in their pips.</p>
 
@@ -342,7 +371,9 @@ export default React.createClass({
                 </SectionSubheading>
                 <p>A communication from Dr Francis Raul. This shows that after nine days in a cell culture, the Monty's Surprise cider extract of concentrated procyanidins performed better at all levels of concentration tested, at inhibiting the colon cancer cell proliferation, than the positive control.</p>
 
-                <p style={{ textAlign: 'center' }}>[image=42 size=full lsize=full rel=article]</p>
+                <p style={{ textAlign: 'center' }}>
+                    <img src='/files/ms-procyanidins-graph.png' alt='Effect of Apple Extracts on the Growth of Human Colon Cancer-derived Metastatic Cells (SW620)' />
+                </p>
             </div>
 
             <div className='box'>
@@ -369,22 +400,41 @@ export default React.createClass({
             <div className='box'>
                 <SectionHeading>Associated Research Papers</SectionHeading>
 
-                <blockquote className='highlight'>
-                    <h3>
-                        <a href='http://carcin.oxfordjournals.org/content/26/7/1291.short' className='freader' title='PDF Document &mdash; Adobe Reader is required to view this file.'>
-                            Chemopreventive properties of apple procyanidins on human colon cancer-derived metastatic SW620 cells and in a rat model of colon carcinogenesis
+                <DownloadLink href='http://carcin.oxfordjournals.org/content/26/7/1291.short'
+                    title='Chemopreventive properties of apple procyanidins on human colon cancer-derived metastatic SW620 cells and in a rat model of colon carcinogenesis' />
+
+                <DownloadLink href='/files/apples-prevent-mammary-tumours-in-rats.pdf'
+                    title='Apples Prevent Mammary Tumours in Rats'
+                    description='This study demonstrated that whole apple extracts effectively inhibited mammary cancer growth in the rat model; thus, consumption of apples may be an effective strategy for cancer protection.' />
+
+                <DownloadLink href='https://heritagefoodcrops.org.nz/files/inbreeding-modern-apples-1996.pdf'
+                    title='Inbreeding of Modern Apple Cultivars'
+                    description={<span>Founding Clones, Inbreeding, Coancestry, and Status Number of Modern Apple Cultivars<br />The Horticulture and Food Research Institute of New Zealand Ltd, Havelock North Research Center</span>} />
+            </div>
+
+            <SectionHeading tag='h1'>Monty's Surprise Photos</SectionHeading>
+
+            <div className='splitter'>
+                {_.take(galleryPaths, Math.ceil(galleryPaths.length / 2)).map((path, index) => {
+                    return <div className='box' key={'gallery-left-' + index}>
+                        <a href={'/files/' + path + '_800.jpg'} onClick={this.openLightbox}>
+                            <img src={'/files/' + path + '_800.jpg'} alt='' className='fill' />
                         </a>
-                    </h3>
-                </blockquote>
-
-                [file=50]
-                [file=51]
+                    </div>;
+                })}
             </div>
 
-            <div className='box'>
-                <SectionHeading>Monty's Surprise Photos</SectionHeading>
-                <Gallery />
+            <div className='splitter right'>
+                {_.takeRight(galleryPaths, Math.floor(galleryPaths.length / 2)).map((path, index) => {
+                    return <div className='box' key={'gallery-right-' + index}>
+                        <a href={'/files/' + path + '_800.jpg'} onClick={this.openLightbox}>
+                            <img src={'/files/' + path + '_800.jpg'} alt='' className='fill' />
+                        </a>
+                    </div>;
+                })}
             </div>
+
+            <div className='clear' />
         </Article>;
     }
 });

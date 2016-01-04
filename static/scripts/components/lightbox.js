@@ -6,7 +6,8 @@ export default React.createClass({
     getDefaultProps () {
         return {
             visible: false,
-            content: null
+            content: null,
+            caption: null
         };
     },
 
@@ -94,6 +95,9 @@ export default React.createClass({
                             style={{ margin: '75px' }}
                         />}
                     </div>
+                    {!!this.props.caption && <div className='lightbox-caption'>
+                        <span className='lightbox-caption-text'>{this.props.caption}</span>
+                    </div>}
                 </div>
             </div>
         );
