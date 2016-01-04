@@ -22,7 +22,10 @@ var views = {
         'heirloom-peaches-plums'
     ],
     'huntingtons-disease': ['huntingtons', 'huntingtons-disease'],
-    'ancient-wheat': ['wheat', 'ancient-wheat']
+    'ancient-wheat': ['wheat', 'ancient-wheat'],
+    'about-the-trust': ['about', 'about-us', 'about-the-trust'],
+    'contact-us': ['contact', 'contact-us'],
+    'links': ['links']
 };
 
 var api = [];

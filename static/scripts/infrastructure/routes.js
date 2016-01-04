@@ -6,15 +6,13 @@ import App from 'views/app';
 import Index from 'views/index';
 import MontysSurprise from 'views/montys-surprise';
 import HeirloomTomatoes from 'views/heirloom-tomatoes';
-
-// TODO: additional pages!
-import HeirloomBeans from 'views/index';
-import PlumsPeaches from 'views/index';
-import HuntingtonsDisease from 'views/index';
-import AncientWheat from 'views/index';
-import AboutTheTrust from 'views/index';
-import ContactUs from 'views/index';
-import Links from 'views/index';
+import HeirloomBeans from 'views/index'; // TODO
+import PlumsPeaches from 'views/plums-peaches';
+import HuntingtonsDisease from 'views/huntingtons-disease';
+import AncientWheat from 'views/ancient-wheat';
+import AboutTheTrust from 'views/about-the-trust';
+import ContactUs from 'views/index'; // TODO
+import Links from 'views/links';
 
 // declare our routes and their hierarchy
 var routes = (

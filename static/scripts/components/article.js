@@ -2,12 +2,12 @@ import React from 'react';
 import _ from 'lodash';
 
 var flattenNodes = nodes => {
+    // React tries to be clever and so children may just be a single child
+    nodes = _.isArray(nodes) ? nodes : [nodes];
+
     return nodes.reduce((previousNodes, node) => {
-        if (node.props && _.isArray(node.props.children) && node.props.children.length) {
+        if (node.props && node.props.children) {
             return previousNodes.concat([node]).concat(flattenNodes(node.props.children));
-        } else if (node.props && _.isObject(node.props.children)) {
-            // React tries to be clever and so children may just be a single child
-            return previousNodes.concat([node]).concat(flattenNodes([node.props.children]));
         }
         return previousNodes.concat([node]);
     }, []);

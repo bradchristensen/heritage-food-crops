@@ -71,7 +71,7 @@ export default React.createClass({
                     </a>
                 </p>
 
-                <p>The New Zealand researchers at the Heritage Food Crops Research Trust employed the services of Dr Tony McGhie at the Plant &amp; Food Research Institute to chemically analyse over 250 apple varieties. Because many of New Zealand's modern commercial apple cultivars had already been chemically analysed, this study focused principally on heritage varieties. The data readily confirmed that superior levels of beneficial polyphenolic compounds existed in these old heritage cultivars. From the 250 apple cultivars tested, three were selected as having the most likely potential for benefiting human health and reducing the incidence of cancer. These varieties were Monty's Surprise, a unique and versatile New Zealand seedling variety; Hetlina, an old European eating apple; and Fuero Rous, a traditional European cider apple.</p>
+                <p>The New Zealand researchers at the Heritage Food Crops Research Trust employed the services of Dr Tony McGhie at the Plant & Food Research Institute to chemically analyse over 250 apple varieties. Because many of New Zealand's modern commercial apple cultivars had already been chemically analysed, this study focused principally on heritage varieties. The data readily confirmed that superior levels of beneficial polyphenolic compounds existed in these old heritage cultivars. From the 250 apple cultivars tested, three were selected as having the most likely potential for benefiting human health and reducing the incidence of cancer. These varieties were Monty's Surprise, a unique and versatile New Zealand seedling variety; Hetlina, an old European eating apple; and Fuero Rous, a traditional European cider apple.</p>
 
                 <p>In September 2006, 12 powdered extract samples of Monty's Surprise, Hetlina and Fuero Rous apple; cider; cider vinegar and seeds, were sent to Dr Francis Raul of the French National Institute for Health and Medical Research in Strasbourg. In February 2007 we received communication from Dr Raul that of all the samples he tested, the procyanidins extracted from the Monty's Surprise cider showed the most potent antiproliferative effects on a human colon cancer-derived metastatic cell line (SW620).</p>
 
@@ -90,7 +90,7 @@ export default React.createClass({
                     </a>
                 </p>
 
-                <p>In April 2007 we collected sufficient Monty's Surprise apples to make 70 litres of Monty's Surprise cider. Once made, this was delivered to Dr Tony McGhie at Plant &amp; Food Research for him to convert into powdered extract. This process was completed in October and the resulting 35 grams of powdered extract was sent to Dr Raul.
+                <p>In April 2007 we collected sufficient Monty's Surprise apples to make 70 litres of Monty's Surprise cider. Once made, this was delivered to Dr Tony McGhie at Plant & Food Research for him to convert into powdered extract. This process was completed in October and the resulting 35 grams of powdered extract was sent to Dr Raul.
                 In January 2008 we received communication from Dr Raul that his in vitro testing showed that 0.02 grams per ml of powdered extract had produced an 80% growth inhibition on those cancer cells, thus further demonstrating this variety's significant antiproliferative activity.</p>
 
                 <p>In late 2007 Dr Izabela Konczak at Food Science Australia (part of the CSIRO), tested our Monty's Surprise samples and found those samples with high procyanidin levels (being the cider and apple samples) exhibited inhibition of cancer cell proliferation in a dose dependent manner, against both colon cancer and stomach cancer cell lines. Dr Konczak has compared this very favourably with similar effects exhibited by procyanidin-rich grape seed extract.</p>
@@ -257,11 +257,11 @@ export default React.createClass({
 
                 <p>As previously mentioned, these Cornell studies both used Red Delicious apples. In 2003, the Central Districts Branch of the New Zealand Tree Crops Association (whose research is now conducted through the Heritage Food Crops Research Trust) decided to find out how New Zealand apples would rate in comparison to the New York Red Delicious.</p>
 
-                <p>In investigating which apple varieties to test they discovered that Plant &amp; Food Research had already tested most New Zealand commercial cultivars, and that they, like Cornell, considered Red Delicious to be one of the top varieties in terms of levels of health-promoting compounds.</p>
+                <p>In investigating which apple varieties to test they discovered that Plant & Food Research had already tested most New Zealand commercial cultivars, and that they, like Cornell, considered Red Delicious to be one of the top varieties in terms of levels of health-promoting compounds.</p>
 
                 <p>The Central Districts Tree Crops Branch therefore decided to concentrate its efforts on an investigation into a large number of previously untested heritage apple varieties (varieties that were no longer in commercial production). Many of these had been identified in its heritage apple recovery programme which involved accessing a number of specialist collections and investigating remnants of old orchards around the country.</p>
 
-                <p>In this 2003 study, 59 varieties were tested. The chemical analysis work was conducted by Plant &amp; Food Research so that results could be compared directly with the previous Plant &amp; Food Research data on New Zealand commercial varieties.</p>
+                <p>In this 2003 study, 59 varieties were tested. The chemical analysis work was conducted by Plant & Food Research so that results could be compared directly with the previous Plant & Food Research data on New Zealand commercial varieties.</p>
 
                 <p>We believe that the results have several significant implications for the health of New Zealanders.</p>
 
@@ -379,7 +379,7 @@ export default React.createClass({
             <div className='box'>
                 <SectionHeading>Our Vision</SectionHeading>
 
-                <p>Plant &amp; Food Research in their own research have concluded that "to maximise intake of apple polyphenols it is necessary to consume apples of cultivars with high polyphenolic concentration...".<Reference source='McGhie, T.K.; Hunt, M.; Barnett, L.E. Cultivar and growing region determine the antioxidant polyphenolic concentration and composition of apples grown in New Zealand.' /></p>
+                <p>Plant & Food Research in their own research have concluded that "to maximise intake of apple polyphenols it is necessary to consume apples of cultivars with high polyphenolic concentration...".<Reference source='McGhie, T.K.; Hunt, M.; Barnett, L.E. Cultivar and growing region determine the antioxidant polyphenolic concentration and composition of apples grown in New Zealand.' /></p>
 
                 <p>This suggests that if people in New Zealand (and, in time, throughout the world) ate more high health apples such as Monty's Surprise this would, over time, have the effect of lowering the overall incidence of chronic disease within our communities.</p>
 
