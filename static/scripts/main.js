@@ -3,6 +3,9 @@ import ReactDOM from 'infrastructure/react-dom';
 import Router from 'react-router';
 import routes from 'infrastructure/routes';
 import smoothScroll from 'smooth-scroll';
+import es6Promise from 'es6-promise';
+
+es6Promise.polyfill();
 
 Router.run(routes, Router.HistoryLocation, Root => {
     ReactDOM.render(<Root />, document.getElementById('page'));

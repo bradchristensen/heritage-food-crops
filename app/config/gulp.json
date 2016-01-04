@@ -26,7 +26,8 @@
         "react-select/lib/Value": "react-select-value",
         "classnames/index": "classnames",
         "numeral/numeral": "numeral",
-        "smooth-scroll/dist/js/smooth-scroll": "smooth-scroll"
+        "smooth-scroll/dist/js/smooth-scroll": "smooth-scroll",
+        "es6-promise/promise": "es6-promise"
     },
 
     "renameMap": {
