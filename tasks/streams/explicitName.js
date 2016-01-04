@@ -9,6 +9,7 @@ export default function (debug) {
     var renameMap = config.renameMap || {};
     var shimSynchronousRequires = config.shimSynchronousRequires || {};
     var bowerScripts = config.bowerScripts || {};
+    var npmScripts = config.npmScripts || {};
 
     return through.obj(function (file, enc, cb) {
         if (file.isNull()) {
@@ -66,11 +67,17 @@ export default function (debug) {
             var newPath = file.path.replace(/\\/g, '/');
             newPath = newPath.replace(/.*static\/scripts\//, '');
             newPath = newPath.replace('.js', '');
+
             if (newPath.indexOf('bower_components') !== -1) {
                 newPath = newPath.replace(/.*bower_components\//, '');
-                var namedPath = bowerScripts[newPath];
-                if (namedPath) {
-                    newPath = namedPath;
+                if (bowerScripts[newPath]) {
+                    newPath = bowerScripts[newPath];
+                }
+            }
+            if (newPath.indexOf('node_modules') !== -1) {
+                newPath = newPath.replace(/.*node_modules\//, '');
+                if (npmScripts[newPath]) {
+                    newPath = npmScripts[newPath];
                 }
             }
 

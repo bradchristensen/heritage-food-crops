@@ -19,7 +19,9 @@ export default React.createClass({
 
     render () {
         return <sup>
-            <a href={'#cite-' + this.state.referenceNumber}>{'[' + this.state.referenceNumber + ']'}</a>
+            <a href={'#cite-' + this.state.referenceNumber} data-scroll>
+                {'[' + this.state.referenceNumber + ']'}
+            </a>
         </sup>;
     }
 });

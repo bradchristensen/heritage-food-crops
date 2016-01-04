@@ -16,12 +16,14 @@ import config from 'app/config/gulp.json';
 var src = config.src;
 var dest = config.dest;
 
-var bowerScriptPaths = _.map(config.bowerScripts, (name, path) => {
+var vendorScriptPaths = _.map(config.bowerScripts || {}, (name, path) => {
     return src.bower + path + '.js';
-});
+}).concat(_.map(config.npmScripts || {}, (name, path) => {
+    return src.npm + path + '.js';
+}));
 
 var createPipeline = (uglifyFlag, sourcemapsFlag) => {
-    var initialStream = gulp.src([src.scripts + '**/*.js'].concat(bowerScriptPaths));
+    var initialStream = gulp.src([src.scripts + '**/*.js'].concat(vendorScriptPaths));
 
     var addToPipeline = (...streams) => streams.reduce((pipeline, stream) => {
         return stream ? pipeline.pipe(stream) : pipeline;

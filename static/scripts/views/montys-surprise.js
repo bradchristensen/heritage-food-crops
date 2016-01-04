@@ -1,4 +1,5 @@
 import React from 'react';
+import Actions from 'stores/actions';
 import Article from 'components/article';
 import Contents from 'components/tableOfContents';
 import References from 'components/references';
@@ -8,6 +9,12 @@ import SectionSubheading from 'components/sectionSubheading';
 import Reference from 'components/reference';
 
 export default React.createClass({
+    openLightbox (event) {
+        var link = event.currentTarget.href;
+        Actions.openLightbox(link);
+        event.preventDefault();
+    },
+
     render () {
         return <Article className='wrapper page-montys-surprise'>
             <div className='splitter'>
@@ -53,13 +60,13 @@ export default React.createClass({
                 Dr Raul and his team had earlier published their results (in October 2004) on the effectiveness of procyanidin compounds from the skin of a French cider apple on colon cancer cells. He has now found that procyanidin compounds in cider made from Monty's Surprise apples are more effective than his earlier findings, at an in vitro (or cell culture) level.</p>
 
                 <p className='clear' style={{ textAlign: 'center' }}>
-                    <a href='/static/images/layout/montys-surprise/graph-procyanidin-compounds.svg' className='fancybox'>
+                    <a href='/static/images/layout/montys-surprise/graph-procyanidin-compounds.svg' onClick={this.openLightbox}>
                         <img src='/static/images/layout/montys-surprise/graph-procyanidin-compounds.svg' alt='Procyanidin Compounds' width='33%' />
                     </a>
-                    <a href='/static/images/layout/montys-surprise/graph-comparison-of-flavonoids.svg' className='fancybox'>
+                    <a href='/static/images/layout/montys-surprise/graph-comparison-of-flavonoids.svg' onClick={this.openLightbox}>
                         <img src='/static/images/layout/montys-surprise/graph-comparison-of-flavonoids.svg' alt='Comparison of Flavonoids' width='33%' />
                     </a>
-                    <a href='/static/images/layout/montys-surprise/graph-total-phenolics.svg' className='fancybox'>
+                    <a href='/static/images/layout/montys-surprise/graph-total-phenolics.svg' onClick={this.openLightbox}>
                         <img src='/static/images/layout/montys-surprise/graph-total-phenolics.svg' alt='Total Phenolics' width='33%' />
                     </a>
                 </p>
@@ -269,52 +276,66 @@ export default React.createClass({
                 <SectionSubheading>Total Flavonoids</SectionSubheading>
                 <p>Apple flavonoids are found almost entirely in the skin and are composed of glycosides of quercetin. Quercetin glycosides are powerful antioxidants but have other biological properties such as anti-cancer activity that may be beneficial. In several populations apple is the major source of quercetin after onion. Apple is a good dietary source of quercetin.</p>
 
-                <table width='500' style={{ margin: '17px auto' }}>
-                    <tr>
-                        <th></th>
-                        <th style={{ textAlign: 'right' }}>Skin (ug/cm<sup>2</sup>)</th>
-                        <th style={{ textAlign: 'right' }}>Flesh (ug/g FW)</th>
-                    </tr>
-                    <tr>
-                        <td className='highlight'>Monty's Surprise</td>
-                        <td className='highlight' style={{ textAlign: 'right' }}>398.8</td>
-                        <td className='highlight' style={{ textAlign: 'right' }}>20.9</td>
-                    </tr>
-                    <tr>
-                        <td>Red Delicious</td>
-                        <td style={{ textAlign: 'right' }}>108.9</td>
-                        <td style={{ textAlign: 'right' }}>4.5</td>
-                    </tr>
-                    <tr>
-                        <td>Pacific Rose</td>
-                        <td style={{ textAlign: 'right' }}>111.2</td>
-                        <td style={{ textAlign: 'right' }}>4.1</td>
-                    </tr>
-                </table>
+                <div style={{ width: '500px', maxWidth: '100%', margin: '0 auto', padding: '7px 17px' }}>
+                    <table style={{ margin: '0', width: '100%' }}>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th style={{ textAlign: 'right' }}>Skin (ug/cm<sup>2</sup>)</th>
+                                <th style={{ textAlign: 'right' }}>Flesh (ug/g FW)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className='highlight'>Monty's Surprise</td>
+                                <td className='highlight' style={{ textAlign: 'right' }}>398.8</td>
+                                <td className='highlight' style={{ textAlign: 'right' }}>20.9</td>
+                            </tr>
+                            <tr>
+                                <td>Red Delicious</td>
+                                <td style={{ textAlign: 'right' }}>108.9</td>
+                                <td style={{ textAlign: 'right' }}>4.5</td>
+                            </tr>
+                            <tr>
+                                <td>Pacific Rose</td>
+                                <td style={{ textAlign: 'right' }}>111.2</td>
+                                <td style={{ textAlign: 'right' }}>4.1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <SectionSubheading>Procyanidins</SectionSubheading>
                 <p>Although there is little evidence that procyanidins are absorbed into the body there is direct evidence to support their use for enhancing health. Procyanidins are effective antioxidants and have other activities such as inhibition of platelet activity. Several successful antioxidant products are based on procyanidins including grape seed extract and pine bark extract (Enzogenol and Pycnogenol). Some other fruits also contain substantial procyanidin concentrations such as grape, and persimmon. Additionally, the health properties of cocoa (and chocolate) are promoted due to the high procyanidin content.</p>
 
-                <table width='500' style={{ margin: '17px auto' }}>
-                    <tr>
-                        <th></th>
-                        <th style={{ textAlign: 'right' }}>Skin (ug/cm<sup>2</sup>)</th>
-                        <th style={{ textAlign: 'right' }}>Flesh (ug/g FW)</th>
-                    </tr>
-                    <tr>
-                        <td className='highlight'>Monty's Surprise</td>
-                        <td className='highlight' style={{ textAlign: 'right' }}>722.0</td>
-                        <td className='highlight' style={{ textAlign: 'right' }}>1426.5</td>
-                    </tr><tr>
-                        <td>Red Delicious</td>
-                        <td style={{ textAlign: 'right' }}>452.5</td>
-                        <td style={{ textAlign: 'right' }}>546.7</td>
-                    </tr><tr>
-                        <td>Pacific Rose</td>
-                        <td style={{ textAlign: 'right' }}>233.7</td>
-                        <td style={{ textAlign: 'right' }}>323.5</td>
-                    </tr>
-                </table>
+                <div style={{ width: '500px', maxWidth: '100%', margin: '0 auto', padding: '7px 17px' }}>
+                    <table style={{ margin: '0', width: '100%' }}>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th style={{ textAlign: 'right' }}>Skin (ug/cm<sup>2</sup>)</th>
+                                <th style={{ textAlign: 'right' }}>Flesh (ug/g FW)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className='highlight'>Monty's Surprise</td>
+                                <td className='highlight' style={{ textAlign: 'right' }}>722.0</td>
+                                <td className='highlight' style={{ textAlign: 'right' }}>1426.5</td>
+                            </tr>
+                            <tr>
+                                <td>Red Delicious</td>
+                                <td style={{ textAlign: 'right' }}>452.5</td>
+                                <td style={{ textAlign: 'right' }}>546.7</td>
+                            </tr>
+                            <tr>
+                                <td>Pacific Rose</td>
+                                <td style={{ textAlign: 'right' }}>233.7</td>
+                                <td style={{ textAlign: 'right' }}>323.5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <SectionSubheading shortText={'Effectiveness of Monty\'s Surprise at inhibiting colon cancer proliferation'}>
                     Effectiveness of Monty's Surprise (procyanidins) at inhibiting colon cancer cell proliferation

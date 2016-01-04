@@ -300,48 +300,54 @@ a, a img, a strong {
         width: 188px;
     }
 
-#submenu {
+.submenu {
     background: #cbe8a0;
     border-bottom: 1px solid #adbf8b;
     border-top: 1px solid #adbf8b;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    display: none;
+    margin-top: -15px;
+    opacity: 0;
     overflow: hidden;
     position: absolute;
     top: 100%;
+    transition: all 0.1s;
+    visibility: hidden;
     width: 100%;
     z-index: 1000;
 }
+    .submenu.fade-visible {
+        margin-top: 0;
+    }
 
-#submenu .wrapper {
+.submenu .wrapper {
     padding: 20px 40px;
 }
 
-#submenu ul,
-#submenu ul li a {
+.submenu ul,
+.submenu ul li a {
     clear: both;
     *zoom: 1;
 }
-#submenu ul:after,
-#submenu ul li a:after {
+.submenu ul:after,
+.submenu ul li a:after {
     clear: both;
 }
-#submenu ul:before, #submenu ul:after,
-#submenu ul li a:before, #submenu ul li a:after {
+.submenu ul:before, .submenu ul:after,
+.submenu ul li a:before, .submenu ul li a:after {
     content: " ";
     display: table;
 }
 
-#submenu ul {
+.submenu ul {
     list-style: none;
 }
-#submenu ul li {
+.submenu ul li {
     float: left;
     height: 107px;
     padding: 10px;
     width: 350px;
 }
-#submenu ul li a {
+.submenu ul li a {
     border: 1px solid transparent;
     border-radius: 3px;
     color: #355769;
@@ -351,16 +357,16 @@ a, a img, a strong {
     padding: 5px;
     width: 100%;
 }
-    #submenu ul li a img {
+    .submenu ul li a img {
         border-radius: 2px;
         float: left;
     }
-    #submenu ul li a p {
+    .submenu ul li a p {
         font-style: italic;
         margin-left: 100px;
         padding: 3px 15px 0;
     }
-    #submenu ul li a h3 {
+    .submenu ul li a h3 {
         border-color: rgba(0, 0, 0, 0.1);
         clear: none;
         font-size: 1.2em;
@@ -370,7 +376,7 @@ a, a img, a strong {
         padding: 3px 5px 0;
         text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
     }
-#submenu ul li a:hover {
+.submenu ul li a:hover {
     background: #f0f0f0;
     border: 1px solid rgba(0, 0, 0, 0.3);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -763,7 +769,7 @@ a.feature {
         padding: 0 10px;
     }
 
-    #submenu ul li {
+    .submenu ul li {
         float: none;
         height: 107px;
         padding: 10px;
@@ -1082,4 +1088,60 @@ blockquote.highlight h3 {
 .right, .alignright { float: right !important; }
 .fill {
     width: 100%;
+}
+
+/* ---------------------------------------------------------------------- */
+/* A brand new custom lightbox ------------------------------------------ */
+
+.lightbox {
+    background: rgba(0, 0, 0, 0.3);
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: all 0.2s;
+    visibility: hidden;
+    z-index: 200; // todo: shouldn't need to be this high
+}
+
+.lightbox-modal {
+    height: 200px;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: -100px;
+    position: absolute;
+    top: 50%;
+    transition: all 0.2s;
+    width: 200px;
+}
+
+.lightbox-modal-content {
+    border-radius: 3px;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.lightbox-close {
+    background: url('/static/images/icons/fancybox_sprite-2x.png') top left;
+    background-size: 44px 152px;
+    height: 36px;
+    overflow: hidden;
+    position: absolute;
+    right: -20px;
+    text-indent: 40px;
+    top: -20px;
+    white-space: nowrap;
+    width: 38px;
+    z-index: 1;
+}
+
+.fade-visible {
+    opacity: 1;
+    visibility: visible;
 }

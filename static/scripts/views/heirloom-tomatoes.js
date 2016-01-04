@@ -1,4 +1,5 @@
 import React from 'react';
+import Actions from 'stores/actions';
 import Article from 'components/article';
 import Contents from 'components/tableOfContents';
 import References from 'components/references';
@@ -8,6 +9,12 @@ import SectionSubheading from 'components/sectionSubheading';
 import Reference from 'components/reference';
 
 export default React.createClass({
+    openLightbox (event) {
+        var link = event.currentTarget.href;
+        Actions.openLightbox(link);
+        event.preventDefault();
+    },
+
     render () {
         return (
 <Article className='page-heirloom-tomatoes'>
@@ -148,29 +155,69 @@ export default React.createClass({
 
             <div style={{ padding: '0 17px' }}>
                 <table style={{ boxSizing: 'border-box', width: '100%', margin: '0' }}>
-                    <tr>
-                        <th style={{ border: 'none' }}></th>
-                        <th colSpan='4' align='center' style={{ border: 'none' }}>Carotenoids (mg/100g FW)</th>
-                    </tr>
-                    <tr>
-                        <th style={{ border: 'none' }}>Cultivar Name</th>
-                        <th style={{ lineHeight: '120%' }}>Tetra-cis-<br />Lycopene</th>
-                        <th style={{ lineHeight: '120%' }}>All-trans-<br />Lycopene</th>
-                        <th>B-Caro</th>
-                        <th>Lutein</th>
-                    </tr>
-                    <tr><td><a href='/files/moonglow_800.jpg' className='fancybox' title='Moonglow' data-fancybox-title='Moonglow' rel='table'>Moonglow</a></td><td>5.36</td><td>0.05</td><td>n.d.</td><td>0.06</td></tr>
-                    <tr><td><a href='/files/tangerine_800.jpg' className='fancybox' title='Tangerine' data-fancybox-title='Tangerine' rel='table'>Tangerine</a></td><td>4.43</td><td>n.d.</td><td>n.d.</td><td>0.05</td></tr>
-                    <tr><td><a href='/files/orangefleshedpurplesmudge_800.jpg' className='fancybox' title='Orange Fleshed Purple Smudge' data-fancybox-title='Orange Fleshed Purple Smudge' rel='table'>Orange Fleshed Purple Smudge</a></td><td>4.36</td><td>0.06</td><td>n.d.</td><td>0.09</td></tr>
-                    <tr><td><a href='/files/amishorangesherbertheirloom_800.jpg' className='fancybox' title='Amish Orange Sherbert Heirloom' data-fancybox-title='Amish Orange Sherbert Heirloom' rel='table'>Amish Orange Sherbert Heirloom</a></td><td>4.35</td><td>0.01</td><td>n.d.</td><td>0.02</td></tr>
-                    <tr><td><a href='/files/auntgertiesgold_800.jpg' className='fancybox' title={'Aunt Gertie\'s Gold'} data-fancybox-title={'Aunt Gertie\'s Gold'} rel='table'>Aunt Gertie's Gold</a></td><td>4.21</td><td>0.02</td><td>n.d.</td><td>0.04</td></tr>
-                    <tr><td><a href='/files/bigorange_800.jpg' className='fancybox' title='Big Orange' data-fancybox-title='Big Orange' rel='table'>Big Orange</a></td><td>3.79</td><td>0.03</td><td>1.36</td><td>0.02</td></tr>
-                    <tr><td><a href='/files/amishyellowishorangeoxheart_800.jpg' className='fancybox' title='Amish Yellowish Orange Oxheart' data-fancybox-title='Amish Yellowish Orange Oxheart' rel='table'>Amish Yellowish Orange Oxheart</a></td><td>2.67</td><td>0.02</td><td>n.d.</td><td>0.05</td></tr>
-                    <tr><td><a href='/files/earlofedgecomb_800.jpg' className='fancybox' title='Earl of Edgecomb' data-fancybox-title='Earl of Edgecomb' rel='table'>Earl of Edgecomb</a></td><td>2.63</td><td>n.d.</td><td>n.d.</td><td>0.07</td></tr>
-                    <tr><td><a href='/files/elbe_800.jpg' className='fancybox' title='Elbe' data-fancybox-title='Elbe' rel='table'>Elbe</a></td><td>2.45</td><td>n.d.</td><td>n.d.</td><td>0.06</td></tr>
-                    <tr><td><a href='/files/sibirischeorange_800.jpg' className='fancybox' title='Sibirische Orange' data-fancybox-title='Sibirische Orange' rel='table'>Sibirische Orange</a></td><td>1.72</td><td>0.03</td><td>n.d.</td><td>0.04</td></tr>
-                    <tr><td><a href='/files/orangeroma.jpg' className='fancybox' title='Orange Roma' data-fancybox-title='Orange Roma' rel='table'>Orange Roma</a></td><td>1.42</td><td>0.10</td><td>0.41</td><td>0.13</td></tr>
-                    <tr><td><a href='/files/dadssunset_800.jpg' className='fancybox' title={'Dad\'s Sunset'} data-fancybox-title={'Dad\'s Sunset'} rel='table'>Dad's Sunset</a></td><td>1.01</td><td>0.04</td><td>0.13</td><td>0.04</td></tr>
+                    <thead>
+                        <tr>
+                            <th style={{ border: 'none' }}></th>
+                            <th colSpan='4' align='center' style={{ border: 'none' }}>Carotenoids (mg/100g FW)</th>
+                        </tr>
+                        <tr>
+                            <th style={{ border: 'none' }}>Cultivar Name</th>
+                            <th style={{ lineHeight: '120%' }}>Tetra-cis-<br />Lycopene</th>
+                            <th style={{ lineHeight: '120%' }}>All-trans-<br />Lycopene</th>
+                            <th>B-Caro</th>
+                            <th>Lutein</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href='/files/moonglow_800.jpg' title='Moonglow' onClick={this.openLightbox}>Moonglow</a></td>
+                            <td>5.36</td><td>0.05</td><td>n.d.</td><td>0.06</td>
+                        </tr>
+                        <tr>
+                            <td><a href='/files/tangerine_800.jpg' title='Tangerine' onClick={this.openLightbox}>Tangerine</a></td>
+                            <td>4.43</td><td>n.d.</td><td>n.d.</td><td>0.05</td>
+                        </tr>
+                        <tr>
+                            <td><a href='/files/orangefleshedpurplesmudge_800.jpg' title='Orange Fleshed Purple Smudge' onClick={this.openLightbox}>Orange Fleshed Purple Smudge</a></td>
+                            <td>4.36</td><td>0.06</td><td>n.d.</td><td>0.09</td>
+                        </tr>
+                        <tr>
+                            <td><a href='/files/amishorangesherbertheirloom_800.jpg' title='Amish Orange Sherbert Heirloom' onClick={this.openLightbox}>Amish Orange Sherbert Heirloom</a></td>
+                            <td>4.35</td><td>0.01</td><td>n.d.</td><td>0.02</td>
+                        </tr>
+                        <tr>
+                            <td><a href='/files/auntgertiesgold_800.jpg' title={'Aunt Gertie\'s Gold'} onClick={this.openLightbox}>Aunt Gertie's Gold</a></td>
+                            <td>4.21</td><td>0.02</td><td>n.d.</td><td>0.04</td>
+                        </tr>
+                        <tr>
+                            <td><a href='/files/bigorange_800.jpg' title='Big Orange' onClick={this.openLightbox}>Big Orange</a></td>
+                            <td>3.79</td><td>0.03</td><td>1.36</td><td>0.02</td>
+                        </tr>
+                        <tr>
+                            <td><a href='/files/amishyellowishorangeoxheart_800.jpg' title='Amish Yellowish Orange Oxheart' onClick={this.openLightbox}>Amish Yellowish Orange Oxheart</a></td>
+                            <td>2.67</td><td>0.02</td><td>n.d.</td><td>0.05</td>
+                        </tr>
+                        <tr>
+                            <td><a href='/files/earlofedgecomb_800.jpg' title='Earl of Edgecomb' onClick={this.openLightbox}>Earl of Edgecomb</a></td>
+                            <td>2.63</td><td>n.d.</td><td>n.d.</td><td>0.07</td>
+                        </tr>
+                        <tr>
+                            <td><a href='/files/elbe_800.jpg' title='Elbe' onClick={this.openLightbox}>Elbe</a></td>
+                            <td>2.45</td><td>n.d.</td><td>n.d.</td><td>0.06</td>
+                        </tr>
+                        <tr>
+                            <td><a href='/files/sibirischeorange_800.jpg' title='Sibirische Orange' onClick={this.openLightbox}>Sibirische Orange</a></td>
+                            <td>1.72</td><td>0.03</td><td>n.d.</td><td>0.04</td>
+                        </tr>
+                        <tr>
+                            <td><a href='/files/orangeroma.jpg' title='Orange Roma' onClick={this.openLightbox}>Orange Roma</a></td>
+                            <td>1.42</td><td>0.10</td><td>0.41</td><td>0.13</td>
+                        </tr>
+                        <tr>
+                            <td><a href='/files/dadssunset_800.jpg' title={'Dad\'s Sunset'} onClick={this.openLightbox}>Dad's Sunset</a></td>
+                            <td>1.01</td><td>0.04</td><td>0.13</td><td>0.04</td>
+                        </tr>
+                    </tbody>
                 </table>
                 <p>(n.d. = not detected)<br /><strong>Click on the cultivar names to see photos.</strong></p>
             </div>

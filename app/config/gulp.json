@@ -2,6 +2,7 @@
     "src": {
         "app": "app/",
         "bower": "bower_components/",
+        "npm": "node_modules/",
         "styles": "static/styles/",
         "scripts": "static/scripts/",
         "vendor": "static/scripts/vendor/"
@@ -24,7 +25,8 @@
         "react-select/lib/Select": "react-select",
         "react-select/lib/Value": "react-select-value",
         "classnames/index": "classnames",
-        "numeral/numeral": "numeral"
+        "numeral/numeral": "numeral",
+        "smooth-scroll/dist/js/smooth-scroll": "smooth-scroll"
     },
 
     "renameMap": {

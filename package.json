@@ -57,13 +57,13 @@
     "randomstring": "^1.1.0",
     "react": "^0.14.5",
     "react-router": "^0.13.5",
+    "reflux": "^0.3.0",
     "require-all": "^2.0.0",
     "requirejs": "^2.1.20",
     "response-time": "^2.3.1",
     "serve-favicon": "^2.3.0",
     "squel": "^4.2.0",
-    "through2": "^2.0.0",
-    "webpack": "^1.12.2"
+    "through2": "^2.0.0"
   },
   "babel": {
     "presets": [
