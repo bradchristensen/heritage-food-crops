@@ -6,6 +6,9 @@ var flattenNodes = nodes => {
     nodes = _.isArray(nodes) ? nodes : [nodes];
 
     return nodes.reduce((previousNodes, node) => {
+        if (node === undefined) {
+            return previousNodes;
+        }
         if (node.props && node.props.children) {
             return previousNodes.concat([node]).concat(flattenNodes(node.props.children));
         }

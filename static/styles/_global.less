@@ -640,155 +640,6 @@ a.page-feature {
     height: 390px;
 }
 
-@media only screen and (max-width: 1366px) {
-    /*
-    .page-index #header .wrapper {
-        padding-top: 400px;
-    }
-    */
-
-    .page-heirloom-tomatoes .page-feature {
-        background-image: url('/static/images/layout/tomatoes/banner-small.jpg');
-    }
-}
-
-@media only screen and (max-width: 1150px) {
-    /*
-    .page-index #header .wrapper {
-        padding-top: 300px;
-    }
-    */
-
-    #header h1 a strong {
-        font-size: 36px;
-    }
-}
-
-@media only screen and (max-width: 950px) {
-    #header h1 a strong {
-        font-size: 28px;
-        font-weight: 300;
-    }
-}
-
-@media only screen and (max-width: 830px) {
-    /*
-    .page-index #header .wrapper {
-        padding-top: 200px;
-    }
-    */
-
-     .wrap-right {
-        margin-left: 0;
-        padding: 40px 0;
-        width: 100%;
-    }
-
-    .page-index .page-feature img {
-        max-width: 400px;
-    }
-
-    .page-index .page-feature {
-        background-image: none;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
-        margin: 20px;
-    }
-
-    #logo {
-        display: none;
-    }
-
-    #header .wrapper {
-        padding: 0;
-    }
-
-    #header h1/*, .page-index #header h1*/ {
-        margin: 10px 20px;
-        padding: 0;
-    }
-
-    #header h1 a small {
-        display: none;
-    }
-
-    #navbar .wrapper {
-        padding: 0;
-    }
-
-    #navbar .caption {
-        display: none;
-    }
-
-    ul#menu {
-        margin-left: 0;
-    }
-
-    /* Hide the "Print this page" button */
-    #menu li:last-child {
-        display: none;
-    }
-
-    ul#menu-large > li.box {
-        padding-bottom: 10px;
-    }
-
-    ul#menu-large > li img.hero {
-        float: none;
-        width: 100%;
-    }
-    ul#menu-large > li > a > * {
-        clear: both;
-        margin-left: 0;
-    }
-    ul#menu-large > li > a > h2 {
-        font-size: 24px;
-        margin-left: 15px;
-        padding-left: 15px;
-    }
-
-    .feature-text {
-        font-size: 18px;
-        line-height: 160%;
-        padding: 30px 0 10px 0;
-    }
-
-    .splitter {
-        clear: both;
-        float: none;
-        padding: 0;
-        width: 100%;
-    }
-    .splitter.right {
-        padding: 0;
-    }
-}
-
-@media only screen and (max-width: 700px) {
-    .wrapper {
-        padding: 0 10px;
-    }
-
-    .submenu ul li {
-        float: none;
-        height: 107px;
-        padding: 10px;
-        width: 100%;
-    }
-}
-
-@media
-only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (   -moz-min-device-pixel-ratio: 1.5),
-only screen and (     -o-min-device-pixel-ratio: 3/2),
-only screen and (        min-device-pixel-ratio: 1.5),
-only screen and (                min-resolution: 160dpi),
-only screen and (                min-resolution: 1.5dppx) {
-    #logo {
-        background-image: url('/static/images/layout/logo@2x.png');
-    }
-}
-
 /* ---------------------------------------------------------------------- */
 /*  .box   -------------------------------------------------------------- */
 
@@ -1168,4 +1019,188 @@ blockquote.highlight h3 {
 .fade-visible {
     opacity: 1;
     visibility: visible;
+}
+
+
+ul.bean-list {
+    align-content: flex-end;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 10px 20px;
+}
+
+.bean-list .bean-list-item {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: block;
+    padding: 10px 0;
+    width: 50%;
+}
+
+.lt-ie10 .bean-list .bean-list-item {
+    clear: both;
+    width: 100%;
+}
+
+.bean-list .bean-list-item:first-child,
+.bean-list .bean-list-item:nth-child(2) {
+    border-top: none;
+}
+
+@media only screen and (max-width: 1366px) {
+    /*
+    .page-index #header .wrapper {
+        padding-top: 400px;
+    }
+    */
+
+    .page-heirloom-tomatoes .page-feature {
+        background-image: url('/static/images/layout/tomatoes/banner-small.jpg');
+    }
+}
+
+@media only screen and (max-width: 1150px) {
+    /*
+    .page-index #header .wrapper {
+        padding-top: 300px;
+    }
+    */
+
+    #header h1 a strong {
+        font-size: 36px;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    #header h1 a strong {
+        font-size: 28px;
+        font-weight: 300;
+    }
+}
+
+@media only screen and (max-width: 830px) {
+    /*
+    .page-index #header .wrapper {
+        padding-top: 200px;
+    }
+    */
+
+     .wrap-right {
+        margin-left: 0;
+        padding: 40px 0;
+        width: 100%;
+    }
+
+    .page-index .page-feature img {
+        max-width: 400px;
+    }
+
+    .page-index .page-feature {
+        background-image: none;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        margin: 20px;
+    }
+
+    #logo {
+        display: none;
+    }
+
+    #header .wrapper {
+        padding: 0;
+    }
+
+    #header h1/*, .page-index #header h1*/ {
+        margin: 10px 20px;
+        padding: 0;
+    }
+
+    #header h1 a small {
+        display: none;
+    }
+
+    #navbar .wrapper {
+        padding: 0;
+    }
+
+    #navbar .caption {
+        display: none;
+    }
+
+    ul#menu {
+        margin-left: 0;
+    }
+
+    /* Hide the "Print this page" button */
+    #menu li:last-child {
+        display: none;
+    }
+
+    ul#menu-large > li.box {
+        padding-bottom: 10px;
+    }
+
+    ul#menu-large > li img.hero {
+        float: none;
+        width: 100%;
+    }
+    ul#menu-large > li > a > * {
+        clear: both;
+        margin-left: 0;
+    }
+    ul#menu-large > li > a > h2 {
+        font-size: 24px;
+        margin-left: 15px;
+        padding-left: 15px;
+    }
+
+    .feature-text {
+        font-size: 18px;
+        line-height: 160%;
+        padding: 30px 0 10px 0;
+    }
+
+    .splitter {
+        clear: both;
+        float: none;
+        padding: 0;
+        width: 100%;
+    }
+    .splitter.right {
+        padding: 0;
+    }
+
+    .bean-list-item,
+    .bean-list .bean-list-item {
+        width: 100%;
+    }
+
+    .bean-list .bean-list-item:nth-child(2) {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .wrapper {
+        padding: 0 10px;
+    }
+
+    .submenu ul li {
+        float: none;
+        height: 107px;
+        padding: 10px;
+        width: 100%;
+    }
+}
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (   -moz-min-device-pixel-ratio: 1.5),
+only screen and (     -o-min-device-pixel-ratio: 3/2),
+only screen and (        min-device-pixel-ratio: 1.5),
+only screen and (                min-resolution: 160dpi),
+only screen and (                min-resolution: 1.5dppx) {
+    #logo {
+        background-image: url('/static/images/layout/logo@2x.png');
+    }
 }

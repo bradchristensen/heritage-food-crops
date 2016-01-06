@@ -6,7 +6,7 @@ import App from 'views/app';
 import Index from 'views/index';
 import MontysSurprise from 'views/montys-surprise';
 import HeirloomTomatoes from 'views/heirloom-tomatoes';
-import HeirloomBeans from 'views/index'; // TODO
+import HeirloomBeans from 'views/heirloom-beans';
 import PlumsPeaches from 'views/plums-peaches';
 import HuntingtonsDisease from 'views/huntingtons-disease';
 import AncientWheat from 'views/ancient-wheat';
