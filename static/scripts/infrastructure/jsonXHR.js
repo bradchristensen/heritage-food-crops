@@ -1,18 +1,9 @@
-import Actions from 'stores/actions';
-import numeral from 'numeral';
-import constants from 'infrastructure/constants';
+// Based on json-xhr-promise by Jonathan Warning
+// https://github.com/jwarning/json-xhr-promise
 
 var requests = {};
 
-export var hasClass = function (element, className) {
-    if (element.classList) {
-        return element.classList.contains(className);
-    } else {
-        return new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
-    }
-};
-
-export var jsonXHR = function (method, url, data, useCache) {
+export default function (method, url, data, useCache) {
     var cacheErrors = false;
 
     if (arguments.length === 1) {
@@ -54,33 +45,4 @@ export var jsonXHR = function (method, url, data, useCache) {
     }
 
     return requests[url];
-};
-
-export var logout = function () {
-    return jsonXHR('POST', '/api/account/logout').then(() => {
-        // TODO: should we actually bother waiting
-        // until we receive this XHR response?
-        // Show a loading indicator in the mean time?
-        Actions.accountUpdate(null);
-    });
-};
-
-export var formatAddress = function (address) {
-    var parts = [
-        address.addressLine1,
-        address.addressLine2,
-        address.suburb,
-        address.city,
-        address.postcode
-    ].filter(part => !!part);
-
-    return parts.join(', ');
-};
-
-export var formatCurrency = function (value) {
-    return numeral(parseFloat(value)).format(constants.currency);
-};
-
-export var formatNumeric = function (value) {
-    return numeral(parseFloat(value)).format(constants.numeric);
-};
+}

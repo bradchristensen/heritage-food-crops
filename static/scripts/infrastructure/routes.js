@@ -11,7 +11,7 @@ import PlumsPeaches from 'views/plums-peaches';
 import HuntingtonsDisease from 'views/huntingtons-disease';
 import AncientWheat from 'views/ancient-wheat';
 import AboutTheTrust from 'views/about-the-trust';
-import ContactUs from 'views/index'; // TODO
+import ContactUs from 'views/contact-us';
 import Links from 'views/links';
 
 // declare our routes and their hierarchy

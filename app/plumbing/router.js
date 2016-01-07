@@ -2,6 +2,7 @@ import { Router } from 'express';
 import _ from 'lodash';
 
 import index from 'app/controllers/index';
+import contact from 'app/controllers/api/contact';
 
 var views = {
     '': ['', 'index'],
@@ -28,7 +29,9 @@ var views = {
     'links': ['links']
 };
 
-var api = [];
+var api = {
+    contact
+};
 
 var router = Router({ strict: true });
 
@@ -43,8 +46,7 @@ _.forEach(views, (aliases, route) => {
     });
 });
 
-api.forEach(route => {
-    var controller = require('app/controllers/api/' + route);
+_.forEach(api, (controller, route) => {
     _.forEach(controller, (action, method) => {
         if (method in router) {
             router[method]('/api/' + route, action);

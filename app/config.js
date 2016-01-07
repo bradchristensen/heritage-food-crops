@@ -1,22 +1,30 @@
 import _ from 'lodash';
 
-// load config
-import config from 'app/config/production.json';
+var config = {};
+
+// Development config will override production config, so development config files
+// must not be present in the production environment
+
+try {
+    _.assign(config, require('./config/production.json'));
+} catch (e) {
+    _.noop();
+}
+
+try {
+    _.assign(config, require('./config/staging.json'));
+} catch (e) {
+    _.noop();
+}
+
+try {
+    _.assign(config, require('./config/development.json'));
+} catch (e) {
+    _.noop();
+}
 
 if (!config.version) {
-    config.version = require('package.json').version;
-}
-
-try {
-    _.assign(config, require('app/config/staging.json'));
-} catch (e) {
-    _.noop();
-}
-
-try {
-    _.assign(config, require('app/config/development.json'));
-} catch (e) {
-    _.noop();
+    config.version = require('../package.json').version;
 }
 
 // detect development environment

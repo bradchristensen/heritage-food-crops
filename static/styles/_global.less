@@ -9,7 +9,7 @@ html {
     height: 100%;
 }
 
-body, input, textarea, select {
+body, input, button, textarea, select {
     color: #333;
     font: 14px 'Source Sans Pro', Arial, Helvetica, sans-serif;
     height: 100%;
@@ -22,6 +22,11 @@ body {
 
 a, a img, a strong {
     transition: all 0.2s;
+}
+
+a:focus:not(:active):not(.active),
+button:focus {
+    outline: 1px dotted invert;
 }
 
 .maintenance {
@@ -276,9 +281,13 @@ a, a img, a strong {
         text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
     }
         ul#menu li a:hover,
-        ul#menu li.current a {
+        ul#menu li a.active {
             background: #cbe8a0;
             box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        ul#menu li a.active {
+            box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.2), inset 0 5px 10px rgba(0, 0, 0, 0.1);
         }
 
     ul#menu li a[href="#"]:after {
@@ -376,7 +385,8 @@ a, a img, a strong {
         padding: 3px 5px 0;
         text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
     }
-.submenu ul li a:hover {
+.submenu ul li a:hover,
+.submenu ul li a.active {
     background: #f0f0f0;
     border: 1px solid rgba(0, 0, 0, 0.3);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -825,11 +835,10 @@ cite {
 /* ---------------------------------------------------------------------- */
 /* Forms ---------------------------------------------------------------- */
 
-input, textarea {
-    background: #EEE;
-    border: 1px solid #ccc;
+input, button, textarea {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 2px;
-    box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #fff;
     color: #333;
 }
 
@@ -839,14 +848,45 @@ textarea {
     width: 100%;
 }
 
-input {
-    font-size: 13px;
-    padding: 3px;
-    width: 200px;
+input, button {
+    padding: 7px 9px;
+    max-width: 100%;
+    width: 300px;
 }
-    #submit, .button {
-        cursor: pointer;
-    }
+
+button {
+    background-color: #5CB85C;
+    color: #fff;
+    cursor: pointer;
+    padding: 7px 20px;
+    width: auto;
+}
+
+button:hover,
+button:focus {
+    background-color: #449D44;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #66AFE9;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+    background-color: #398439;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+button[disabled],
+button[disabled]:hover,
+button[disabled]:active {
+    background-color: #eee;
+    border-color: rgba(0, 0, 0, 0.2);
+    color: #ccc;
+    cursor: default;
+    text-shadow: 1px 1px 0 #fff;
+}
 
 
 /* ---------------------------------------------------------------------- */
