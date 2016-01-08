@@ -166,8 +166,8 @@ export default React.createClass({
 
                 <div id='footer'>
                     <div className='wrapper'>
-                        Site maintained by Mark and Brad Christensen. Designed <a href='//christensen.co.nz' title='Website development by Brad Christensen'>with love</a>.<br />
-                        <small>Copyright &copy; {this.props.title}. Verbatim copying and distribution of this page is permitted in any medium.</small>
+                        Our website is <a href='https://github.com/bradchristensen/heritage-food-crops' title='Contribute via GitHub'>open source</a> and <a href='//christensen.co.nz' title='Website development by Brad Christensen'>designed with love</a>.<br />
+                        <small>Copyright &copy; {this.props.title}, {new Date().getFullYear()}. Verbatim copying and distribution of this page is permitted in any medium.</small>
                     </div>
                 </div>
 

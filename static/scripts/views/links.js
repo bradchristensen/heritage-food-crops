@@ -11,15 +11,17 @@ export default React.createClass({
                     <ul>
                         <li><a href='http://www.ediblegarden.co.nz'>www.ediblegarden.co.nz</a></li>
                         <li>email <a href='mailto:sarah@ediblegarden.co.nz'>sarah@ediblegarden.co.nz</a></li>
-                        <li>phone (06) 326 7313</li>
+                        <li>phone <a href='tel:6463267313'>(06) 326 7313</a></li>
                     </ul>
 
                     <p>For those people wanting larger numbers of trees you may like to contact Murray Jones or Lindy Hatherly-Jones at TreeLife Organic Nursery in Whanganui.</p>
 
                     <ul>
-                        <li><a href='http://www.treelife.co.nz'>www.treelife.co.nz</a></li>
-                        <li>email <a href='mailto: info@treelife.co.nz'>info@treelife.co.nz</a></li>
-                        <li>freephone 0800 264 372</li>
+                        {/*
+                            <li><a href='http://www.treelife.co.nz'>www.treelife.co.nz</a></li>
+                            <li>email <a href='mailto: info@treelife.co.nz'>info@treelife.co.nz</a></li>
+                        */}
+                        <li>freephone <a href='tel:0800264372'>0800 264 372</a></li>
                     </ul>
 
                     <h2>For Purchase of Heirloom Tomato Varieties</h2>
@@ -27,8 +29,8 @@ export default React.createClass({
 
                     <ul>
                         <li><a href='http://www.bristol.co.nz'>www.bristol.co.nz</a></li>
-                        <li>email <a href='mailto: plants&seeds@bristol.co.nz'>plants&seeds@bristol.co.nz</a></li>
-                        <li>phone (06) 343 6421</li>
+                        <li>email <a href='mailto:plants&seeds@bristol.co.nz'>plants&seeds@bristol.co.nz</a></li>
+                        <li>phone <a href='tel:6463436421'>(06) 343 6421</a></li>
                         <li>fax (06) 343 6080</li>
                     </ul>
                 </div>

@@ -50,6 +50,7 @@ export default React.createClass({
                     <p>A story for children about the very special properties of golden-orange tomatoes, written and illustrated by Janet Bradbury.</p>
                     <p>We welcome you to download a copy of the book to print or read from your computer for free.</p>
                     <p><a className='button' href='/files/jessica-and-the-golden-orb.pdf' target='_blank'>Download</a></p>
+                    <p><em>'Jessica and the Golden Orb' was featured by the Wanganui Midweek newspaper in the article <a href='http://www.nzherald.co.nz/wanganui-chronicle/midweek/news/article.cfm?c_id=1503658&objectid=11533472' target='_blank'>'Tomato stars in new book'</a>.</em></p>
                 </div>
             </div>
 

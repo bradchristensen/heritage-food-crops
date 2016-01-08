@@ -36,7 +36,7 @@ export default React.createClass({
                 <h1>Monty's Surprise</h1>
                 <div className='box'>
                     <SectionHeading>Introduction</SectionHeading>
-                    <p>The chemical analysis of over 250 apple varieties has identified a unique New Zealand seedling - <strong>the Monty's Surprise apple</strong>. This apple contains very high levels of procyanidins as well as quercetin flavanoid compounds. In vitro cancer testing conducted in France and Australia on this variety has shown its potent effectiveness at inhibiting cancer cell proliferation. <strong>We believe that this apple is the best in the world for human health, and can be eaten as a preventative measure to reduce the incidence of disease in the human body.</strong></p>
+                    <p>The chemical analysis of over 250 apple varieties has identified a unique New Zealand seedling - <strong>the Monty's Surprise apple</strong>. This apple contains very high levels of procyanidins as well as quercetin flavonoid compounds. In vitro cancer testing conducted in France and Australia on this variety has shown its potent effectiveness at inhibiting cancer cell proliferation. <strong>We believe that this apple is the best in the world for human health, and can be eaten as a preventative measure to reduce the incidence of disease in the human body.</strong></p>
                 </div>
 
                 <div className='box'>
@@ -47,13 +47,13 @@ export default React.createClass({
 
             <div className='splitter right'>
                 <div className='box'>
-                    <iframe width='100%' height='338' src='https://www.youtube.com/embed/1t8skmtdDmU' frameBorder='0' allowFullScreen></iframe>
-                    <p><em>Murray Jones from TreeLife Organic Nursery in Whanganui demonstrates how to prune the Monty's Surprise apple tree, narrated by David Hughes and filmed by Phil Thomsen.</em></p>
+                    <iframe width='100%' height='338' src='https://www.youtube.com/embed/XiLWjJk9Xk8' frameborder='0' allowfullscreen />
+                    <p><em><strong>Join Mark Christensen as he introduces us to this heritage variety of apple that is fast becoming a favourite around the country.</strong> Filmed as part of the <a href='http://earthcare-education.org/wp_earthcare/localisingfood/2013/11/22/montys-surprise-fighting-cancer-with-heritage-fruit/'>Localising Food Project</a>.</em></p>
                 </div>
 
                 <div className='box'>
-                    <img src='/files/01apples_800.jpg' alt={'Monty\'s Surprise apples'} className='fill' />
-                    <p><em>Monty's Surprise apples.</em></p>
+                    <iframe width='100%' height='338' src='https://www.youtube.com/embed/1t8skmtdDmU' frameBorder='0' allowFullScreen />
+                    <p><em>Murray Jones from TreeLife Organic Nursery in Whanganui demonstrates how to prune the Monty's Surprise apple tree. Narrated by David Hughes and filmed by Phil Thomsen.</em></p>
                 </div>
             </div>
 
@@ -184,7 +184,7 @@ export default React.createClass({
 
                 <p>International and New Zealand research has indicated that apples contain substances capable of reducing the risk of some cancers, cardiovascular disease, asthma and diabetes. This research has been carried out on commercially produced varieties of apples.</p>
 
-                <p>The Heritage Food Crops Research Trust, in conjunction with the Central Districts Branch of the New Zealand Tree Crops Association has, over recent years, played a leading role in locating, identifying and propagating heritage apple varieties. Six years of research were completed to evaluate the levels of beneficial compounds in these heritage apple varieties and to compare the results with those of commercial apples. <a href='http://treecrops.org.nz/resrch/apple/applecanc06.html'>Link to 2006 Research Report</a></p>
+                <p>The Heritage Food Crops Research Trust, in conjunction with the Central Districts Branch of the New Zealand Tree Crops Association has, over recent years, played a leading role in locating, identifying and propagating heritage apple varieties. Six years of research were completed to evaluate the levels of beneficial compounds in these heritage apple varieties and to compare the results with those of commercial apples (see the <a href='https://web.archive.org/web/20150424004047/http://www.treecrops.org.nz/resrch/apple/applecanc06.html'>2006 Research Report</a>).</p>
 
                 <p>Several of the heritage varieties proved to contain levels of beneficial compounds well in excess of any currently grown commercial apple. Two rare heritage eating apples, Monty's Surprise and Hetlina, contain levels of quercetin flavonoids and procyanidins (compounds known to inhibit the growth of cancer cells) several times greater than that of the most beneficial commercial apple.</p>
 
