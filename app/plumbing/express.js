@@ -51,10 +51,12 @@ export default function (app) {
         }));
     }
 
-    app.use(compression({
-        filter: (req, res) => /json|text|javascript|css|svg|xml/.test(res.getHeader('Content-Type')),
-        level: 9
-    }));
+    if (!config.disableCompression) {
+        app.use(compression({
+            filter: (req, res) => /json|text|javascript|css|svg|xml/.test(res.getHeader('Content-Type')),
+            level: 9
+        }));
+    }
 
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
