@@ -2,22 +2,14 @@ import express from 'express';
 import morgan from 'morgan';
 import path from 'path';
 import responseTime from 'response-time';
-import methodOverride from 'method-override';
 import compression from 'compression';
 import favicon from 'serve-favicon';
 import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import session from 'express-session';
 import errorHandler from 'errorhandler';
-import expressValidator from 'express-validator';
-import pkg from 'package.json';
 import router from 'app/plumbing/router';
 import config from 'app/config';
 import _ from 'lodash';
 import fs from 'fs';
-import moment from 'moment';
-
-var env = process.env.NODE_ENV || 'development';
 
 export default function (app) {
 
@@ -29,8 +21,8 @@ export default function (app) {
     };
 
     // settings
-    app.set('env', env);
-    app.set('port', app.config.server.port || 3000);
+    app.set('env', process.env.NODE_ENV || 'development');
+    app.set('port', config.server.port || 3000);
     app.set('views', path.join(__dirname, '../../app/views'));
     app.set('view engine', 'ejs');
 
@@ -45,49 +37,31 @@ export default function (app) {
         _.noop();
     }
     app.use(allowCrossDomain);
-    if (env === 'development') {
+    if (config.debug) {
         app.use(morgan('dev'));
-    } else {
+    } else if (!config.disableLogging) {
         app.use(morgan('combined', {
             skip: (req, res) => {
                 return res.statusCode < 400;
             },
             stream: fs.createWriteStream(
-                app.config.root + '/access.log',
+                path.resolve(config.logDir + '/access.log'),
                 { flags: 'a' }
             )
         }));
     }
 
-    app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(bodyParser.json());
-    app.use(expressValidator());
-    app.use(methodOverride());
-
-    app.use(cookieParser('correct horse battery staple'));
-    app.use(session({
-        name: [pkg.name, '.sid'].join(),
-        resave: true,
-        saveUninitialized: true,
-        secret: pkg.name,
-        genid: req => {
-            return require('node-uuid').v4(); // use UUIDs for session IDs
-        }
+    app.use(compression({
+        filter: (req, res) => /json|text|javascript|css|svg|xml/.test(res.getHeader('Content-Type')),
+        level: 9
     }));
 
-    app.use((req, res, next) => {
-        res.locals.pkg = pkg;
-        res.locals.NODE_ENV = env;
-        res.locals.moment = moment;
-        if (_.isObject(req.user)) {
-            res.locals.User = req.user;
-        }
-        next();
-    });
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
 
     var distPath = express.static(path.normalize(__dirname + '/../../dist'));
     var staticPath = express.static(path.normalize(__dirname + '/../../static'));
-    var filesPath = express.static(path.normalize(__dirname + '/../../static/files'));
+    var filesPath = express.static(path.normalize(__dirname + '/' + config.pathToDeprecatedFilesDir));
     var deprecatedImagesPath = express.static(path.normalize(__dirname + '/../../static/images'));
 
     app.use('/static', distPath);
@@ -97,21 +71,12 @@ export default function (app) {
 
     app.use(router);
 
-    // will print stacktrace
-    if (app.get('env') === 'development') {
-        app.use(responseTime());
-    } else {
-        app.use(compression({
-            filter: (req, res) => /json|text|javascript|css/.test(res.getHeader('Content-Type')),
-            level: 9
-        }));
-    }
-
     app.use(function handleNotFound (req, res, next) {
         res.status(404);
 
         if (req.accepts('html')) {
             res.render('index', {
+                debug: config.debug,
                 title: 'Page not found — ' + config.title,
                 version: config.version,
                 content: ''
@@ -127,12 +92,10 @@ export default function (app) {
         res.type('txt').send('Not found');
     });
 
-    if (env === 'development') {
-
+    if (config.debug) {
         app.use(errorHandler());
-
+        app.use(responseTime());
     } else {
-
         app.use(function logErrors (err, req, res, next) {
             if (err.status === 404) {
                 return next(err);
@@ -167,7 +130,6 @@ export default function (app) {
                 res.type('txt').send(message + '\n');
                 return;
             }
-
         });
     }
 }

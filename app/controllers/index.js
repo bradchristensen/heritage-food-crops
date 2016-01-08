@@ -14,6 +14,7 @@ export default {
             let title = DocumentTitle.rewind();
 
             res.render('index', {
+                debug: config.debug,
                 title: title ? (title + ' — ' + config.title) : config.title,
                 version: config.version,
                 content

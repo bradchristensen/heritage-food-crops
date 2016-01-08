@@ -16,7 +16,7 @@
     <body>
         <div id="page"><%- content %></div>
 
-        <script src="/static/scripts/main.js?build=<%= version %>"></script>
+        <script src="/static/scripts/<%= debug ? 'main' : 'main.min' %>.js?build=<%= version %>"></script>
         <script>
             require(['infrastructure/config'], function () {
                 require(['infrastructure/analytics', 'main'], function (analytics) {

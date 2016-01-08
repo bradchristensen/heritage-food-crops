@@ -6,6 +6,7 @@ import concat from 'gulp-concat';
 import uglify from 'gulp-uglify';
 import sourcemaps from 'gulp-sourcemaps';
 import eslint from 'gulp-eslint';
+import rename from 'gulp-rename';
 
 import babelTransform from 'tasks/streams/babelTransform';
 import explicitName from 'tasks/streams/explicitName';
@@ -48,13 +49,18 @@ var createPipeline = (uglifyFlag, sourcemapsFlag) => {
 };
 
 gulp.task('scripts:build', () => createPipeline(false, false));
+gulp.task('scripts:uglify', ['scripts:build'], () => {
+    return gulp.src([dest.scripts + 'main.js'])
+        .pipe(uglify())
+        .pipe(rename('main.min.js'))
+        .pipe(gulp.dest(dest.scripts));
+});
 
 gulp.task('scripts:lint', () => {
-    // only lint non-vendor files
-    return gulp.src([src.scripts + '**/*.js', '!' + src.scripts + 'vendor/**/*.js'])
+    return gulp.src([src.scripts + '**/*.js'])
         .pipe(plumber())
         .pipe(eslint())
         .pipe(eslint.format());
 });
 
-export default gulp.task('scripts', ['scripts:lint', 'scripts:build']);
+export default gulp.task('scripts', ['scripts:lint', 'scripts:build', 'scripts:uglify']);
