@@ -1,4 +1,5 @@
 import React from 'react';
+import DocumentTitle from 'components/documentTitle';
 import jsonXHR from 'infrastructure/jsonXHR';
 
 export default React.createClass({
@@ -47,6 +48,8 @@ export default React.createClass({
 
     render () {
         return <div className='wrapper'>
+            <DocumentTitle title='Contact Us' />
+
             <div className='wrapper wrap-900'>
 
                 <div className='box'>

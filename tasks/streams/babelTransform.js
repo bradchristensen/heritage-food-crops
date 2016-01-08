@@ -17,7 +17,7 @@ export default function (debug) {
         if (file.contents.toString().indexOf('define(') === -1) {
             try {
                 var babelStream = babel({
-                    plugins: ['transform-es2015-modules-amd'],
+                    plugins: ['transform-es2015-modules-amd', 'transform-class-properties'],
                     presets: ['es2015']
                 });
 

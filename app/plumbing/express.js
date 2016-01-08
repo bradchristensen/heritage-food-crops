@@ -112,11 +112,9 @@ export default function (app) {
 
         if (req.accepts('html')) {
             res.render('index', {
-                url: req.url,
-                error: '404 Not found',
-                title: config.title,
-                year: new Date().getFullYear(),
-                config
+                title: 'Page not found — ' + config.title,
+                version: config.version,
+                content: ''
             });
             return;
         }

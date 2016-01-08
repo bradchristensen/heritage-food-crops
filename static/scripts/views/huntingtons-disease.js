@@ -1,5 +1,6 @@
 import React from 'react';
 import Actions from 'stores/actions';
+import DocumentTitle from 'components/documentTitle';
 import Article from 'components/article';
 import SectionHeading from 'components/sectionHeading';
 import SectionSubheading from 'components/sectionSubheading';
@@ -17,6 +18,8 @@ export default React.createClass({
 
     render () {
         return <Article className='page-huntingtons-disease'>
+            <DocumentTitle title={'Huntington\'s Disease'} />
+
             <div className='page-feature' />
 
             <div className='wrapper'>

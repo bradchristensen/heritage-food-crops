@@ -1,8 +1,11 @@
 import React from 'react';
+import DocumentTitle from 'components/documentTitle';
 
 export default React.createClass({
     render () {
         return <div className='wrapper'>
+            <DocumentTitle title='Links' />
+
             <div className='wrapper wrap-900'>
                 <div className='box'>
                     <h2>For Purchase of Monty's Surprise Apple Trees</h2>

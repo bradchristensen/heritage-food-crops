@@ -1,6 +1,6 @@
 import request from 'request';
 import React from 'react';
-import ReactDOM from 'infrastructure/react-dom';
+import ReactDOM from 'infrastructure/reactDOM';
 import config from 'app/config';
 
 var cert = '-----BEGIN CERTIFICATE-----\n' +

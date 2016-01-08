@@ -2,16 +2,21 @@ import config from 'app/config';
 import routes from 'infrastructure/routes';
 import Router from 'react-router';
 import React from 'react';
-import ReactDOM from 'infrastructure/react-dom';
+import ReactDOM from 'infrastructure/reactDOM';
+import DocumentTitle from 'components/documentTitle';
 
 export default {
     get (req, res) {
         Router.run(routes, req.url, Root => {
+            let content = ReactDOM.renderToString(<Root />);
+
+            // content must be rendered before we can retrieve the page title
+            let title = DocumentTitle.rewind();
+
             res.render('index', {
-                title: config.title,
+                title: title ? (title + ' — ' + config.title) : config.title,
                 version: config.version,
-                year: new Date().getFullYear(),
-                content: ReactDOM.renderToString(<Root />)
+                content
             });
         });
     }

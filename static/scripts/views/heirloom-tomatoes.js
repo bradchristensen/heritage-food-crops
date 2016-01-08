@@ -1,5 +1,6 @@
 import React from 'react';
 import Actions from 'stores/actions';
+import DocumentTitle from 'components/documentTitle';
 import Article from 'components/article';
 import Contents from 'components/tableOfContents';
 import References from 'components/references';
@@ -22,6 +23,8 @@ export default React.createClass({
     render () {
         return (
 <Article className='page-heirloom-tomatoes'>
+    <DocumentTitle title='Heirloom Tomatoes' />
+
     <div className='page-feature'>
         <div className='wrapper'>
             <p>One of these tomato varieties contains lycopene that is more easily absorbed into your bloodstream, and therefore better for you. Can you tell which one?</p>

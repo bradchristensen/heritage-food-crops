@@ -1,5 +1,6 @@
 import React from 'react';
 import Actions from 'stores/actions';
+import DocumentTitle from 'components/documentTitle';
 import Article from 'components/article';
 import Contents from 'components/tableOfContents';
 import References from 'components/references';
@@ -32,6 +33,8 @@ export default React.createClass({
 
     render () {
         return <Article className='wrapper page-montys-surprise'>
+            <DocumentTitle title={'Monty\'s Surprise'} />
+
             <div className='splitter'>
                 <h1>Monty's Surprise</h1>
                 <div className='box'>
@@ -47,7 +50,7 @@ export default React.createClass({
 
             <div className='splitter right'>
                 <div className='box'>
-                    <iframe width='100%' height='338' src='https://www.youtube.com/embed/XiLWjJk9Xk8' frameborder='0' allowfullscreen />
+                    <iframe width='100%' height='338' src='https://www.youtube.com/embed/XiLWjJk9Xk8' frameBorder='0' allowFullScreen />
                     <p><em><strong>Join Mark Christensen as he introduces us to this heritage variety of apple that is fast becoming a favourite around the country.</strong> Filmed as part of the <a href='http://earthcare-education.org/wp_earthcare/localisingfood/2013/11/22/montys-surprise-fighting-cancer-with-heritage-fruit/'>Localising Food Project</a>.</em></p>
                 </div>
 

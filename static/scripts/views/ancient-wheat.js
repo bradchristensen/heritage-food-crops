@@ -1,5 +1,6 @@
 import React from 'react';
 import Actions from 'stores/actions';
+import DocumentTitle from 'components/documentTitle';
 import Article from 'components/article';
 import SectionHeading from 'components/sectionHeading';
 import _ from 'lodash';
@@ -16,6 +17,8 @@ export default React.createClass({
 
     render () {
         return <Article className='page-ancient-wheat'>
+            <DocumentTitle title='Ancient Wheat' />
+
             <div className='page-feature' />
 
             <div className='wrapper'>

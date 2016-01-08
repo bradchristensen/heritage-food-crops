@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'infrastructure/react-dom';
+import ReactDOM from 'infrastructure/reactDOM';
 import Router from 'react-router';
 import routes from 'infrastructure/routes';
 import smoothScroll from 'smooth-scroll';

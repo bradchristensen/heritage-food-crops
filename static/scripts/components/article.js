@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'infrastructure/react-dom';
+import ReactDOM from 'infrastructure/reactDOM';
 import _ from 'lodash';
 
 var flattenNodes = nodes => {

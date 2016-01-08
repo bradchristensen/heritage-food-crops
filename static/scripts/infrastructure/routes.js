@@ -1,9 +1,10 @@
 import React from 'react';
-import { Route, DefaultRoute } from 'react-router';
+import { Route, DefaultRoute, NotFoundRoute } from 'react-router';
 
 // Routes
 import App from 'views/app';
 import Index from 'views/index';
+import PageNotFound from 'views/page-not-found';
 import MontysSurprise from 'views/montys-surprise';
 import HeirloomTomatoes from 'views/heirloom-tomatoes';
 import HeirloomBeans from 'views/heirloom-beans';
@@ -19,6 +20,8 @@ var routes = (
     <Route handler={App}>
         <DefaultRoute handler={Index} />
         <Route name='index' handler={Index} />
+        <NotFoundRoute handler={PageNotFound} />
+
         <Route name='montys-surprise' handler={MontysSurprise} />
         <Route name='heirloom-tomatoes' handler={HeirloomTomatoes} />
         <Route name='heirloom-beans' handler={HeirloomBeans} />
