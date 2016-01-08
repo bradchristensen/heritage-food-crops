@@ -7,8 +7,10 @@ export default React.createClass({
 
     render () {
         return <ol className='footnotes'>
-            {this.context.references.map((text, index) => {
-                return <li key={'references-' + index} id={'cite-' + (index + 1)}>{text}</li>;
+            {this.context.references.map((ref, index) => {
+                return <li key={'references-' + index} id={'cite-' + ref.id}>
+                    {ref.href ? <a href={ref.href}>{ref.value}</a> : ref.value}
+                </li>;
             })}
         </ol>;
     }

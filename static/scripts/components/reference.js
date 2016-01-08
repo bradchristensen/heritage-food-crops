@@ -2,25 +2,19 @@ import React from 'react';
 
 export default React.createClass({
     contextTypes: {
-        assignReferenceNumberAtomic: React.PropTypes.func
+        assignReferenceId: React.PropTypes.func
     },
 
     getInitialState () {
         return {
-            referenceNumber: 0
+            id: this.context.assignReferenceId()
         };
-    },
-
-    componentDidMount () {
-        this.context.assignReferenceNumberAtomic(this.props.source || this.props.children).then(referenceNumber => {
-            this.setState({ referenceNumber });
-        });
     },
 
     render () {
         return <sup>
-            <a href={'#cite-' + this.state.referenceNumber} data-scroll>
-                {'[' + this.state.referenceNumber + ']'}
+            <a href={'#cite-' + this.state.id} data-scroll>
+                {'[' + this.state.id + ']'}
             </a>
         </sup>;
     }

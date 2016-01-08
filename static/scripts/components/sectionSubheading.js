@@ -2,12 +2,28 @@ import React from 'react';
 import _ from 'lodash';
 
 export default React.createClass({
+    contextTypes: {
+        assignSectionSubheadingId: React.PropTypes.func
+    },
+
+    getInitialState () {
+        return !this.props.exclude ? this.context.assignSectionSubheadingId() : {};
+    },
+
+    getDefaultProps () {
+        return {
+            exclude: false,
+            tag: 'h3',
+            shortText: null // Used in the table of contents
+        };
+    },
+
     render () {
-        // TODO
         var props = _.assign({}, this.props);
         delete props.children;
-        // TODO: associate with heading numbers so that you can click on headings in the table of contents
-        //props.id = this.context.getHeadingNumber(this);
-        return React.createElement('h3', props, this.props.children);
+        if (!props.exclude) {
+            props.id = 'section-' + this.state.parentId + '-' + this.state.id;
+        }
+        return React.createElement(this.props.tag, props, this.props.children);
     }
 });

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'infrastructure/react-dom';
 import _ from 'lodash';
 
 var flattenNodes = nodes => {
@@ -18,23 +19,29 @@ var flattenNodes = nodes => {
 
 export default React.createClass({
     childContextTypes: {
-        getHeadingNumberAtomic: React.PropTypes.func,
-        assignReferenceNumberAtomic: React.PropTypes.func,
+        assignSectionHeadingId: React.PropTypes.func,
+        assignSectionSubheadingId: React.PropTypes.func,
+        assignReferenceId: React.PropTypes.func,
         tableOfContents: React.PropTypes.array,
         references: React.PropTypes.array
     },
 
-    getInitialState () {
-        return {
-            lastHeadingNumber: 0,
-            headings: {},
-            lastReferenceNumber: 0,
-            references: {}
-        };
+    componentDidMount () {
+        this.forceUpdate();
     },
 
+    // to be built by getChildContext()
+    references: null,
+    referenceIds: null,
+    tableOfContents: null,
+
     buildTableOfContents (flattenedNodes) {
+        this.nextSectionHeading = 0;
+
         var tableOfContents = [];
+
+        var headingIds = 0;
+        var subheadingIds = 0;
 
         _.forEach(flattenedNodes, node => {
             if (node.type && node.type.displayName === 'sectionHeading') {
@@ -42,8 +49,10 @@ export default React.createClass({
                     tableOfContents.push({
                         node,
                         text: node.props.shortText || node.props.children,
-                        children: []
+                        children: [],
+                        id: ++headingIds
                     });
+                    subheadingIds = 0;
                 }
             }
 
@@ -52,7 +61,7 @@ export default React.createClass({
                     tableOfContents[tableOfContents.length - 1].children.push({
                         node,
                         text: node.props.shortText || node.props.children,
-                        children: []
+                        id: ++subheadingIds
                     });
                 }
             }
@@ -61,65 +70,69 @@ export default React.createClass({
         return tableOfContents;
     },
 
-    // TODO: instead of this, use existing heading numbers defined by building the table of contents
-    getHeadingNumberAtomic (uniqueIdentifier) {
-        return new Promise(resolve => {
-            this.setState(state => {
-                if (!state.headings[uniqueIdentifier]) {
-                    var immutableClone = _.clone(state.headings);
-                    immutableClone[uniqueIdentifier] = state.lastHeadingNumber + 1;
+    buildReferences (flattenedNodes) {
+        this.referenceIds = [];
+        this.nextReference = 0;
 
-                    resolve(immutableClone[uniqueIdentifier]);
+        var references = [];
+        var referenceIds = 0;
 
-                    return {
-                        headings: immutableClone,
-                        lastHeadingNumber: state.lastHeadingNumber + 1
-                    };
+        _.forEach(flattenedNodes, node => {
+            if (node.type && node.type.displayName === 'reference') {
+                var markup = node.props.source || node.props.children;
+                if (markup.toString() !== markup) {
+                    markup = ReactDOM.renderToStaticMarkup(markup);
                 }
 
-                resolve(state.headings[uniqueIdentifier]);
-
-                return {}; // no change
-            });
+                var duplicateReference = _.find(references, ref => ref.markup === markup);
+                if (duplicateReference) {
+                    this.referenceIds.push(duplicateReference.id);
+                } else {
+                    references.push({
+                        node,
+                        markup,
+                        value: node.props.source || node.props.children,
+                        href: node.props.href,
+                        id: ++referenceIds
+                    });
+                    this.referenceIds.push(referenceIds);
+                }
+            }
         });
+
+        return references;
     },
 
-    // TODO: this could be unreliable - build list of references using similar method to table of contents
-    assignReferenceNumberAtomic (citation) {
-        return new Promise(resolve => {
-            this.setState(state => {
-                if (!state.references[citation]) {
-                    var immutableClone = _.clone(state.references);
-                    immutableClone[citation] = state.lastReferenceNumber + 1;
+    nextReference: 0,
+    assignReferenceId () {
+        return this.referenceIds[this.nextReference++];
+    },
 
-                    resolve(immutableClone[citation]);
+    nextSectionSubheading: 0,
+    assignSectionSubheadingId () {
+        return {
+            parentId: this.nextSectionHeading,
+            id: ++this.nextSectionSubheading
+        };
+    },
 
-                    return {
-                        references: immutableClone,
-                        lastReferenceNumber: state.lastReferenceNumber + 1
-                    };
-                }
-
-                resolve(state.references[citation]);
-
-                return {}; // no change
-            });
-        });
+    nextSectionHeading: 0,
+    assignSectionHeadingId () {
+        this.nextSectionSubheading = 0;
+        return ++this.nextSectionHeading;
     },
 
     getChildContext () {
         var flattenedNodes = flattenNodes(this.props.children);
-
-        var tableOfContents = this.buildTableOfContents(flattenedNodes);
-        var references = _.keys(this.state.references).sort((a, b) => {
-            return this.state.references[a] > this.state.references[b];
-        });
+        this.tableOfContents = this.buildTableOfContents(flattenedNodes);
+        this.references = this.buildReferences(flattenedNodes);
 
         return {
-            getHeadingNumberAtomic: this.getHeadingNumberAtomic,
-            assignReferenceNumberAtomic: this.assignReferenceNumberAtomic,
-            tableOfContents,
-            references
+            assignSectionHeadingId: this.assignSectionHeadingId,
+            assignSectionSubheadingId: this.assignSectionSubheadingId,
+            assignReferenceId: this.assignReferenceId,
+            tableOfContents: this.tableOfContents,
+            references: this.references
         };
     },
 
