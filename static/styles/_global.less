@@ -1020,9 +1020,14 @@ blockquote.highlight h3 {
     width: 100%;
 }
 
-.lightbox-close {
-    background: url('/static/images/icons/fancybox_sprite-2x.png') top left;
+.lightbox-close,
+.lightbox-close:hover,
+.lightbox-close:active,
+.lightbox-close:focus {
+    background: transparent url('/static/images/icons/fancybox_sprite-2x.png') top left;
     background-size: 44px 152px;
+    border: none;
+    box-shadow: none;
     height: 36px;
     overflow: hidden;
     position: absolute;
