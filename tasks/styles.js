@@ -4,7 +4,6 @@ import sourcemaps from 'gulp-sourcemaps';
 import less from 'gulp-less';
 import minify from 'gulp-minify-css';
 import del from 'del';
-import addsrc from 'gulp-add-src';
 import cache from 'gulp-cache-stream';
 import concat from 'gulp-concat';
 import postcss from 'gulp-postcss';
@@ -26,8 +25,6 @@ export default gulp.task('styles', ['clean:less'], () => {
     return gulp.src([
         src.styles + '_fonts.less',
         src.styles + '_reset.less',
-        src.styles + '_fancybox.less',
-        src.styles + '_bootstrap.less',
         src.styles + '_global.less'
     ])
     .pipe(plumber())
@@ -40,7 +37,6 @@ export default gulp.task('styles', ['clean:less'], () => {
         ]));
     }, 'less'))
     .pipe(sourcemaps.write())
-    .pipe(addsrc.prepend(src.bower + 'react-select/dist/default.css'))
     .pipe(concat('global.css'))
     .pipe(minify({ compatibility: '-properties.zeroUnits' }))
     .pipe(gulp.dest(dest.styles));

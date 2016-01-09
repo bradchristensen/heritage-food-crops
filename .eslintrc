@@ -11,9 +11,7 @@
 		"react"
 	],
 	"globals": {
-		"define": true,
-		"require": true,
-		"requirejs": true
+		"require": true
 	},
 	"extends": "eslint:recommended",
 	"rules": {

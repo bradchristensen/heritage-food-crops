@@ -17,12 +17,5 @@
         <div id="page"><%- content %></div>
 
         <script src="/static/scripts/<%= debug ? 'main' : 'main.min' %>.js?build=<%= version %>"></script>
-        <script>
-            require(['infrastructure/config'], function () {
-                require(['infrastructure/analytics', 'main'], function (analytics) {
-                    analytics.default('send', 'pageview');
-                });
-            });
-        </script>
     </body>
 </html>

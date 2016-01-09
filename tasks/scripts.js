@@ -1,54 +1,58 @@
 import gulp from 'gulp';
-import _ from 'lodash';
-import addsrc from 'gulp-add-src';
 import plumber from 'gulp-plumber';
-import concat from 'gulp-concat';
 import uglify from 'gulp-uglify';
-import sourcemaps from 'gulp-sourcemaps';
 import eslint from 'gulp-eslint';
 import rename from 'gulp-rename';
-
-import babelTransform from 'tasks/streams/babelTransform';
-import explicitName from 'tasks/streams/explicitName';
-import cache from 'gulp-cache-stream';
+import path from 'path';
+import webpack from 'webpack';
 
 import config from 'app/config/gulp.json';
 
 var src = config.src;
 var dest = config.dest;
 
-var vendorScriptPaths = _.map(config.bowerScripts || {}, (name, path) => {
-    return src.bower + path + '.js';
-}).concat(_.map(config.npmScripts || {}, (name, path) => {
-    return src.npm + path + '.js';
-}));
+var webpackCache = {};
 
-var createPipeline = (uglifyFlag, sourcemapsFlag) => {
-    var initialStream = gulp.src([src.scripts + '**/*.js'].concat(vendorScriptPaths));
-
-    var addToPipeline = (...streams) => streams.reduce((pipeline, stream) => {
-        return stream ? pipeline.pipe(stream) : pipeline;
-    }, initialStream);
-
-    var cachedTransformations = stream => stream
-        .pipe(plumber())
-        .pipe(babelTransform(true))
-        .pipe(explicitName(true));
-
-    return addToPipeline(
-        plumber(),
-        sourcemapsFlag && sourcemaps.init(),
-        cache(cachedTransformations, 'transform'),
-        // don't perform any transformations on require.js
-        addsrc.prepend(src.bower + 'requirejs/require.js'),
-        concat('main.js'),
-        uglifyFlag && uglify(),
-        sourcemapsFlag && sourcemaps.write('./'),
-        gulp.dest(dest.scripts)
-    );
+var webpackConfig = {
+    context: path.resolve(__dirname, '../' + src.scripts),
+    entry: [
+        'babel-polyfill',
+        './main'
+    ],
+    output: {
+        path: path.resolve(__dirname, '../' + dest.scripts),
+        filename: 'main.js'
+    },
+    module: {
+        loaders: [
+            {
+                loader: 'babel-loader',
+                include: [
+                    path.resolve(__dirname, '../' + src.scripts),
+                    path.resolve(__dirname, '../node_modules/json-xhr-promise')
+                ],
+                query: {
+                    plugins: ['transform-class-properties', 'transform-runtime'],
+                    presets: ['react', 'es2015', 'stage-0']
+                }
+            }
+        ]
+    },
+    resolve: {
+        root: path.resolve(__dirname, '../' + src.scripts)
+    },
+    cache: webpackCache
 };
 
-gulp.task('scripts:build', () => createPipeline(false, false));
+gulp.task('scripts:build', callback => {
+    webpack(webpackConfig, (err, stats) => {
+        if (err) {
+            throw new Error('webpack: ' + (err.message || err));
+        }
+        callback();
+    });
+});
+
 gulp.task('scripts:uglify', ['scripts:build'], () => {
     return gulp.src([dest.scripts + 'main.js'])
         .pipe(uglify())

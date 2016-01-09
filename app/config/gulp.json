@@ -1,42 +1,12 @@
 {
     "src": {
         "app": "app/",
-        "bower": "bower_components/",
-        "npm": "node_modules/",
         "styles": "static/styles/",
-        "scripts": "static/scripts/",
-        "vendor": "static/scripts/vendor/"
+        "scripts": "static/scripts/"
     },
-
-    "requirejsConfigFilePath": "infrastructure/config.js",
 
     "dest": {
         "styles": "dist/styles/",
         "scripts": "dist/scripts/"
-    },
-
-    "bowerScripts": {
-        "react/react-with-addons": "react",
-        "reflux/dist/reflux": "reflux",
-        "requirejs-text/text": "text",
-        "react-router/build/umd/ReactRouter": "react-router",
-        "lodash/lodash": "lodash",
-        "react-input-autosize/lib/AutosizeInput": "react-input-autosize",
-        "react-select/lib/Select": "react-select",
-        "react-select/lib/Value": "react-select-value",
-        "classnames/index": "classnames",
-        "numeral/numeral": "numeral",
-        "smooth-scroll/dist/js/smooth-scroll": "smooth-scroll",
-        "es6-promise/promise": "es6-promise"
-    },
-
-    "renameMap": {
-        "./Value": "react-select-value"
-    },
-
-    "shimSynchronousRequires": {
-        "react-select": "all",
-        "react-select-value": "all",
-        "react-input-autosize": "all"
     }
 }

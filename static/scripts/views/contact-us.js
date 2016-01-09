@@ -1,6 +1,6 @@
 import React from 'react';
 import DocumentTitle from 'components/documentTitle';
-import jsonXHR from 'infrastructure/jsonXHR';
+import jsonXHR from 'json-xhr-promise';
 
 export default React.createClass({
     getInitialState () {
