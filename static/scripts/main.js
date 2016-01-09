@@ -3,8 +3,14 @@ import ReactDOM from 'infrastructure/reactDOM';
 import Router from 'react-router';
 import routes from 'infrastructure/routes';
 import smoothScroll from 'smooth-scroll';
+import ga from 'react-ga';
+
+ga.initialize(window.hfcrtAppConfig.gaTrackingId, {
+    debug: window.hfcrtAppConfig.debug
+});
 
 Router.run(routes, Router.HistoryLocation, (Root, state) => {
+    ga.pageview(state.pathname);
     ReactDOM.render(<Root />, document.getElementById('page'));
     smoothScroll.init();
 });

@@ -17,6 +17,7 @@ export default {
                 debug: config.debug,
                 title: title ? (title + ' — ' + config.title) : config.title,
                 version: config.version,
+                gaTrackingId: config.gaTrackingId,
                 content
             });
         });

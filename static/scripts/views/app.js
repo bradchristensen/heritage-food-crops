@@ -3,6 +3,7 @@ import Reflux from 'reflux';
 import Router, { Link, State } from 'react-router';
 import Lightbox from 'components/lightbox';
 import LightboxStore from 'stores/lightbox';
+import ga from 'react-ga';
 
 var RouteHandler = Router.RouteHandler;
 
@@ -145,6 +146,10 @@ export default React.createClass({
                             <li>
                                 <a onClick={event => {
                                     this.hideMenu().then(() => {
+                                        ga.event({
+                                            category: 'Navigation',
+                                            action: 'Clicked Print'
+                                        });
                                         window.print();
                                     });
                                     event.preventDefault();

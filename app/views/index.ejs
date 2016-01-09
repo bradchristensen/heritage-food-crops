@@ -16,6 +16,10 @@
     <body>
         <div id="page"><%- content %></div>
 
+        <script>window.hfcrtAppConfig = {
+            gaTrackingId: "<%= gaTrackingId %>",
+            debug: <%= debug ? 'true' : 'false' %>
+        };</script>
         <script src="/static/scripts/<%= debug ? 'main' : 'main.min' %>.js?build=<%= version %>"></script>
     </body>
 </html>

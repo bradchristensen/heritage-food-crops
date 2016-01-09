@@ -81,6 +81,7 @@ export default function (app) {
                 debug: config.debug,
                 title: 'Page not found — ' + config.title,
                 version: config.version,
+                gaTrackingId: config.gaTrackingId,
                 content: ''
             });
             return;
