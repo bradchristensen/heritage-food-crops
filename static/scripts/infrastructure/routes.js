@@ -7,6 +7,7 @@ import Index from 'views/index';
 import PageNotFound from 'views/page-not-found';
 import MontysSurprise from 'views/montys-surprise';
 import HeirloomTomatoes from 'views/heirloom-tomatoes';
+import HeirloomTomatoesPastResearch from 'views/heirloom-tomatoes/past-research';
 import HeirloomBeans from 'views/heirloom-beans';
 import PlumsPeaches from 'views/plums-peaches';
 import HuntingtonsDisease from 'views/huntingtons-disease';
@@ -24,6 +25,7 @@ var routes = (
 
         <Route name='montys-surprise' handler={MontysSurprise} />
         <Route name='heirloom-tomatoes' handler={HeirloomTomatoes} />
+        <Route name='heirloom-tomatoes/past-research' handler={HeirloomTomatoesPastResearch} />
         <Route name='heirloom-beans' handler={HeirloomBeans} />
         <Route name='plums-peaches' handler={PlumsPeaches} />
         <Route name='huntingtons-disease' handler={HuntingtonsDisease} />
