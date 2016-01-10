@@ -4,6 +4,7 @@ import DocumentTitle from 'components/documentTitle';
 import Article from 'components/article';
 import SectionHeading from 'components/sectionHeading';
 import _ from 'lodash';
+import OutboundLink from 'components/outboundLink';
 
 export default React.createClass({
     openLightbox (event) {
@@ -57,7 +58,9 @@ export default React.createClass({
 
                     <div className='right' style={{ width: '400px', margin: '7px 25px' }}>
                         <img src='/static/img/layout/wheat/bread.jpg' alt='Organic heritage stone ground whole wheat bread' className='fill' />
-                        <p style={{ paddingLeft: '0', paddingRight: '0' }}><em>Organic heritage stone ground whole wheat bread (source: <a href='http://bonton.ca/product/stone-ground-whole-wheat/'>http://bonton.ca/product/stone-ground-whole-wheat/</a>)</em></p>
+                        <p style={{ paddingLeft: '0', paddingRight: '0' }}>
+                            <em>Organic heritage stone ground whole wheat bread (<OutboundLink to='http://bonton.ca/product/stone-ground-whole-wheat/' eventLabel='http://bonton.ca/product/stone-ground-whole-wheat/'>source</OutboundLink>)</em>
+                        </p>
                     </div>
 
                     <p>Recent research has raised questions about possible detrimental health effects of wheat, most notably gluten intolerance, allergies and celiac disease. Increasingly, it seems a greater percentage of the population is suffering from these afflictions, much more than historically was the case. As wheat has been consumed for millennia, explanations have been sought for the recent explosion in these health issues. There is increasing anecdotal evidence suggesting that ancient grains may lack the toxicity of modern wheat grains. Interestingly, those afflicted by modern wheat grains are often able to support other grains such as rye, spelt, and barley. These are closely related genetically but have been less altered using modern breeding techniques. Some research has pointed the finger at modern wheat varieties that are genetically selected and adapted for high yield. For centuries, farmers have been selecting plant varieties for better quality and yield. In more recent times, an exclusive focus on yield has usually been to the detriment of other traits such as nutritional qualities.</p>

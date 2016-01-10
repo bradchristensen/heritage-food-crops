@@ -4,6 +4,7 @@ import Router, { Link, State } from 'react-router';
 import Lightbox from 'components/lightbox';
 import LightboxStore from 'stores/lightbox';
 import ga from 'react-ga';
+import OutboundLink from 'components/outboundLink';
 
 var RouteHandler = Router.RouteHandler;
 
@@ -171,7 +172,7 @@ export default React.createClass({
 
                 <div id='footer'>
                     <div className='wrapper'>
-                        Our website is <a href='https://github.com/bradchristensen/heritage-food-crops' title='Contribute via GitHub'>open source</a> and <a href='//christensen.co.nz' title='Website development by Brad Christensen'>designed with love</a>.<br />
+                        Our website is <OutboundLink to='https://github.com/bradchristensen/heritage-food-crops' eventLabel='GitHub Project' title='Contribute via GitHub'>open source</OutboundLink> and <OutboundLink to='//christensen.co.nz' eventLabel={'Brad\'s website'} title='Website development by Brad Christensen'>designed with love</OutboundLink>.<br />
                         <small>Copyright &copy; {this.props.title}, {new Date().getFullYear()}. Verbatim copying and distribution of this page is permitted in any medium.</small>
                     </div>
                 </div>

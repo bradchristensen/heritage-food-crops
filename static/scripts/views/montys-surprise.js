@@ -8,6 +8,7 @@ import SectionHeading from 'components/sectionHeading';
 import SectionSubheading from 'components/sectionSubheading';
 import Reference from 'components/reference';
 import DownloadLink from 'components/downloadLink';
+import OutboundLink from 'components/outboundLink';
 import _ from 'lodash';
 
 var galleryPaths = [
@@ -51,7 +52,7 @@ export default React.createClass({
             <div className='splitter right'>
                 <div className='box'>
                     <iframe width='100%' height='338' src='https://www.youtube.com/embed/XiLWjJk9Xk8' frameBorder='0' allowFullScreen />
-                    <p><em><strong>Join Mark Christensen as he introduces us to this heritage variety of apple that is fast becoming a favourite around the country.</strong> Filmed as part of the <a href='http://earthcare-education.org/wp_earthcare/localisingfood/2013/11/22/montys-surprise-fighting-cancer-with-heritage-fruit/'>Localising Food Project</a>.</em></p>
+                    <p><em><strong>Join Mark Christensen as he introduces us to this heritage variety of apple that is fast becoming a favourite around the country.</strong> Filmed as part of the <OutboundLink to='http://earthcare-education.org/wp_earthcare/localisingfood/2013/11/22/montys-surprise-fighting-cancer-with-heritage-fruit/' eventLabel='Localising Food Project'>Localising Food Project</OutboundLink>.</em></p>
                 </div>
 
                 <div className='box'>
@@ -187,7 +188,7 @@ export default React.createClass({
 
                 <p>International and New Zealand research has indicated that apples contain substances capable of reducing the risk of some cancers, cardiovascular disease, asthma and diabetes. This research has been carried out on commercially produced varieties of apples.</p>
 
-                <p>The Heritage Food Crops Research Trust, in conjunction with the Central Districts Branch of the New Zealand Tree Crops Association has, over recent years, played a leading role in locating, identifying and propagating heritage apple varieties. Six years of research were completed to evaluate the levels of beneficial compounds in these heritage apple varieties and to compare the results with those of commercial apples (see the <a href='https://web.archive.org/web/20150424004047/http://www.treecrops.org.nz/resrch/apple/applecanc06.html'>2006 Research Report</a>).</p>
+                <p>The Heritage Food Crops Research Trust, in conjunction with the Central Districts Branch of the New Zealand Tree Crops Association has, over recent years, played a leading role in locating, identifying and propagating heritage apple varieties. Six years of research were completed to evaluate the levels of beneficial compounds in these heritage apple varieties and to compare the results with those of commercial apples (see the <OutboundLink to='https://web.archive.org/web/20150424004047/http://www.treecrops.org.nz/resrch/apple/applecanc06.html' eventLabel={'Monty\'s Surprise 2006 Research Report'}>2006 Research Report</OutboundLink>).</p>
 
                 <p>Several of the heritage varieties proved to contain levels of beneficial compounds well in excess of any currently grown commercial apple. Two rare heritage eating apples, Monty's Surprise and Hetlina, contain levels of quercetin flavonoids and procyanidins (compounds known to inhibit the growth of cancer cells) several times greater than that of the most beneficial commercial apple.</p>
 
@@ -203,7 +204,7 @@ export default React.createClass({
 
                 <p>The weight of evidence indicating the superior medicinal qualities of the Monty's Surprise apple variety has seen Trust members initiate the free distribution of thousands of these trees to residents of Whanganui and surrounding districts. Whanganui has been our starting point, and as funding has become available, we have been able to ripple outwards, with distributions throughout the region (to the townships of Waverley and Patea to the north, Ohakune, Raetihi and Taihape to the east, and Hunterville and Marton to the south).</p>
 
-                <p>We are very excited by the enthusiasm of people from all walks of life to grow this marvelous apple tree. Not only are trees spreading rapidly throughout New Zealand, but we have also supplied nurseries in Australia and the United States with grafting wood. Australians can now <a href='http://www.plantnet.com.au/monty-s-surprise-apple-stockists/'>buy a Monty's Surprise apple tree</a>, and in the United States, their trees will soon be out of the quarantine and then numbers can be bulked up for supply to the public. For inquiries we suggest contacting Michael Dolan from <a href='http://www.burntridgenursery.com/contactus.asp'>Burnt Ridge Nursery</a>.</p>
+                <p>We are very excited by the enthusiasm of people from all walks of life to grow this marvelous apple tree. Not only are trees spreading rapidly throughout New Zealand, but we have also supplied nurseries in Australia and the United States with grafting wood. Australians can now <OutboundLink to='http://www.plantnet.com.au/monty-s-surprise-apple-stockists/' eventLabel={'Monty\'s Surprise at PlantNet'}>buy a Monty's Surprise apple tree</OutboundLink>, and in the United States, their trees will soon be out of the quarantine and then numbers can be bulked up for supply to the public. For inquiries we suggest contacting Michael Dolan from <OutboundLink to='http://www.burntridgenursery.com/contactus.asp' eventLabel='Contact Burnt Ridge Nursery'>Burnt Ridge Nursery</OutboundLink>.</p>
 
                 <p>In December 2015, Monty's Surprise grafting wood was sent to members of the Fraternités Ouvrières in France for propagation.</p>
             </div>

@@ -9,6 +9,8 @@ import SectionSubheading from 'components/sectionSubheading';
 import Reference from 'components/reference';
 import DownloadLink from 'components/downloadLink';
 import _ from 'lodash';
+import OutboundLink from 'components/outboundLink';
+import { Link } from 'react-router';
 
 export default React.createClass({
     openLightbox (event) {
@@ -53,7 +55,7 @@ export default React.createClass({
                     <p>A story for children about the very special properties of golden-orange tomatoes, written and illustrated by Janet Bradbury.</p>
                     <p>We welcome you to download a copy of the book to print or read from your computer for free.</p>
                     <p><a className='button' href='/files/jessica-and-the-golden-orb.pdf' target='_blank'>Download</a></p>
-                    <p><em>'Jessica and the Golden Orb' was featured by the Wanganui Midweek newspaper in the article <a href='http://www.nzherald.co.nz/wanganui-chronicle/midweek/news/article.cfm?c_id=1503658&objectid=11533472' target='_blank'>'Tomato stars in new book'</a>.</em></p>
+                    <p><em>'Jessica and the Golden Orb' was featured by the Wanganui Midweek newspaper in the article <OutboundLink to='http://www.nzherald.co.nz/wanganui-chronicle/midweek/news/article.cfm?c_id=1503658&objectid=11533472' eventLabel='Wanganui Midweek tomato book article'>'Tomato stars in new book'</OutboundLink>.</em></p>
                 </div>
             </div>
 
@@ -82,8 +84,8 @@ export default React.createClass({
             </div>
 
             <div className='box'>
-                <h2><a href='/heirloom-tomatoes/past-research/'>Past Research</a></h2>
-                <p><a href='/heirloom-tomatoes/past-research/'>Click here to see more of our research in this area up to 2008.</a></p>
+                <h2><Link to='heirloom-tomatoes/past-research'>Past Research</Link></h2>
+                <p><Link to='heirloom-tomatoes/past-research'>Click here to see more of our research in this area up to 2008.</Link></p>
             </div>
         </div>
 
@@ -119,7 +121,7 @@ export default React.createClass({
 
                 <p>The HFCRT has so far uncovered 16 golden/orange tomato varieties that contain the beneficial tetra-cis-lycopene, and will continue to have more varieties analysed to discover their inherent benefits. They are indebted to Dr Tony McGhie and his colleagues at Plant & Food Research in Palmerston North for their assistance with this research. The golden/orange tomatoes will appeal to many because of their stunning colour (ranging from golden to bright orange), lower acidity and suitability for the home gardener.</p>
 
-                <p>Through this research and the world-wide search for heritage tomato varieties conducted by the HFCRT, New Zealanders now have the opportunity to grow these ‘real’ tomatoes with their more available form of lycopene. Seeds of these varieties are available for purchase from <a href='http://bristol.co.nz'>www.bristol.co.nz</a>.</p>
+                <p>Through this research and the world-wide search for heritage tomato varieties conducted by the HFCRT, New Zealanders now have the opportunity to grow these ‘real’ tomatoes with their more available form of lycopene. Seeds of these varieties are available for purchase from <OutboundLink to='http://bristol.co.nz' eventLabel='Bristol Plants & Seeds'>www.bristol.co.nz</OutboundLink>.</p>
 
             </div>
 
@@ -339,7 +341,7 @@ export default React.createClass({
 
             <p>Science now recognises that scientists can influence the outcomes of their experiments just by wanting a particular outcome and hence the modern advent and use of double-blind trials.  We believe that a person's intention when they plant a seed can influence the growth and development of that plant.  We would like to couple that with research into whether outcomes are not as random as has previously been thought.  Einstein used to say that "God does not play dice" (allowing for each person's individual interpretation for the term "God"), perhaps life has more meaning than we may have previously attributed to it.  Perhaps there are external factors and natural laws that affect man.  Perhaps we have a creative ability through our intention that can influence the outcome of events.  Our research intends to explore these possibilities through the medium of "tomatoes".</p>
 
-            <p><strong><em>Tomato seeds can be purchased from <a href='http://www.bristol.co.nz'>Bristol Plants & Seeds</a>, or <a href='/contact-us/'>contact us</a> if you would like to be a part of our research and trial one of these varieties.</em></strong></p>
+            <p><strong><em>Tomato seeds can be purchased from <OutboundLink to='http://www.bristol.co.nz' eventLabel='Bristol Plants & Seeds'>Bristol Plants & Seeds</OutboundLink>, or <Link to='contact-us'>contact us</Link> if you would like to be a part of our research and trial one of these varieties.</em></strong></p>
         </div>
 
         <div className='box'>
