@@ -46,7 +46,11 @@ export default React.createClass({
         });
     },
 
+    blockTogglingResearchTopicsMenu: false,
     showResearchTopicsMenu () {
+        this.blockTogglingResearchTopicsMenu = true;
+        setTimeout(() => this.blockTogglingResearchTopicsMenu = false, 200);
+
         return new Promise(resolve => {
             this.setState({
                 currentlyVisibleSubmenu: 'researchTopics'
@@ -56,10 +60,14 @@ export default React.createClass({
 
     toggleResearchTopicsMenu () {
         return new Promise(resolve => {
-            this.setState({
-                currentlyVisibleSubmenu: this.state.currentlyVisibleSubmenu === 'researchTopics' ?
-                    null : 'researchTopics'
-            }, resolve);
+            if (!this.blockTogglingResearchTopicsMenu) {
+                this.setState({
+                    currentlyVisibleSubmenu: this.state.currentlyVisibleSubmenu === 'researchTopics' ?
+                        null : 'researchTopics'
+                }, resolve);
+            } else {
+                resolve();
+            }
         });
     },
 
