@@ -16,8 +16,10 @@ addons:
             - sshpass
 after_success:
     - mkdir build
+    - ls -l
     - mv * build
+    - ls -l
     - tar -czf package.tgz build
     - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e scp package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH -o stricthostkeychecking=no
-    - sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh -o stricthostkeychecking=no
+    - sshpass -o stricthostkeychecking=no -e scp package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -o stricthostkeychecking=no -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
