@@ -707,9 +707,6 @@ a.page-feature {
         }
             .highlight {
                 background: #FFE6E6;
-                /*border-bottom: 1px solid #F26666;*/
-                line-height: 150%;
-                padding: 2px 6px 2px 6px;
             }
 
             .box ul.children li a {
@@ -735,7 +732,9 @@ a.page-feature {
 .box table tr:nth-child(odd) td {
     background-color: #eee;
 }
-.box table tr:nth-child(odd) td.highlight {
+.box table tr:nth-child(odd) td.highlight,
+.box table tr.highlight td,
+.box table tr.highlight:nth-child(odd) td {
     background: #FFE6E6;
 }
 
@@ -1066,6 +1065,14 @@ blockquote.highlight h3 {
     visibility: visible;
 }
 
+.sortable-column-header {
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+}
+
 
 ul.bean-list {
     align-content: flex-end;
@@ -1235,6 +1242,10 @@ ul.bean-list {
         height: 107px;
         padding: 10px;
         width: 100%;
+    }
+
+    .hide-mobile {
+        display: none;
     }
 }
 
