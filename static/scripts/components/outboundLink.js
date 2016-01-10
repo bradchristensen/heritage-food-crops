@@ -20,7 +20,9 @@ export default React.createClass({
 
     render () {
         var props = _.assign({}, this.props);
+        props.href = props.to;
         delete props.eventLabel;
+        delete props.to;
         return React.createElement('a', props);
     }
 });
