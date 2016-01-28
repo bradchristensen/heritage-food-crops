@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 mkdir build
 mv * build
 tar -czf package.tgz build
