@@ -31,7 +31,7 @@ export default React.createClass({
         }
 
         return (
-            <blockquote className='highlight'>
+            <blockquote className='download-link highlight'>
                 <h3>
                     <a
                         href={this.props.href}

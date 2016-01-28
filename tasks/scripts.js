@@ -28,8 +28,7 @@ var webpackConfig = {
             {
                 loader: 'babel-loader',
                 include: [
-                    path.resolve(__dirname, '../' + src.scripts),
-                    path.resolve(__dirname, '../node_modules/json-xhr-promise')
+                    path.resolve(__dirname, '../' + src.scripts)
                 ],
                 query: {
                     plugins: ['transform-class-properties', 'transform-runtime'],
