@@ -27,7 +27,9 @@ export default React.createClass({
                         */}
                         <li>freephone <a href='tel:0800264372'>0800 264 372</a></li>
                     </ul>
+                </div>
 
+                <div className='box'>
                     <h2>For Purchase of Heirloom Tomato Varieties</h2>
                     <p>All heirloom tomato varieties grown and researched by the Trust can be purchased from Frank and Joy Bristol of Bristol Plants and Seeds in Whanganui.</p>
 

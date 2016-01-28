@@ -28,6 +28,8 @@ function reducePropsToState (propsList) {
 var siteTitle = 'Heritage Food Crops Research Trust';
 
 function handleStateChangeOnClient (title) {
+    document.getElementById('page').className = !title ? 'show-header' : '';
+
     document.title = title ? (title + ' — ' + siteTitle) : siteTitle;
 }
 

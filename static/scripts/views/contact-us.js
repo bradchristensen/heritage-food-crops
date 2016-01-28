@@ -70,7 +70,7 @@ export default React.createClass({
 
                     <p>Our bank account number is <strong>06-0793-0299259-00</strong> (ANZ Bank).</p>
 
-                    <h2>Adopt a Bean</h2>
+                    <h3>Adopt a Bean</h3>
 
                     <p>Play a part in conserving one or more rare and ancient bean varieties. Once imported, these varieties will be grown in Whanganui on the 2.2 hectare property managed by the Trust. As soon as we are able to produce fresh seed we will make them available to seed saving organisations around the country. Our goals are to maintain the seeds in our collection so that we can ensure their availability for present and future generations; to have an abundant supply to distribute as widely as possible; and to be able to research and discover their health potential.</p>
 

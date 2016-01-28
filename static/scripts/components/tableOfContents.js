@@ -6,7 +6,7 @@ export default React.createClass({
     },
 
     render () {
-        return <ul className='contents'>
+        return <ul className='table-of-contents'>
             {this.context.tableOfContents.map(item => {
                 return <li key={'contents-section-' + item.id}>
                     <a href={'#section-' + item.id} data-scroll>{item.id + ' ' + item.text}</a>

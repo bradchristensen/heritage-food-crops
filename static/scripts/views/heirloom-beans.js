@@ -219,7 +219,7 @@ export default React.createClass({
 
                 <div className='box'>
                     <SectionHeading>2008 Press Release: The Great New Zealand Bean Hunt</SectionHeading>
-                    <img src='/files/anasazi-beans.jpg' alt='' title='Pictured: Anasazi Beans' width='184' height='562' className='alignright size-full' style={{ padding: '0 15px' }} />
+                    <img src='/files/anasazi-beans.jpg' alt='' title='Pictured: Anasazi Beans' width='184' height='562' className='right' style={{ padding: '0 15px' }} />
 
                     <p>Do you have a climber or a runner hanging around your garden shed? A Whanganui-based charitable trust wants them all!</p>
 

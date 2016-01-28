@@ -15,6 +15,7 @@ export default {
 
             res.render('index', {
                 debug: config.debug,
+                showHeader: !title,
                 title: title ? (title + ' — ' + config.title) : config.title,
                 version: config.version,
                 gaTrackingId: config.gaTrackingId,

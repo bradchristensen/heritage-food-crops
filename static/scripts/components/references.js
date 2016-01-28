@@ -7,7 +7,7 @@ export default React.createClass({
     },
 
     render () {
-        return <ol className='footnotes'>
+        return <ol className='references-list'>
             {this.context.references.map((ref, index) => {
                 return <li key={'references-' + index} id={'cite-' + ref.id}>
                     {ref.href ? <OutboundLink to={ref.href} eventLabel={ref.href}>{ref.value}</OutboundLink> : ref.value}
