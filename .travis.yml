@@ -11,15 +11,13 @@ env:
   - secure: QHIX3wByth4G0GpRSxmjWSUQRJx6KFDav+ac5LTeweONtNiiePWmydYoa/Cl/6c2zBS+8PwsvfJqpLvwO8zV130HASAj9ZxqEmfBnFI0iuAMJTGLYDOx3P29jkjOz3/N/2f8OoDqihdj4NKXK2SEPNhLuROEK7BMnKga0bcKsr2wKtl5bW00qzqtUN6Ep80uNEFpAwCWw4SRLNP3aO5li6yFK6IHasS0Ay6wg68A/+/QQqPcIcdvlw1+heOt/m2hqC31telmBa7ivTbOJJqD4rMCQRYu+I3PGmEseDW3dHSPhuqpmw8qFpIZuZsm0ghSxTikxB5jgYb5mnyGgOOnuZb+0RaJatdpUe4fk/8VAyWHZ4sbAjJsNfGqbSgFODU339L7HVIGR/BOkGHL52FeWdfHc/MztF3P1WUcwYoPXNJEiuTS8P4fSgZv1L/wFoObZ7xfOVgomenXUTuQGevdMSsgWzdNNIALtUZ+SziOTN7jNadck3nPFnmYWVjKKAO1loB/Fd6at++MHYS8StB/Ya1Kj9qlk24pPwLnO5cvLcbDIu+zIE0PHB76RsjNiwb1ATEN1y/j2+1OEMYs36eTxNQctGsHEt9BgLZYR6qaAsZtKwqqzUQWb6zXZUNL7Ar2/9Y9Mw5CAsP/tcWNTSxCO3N5UjFsFNf+bOHUOa5a9DI=
   - secure: dlr5VH1D6M64o7Xr/GGJFWRSaihGfWwQdM+xwiEspqar4MOm889NfAnjo5D1coU9Tqm4dOkjFs6ALdIqDWcihjoQ12TUTUG52Pr54PFTjL6GlFH92idyE1mw7+e1d9ppk+AFBAumTv9+3TZOOfT8hmX1UMOpmtMc0zgDMRyeZLCorqJkLRuPRr05P2ScTS7DhjMmWg06YeuCNaitbhL8ZVuZqM1KPpdMR+T4X2gWpDEdkddpOqKRlVqGpwXQwWPvRMDuuNDUl5eR1r0ANkEVhsBcOR2Fl08bxSHqtFTLXZ25THRitUl7ZHZx5J5pVIqoxrNYp/GVpwG0ij96ADCTycXVcCEaCuGRQND74jfc00kndufwNK032qq0Hu0TRxF2XN/BXMh776FlSFUPNp9FquFYHW4pit9qU8DuMrIWfVT+kqkIdkneqyMUWLqQhm+2HoTknVBxCUzKsBtAdJtcQA3/RXwIxQeC/49Hvgw8dw0s7d4RnsPsIMleTkrCSYGwc+I/EbylZeC8WXogPL7C3FXfv9p7c6tj4fq4KmaHX2cC0iohSWn0OwkmJfp1tBcddNIe9278gV8xdbAljM+s2wCpAnpVoDT3XH+Cvuyd3pnNHXOAxtogcsK+4mQU0fIfNbmG2kBYpQ2NiMISFezEq6Nym2iSQFDHxm1d5plaQGc=
 addons:
+    ssh_known_hosts:
+        - heritagefoodcrops.org.nz
     apt:
         packages:
             - sshpass
-after_success:
-    - mkdir build
-    - ls -l
-    - mv * build
-    - ls -l
-    - tar -czf package.tgz build
-    - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e scp -o stricthostkeychecking=no package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - sshpass -e ssh -o stricthostkeychecking=no $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
+deploy:
+    provider: script
+    script: tasks/travis/deploy.sh
+    on:
+        branch: master
