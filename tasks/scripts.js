@@ -1,10 +1,9 @@
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
-import uglify from 'gulp-uglify';
 import eslint from 'gulp-eslint';
-import rename from 'gulp-rename';
 import path from 'path';
 import webpack from 'webpack';
+import _ from 'lodash';
 
 import config from 'app/config/gulp.json';
 
@@ -31,7 +30,7 @@ var webpackConfig = {
                     path.resolve(__dirname, '../' + src.scripts)
                 ],
                 query: {
-                    plugins: ['transform-class-properties', 'transform-runtime'],
+                    plugins: ['transform-class-properties', 'lodash'],
                     presets: ['react', 'es2015', 'stage-0']
                 }
             }
@@ -40,10 +39,23 @@ var webpackConfig = {
     resolve: {
         root: path.resolve(__dirname, '../' + src.scripts)
     },
+    devtool: 'source-map',
     cache: webpackCache
 };
 
-gulp.task('scripts:build', callback => {
+var webpackProductionConfig = _.assign({}, webpackConfig, {
+    output: _.assign({}, webpackConfig.output, {
+        filename: 'main.min.js'
+    }),
+    plugins: [
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.UglifyJsPlugin()
+    ],
+    devtool: undefined,
+    cache: {}
+});
+
+gulp.task('scripts:dev', callback => {
     webpack(webpackConfig, (err, stats) => {
         if (err) {
             throw new Error('webpack: ' + (err.message || err));
@@ -52,11 +64,13 @@ gulp.task('scripts:build', callback => {
     });
 });
 
-gulp.task('scripts:uglify', ['scripts:build'], () => {
-    return gulp.src([dest.scripts + 'main.js'])
-        .pipe(uglify())
-        .pipe(rename('main.min.js'))
-        .pipe(gulp.dest(dest.scripts));
+gulp.task('scripts:prod', callback => {
+    webpack(webpackProductionConfig, (err, stats) => {
+        if (err) {
+            throw new Error('webpack: ' + (err.message || err));
+        }
+        callback();
+    });
 });
 
 gulp.task('scripts:lint', () => {
@@ -66,4 +80,4 @@ gulp.task('scripts:lint', () => {
         .pipe(eslint.format());
 });
 
-export default gulp.task('scripts', ['scripts:lint', 'scripts:build', 'scripts:uglify']);
+export default gulp.task('scripts', ['scripts:lint', 'scripts:dev', 'scripts:prod']);

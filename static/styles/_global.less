@@ -58,7 +58,7 @@ button:focus {
 }
 
 .logo {
-    background: url('/static/images/layout/logo.png') no-repeat left bottom;
+    background: url('/static/images/layout/logo@2x.png') no-repeat center;
     background-size: 208px 225px;
     height: 225px;
     margin: 20px auto;
@@ -71,7 +71,7 @@ button:focus {
 
     a {
         display: block;
-        height: 225px;
+        height: 100%;
         opacity: 0;
         transition: all 0.5s;
         width: 100%;
@@ -84,71 +84,44 @@ button:focus {
 }
 
 .header {
-    background: #0e202a;
-    display: none;
+    background: #fff;
+    border-bottom: 1px solid @borderColor;
+    margin-left: calc(@sidebarWidth - 1px); // 1px to overlap border of sidebar
     position: relative;
-    transition: all 0.2s;
-    width: 100%;
-
-    .gradient {
-        background: radial-gradient(ellipse farthest-corner at 30% 100%,
-            #40545e 0%, transparent 80%);
-    }
+    transition: all 0.1s;
+    width: auto;
+    z-index: 1; // above sidebar
 
     .logo {
-        margin: 10px 0 0 -20px;
-        position: absolute;
-        z-index: 200;
-
-        a {
-            height: 200px;
-        }
+        display: none;
     }
 
     h1 {
         .clearfix;
         border: none;
         clear: none;
-        color: #F5EDD0;
+        font-family: 'Novecento Sans Wide', Roboto, sans-serif;
         font-size: 24px;
-        font-weight: 300;
-        margin-bottom: 0;
-        margin-left: 208px;
-        padding: 55px 0 30px;
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
-        *zoom: 1;
+        font-style: normal;
+        font-weight: 100;
+        margin: 0;
+        padding-bottom: 15px;
+        padding-top: 15px;
+
+        text-transform: uppercase;
 
         a {
-            color: #F5EDD0;
-            float: left;
-            font-size: 24px;
-            font-weight: 100;
+            color: #000;
         }
-
-        small {
-            clear: left;
-            display: block;
-            float: left;
-            font-size: inherit;
-        }
-
-        strong {
-            clear: left;
-            color: #f0f0f0;
-            display: block;
-            float: left;
-            font-size: 36px;
-            font-weight: inherit;
-        }
-
-        a:hover,
-        a:hover strong {
+        a:hover {
             color: #F26666;
         }
     }
 
     .wrapper {
-        max-width: 1130px;
+        max-width: none;
+        padding-left: 0;
+        padding-right: 0;
     }
 }
 
@@ -165,7 +138,7 @@ button:focus {
     z-index: 19;
 
     .wrapper {
-        max-width: 1130px;
+        max-width: 1000px;
     }
 }
 
@@ -195,11 +168,6 @@ button:focus {
     li a:hover,
     li a.active {
         background: #cbe8a0;
-        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.2);
-    }
-
-    li a.active {
-        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.2), inset 0 5px 10px rgba(0, 0, 0, 0.1);
     }
 
     li a[href='#']:after {
@@ -224,6 +192,7 @@ button:focus {
 }
 .menu li a,
 .navbar .caption {
+    border-radius: 3px 3px 0 0;
     color: #0e202a;
     display: block;
     padding: 15px 20px 15px;
@@ -258,6 +227,7 @@ button:focus {
 
     .wrapper {
         padding: 20px 40px;
+        max-width: 1130px;
     }
 
     ul {
@@ -322,6 +292,7 @@ button:focus {
     top: 0;
     transition: all 0.1s;
     width: @sidebarWidth;
+    z-index: 0;
 
     .sidebar-menu {
         list-style: none;
@@ -372,7 +343,7 @@ button:focus {
     padding-top: 25px;
     text-align: justify;
     transition: all 0.1s;
-    width: ~'calc(100% - @sidebarWidth)';
+    width: auto;
 }
 
 .splitter {
@@ -494,6 +465,34 @@ button:focus {
     .navbar {
         display: block;
     }
+    .header {
+        border-bottom: none;
+        margin-left: 0;
+        z-index: 20; // above navbar
+
+        .logo {
+            background-size: contain;
+            display: block;
+            height: 150px;
+            margin: 20px 0 0 60px;
+            position: absolute;
+            width: 150px;
+            z-index: 200;
+        }
+
+        h1 {
+            margin-left: 248px;
+            padding: 40px 0 10px;
+
+            a, strong {
+                display: block;
+            }
+        }
+
+        .wrapper {
+            max-width: 1000px;
+        }
+    }
     .sidebar {
         left: calc(0 - @sidebarWidth);
         opacity: 0;
@@ -501,7 +500,6 @@ button:focus {
     }
     .content {
         margin-left: 0;
-        width: 100%;
     }
     .footer {
         left: 0;
@@ -521,8 +519,7 @@ button:focus {
     text-decoration: none;
 }
 
-.feature .wrap-right,
-.page-feature .wrap-right {
+.wrap-right {
     display: block;
     margin-left: 55%;
     padding: 80px 0;
@@ -1068,19 +1065,6 @@ ul.bean-list {
     .show-header;
 }
 
-@media only screen and (max-width: 1150px) {
-    .header h1 a strong {
-        font-size: 36px;
-    }
-}
-
-@media only screen and (max-width: 950px) {
-    .header h1 a strong {
-        font-size: 28px;
-        font-weight: 300;
-    }
-}
-
 @media only screen and (max-width: 830px) {
     .wrap-right {
         margin-left: 0;
@@ -1099,7 +1083,8 @@ ul.bean-list {
         margin: 20px;
     }
 
-    .logo {
+    .header .logo,
+    .show-header .header .logo {
         display: none;
     }
 
@@ -1107,13 +1092,10 @@ ul.bean-list {
         padding: 0;
     }
 
-    .header h1 {
+    .header h1,
+    .show-header .header h1 {
         margin: 10px 20px;
         padding: 0;
-    }
-
-    .header h1 a small {
-        display: none;
     }
 
     .navbar .wrapper {
@@ -1129,23 +1111,23 @@ ul.bean-list {
     }
 
     /* Hide the 'Print this page' button */
-    .menu li:last-child {
+    .menu .box:last-child {
         display: none;
     }
 
-    .menu-large > li.box {
+    .menu-large .box {
         padding-bottom: 10px;
     }
 
-    .menu-large > li img.hero {
+    .menu-large .hero {
         float: none;
         width: 100%;
     }
-    .menu-large > li > a > * {
+    .menu-large .box > a > * {
         clear: both;
         margin-left: 0;
     }
-    .menu-large > li > a > h2 {
+    .menu-large .box h2 {
         font-size: 24px;
         margin-left: 15px;
         padding-left: 15px;
@@ -1191,17 +1173,5 @@ ul.bean-list {
 
     .hide-mobile {
         display: none;
-    }
-}
-
-@media
-only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (   -moz-min-device-pixel-ratio: 1.5),
-only screen and (     -o-min-device-pixel-ratio: 3/2),
-only screen and (        min-device-pixel-ratio: 1.5),
-only screen and (                min-resolution: 160dpi),
-only screen and (                min-resolution: 1.5dppx) {
-    .logo {
-        background-image: url('/static/images/layout/logo@2x.png');
     }
 }

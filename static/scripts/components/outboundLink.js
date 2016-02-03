@@ -23,6 +23,6 @@ export default React.createClass({
         props.href = props.to;
         delete props.eventLabel;
         delete props.to;
-        return React.createElement('a', props);
+        return <a {...props} />;
     }
 });

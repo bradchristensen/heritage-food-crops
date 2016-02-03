@@ -1,21 +1,7 @@
 import React from 'react';
 import ReactDOM from 'infrastructure/reactDOM';
+import flatten from 'infrastructure/flatten';
 import _ from 'lodash';
-
-var flattenNodes = nodes => {
-    // React tries to be clever and so children may just be a single child
-    nodes = _.isArray(nodes) ? nodes : [nodes];
-
-    return nodes.reduce((previousNodes, node) => {
-        if (node === undefined) {
-            return previousNodes;
-        }
-        if (node.props && node.props.children) {
-            return previousNodes.concat([node]).concat(flattenNodes(node.props.children));
-        }
-        return previousNodes.concat([node]);
-    }, []);
-};
 
 export default React.createClass({
     childContextTypes: {
@@ -24,10 +10,6 @@ export default React.createClass({
         assignReferenceId: React.PropTypes.func,
         tableOfContents: React.PropTypes.array,
         references: React.PropTypes.array
-    },
-
-    componentDidMount () {
-        this.forceUpdate();
     },
 
     // to be built by getChildContext()
@@ -123,7 +105,7 @@ export default React.createClass({
     },
 
     getChildContext () {
-        var flattenedNodes = flattenNodes(this.props.children);
+        var flattenedNodes = flatten(this.props.children);
         this.tableOfContents = this.buildTableOfContents(flattenedNodes);
         this.references = this.buildReferences(flattenedNodes);
 

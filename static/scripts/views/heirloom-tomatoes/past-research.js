@@ -1,5 +1,5 @@
 import React from 'react';
-import DocumentTitle from 'components/documentTitle';
+import title from 'infrastructure/documentTitle';
 import Article from 'components/article';
 import Contents from 'components/tableOfContents';
 import References from 'components/references';
@@ -9,11 +9,11 @@ import Reference from 'components/reference';
 import DownloadLink from 'components/downloadLink';
 
 export default React.createClass({
+    mixins: [title('Past Heirloom Tomatoes Research')],
+
     render () {
         return (
 <Article>
-    <DocumentTitle title='Past Heirloom Tomatoes Research' />
-
     <div className='wrapper'>
         <div className='splitter'>
             <div className='box'>

@@ -9,17 +9,19 @@
         <meta name="description" content="Established to research the early prevention and treatment of disease through natural, plant-based medicine. This includes research into the anti-cancer apple, Monty's Surprise; heirloom tomatoes; heirloom beans; and Huntington's Disease." />
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" type="text/css" href="/static/styles/global.css" />
+        <link rel="stylesheet" type="text/css" href="/static/styles/global.css?build=<%= version %>" />
 
-        <title><%= title %></title>
+        <title><%= htmlTitle %></title>
     </head>
     <body>
-        <div id="page"<%- showHeader ? ' class="show-header"' : '' %>><%- content %></div>
+        <div id="page"><%- content %></div>
 
-        <script>window.hfcrtAppConfig = {
-            gaTrackingId: "<%= gaTrackingId %>",
-            debug: <%= debug ? 'true' : 'false' %>
-        };</script>
+        <script>window.hfcrtAppConfig = <%- JSON.stringify({
+            currentPageTitle,
+            siteTitle,
+            gaTrackingId,
+            debug
+        }) %>;</script>
         <script src="/static/scripts/<%= debug ? 'main' : 'main.min' %>.js?build=<%= version %>"></script>
     </body>
 </html>

@@ -1,8 +1,10 @@
 import React from 'react';
-import DocumentTitle from 'components/documentTitle';
+import title from 'infrastructure/documentTitle';
 import jsonXHR from 'json-xhr-promise';
 
 export default React.createClass({
+    mixins: [title('Contact Us')],
+
     getInitialState () {
         return {
             name: '',
@@ -48,8 +50,6 @@ export default React.createClass({
 
     render () {
         return <div className='wrapper'>
-            <DocumentTitle title='Contact Us' />
-
             <div className='wrapper wrap-900'>
 
                 <div className='box'>

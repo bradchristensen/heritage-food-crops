@@ -80,7 +80,9 @@ export default function (app) {
             res.render('index', {
                 debug: config.debug,
                 showHeader: true,
-                title: 'Page not found — ' + config.title,
+                htmlTitle: 'Page not found — ' + config.title,
+                currentPageTitle: 'Page not found',
+                siteTitle: config.title,
                 version: config.version,
                 gaTrackingId: config.gaTrackingId,
                 content: ''

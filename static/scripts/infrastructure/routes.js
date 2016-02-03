@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, DefaultRoute, NotFoundRoute } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 
 // Routes
 import App from 'views/app';
@@ -18,22 +18,22 @@ import Links from 'views/links';
 
 // declare our routes and their hierarchy
 var routes = (
-    <Route handler={App}>
-        <DefaultRoute handler={Index} />
-        <Route name='index' handler={Index} />
-        <NotFoundRoute handler={PageNotFound} />
+    <Route path='/' component={App}>
+        <IndexRoute component={Index} />
 
-        <Route name='montys-surprise' handler={MontysSurprise} />
-        <Route name='heirloom-tomatoes' handler={HeirloomTomatoes} />
-        <Route name='heirloom-tomatoes/past-research' handler={HeirloomTomatoesPastResearch} />
-        <Route name='heirloom-beans' handler={HeirloomBeans} />
-        <Route name='plums-peaches' handler={PlumsPeaches} />
-        <Route name='huntingtons-disease' handler={HuntingtonsDisease} />
-        <Route name='ancient-wheat' handler={AncientWheat} />
+        <Route path='montys-surprise' component={MontysSurprise} />
+        <Route path='heirloom-tomatoes' component={HeirloomTomatoes} />
+        <Route path='heirloom-tomatoes/past-research' component={HeirloomTomatoesPastResearch} />
+        <Route path='heirloom-beans' component={HeirloomBeans} />
+        <Route path='plums-peaches' component={PlumsPeaches} />
+        <Route path='huntingtons-disease' component={HuntingtonsDisease} />
+        <Route path='ancient-wheat' component={AncientWheat} />
 
-        <Route name='about-the-trust' handler={AboutTheTrust} />
-        <Route name='contact-us' handler={ContactUs} />
-        <Route name='links' handler={Links} />
+        <Route path='about-the-trust' component={AboutTheTrust} />
+        <Route path='contact-us' component={ContactUs} />
+        <Route path='links' component={Links} />
+
+        <Route path='*' component={PageNotFound} />
     </Route>
 );
 

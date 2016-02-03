@@ -1,6 +1,6 @@
 import React from 'react';
 import Actions from 'stores/actions';
-import DocumentTitle from 'components/documentTitle';
+import title from 'infrastructure/documentTitle';
 import Article from 'components/article';
 import SectionHeading from 'components/sectionHeading';
 import _ from 'lodash';
@@ -147,6 +147,8 @@ var galleryPaths = [
 ];
 
 export default React.createClass({
+    mixins: [title('Heirloom Beans')],
+
     openLightbox (event) {
         if (event.button === 0) {
             var img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
@@ -158,8 +160,6 @@ export default React.createClass({
 
     render () {
         return <Article className='page-heirloom-beans'>
-            <DocumentTitle title='Heirloom Beans' />
-
             <div className='wrapper'>
                 <div className='box' style={{
                     background: '#111 url(\'/static/img/layout/heirloom-beans/background.jpg\') no-repeat top center',

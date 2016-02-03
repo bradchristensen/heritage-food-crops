@@ -1,6 +1,6 @@
 import React from 'react';
 import Actions from 'stores/actions';
-import DocumentTitle from 'components/documentTitle';
+import title from 'infrastructure/documentTitle';
 import Article from 'components/article';
 import Contents from 'components/tableOfContents';
 import References from 'components/references';
@@ -23,6 +23,8 @@ var galleryPaths = [
 ];
 
 export default React.createClass({
+    mixins: [title('Monty\'s Surprise')],
+
     openLightbox (event) {
         if (event.button === 0) {
             var img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
@@ -34,8 +36,6 @@ export default React.createClass({
 
     render () {
         return <Article className='wrapper page-montys-surprise'>
-            <DocumentTitle title={'Monty\'s Surprise'} />
-
             <div className='splitter'>
                 <h1>Monty's Surprise</h1>
                 <div className='box'>
