@@ -4,8 +4,8 @@
   "description": "hfcrt-node",
   "main": "index.js",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/bradchristensen/heritage-food-crops"
+    "type": "git",
+    "url": "https://github.com/bradchristensen/heritage-food-crops"
   },
   "author": {
     "name": "Brad Christensen",
@@ -45,15 +45,15 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.2.3",
-    "babel-eslint": "^5.0.0-beta6",
+    "babel-eslint": "^5.0.0-beta9",
     "del": "^2.2.0",
     "eslint-plugin-react": "^3.14.0",
     "gulp": "^3.9.0",
     "gulp-cache-stream": "^1.0.3",
     "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.0",
     "gulp-eslint": "^1.1.1",
     "gulp-less": "^3.0.5",
-    "gulp-minify-css": "^1.2.3",
     "gulp-plumber": "^1.0.1",
     "gulp-postcss": "^6.0.1",
     "gulp-rename": "^1.2.2",

@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import sourcemaps from 'gulp-sourcemaps';
 import less from 'gulp-less';
-import minify from 'gulp-minify-css';
+import nano from 'gulp-cssnano';
 import del from 'del';
 import cache from 'gulp-cache-stream';
 import concat from 'gulp-concat';
@@ -38,6 +38,6 @@ export default gulp.task('styles', ['clean:less'], () => {
     }, 'less'))
     .pipe(sourcemaps.write())
     .pipe(concat('global.css'))
-    .pipe(minify({ compatibility: '-properties.zeroUnits' }))
+    .pipe(nano())
     .pipe(gulp.dest(dest.styles));
 });
