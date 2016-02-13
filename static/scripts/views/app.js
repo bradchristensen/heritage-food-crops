@@ -135,7 +135,10 @@ export default React.createClass({
                 <div className='header'>
                     <div className='wrapper'>
                         {this.renderLogo()}
-                        <h1><Link to='/'><strong>Heritage Food Crops</strong> Research Trust</Link></h1>
+                        <h1 className='site-title'>
+                            <Link to='/'><strong>Heritage Food Crops</strong> Research Trust</Link>
+                        </h1>
+                        {!!currentPageTitle && <h2 className='current-page-title'>{currentPageTitle}</h2>}
                     </div>
                 </div>
 
@@ -160,7 +163,7 @@ export default React.createClass({
                             <li>
                                 <Link to='links' onClick={this.hideMenu}>Links</Link>
                             </li>
-                            <li>
+                            <li className='menu-item-print-this-page'>
                                 <a onClick={event => {
                                     this.hideMenu().then(() => {
                                         ga.event({
@@ -223,7 +226,7 @@ export default React.createClass({
                 <div className='footer'>
                     <div className='wrapper'>
                         Our website is <OutboundLink to='https://github.com/bradchristensen/heritage-food-crops' eventLabel='GitHub Project' title='Contribute via GitHub'>open source</OutboundLink> and <OutboundLink to='//christensen.co.nz' eventLabel={'Brad\'s website'} title='Website development by Brad Christensen'>designed with love</OutboundLink>.<br />
-                        <small>Copyright &copy; {this.props.title}, {new Date().getFullYear()}. Verbatim copying and distribution of this page is permitted in any medium.</small>
+                        <small>Copyright &copy; Heritage Food Crops Research Trust, {new Date().getFullYear()}. Verbatim copying and distribution of this page is permitted in any medium.</small>
                     </div>
                 </div>
 

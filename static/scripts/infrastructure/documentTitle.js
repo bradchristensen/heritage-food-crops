@@ -18,10 +18,10 @@ export var rewind = function () {
 export default function (pageTitle) {
     statics.currentPageTitle = pageTitle;
 
-    var emitChange = () => {
-        state = pageTitle;
+    var emitChange = title => {
+        state = title;
         statics.currentPageTitle = state;
-        Actions.setDocumentTitle(pageTitle);
+        Actions.setDocumentTitle(title);
     };
 
     return {
@@ -29,17 +29,17 @@ export default function (pageTitle) {
 
         componentWillMount () {
             mountedInstances.push(this);
-            emitChange();
+            emitChange(pageTitle);
         },
 
         componentDidUpdate () {
-            emitChange();
+            emitChange(pageTitle);
         },
 
         componentWillUnmount () {
             const index = mountedInstances.indexOf(this);
             mountedInstances.splice(index, 1);
-            emitChange();
+            emitChange(null);
         }
     };
 }

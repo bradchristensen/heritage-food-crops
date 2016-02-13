@@ -90,16 +90,16 @@ button:focus {
     position: relative;
     transition: all 0.1s;
     width: auto;
-    z-index: 1; // above sidebar
+    z-index: 20; // above sidebar
 
     .logo {
         display: none;
     }
 
     h1 {
-        .clearfix;
         border: none;
         clear: none;
+        display: inline-block;
         font-family: 'Novecento Sans Wide', Roboto, sans-serif;
         font-size: 24px;
         font-style: normal;
@@ -116,6 +116,14 @@ button:focus {
         a:hover {
             color: #F26666;
         }
+    }
+
+    h2 {
+        border: none;
+        color: #ff4b4b;
+        display: inline-block;
+        font-size: 23px;
+        margin: 0 0 0 -10px;
     }
 
     .wrapper {
@@ -466,9 +474,8 @@ button:focus {
         display: block;
     }
     .header {
-        border-bottom: none;
+        border-bottom: 1px solid transparent; // plays nicely with colour transitions
         margin-left: 0;
-        z-index: 20; // above navbar
 
         .logo {
             background-size: contain;
@@ -487,6 +494,10 @@ button:focus {
             a, strong {
                 display: block;
             }
+        }
+
+        h2 {
+            display: none;
         }
 
         .wrapper {
@@ -1108,11 +1119,11 @@ ul.bean-list {
 
     .menu {
         margin-left: 0;
-    }
 
-    /* Hide the 'Print this page' button */
-    .menu .box:last-child {
-        display: none;
+        /* Hide the 'Print this page' button */
+        .menu-item-print-this-page {
+            display: none;
+        }
     }
 
     .menu-large .box {
