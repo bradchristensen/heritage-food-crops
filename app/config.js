@@ -15,6 +15,10 @@ if (!config.version) {
     config.version = require('../package.json').version;
 }
 
+if (!config.server) {
+    config.server = {};
+}
+
 // detect development environment
 if (process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() === 'development') {
     config.debug = true;
