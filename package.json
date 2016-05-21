@@ -1,6 +1,6 @@
 {
   "name": "hfcrt-node",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "hfcrt-node",
   "main": "index.js",
   "repository": {
