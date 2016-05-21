@@ -1,6 +1,6 @@
 import request from 'request';
 import React from 'react';
-import ReactDOM from 'infrastructure/reactDOM';
+import ReactDOMServer from 'react-dom/server';
 import config from 'app/config';
 
 const cert = `-----BEGIN CERTIFICATE-----
@@ -26,7 +26,7 @@ export default {
         var ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
         var userAgent = req.headers['user-agent'];
 
-        var bodyHtml = ReactDOM.renderToStaticMarkup(<div>
+        var bodyHtml = ReactDOMServer.renderToStaticMarkup(<div>
             <p>
                 <span>From: {req.body.name} {'<' + req.body.email + '>'}</span><br />
                 <span>Phone: {req.body.phone}</span><br />

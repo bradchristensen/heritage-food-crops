@@ -6,15 +6,6 @@ var staticDir = path.resolve(__dirname, 'static/scripts/');
 require('babel-register')({
     presets: ['react', 'es2015', 'stage-0'],
 
-    ignore: function (filename) {
-        if (filename.indexOf('json-xhr-promise') !== -1) {
-            return false;
-        } else if (filename.indexOf('node_modules/') !== -1) {
-            return true;
-        }
-        return false;
-    },
-
     // https://gist.github.com/branneman/8048520#gistcomment-1618856
     // Resolve modules using paths relative to the app's root directory, e.g.
     // import view from 'app/views/index'

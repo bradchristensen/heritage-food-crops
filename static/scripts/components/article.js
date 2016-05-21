@@ -1,9 +1,13 @@
 import React from 'react';
-import ReactDOM from 'infrastructure/reactDOM';
+import ReactDOMServer from 'react-dom/server';
 import flatten from 'infrastructure/flatten';
 import _ from 'lodash';
 
 export default React.createClass({
+    propTypes: {
+        children: React.PropTypes.node
+    },
+
     childContextTypes: {
         assignSectionHeadingId: React.PropTypes.func,
         assignSectionSubheadingId: React.PropTypes.func,
@@ -63,7 +67,7 @@ export default React.createClass({
             if (node.type && node.type.displayName === 'reference') {
                 var markup = node.props.source || node.props.children;
                 if (markup.toString() !== markup) {
-                    markup = ReactDOM.renderToStaticMarkup(markup);
+                    markup = ReactDOMServer.renderToStaticMarkup(markup);
                 }
 
                 var duplicateReference = _.find(references, ref => ref.markup === markup);

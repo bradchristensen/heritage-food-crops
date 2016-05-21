@@ -2,6 +2,16 @@ import React from 'react';
 import _ from 'lodash';
 
 export default React.createClass({
+    propTypes: {
+        children: React.PropTypes.node,
+        exclude: React.PropTypes.bool,
+        shortText: React.PropTypes.string,
+        tag: React.PropTypes.oneOfType([
+            React.PropTypes.string,
+            React.PropTypes.func
+        ])
+    },
+
     contextTypes: {
         assignSectionSubheadingId: React.PropTypes.func
     },
@@ -13,8 +23,8 @@ export default React.createClass({
     getDefaultProps () {
         return {
             exclude: false,
-            tag: 'h3',
-            shortText: null // Used in the table of contents
+            shortText: null, // Used in the table of contents
+            tag: 'h3'
         };
     },
 

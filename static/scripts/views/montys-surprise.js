@@ -310,7 +310,7 @@ export default React.createClass({
                 <p>Apple flavonoids are found almost entirely in the skin and are composed of glycosides of quercetin. Quercetin glycosides are powerful antioxidants but have other biological properties such as anti-cancer activity that may be beneficial. In several populations apple is the major source of quercetin after onion. Apple is a good dietary source of quercetin.</p>
 
                 <div style={{ width: '500px', maxWidth: '100%', margin: '0 auto', padding: '7px 17px' }}>
-                    <table style={{ margin: '0', width: '100%' }}>
+                    <table style={{ margin: 0, width: '100%' }}>
                         <thead>
                             <tr>
                                 <th></th>
@@ -342,7 +342,7 @@ export default React.createClass({
                 <p>Although there is little evidence that procyanidins are absorbed into the body there is direct evidence to support their use for enhancing health. Procyanidins are effective antioxidants and have other activities such as inhibition of platelet activity. Several successful antioxidant products are based on procyanidins including grape seed extract and pine bark extract (Enzogenol and Pycnogenol). Some other fruits also contain substantial procyanidin concentrations such as grape, and persimmon. Additionally, the health properties of cocoa (and chocolate) are promoted due to the high procyanidin content.</p>
 
                 <div style={{ width: '500px', maxWidth: '100%', margin: '0 auto', padding: '7px 17px' }}>
-                    <table style={{ margin: '0', width: '100%' }}>
+                    <table style={{ margin: 0, width: '100%' }}>
                         <thead>
                             <tr>
                                 <th></th>

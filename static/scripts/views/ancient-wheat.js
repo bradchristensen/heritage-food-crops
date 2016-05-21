@@ -58,7 +58,7 @@ export default React.createClass({
 
                     <div className='right' style={{ width: '400px', margin: '7px 25px' }}>
                         <img src='/static/img/layout/wheat/bread.jpg' alt='Organic heritage stone ground whole wheat bread' className='fill' />
-                        <p style={{ paddingLeft: '0', paddingRight: '0' }}>
+                        <p style={{ paddingLeft: 0, paddingRight: 0 }}>
                             <em>Organic heritage stone ground whole wheat bread (<OutboundLink to='http://bonton.ca/product/stone-ground-whole-wheat/' eventLabel='http://bonton.ca/product/stone-ground-whole-wheat/'>source</OutboundLink>)</em>
                         </p>
                     </div>

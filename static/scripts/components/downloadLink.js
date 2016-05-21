@@ -1,11 +1,17 @@
 import React from 'react';
 
 export default React.createClass({
+    propTypes: {
+        description: React.PropTypes.node,
+        href: React.PropTypes.string.isRequired,
+        title: React.PropTypes.node.isRequired
+    },
+
     getDefaultProps () {
         return {
+            description: '',
             href: '',
-            title: '',
-            description: ''
+            title: ''
         };
     },
 

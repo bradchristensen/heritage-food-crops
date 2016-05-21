@@ -21,7 +21,7 @@ gulp.task('clean:less', () => {
     });
 });
 
-export default gulp.task('styles', ['clean:less'], () => {
+export default gulp.task('styles', () => {
     return gulp.src([
         src.styles + '_fonts.less',
         src.styles + '_reset.less',

@@ -3,11 +3,17 @@ import Actions from 'stores/actions';
 import _ from 'lodash';
 
 export default React.createClass({
+    propTypes: {
+        caption: React.PropTypes.node,
+        content: React.PropTypes.node,
+        visible: React.PropTypes.bool
+    },
+
     getDefaultProps () {
         return {
-            visible: false,
+            caption: null,
             content: null,
-            caption: null
+            visible: false
         };
     },
 
@@ -73,7 +79,7 @@ export default React.createClass({
                         backgroundColor: this.state.loading || contentIsVector ? '#fff' : 'transparent'
                     }}>
                         {!!this.props.content &&
-                            <img ref={img => this._img = img}
+                            <img ref={img => { this._img = img; }}
                                 src={this.props.content.toString()}
                                 alt=''
                                 onLoad={() => {

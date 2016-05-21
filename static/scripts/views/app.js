@@ -1,5 +1,6 @@
 import React from 'react';
 import Reflux from 'reflux';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Link, State } from 'react-router';
 import Lightbox from 'components/lightbox';
 import LightboxStore from 'stores/lightbox';
@@ -8,7 +9,11 @@ import ga from 'react-ga';
 import OutboundLink from 'components/outboundLink';
 
 export default React.createClass({
-    mixins: [State, Reflux.ListenerMixin],
+    mixins: [State, Reflux.ListenerMixin, PureRenderMixin],
+
+    propTypes: {
+        children: React.PropTypes.node
+    },
 
     getInitialState () {
         return {
@@ -25,13 +30,11 @@ export default React.createClass({
 
     componentDidMount () {
         this.listenTo(LightboxStore, state => {
-            if (this.isMounted()) {
-                this.setState({
-                    lightboxVisible: state.visible,
-                    lightboxContent: state.content,
-                    lightboxCaption: state.caption
-                });
-            }
+            this.setState({
+                lightboxVisible: state.visible,
+                lightboxContent: state.content,
+                lightboxCaption: state.caption
+            });
         });
 
         this.listenTo(DocumentTitleStore, currentPageTitle => this.setState({ currentPageTitle }));
@@ -48,7 +51,7 @@ export default React.createClass({
     blockTogglingResearchTopicsMenu: false,
     showResearchTopicsMenu () {
         this.blockTogglingResearchTopicsMenu = true;
-        setTimeout(() => this.blockTogglingResearchTopicsMenu = false, 200);
+        setTimeout(() => { this.blockTogglingResearchTopicsMenu = false; }, 200);
 
         return new Promise(resolve => {
             this.setState({

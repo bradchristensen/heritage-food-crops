@@ -2,7 +2,7 @@ import config from 'app/config';
 import routes from 'infrastructure/routes';
 import { match, RouterContext } from 'react-router';
 import React from 'react';
-import ReactDOM from 'infrastructure/reactDOM';
+import ReactDOMServer from 'react-dom/server';
 import { rewind as getDocumentTitle } from 'infrastructure/documentTitle';
 
 export default {
@@ -13,7 +13,7 @@ export default {
             } else if (redirectLocation) {
                 res.redirect(302, redirectLocation.pathname + redirectLocation.search);
             } else if (renderProps) {
-                let content = ReactDOM.renderToString(<RouterContext {...renderProps} />);
+                let content = ReactDOMServer.renderToString(<RouterContext {...renderProps} />);
 
                 // content must be rendered before we can retrieve the page title
                 let title = getDocumentTitle();

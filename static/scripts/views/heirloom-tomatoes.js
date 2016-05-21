@@ -261,7 +261,7 @@ export default React.createClass({
             <SectionSubheading>Top Varieties with Tetra-Cis-Lycopene</SectionSubheading>
 
             <div style={{ padding: '10px 25px' }}>
-                <table style={{ boxSizing: 'border-box', width: '100%', margin: '0' }}>
+                <table style={{ boxSizing: 'border-box', width: '100%', margin: 0 }}>
                     <thead>
                         <tr>
                             <th style={{ border: 'none' }}></th>
@@ -457,7 +457,7 @@ export default React.createClass({
             <p>We provide here a list of all the varieties that we have had analysed and confirmed to have tetra-cis-lycopene {/*(and details of the original seed source)*/} to assist health conscious gardeners, healthy food advocates and researchers worldwide. Data has been obtained from the 2015 season.</p>
 
             <div style={{ padding: '10px 25px' }}>
-                <table style={{ width: '100%', margin: '0' }}>
+                <table style={{ width: '100%', margin: 0 }}>
                     <thead>
                         <tr>
                             <th style={{ border: 'none' }} />
