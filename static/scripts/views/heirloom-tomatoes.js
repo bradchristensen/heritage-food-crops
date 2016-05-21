@@ -1,6 +1,6 @@
 import React from 'react';
 import Actions from 'stores/actions';
-import DocumentTitle from 'components/documentTitle';
+import title from 'infrastructure/documentTitle';
 import Article from 'components/article';
 import Contents from 'components/tableOfContents';
 import References from 'components/references';
@@ -86,6 +86,8 @@ var tomatoTable = [
 }));
 
 export default React.createClass({
+    mixins: [title('Heirloom Tomatoes')],
+
     getInitialState () {
         return {
             tomatoTableSortColumn: 'genotype',
@@ -108,7 +110,7 @@ export default React.createClass({
         var sortAscending = this.state.tomatoTableSortColumn === column ?
             !this.state.tomatoTableSortAscending : this.state.tomatoTableSortAscending;
 
-        var newTomatoTable = _.sortByOrder(tomatoTable, [column], [sortAscending ? 'asc' : 'desc']);
+        var newTomatoTable = _.orderBy(tomatoTable, [column], [sortAscending ? 'asc' : 'desc']);
 
         this.setState({
             tomatoTableSortColumn: column,
@@ -120,8 +122,6 @@ export default React.createClass({
     render () {
         return (
 <Article className='page-heirloom-tomatoes'>
-    <DocumentTitle title='Heirloom Tomatoes' />
-
     <div className='page-feature'>
         <div className='wrapper'>
             <p>One of these tomato varieties contains lycopene that is more easily absorbed into your bloodstream, and therefore better for you. Can you tell which one?</p>

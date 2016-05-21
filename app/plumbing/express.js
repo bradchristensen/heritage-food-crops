@@ -79,7 +79,10 @@ export default function (app) {
         if (req.accepts('html')) {
             res.render('index', {
                 debug: config.debug,
-                title: 'Page not found — ' + config.title,
+                showHeader: true,
+                htmlTitle: 'Page not found — ' + config.title,
+                currentPageTitle: 'Page not found',
+                siteTitle: config.title,
                 version: config.version,
                 gaTrackingId: config.gaTrackingId,
                 content: ''

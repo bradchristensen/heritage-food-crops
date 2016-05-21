@@ -1,12 +1,12 @@
 import React from 'react';
-import DocumentTitle from 'components/documentTitle';
+import title from 'infrastructure/documentTitle';
 import { Link } from 'react-router';
 
 export default React.createClass({
+    mixins: [title('Page not found')],
+
     render () {
         return <div className='wrapper'>
-            <DocumentTitle title='Page not found' />
-
             <div className='wrapper wrap-900'>
                 <h1>Page not found</h1>
 

@@ -23,7 +23,7 @@ export default React.createClass({
                             <p></p>
                         </div>
 
-                        <ul id='menu-large'>
+                        <ul className='menu-large'>
                             <li className='box'>
                                 <Link to='montys-surprise'>
                                     <img src='/static/img/layout/menu-large/apples.jpg' className='hero' />

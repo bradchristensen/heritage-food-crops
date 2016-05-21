@@ -1,12 +1,14 @@
 import React from 'react';
 import Actions from 'stores/actions';
-import DocumentTitle from 'components/documentTitle';
+import title from 'infrastructure/documentTitle';
 import Article from 'components/article';
 import SectionHeading from 'components/sectionHeading';
 import SectionSubheading from 'components/sectionSubheading';
 import _ from 'lodash';
 
 export default React.createClass({
+    mixins: [title('Plums and Peaches')],
+
     openLightbox (event) {
         if (event.button === 0) {
             var img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
@@ -18,8 +20,6 @@ export default React.createClass({
 
     render () {
         return <Article className='page-plums-peaches'>
-            <DocumentTitle title='Plums and Peaches' />
-
             <div className='wrapper'>
                 <SectionHeading tag='h1'>Plums</SectionHeading>
 
