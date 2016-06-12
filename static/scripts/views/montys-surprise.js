@@ -209,9 +209,18 @@ export default React.createClass({
                 <p>In December 2015, Monty's Surprise grafting wood was sent to members of the Fraternités Ouvrières in France for propagation.</p>
             </div>
 
-            <div className='box'>
-                <img src='/static/images/layout/montys-surprise/fraternites-ouvrieres.jpg' alt={'Members of the Fraternités Ouvrières in France holding Monty\'s Surprise grafting wood'} className='fill' />
-                <p><em>Members of the Fraternités Ouvrières in France holding Monty's Surprise grafting wood.</em></p>
+            <div className='splitter'>
+                <div className='box'>
+                    <img src='/static/images/layout/montys-surprise/fraternites-ouvrieres.jpg' alt={'Members of the Fraternités Ouvrières in France holding Monty\'s Surprise grafting wood'} className='fill' />
+                    <p><em>Members of the Fraternités Ouvrières in France holding Monty's Surprise grafting wood.</em></p>
+                </div>
+            </div>
+
+            <div className='splitter right'>
+                <div className='box'>
+                    <iframe width='100%' height='338' src='https://www.youtube.com/embed/wBkgZHN44sw' frameBorder='0' allowFullScreen />
+                    <p><em>Phil Thomsen shows some of the ways in which Monty's Surprise apples can be cooked or processed to enjoy all year round.</em></p>
+                </div>
             </div>
 
             <div className='box'>
