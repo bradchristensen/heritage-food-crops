@@ -5,7 +5,7 @@ import { Link, State } from 'react-router';
 import Lightbox from 'components/lightbox';
 import LightboxStore from 'stores/lightbox';
 import DocumentTitleStore from 'stores/documentTitle';
-import ga from 'react-ga';
+import ReactGA from 'react-ga';
 import OutboundLink from 'components/outboundLink';
 
 export default React.createClass({
@@ -46,6 +46,17 @@ export default React.createClass({
                 currentlyVisibleSubmenu: null
             }, resolve);
         });
+    },
+
+    onPrintClick (event) {
+        this.hideMenu().then(() => {
+            ReactGA.event({
+                category: 'Navigation',
+                action: 'Clicked Print'
+            });
+            window.print();
+        });
+        event.preventDefault();
     },
 
     blockTogglingResearchTopicsMenu: false,
@@ -167,16 +178,7 @@ export default React.createClass({
                                 <Link to='links' onClick={this.hideMenu}>Links</Link>
                             </li>
                             <li className='menu-item-print-this-page'>
-                                <a onClick={event => {
-                                    this.hideMenu().then(() => {
-                                        ga.event({
-                                            category: 'Navigation',
-                                            action: 'Clicked Print'
-                                        });
-                                        window.print();
-                                    });
-                                    event.preventDefault();
-                                }} href='#print'>Print this page</a>
+                                <a onClick={this.onPrintClick} href='#print'>Print this page</a>
                             </li>
                         </ul>
                     </div>
@@ -207,16 +209,7 @@ export default React.createClass({
                         <li><Link to='contact-us' activeClassName='active'>Contact Us</Link></li>
                         <li><Link to='links' activeClassName='active'>Links</Link></li>
                         <li>
-                            <a onClick={event => {
-                                this.hideMenu().then(() => {
-                                    ga.event({
-                                        category: 'Navigation',
-                                        action: 'Clicked Print'
-                                    });
-                                    window.print();
-                                });
-                                event.preventDefault();
-                            }} href='#print'>Print this page</a>
+                            <a onClick={this.onPrintClick} href='#print'>Print this page</a>
                         </li>
                     </ul>
                 </div>
