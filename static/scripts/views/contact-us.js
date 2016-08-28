@@ -1,6 +1,16 @@
 import React from 'react';
 import title from 'infrastructure/documentTitle';
-import jsonXHR from 'json-xhr-promise';
+import fetch from 'isomorphic-fetch';
+
+function checkStatus (response) {
+    if (response.status >= 200 && response.status < 300) {
+        return response;
+    }
+
+    var error = new Error(response.statusText);
+    error.response = response;
+    throw error;
+}
 
 export default React.createClass({
     mixins: [title('Contact Us')],
@@ -12,7 +22,9 @@ export default React.createClass({
             phone: '',
             location: '',
             message: '',
-            submittingContactForm: false
+            submittingContactForm: false,
+            submittedContactForm: false,
+            submitError: false
         };
     },
 
@@ -26,22 +38,35 @@ export default React.createClass({
         } else {
             this.setState({ submittingContactForm: true });
 
-            jsonXHR('POST', '/api/contact', {
-                name: this.state.name,
-                email: this.state.email,
-                phone: this.state.phone,
-                location: this.state.location,
-                message: this.state.message
-            }).then(() => {
+            fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: this.state.name,
+                    email: this.state.email,
+                    phone: this.state.phone,
+                    location: this.state.location,
+                    message: this.state.message
+                })
+            })
+            .then(checkStatus) // Should return a 204, otherwise throw an error
+            .then(() => {
                 this.setState({
                     message: '',
-                    submittingContactForm: false
+                    submittingContactForm: false,
+                    submittedContactForm: true
                 });
-
-                alert('Thanks for your message! We\'ll get back to you as soon as we can.');
-            }).catch(err => {
-                this.setState({ submittingContactForm: false });
-                alert(err.msg || err);
+            })
+            .catch(err => {
+                this.setState({
+                    submittingContactForm: false,
+                    submittedContactForm: true,
+                    submitError: true
+                });
+                console.error(err);
             });
         }
 
@@ -117,11 +142,27 @@ export default React.createClass({
                         }} /></p>
 
                         <p>
-                            <button type='submit'
-                                onClick={this.submitContactForm}
-                                disabled={!!this.state.submittingContactForm}>
-                                {this.state.submittingContactForm ? 'Sending...' : 'Send'}
-                            </button>
+                            {!this.state.submittedContactForm && (
+                                <button type='submit'
+                                    onClick={this.submitContactForm}
+                                    disabled={!!this.state.submittingContactForm}>
+                                    {this.state.submittingContactForm ? 'Sending...' : 'Send'}
+                                </button>
+                            )}
+
+                            {this.state.submittedContactForm && (
+                                this.state.submitError ? (
+                                    <span>
+                                        Sorry! An error occurred.
+                                        Please try again later.
+                                    </span>
+                                ) : (
+                                    <strong>
+                                        Thanks for your message!
+                                        We'll get back to you as soon as we can.
+                                    </strong>
+                                )
+                            )}
                         </p>
                     </form>
                 </div>
