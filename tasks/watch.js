@@ -1,6 +1,6 @@
 import gulp from 'gulp';
 
-import config from 'app/config/gulp.json';
+import config from '../app/config/gulp.json';
 
 export default gulp.task('watch', () => {
     gulp.watch(`${config.src.styles}**/*.less`, ['styles']);

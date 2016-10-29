@@ -6,10 +6,10 @@ import compression from 'compression';
 import favicon from 'serve-favicon';
 import bodyParser from 'body-parser';
 import errorHandler from 'errorhandler';
-import router from 'app/plumbing/router';
-import config from 'app/config';
 import _ from 'lodash';
 import fs from 'fs';
+import router from './router';
+import config from '../config';
 
 export default function (app) {
     const allowCrossDomain = (req, res, next) => {
@@ -72,7 +72,7 @@ export default function (app) {
 
     app.use(router);
 
-    app.use((req, res, next) => {
+    app.use((req, res) => {
         res.status(404);
 
         if (req.accepts('html')) {
@@ -107,14 +107,13 @@ export default function (app) {
             }
 
             console.error(err.stack);
-            next(err);
+            return next(err);
         });
 
-        app.use((err, req, res, next) => {
-            let status,
-                message;
+        app.use((err, req, res) => {
+            let message;
 
-            status = err.status || 500;
+            const status = err.status || 500;
             res.status(status);
 
             message = ((err.productionMessage && err.message) ||
@@ -131,10 +130,9 @@ export default function (app) {
             if (req.accepts('json')) {
                 res.send({ error: message });
                 return;
-            } else {
-                res.type('txt').send(`${message}\n`);
-                return;
             }
+
+            res.type('txt').send(`${message}\n`);
         });
     }
 }

@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import packageJson from '../package.json';
 
 const config = {};
 
@@ -7,12 +8,14 @@ const config = {};
 
 ['production', 'staging', 'development'].forEach((environment) => {
     try {
-        _.assign(config, require(`./config/${environment}.json`));
+        // eslint-disable-next-line global-require, import/no-dynamic-require
+        const environmentConfig = require(`./config/${environment}.json`);
+        Object.assign(config, environmentConfig);
     } catch (e) { _.noop(); }
 });
 
 if (!config.version) {
-    config.version = require('../package.json').version;
+    config.version = packageJson.version;
 }
 
 if (!config.server) {

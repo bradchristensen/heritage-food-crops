@@ -5,12 +5,12 @@ import path from 'path';
 import webpack from 'webpack';
 import _ from 'lodash';
 
-import config from 'app/config/gulp.json';
+import config from '../app/config/gulp.json';
 
 const src = config.src;
 const dest = config.dest;
 
-const webpackCache = {};
+let webpackCompiler = null;
 
 const webpackConfig = {
     context: path.resolve(__dirname, `../${src.scripts}`),
@@ -30,20 +30,16 @@ const webpackConfig = {
                     path.resolve(__dirname, `../${src.scripts}`),
                 ],
                 query: {
-                    plugins: ['transform-class-properties', 'lodash'],
-                    presets: ['react', 'es2015', 'stage-0'],
+                    plugins: ['lodash', 'transform-object-rest-spread'],
+                    presets: ['react', 'es2015'],
                 },
             },
         ],
     },
-    resolve: {
-        root: path.resolve(__dirname, `../${src.scripts}`),
-    },
     devtool: 'source-map',
-    cache: webpackCache,
 };
 
-const webpackProductionConfig = _.assign({}, webpackConfig, {
+const webpackProductionConfig = _.assign({}, _.cloneDeep(webpackConfig), {
     output: _.assign({}, webpackConfig.output, {
         filename: 'main.min.js',
     }),
@@ -57,11 +53,23 @@ const webpackProductionConfig = _.assign({}, webpackConfig, {
         }),
     ],
     devtool: undefined,
-    cache: {},
 });
 
 gulp.task('scripts:dev', (callback) => {
-    webpack(webpackConfig, (err, stats) => {
+    if (!webpackCompiler) {
+        webpackCompiler = webpack(webpackConfig);
+    }
+
+    webpackCompiler.run((err, stats) => {
+        if (stats) {
+            const jsonStats = stats.toJson();
+            if (jsonStats.errors.length) {
+                console.error(`Webpack errors: ${jsonStats.errors}`);
+            }
+            if (jsonStats.warnings.length) {
+                console.error(`Webpack warnings: ${jsonStats.warnings}`);
+            }
+        }
         if (err) {
             throw new Error(`webpack: ${err.message || err}`);
         }
@@ -70,7 +78,7 @@ gulp.task('scripts:dev', (callback) => {
 });
 
 gulp.task('scripts:prod', (callback) => {
-    webpack(webpackProductionConfig, (err, stats) => {
+    webpack(webpackProductionConfig, (err) => {
         if (err) {
             throw new Error(`webpack: ${err.message || err}`);
         }

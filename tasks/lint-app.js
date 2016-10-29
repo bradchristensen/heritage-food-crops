@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import eslint from 'gulp-eslint';
 
-import config from 'app/config/gulp.json';
+import config from '../app/config/gulp.json';
 
 const src = config.src;
 

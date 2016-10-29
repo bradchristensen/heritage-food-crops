@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, browserHistory, applyRouterMiddleware } from 'react-router';
-import routes from 'infrastructure/routes';
 import smoothScroll from 'smooth-scroll';
 import ReactGA from 'react-ga';
 import useScroll from 'react-router-scroll/lib/useScroll';
+import routes from './infrastructure/routes';
 
 ReactGA.initialize(window.hfcrtAppConfig.gaTrackingId, {
     debug: window.hfcrtAppConfig.debug,

@@ -1,5 +1,5 @@
 import Reflux from 'reflux';
-import Actions from 'stores/actions';
+import Actions from '../stores/actions';
 
 export default Reflux.createStore({
     visible: false,

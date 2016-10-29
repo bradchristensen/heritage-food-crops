@@ -1,9 +1,9 @@
-import config from 'app/config';
-import routes from 'infrastructure/routes';
 import { match, RouterContext } from 'react-router';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { rewind as getDocumentTitle } from 'infrastructure/documentTitle';
+import config from '../config';
+import routes from '../../static/scripts/infrastructure/routes';
+import { rewind as getDocumentTitle } from '../../static/scripts/infrastructure/documentTitle';
 
 export default {
     get(req, res) {

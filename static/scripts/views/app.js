@@ -1,22 +1,19 @@
-import React from 'react';
-import Reflux from 'reflux';
+import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Link } from 'react-router';
-import Lightbox from 'components/lightbox';
-import LightboxStore from 'stores/lightbox';
-import DocumentTitleStore from 'stores/documentTitle';
 import ReactGA from 'react-ga';
-import OutboundLink from 'components/outboundLink';
+import Lightbox from '../components/lightbox';
+import LightboxStore from '../stores/lightbox';
+import DocumentTitleStore from '../stores/documentTitle';
+import OutboundLink from '../components/outboundLink';
 
-export default React.createClass({
-    mixins: [Reflux.ListenerMixin, PureRenderMixin],
+export default class App extends Component {
+    constructor(props) {
+        super(props);
 
-    propTypes: {
-        children: React.PropTypes.node,
-    },
+        this.blockTogglingResearchTopicsMenu = false;
 
-    getInitialState() {
-        return {
+        this.state = {
             currentlyVisibleSubmenu: null,
 
             // state from LightboxStore
@@ -26,10 +23,18 @@ export default React.createClass({
 
             currentPageTitle: null,
         };
-    },
+
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+
+        this.hideMenu = this.hideMenu.bind(this);
+        this.onPrintClick = this.onPrintClick.bind(this);
+        this.showResearchTopicsMenu = this.showResearchTopicsMenu.bind(this);
+        this.toggleResearchTopicsMenu = this.toggleResearchTopicsMenu.bind(this);
+        this.renderMenu = this.renderMenu.bind(this);
+    }
 
     componentDidMount() {
-        this.listenTo(LightboxStore, (state) => {
+        this.unsubscribeLightboxStore = LightboxStore.listen((state) => {
             this.setState({
                 lightboxVisible: state.visible,
                 lightboxContent: state.content,
@@ -37,16 +42,14 @@ export default React.createClass({
             });
         });
 
-        this.listenTo(DocumentTitleStore, currentPageTitle => this.setState({ currentPageTitle }));
-    },
+        this.unsubscribeDocumentTitleStore = DocumentTitleStore.listen(currentPageTitle =>
+            this.setState({ currentPageTitle }));
+    }
 
-    hideMenu() {
-        return new Promise((resolve) => {
-            this.setState({
-                currentlyVisibleSubmenu: null,
-            }, resolve);
-        });
-    },
+    componentWillUnmount() {
+        this.unsubscribeLightboxStore();
+        this.unsubscribeDocumentTitleStore();
+    }
 
     onPrintClick(event) {
         this.hideMenu().then(() => {
@@ -57,9 +60,16 @@ export default React.createClass({
             window.print();
         });
         event.preventDefault();
-    },
+    }
 
-    blockTogglingResearchTopicsMenu: false,
+    hideMenu() {
+        return new Promise((resolve) => {
+            this.setState({
+                currentlyVisibleSubmenu: null,
+            }, resolve);
+        });
+    }
+
     showResearchTopicsMenu() {
         this.blockTogglingResearchTopicsMenu = true;
         setTimeout(() => { this.blockTogglingResearchTopicsMenu = false; }, 200);
@@ -69,7 +79,7 @@ export default React.createClass({
                 currentlyVisibleSubmenu: 'researchTopics',
             }, resolve);
         });
-    },
+    }
 
     toggleResearchTopicsMenu() {
         return new Promise((resolve) => {
@@ -82,7 +92,7 @@ export default React.createClass({
                 resolve();
             }
         });
-    },
+    }
 
     renderMenu(thumbnailSize) {
         const pngIfThumbnail = thumbnailSize === 'thumbs' ? 'png' : 'jpg';
@@ -131,28 +141,49 @@ export default React.createClass({
                 </Link>
             </li>
         </ul>);
-    },
-
-    renderLogo() {
-        return (<div className='logo'>
-            <Link to='/' title='Return to the index page' activeClassName='active' />
-            <img src='/static/images/layout/logo@2x.png' alt='' />
-        </div>);
-    },
+    }
 
     render() {
         const currentPageTitle = this.props.children && this.props.children.type ?
             this.props.children.type.currentPageTitle : null;
 
+        const logo = (
+            <div className='logo'>
+                <Link to='/' title='Return to the index page' activeClassName='active' />
+                <img src='/static/images/layout/logo@2x.png' alt='' />
+            </div>
+        );
+
+        const githubLink = (
+            <OutboundLink
+                to='https://github.com/bradchristensen/heritage-food-crops'
+                eventLabel='GitHub Project'
+                title='Contribute via GitHub'
+            >
+                open source
+            </OutboundLink>
+        );
+
+        const bradLink = (
+            <OutboundLink
+                to='//christensen.co.nz'
+                eventLabel={'Brad\'s website'}
+                title='Website development by Brad Christensen'
+            >
+                designed with love
+            </OutboundLink>
+        );
+
         return (
             <div className={!currentPageTitle ? 'show-header' : ''}>
                 <div className='header'>
                     <div className='wrapper'>
-                        {this.renderLogo()}
+                        {logo}
                         <h1 className='site-title'>
                             <Link to='/'><strong>Heritage Food Crops</strong> Research Trust</Link>
                         </h1>
-                        {!!currentPageTitle && <h2 className='current-page-title'>{currentPageTitle}</h2>}
+                        {!!currentPageTitle &&
+                            <h2 className='current-page-title'>{currentPageTitle}</h2>}
                     </div>
                 </div>
 
@@ -161,16 +192,22 @@ export default React.createClass({
                         <span className='caption'>Menu:</span>
                         <ul className='menu'>
                             <li>
-                                <a href='#' onMouseOver={this.showResearchTopicsMenu} onClick={(event) => {
-                                    this.toggleResearchTopicsMenu();
-                                    event.preventDefault();
-                                }}
+                                <a
+                                    href='#'
+                                    onMouseOver={this.showResearchTopicsMenu}
+                                    onClick={(event) => {
+                                        this.toggleResearchTopicsMenu();
+                                        event.preventDefault();
+                                    }}
                                 >
                                     Research Topics
                                 </a>
                             </li>
                             <li>
-                                <Link to='about-the-trust' onClick={this.hideMenu}>About the Trust</Link>
+                                <Link
+                                    to='about-the-trust'
+                                    onClick={this.hideMenu}
+                                >About the Trust</Link>
                             </li>
                             <li>
                                 <Link to='contact-us' onClick={this.hideMenu}>Contact Us</Link>
@@ -191,22 +228,50 @@ export default React.createClass({
                 </div>
 
                 <div className='sidebar'>
-                    {this.renderLogo()}
+                    {logo}
                     <ul className='sidebar-menu'>
                         <li className='category category-research-topics'>
                             <span className='category-text'>Research Topics</span>
                         </li>
-                        <li><Link to='montys-surprise' activeClassName='active'>Monty's Surprise</Link></li>
-                        <li><Link to='heirloom-tomatoes' activeClassName='active'>Heirloom Tomatoes</Link></li>
-                        <li><Link to='heirloom-beans' activeClassName='active'>Heirloom Beans</Link></li>
-                        <li><Link to='plums-peaches' activeClassName='active'>Plums and Peaches</Link></li>
-                        <li><Link to='huntingtons-disease' activeClassName='active'>Huntington's Disease</Link></li>
-                        <li><Link to='ancient-wheat' activeClassName='active'>Ancient Wheat</Link></li>
+                        <li>
+                            <Link to='montys-surprise' activeClassName='active'>
+                                Monty's Surprise
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='heirloom-tomatoes' activeClassName='active'>
+                                Heirloom Tomatoes
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='heirloom-beans' activeClassName='active'>
+                                Heirloom Beans
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='plums-peaches' activeClassName='active'>
+                                Plums and Peaches
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='huntingtons-disease' activeClassName='active'>
+                                Huntington's Disease
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='ancient-wheat' activeClassName='active'>
+                                Ancient Wheat
+                            </Link>
+                        </li>
 
                         <li className='category category-other-resources'>
                             <span className='category-text'>Other Resources</span>
                         </li>
-                        <li><Link to='about-the-trust' activeClassName='active'>About the Trust</Link></li>
+                        <li>
+                            <Link to='about-the-trust' activeClassName='active'>
+                                About the Trust
+                            </Link>
+                        </li>
                         <li><Link to='contact-us' activeClassName='active'>Contact Us</Link></li>
                         <li><Link to='links' activeClassName='active'>Links</Link></li>
                         <li>
@@ -222,16 +287,26 @@ export default React.createClass({
 
                 <div className='footer'>
                     <div className='wrapper'>
-                        Our website is <OutboundLink to='https://github.com/bradchristensen/heritage-food-crops' eventLabel='GitHub Project' title='Contribute via GitHub'>open source</OutboundLink> and <OutboundLink to='//christensen.co.nz' eventLabel={'Brad\'s website'} title='Website development by Brad Christensen'>designed with love</OutboundLink>.<br />
-                        <small>Copyright &copy; Heritage Food Crops Research Trust, {new Date().getFullYear()}. Verbatim copying and distribution of this page is permitted in any medium.</small>
+                        Our website is {githubLink} and {bradLink}.<br />
+                        <small>
+                            Copyright &copy; Heritage Food Crops Research Trust,
+                            <span> {new Date().getFullYear()}. </span>
+                            Verbatim copying and distribution of this page is permitted in any
+                            medium.
+                        </small>
                     </div>
                 </div>
 
-                <Lightbox visible={this.state.lightboxVisible}
+                <Lightbox
+                    visible={this.state.lightboxVisible}
                     content={this.state.lightboxContent}
                     caption={this.state.lightboxCaption}
                 />
             </div>
         );
-    },
-});
+    }
+}
+
+App.propTypes = {
+    children: PropTypes.node,
+};

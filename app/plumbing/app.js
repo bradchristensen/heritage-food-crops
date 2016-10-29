@@ -1,7 +1,6 @@
 import express from 'express';
-
-import config from 'app/config';
-import expressConfig from 'app/plumbing/express';
+import config from '../config';
+import expressConfig from './express';
 
 const app = express();
 app.config = config;

@@ -1,4 +1,4 @@
-import Actions from 'stores/actions';
+import Actions from '../stores/actions';
 
 let mountedInstances = [];
 let state;
@@ -8,12 +8,12 @@ const statics = {
 };
 
 // Rewind to retrieve DocumentTitle after rendering the app server-side
-export const rewind = function () {
+export function rewind() {
     const recordedState = state;
     state = undefined;
     mountedInstances = [];
     return recordedState;
-};
+}
 
 export default function (pageTitle) {
     statics.currentPageTitle = pageTitle;

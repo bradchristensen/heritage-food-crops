@@ -1,112 +1,26 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDOMServer from 'react-dom/server';
-import flatten from 'infrastructure/flatten';
 import _ from 'lodash';
+import flatten from '../infrastructure/flatten';
 
-export default React.createClass({
-    propTypes: {
-        children: React.PropTypes.node,
-    },
+export default class Article extends Component {
+    constructor(props) {
+        super(props);
 
-    childContextTypes: {
-        assignSectionHeadingId: React.PropTypes.func,
-        assignSectionSubheadingId: React.PropTypes.func,
-        assignReferenceId: React.PropTypes.func,
-        tableOfContents: React.PropTypes.array,
-        references: React.PropTypes.array,
-    },
-
-    // to be built by getChildContext()
-    references: null,
-    referenceIds: null,
-    tableOfContents: null,
-
-    buildTableOfContents(flattenedNodes) {
+        // to be built by getChildContext()
+        this.references = null;
+        this.referenceIds = null;
+        this.tableOfContents = null;
+        this.nextReference = 0;
+        this.nextSectionSubheading = 0;
         this.nextSectionHeading = 0;
 
-        const tableOfContents = [];
-
-        let headingIds = 0;
-        let subheadingIds = 0;
-
-        _.forEach(flattenedNodes, (node) => {
-            if (node.type && node.type.displayName === 'sectionHeading') {
-                if (!node.props.exclude) {
-                    tableOfContents.push({
-                        node,
-                        text: node.props.shortText || node.props.children,
-                        children: [],
-                        id: ++headingIds,
-                    });
-                    subheadingIds = 0;
-                }
-            }
-
-            if (node.type && node.type.displayName === 'sectionSubheading') {
-                if (!node.props.exclude) {
-                    tableOfContents[tableOfContents.length - 1].children.push({
-                        node,
-                        text: node.props.shortText || node.props.children,
-                        id: ++subheadingIds,
-                    });
-                }
-            }
-        });
-
-        return tableOfContents;
-    },
-
-    buildReferences(flattenedNodes) {
-        this.referenceIds = [];
-        this.nextReference = 0;
-
-        const references = [];
-        let referenceIds = 0;
-
-        _.forEach(flattenedNodes, (node) => {
-            if (node.type && node.type.displayName === 'reference') {
-                let markup = node.props.source || node.props.children;
-                if (markup.toString() !== markup) {
-                    markup = ReactDOMServer.renderToStaticMarkup(markup);
-                }
-
-                const duplicateReference = _.find(references, ref => ref.markup === markup);
-                if (duplicateReference) {
-                    this.referenceIds.push(duplicateReference.id);
-                } else {
-                    references.push({
-                        node,
-                        markup,
-                        value: node.props.source || node.props.children,
-                        href: node.props.href,
-                        id: ++referenceIds,
-                    });
-                    this.referenceIds.push(referenceIds);
-                }
-            }
-        });
-
-        return references;
-    },
-
-    nextReference: 0,
-    assignReferenceId() {
-        return this.referenceIds[this.nextReference++];
-    },
-
-    nextSectionSubheading: 0,
-    assignSectionSubheadingId() {
-        return {
-            parentId: this.nextSectionHeading,
-            id: ++this.nextSectionSubheading,
-        };
-    },
-
-    nextSectionHeading: 0,
-    assignSectionHeadingId() {
-        this.nextSectionSubheading = 0;
-        return ++this.nextSectionHeading;
-    },
+        this.buildTableOfContents = this.buildTableOfContents.bind(this);
+        this.buildReferences = this.buildReferences.bind(this);
+        this.assignReferenceId = this.assignReferenceId.bind(this);
+        this.assignSectionSubheadingId = this.assignSectionSubheadingId.bind(this);
+        this.assignSectionHeadingId = this.assignSectionHeadingId.bind(this);
+    }
 
     getChildContext() {
         const flattenedNodes = flatten(this.props.children);
@@ -120,11 +34,112 @@ export default React.createClass({
             tableOfContents: this.tableOfContents,
             references: this.references,
         };
-    },
+    }
+
+    buildTableOfContents(flattenedNodes) {
+        this.nextSectionHeading = 0;
+
+        const tableOfContents = [];
+
+        let headingIds = 0;
+        let subheadingIds = 0;
+
+        _.forEach(flattenedNodes, (node) => {
+            if (node.type && (node.type.displayName === 'sectionHeading' || node.type.name === 'SectionHeading')) {
+                if (!node.props.exclude) {
+                    headingIds += 1;
+                    tableOfContents.push({
+                        node,
+                        text: node.props.shortText || node.props.children,
+                        children: [],
+                        id: headingIds,
+                    });
+                    subheadingIds = 0;
+                }
+            }
+
+            if (node.type && (node.type.displayName === 'sectionSubheading' || node.type.name === 'SectionSubheading')) {
+                if (!node.props.exclude) {
+                    subheadingIds += 1;
+                    tableOfContents[tableOfContents.length - 1].children.push({
+                        node,
+                        text: node.props.shortText || node.props.children,
+                        id: subheadingIds,
+                    });
+                }
+            }
+        });
+
+        return tableOfContents;
+    }
+
+    buildReferences(flattenedNodes) {
+        this.referenceIds = [];
+        this.nextReference = 0;
+
+        const references = [];
+        let referenceIds = 0;
+
+        _.forEach(flattenedNodes, (node) => {
+            if (node.type && (node.type.displayName === 'reference' || node.type.name === 'Reference')) {
+                let markup = node.props.source || node.props.children;
+                if (markup.toString() !== markup) {
+                    markup = ReactDOMServer.renderToStaticMarkup(markup);
+                }
+
+                const duplicateReference = _.find(references, ref => ref.markup === markup);
+                if (duplicateReference) {
+                    this.referenceIds.push(duplicateReference.id);
+                } else {
+                    referenceIds += 1;
+                    references.push({
+                        node,
+                        markup,
+                        value: node.props.source || node.props.children,
+                        href: node.props.href,
+                        id: referenceIds,
+                    });
+                    this.referenceIds.push(referenceIds);
+                }
+            }
+        });
+
+        return references;
+    }
+
+    assignReferenceId() {
+        const currentReference = this.nextReference;
+        this.nextReference += 1;
+        return this.referenceIds[currentReference];
+    }
+
+    assignSectionSubheadingId() {
+        this.nextSectionSubheading += 1;
+        return {
+            parentId: this.nextSectionHeading,
+            id: this.nextSectionSubheading,
+        };
+    }
+
+    assignSectionHeadingId() {
+        this.nextSectionHeading += 1;
+        this.nextSectionSubheading = 0;
+        return this.nextSectionHeading;
+    }
 
     render() {
-        const props = _.assign({}, this.props);
-        delete props.children;
-        return React.createElement('div', props, this.props.children);
-    },
-});
+        return <div {...this.props} />;
+    }
+}
+
+Article.propTypes = {
+    children: PropTypes.node,
+};
+
+Article.childContextTypes = {
+    assignSectionHeadingId: PropTypes.func,
+    assignSectionSubheadingId: PropTypes.func,
+    assignReferenceId: PropTypes.func,
+    tableOfContents: PropTypes.array,
+    references: PropTypes.array,
+};

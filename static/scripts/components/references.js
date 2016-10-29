@@ -1,18 +1,22 @@
-import React from 'react';
-import OutboundLink from 'components/outboundLink';
+import React, { PropTypes } from 'react';
+import OutboundLink from './outboundLink';
 
-export default React.createClass({
-    contextTypes: {
-        references: React.PropTypes.array,
-    },
-
-    render() {
-        return (<ol className='references-list'>
-            {this.context.references.map((ref, index) =>
+export default function References(props, context) {
+    return (
+        <ol className='references-list'>
+            {context.references.map((ref, index) =>
                 <li key={`references-${index}`} id={`cite-${ref.id}`}>
-                    {ref.href ? <OutboundLink to={ref.href} eventLabel={ref.href}>{ref.value}</OutboundLink> : ref.value}
+                    {!ref.href ? ref.value : (
+                        <OutboundLink to={ref.href} eventLabel={ref.href}>
+                            {ref.value}
+                        </OutboundLink>
+                    )}
                 </li>
             )}
-        </ol>);
-    },
-});
+        </ol>
+    );
+}
+
+References.contextTypes = {
+    references: PropTypes.array,
+};

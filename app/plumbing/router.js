@@ -1,8 +1,8 @@
-import { Router } from 'express';
+import { Router as routerConstructor } from 'express';
 import _ from 'lodash';
 
-import index from 'app/controllers/index';
-import contact from 'app/controllers/api/contact';
+import index from '../controllers/index';
+import contact from '../controllers/api/contact';
 
 const views = {
     '': ['', 'index'],
@@ -33,7 +33,7 @@ const api = {
     contact,
 };
 
-const router = Router({ strict: true });
+const router = routerConstructor({ strict: true });
 
 _.forEach(views, (aliases, route) => {
     router.get(`/${route}`, index.get);

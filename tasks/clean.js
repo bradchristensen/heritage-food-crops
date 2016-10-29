@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import del from 'del';
 
-import config from 'app/config/gulp.json';
+import config from '../app/config/gulp.json';
 
 export default gulp.task('clean', () => {
     del.sync([

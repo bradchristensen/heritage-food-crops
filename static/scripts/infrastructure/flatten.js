@@ -1,8 +1,8 @@
 import _ from 'lodash';
 
-const flattenNodes = function (nodes) {
+export default function flattenNodes(nodeOrNodes) {
     // React tries to be clever and so children may just be a single child
-    nodes = _.isArray(nodes) ? nodes : [nodes];
+    const nodes = _.isArray(nodeOrNodes) ? nodeOrNodes : [nodeOrNodes];
 
     return nodes.reduce((previousNodes, node) => {
         if (node === undefined) {
@@ -13,6 +13,4 @@ const flattenNodes = function (nodes) {
         }
         return previousNodes.concat([node]);
     }, []);
-};
-
-export default flattenNodes;
+}

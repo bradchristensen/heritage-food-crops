@@ -9,7 +9,7 @@ import concat from 'gulp-concat';
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
 
-import config from 'app/config/gulp.json';
+import config from '../app/config/gulp.json';
 
 const src = config.src;
 const dest = config.dest;

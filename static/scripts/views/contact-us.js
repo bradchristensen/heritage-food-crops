@@ -1,6 +1,6 @@
-import React from 'react';
-import title from 'infrastructure/documentTitle';
+import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
+import title from '../infrastructure/documentTitle';
 
 function checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
@@ -12,11 +12,13 @@ function checkStatus(response) {
     throw error;
 }
 
-export default React.createClass({
-    mixins: [title('Contact Us')],
+const titleMixin = title('Contact Us');
 
-    getInitialState() {
-        return {
+export default class ContactUs extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
             name: '',
             email: '',
             phone: '',
@@ -26,7 +28,13 @@ export default React.createClass({
             submittedContactForm: false,
             submitError: false,
         };
-    },
+
+        this.componentWillMount = titleMixin.componentWillMount.bind(this);
+        this.componentDidUpdate = titleMixin.componentDidUpdate.bind(this);
+        this.componentWillUnmount = titleMixin.componentWillUnmount.bind(this);
+
+        this.submitContactForm = this.submitContactForm.bind(this);
+    }
 
     submitContactForm(event) {
         if (!this.state.name) {
@@ -71,84 +79,155 @@ export default React.createClass({
         }
 
         event.preventDefault();
-    },
+    }
 
     render() {
+        const emailLink = (
+            <a href='mailto:info@heritagefoodcrops.org.nz'>info@heritagefoodcrops.org.nz</a>
+        );
+
+        const physicalAddress = (
+            <p>
+                <strong>
+                    Heritage Food Crops Research Trust
+                    <br />
+                    126A Springvale Road,
+                    <br />
+                    Whanganui 4501
+                    <br />
+                    New Zealand
+                </strong>
+            </p>
+        );
+
         return (<div className='wrapper'>
             <div className='wrapper wrap-900'>
 
                 <div className='box'>
                     <h2>Donations Toward the Research</h2>
 
-                    <p>The Heritage Food Crops Research Trust is a registered New Zealand Charitable Trust working to find natural plant-based solutions to combat disease.<br />
-                    We operate from funding received from charitable grants and donations from members of the public. Trustees and staff of the Trust work on an unpaid, voluntary basis.               <br />
-                    We would very much appreciate your support to assist us in the work that we do.</p>
+                    <p>
+                        The Heritage Food Crops Research Trust is a registered New Zealand
+                        Charitable Trust working to find natural plant-based solutions to combat
+                        disease.
+                        <br />
+                        We operate from funding received from charitable grants and donations from
+                        members of the public. Trustees and staff of the Trust work on an unpaid,
+                        voluntary basis.
+                        <br />
+                        We would very much appreciate your support to assist us in the work that we
+                        do.
+                    </p>
 
-                    <p>Donations help to conserve an array of heritage plant material (from heritage fruit trees to heirloom bean varieties), and support the Trust's research endeavours to find the best fruit and vegetable varieties for human health.</p>
+                    <p>
+                        Donations help to conserve an array of heritage plant material (from
+                        heritage fruit trees to heirloom bean varieties), and support the
+                        Trust's research endeavours to find the best fruit and vegetable varieties
+                        for human health.
+                    </p>
 
-                    <p>Donations may be made by cheque or bank deposit. Cheques may be sent to the following address:</p>
+                    <p>
+                        Donations may be made by cheque or bank deposit.
+                        Cheques may be sent to the following address:
+                    </p>
 
-                    <p><strong>Heritage Food Crops Research Trust<br />
-                    126A Springvale Road,                                 <br />
-                    Whanganui 4501                                    <br />
-                    New Zealand</strong></p>
+                    {physicalAddress}
 
-                    <p>Our bank account number is <strong>06-0793-0299259-00</strong> (ANZ Bank).</p>
+                    <p>
+                        Our bank account number is <strong>06-0793-0299259-00</strong> (ANZ Bank).
+                    </p>
 
                     <h3>Adopt a Bean</h3>
 
-                    <p>Play a part in conserving one or more rare and ancient bean varieties. Once imported, these varieties will be grown in Whanganui on the 2.2 hectare property managed by the Trust. As soon as we are able to produce fresh seed we will make them available to seed saving organisations around the country. Our goals are to maintain the seeds in our collection so that we can ensure their availability for present and future generations; to have an abundant supply to distribute as widely as possible; and to be able to research and discover their health potential.</p>
+                    <p>
+                        Play a part in conserving one or more rare and ancient bean varieties.
+                        Once imported, these varieties will be grown in Whanganui on the 2.2
+                        hectare property managed by the Trust. As soon as we are able to produce
+                        fresh seed we will make them available to seed saving organisations around
+                        the country. Our goals are to maintain the seeds in our collection so that
+                        we can ensure their availability for present and future generations; to
+                        have an abundant supply to distribute as widely as possible; and to be
+                        able to research and discover their health potential.
+                    </p>
 
-                    <p>To make a donation toward this project, please contact us using the details below, from which we can provide you more information.</p>
-
+                    <p>
+                        To make a donation toward this project, please contact us using the details
+                        below, from which we can provide you more information.
+                    </p>
                 </div>
 
                 <div className='box'>
                     <h2>Contact Us</h2>
 
-                    <p>We can be reached by email at <a href='mailto:info@heritagefoodcrops.org.nz'>info@heritagefoodcrops.org.nz</a>, or by post at the following address:</p>
+                    <p>
+                        We can be reached by email at {emailLink}, or by post at the
+                        following address:
+                    </p>
 
-                    <p><strong>Heritage Food Crops Research Trust<br />
-                    126A Springvale Road,            <br />
-                    Whanganui 4501               <br />
-                    New Zealand</strong></p>
+                    {physicalAddress}
 
-                    <p>Alternatively you may use the contact form below to contact the Trust with any comments, feedback or queries you may have regarding our work. To contact a specific member of the Trust, please state whom in the message, and the mail will be passed on to them if possible.</p>
+                    <p>
+                        Alternatively you may use the contact form below to contact the Trust with
+                        any comments, feedback or queries you may have regarding our work. To
+                        contact a specific member of the Trust, please state whom in the message,
+                        and the mail will be passed on to them if possible.
+                    </p>
 
                     <form>
                         <h4>Name *</h4>
-                        <p><input type='text' name='name' value={this.state.name} onChange={(event) => {
-                            this.setState({ name: event.target.value });
-                        }}
-                        /></p>
+                        <p>
+                            <input
+                                type='text'
+                                name='name'
+                                value={this.state.name}
+                                onChange={event => this.setState({ name: event.target.value })}
+                            />
+                        </p>
 
                         <h4>Email address *</h4>
-                        <p><input type='text' name='email' value={this.state.email} onChange={(event) => {
-                            this.setState({ email: event.target.value });
-                        }}
-                        /></p>
+                        <p>
+                            <input
+                                type='text'
+                                name='email'
+                                value={this.state.email}
+                                onChange={event => this.setState({ email: event.target.value })}
+                            />
+                        </p>
 
                         <h4>Contact phone</h4>
-                        <p><input type='text' name='phone' value={this.state.phone} onChange={(event) => {
-                            this.setState({ phone: event.target.value });
-                        }}
-                        /></p>
+                        <p>
+                            <input
+                                type='text'
+                                name='phone'
+                                value={this.state.phone}
+                                onChange={event => this.setState({ phone: event.target.value })}
+                            />
+                        </p>
 
                         <h4>Where are you from?</h4>
-                        <p><input type='text' name='location' value={this.state.location} onChange={(event) => {
-                            this.setState({ location: event.target.value });
-                        }}
-                        /></p>
+                        <p>
+                            <input
+                                type='text'
+                                name='location'
+                                value={this.state.location}
+                                onChange={event => this.setState({ location: event.target.value })}
+                            />
+                        </p>
 
                         <h4>Message *</h4>
-                        <p><textarea rows='10' name='message' value={this.state.message} onChange={(event) => {
-                            this.setState({ message: event.target.value });
-                        }}
-                        /></p>
+                        <p>
+                            <textarea
+                                rows='10'
+                                name='message'
+                                value={this.state.message}
+                                onChange={event => this.setState({ message: event.target.value })}
+                            />
+                        </p>
 
                         <p>
                             {!this.state.submittedContactForm && (
-                                <button type='submit'
+                                <button
+                                    type='submit'
                                     onClick={this.submitContactForm}
                                     disabled={!!this.state.submittingContactForm}
                                 >
@@ -177,5 +256,5 @@ export default React.createClass({
 
             <hr />
         </div>);
-    },
-});
+    }
+}

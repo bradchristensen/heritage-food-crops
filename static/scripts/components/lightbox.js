@@ -1,31 +1,28 @@
-import React from 'react';
-import Actions from 'stores/actions';
+import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
+import Actions from '../stores/actions';
 
-export default React.createClass({
-    propTypes: {
-        caption: React.PropTypes.node,
-        content: React.PropTypes.node,
-        visible: React.PropTypes.bool,
-    },
+export default class Lightbox extends Component {
+    constructor(props) {
+        super(props);
 
-    getDefaultProps() {
-        return {
-            caption: null,
-            content: null,
-            visible: false,
-        };
-    },
-
-    getInitialState() {
-        return {
+        this.state = {
             loading: false,
             imageWidth: 200,
             imageHeight: 200,
             viewportWidth: 0,
             viewportHeight: 0,
         };
-    },
+
+        this.onWindowResize = this.onWindowResize.bind(this);
+    }
+
+    componentDidMount() {
+        if (typeof window !== 'undefined') {
+            window.addEventListener('resize', this.onWindowResize, false);
+            this.onWindowResize();
+        }
+    }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.content !== this.props.content) {
@@ -35,27 +32,21 @@ export default React.createClass({
                 imageHeight: 200,
             });
         }
-    },
-
-    onWindowResize() {
-        this.setState({
-            viewportWidth: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-            viewportHeight: Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
-        });
-    },
-
-    componentDidMount() {
-        if (typeof window !== 'undefined') {
-            window.addEventListener('resize', this.onWindowResize, false);
-            this.onWindowResize();
-        }
-    },
+    }
 
     componentWillUnmount() {
         if (typeof window !== 'undefined') {
             window.removeEventListener('resize', this.onWindowResize, false);
         }
-    },
+    }
+
+    onWindowResize() {
+        this.setState({
+            viewportWidth: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+            viewportHeight: Math.max(document.documentElement.clientHeight,
+                window.innerHeight || 0),
+        });
+    }
 
     render() {
         const heightMultiplier = (this.state.viewportHeight - 100) / this.state.imageHeight;
@@ -67,28 +58,44 @@ export default React.createClass({
         const contentIsVector = this.props.content && _.endsWith(this.props.content.toString(), '.svg');
 
         return (
-            <div className={`lightbox${this.props.visible ? ' fade-visible' : ''}`} onClick={Actions.closeLightbox}>
-                <div className='lightbox-modal' style={{
-                    marginLeft: `-${width / 2}px`,
-                    marginTop: `-${height / 2}px`,
-                    height: `${height}px`,
-                    width: `${width}px`,
-                }}
-                >
-                    <button type='button' onClick={Actions.closeLightbox} className='lightbox-close'>Close</button>
-                    <div className='lightbox-modal-content' style={{
-                        backgroundColor: this.state.loading || contentIsVector ? '#fff' : 'transparent',
+            // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+            <div
+                className={`lightbox${this.props.visible ? ' fade-visible' : ''}`}
+                onClick={Actions.closeLightbox}
+            >
+                <div
+                    className='lightbox-modal'
+                    style={{
+                        marginLeft: `-${width / 2}px`,
+                        marginTop: `-${height / 2}px`,
+                        height: `${height}px`,
+                        width: `${width}px`,
                     }}
+                >
+                    <button
+                        type='button'
+                        onClick={Actions.closeLightbox}
+                        className='lightbox-close'
+                    >
+                        Close
+                    </button>
+                    <div
+                        className='lightbox-modal-content'
+                        style={{
+                            backgroundColor: this.state.loading || contentIsVector ?
+                                '#fff' : 'transparent',
+                        }}
                     >
                         {!!this.props.content &&
-                            <img ref={(img) => { this._img = img; }}
+                            <img
+                                ref={(img) => { this.imgRef = img; }}
                                 src={this.props.content.toString()}
                                 alt=''
                                 onLoad={() => {
                                     this.setState({
                                         loading: false,
-                                        imageWidth: this._img.naturalWidth,
-                                        imageHeight: this._img.naturalHeight,
+                                        imageWidth: this.imgRef.naturalWidth,
+                                        imageHeight: this.imgRef.naturalHeight,
                                     });
                                 }}
                                 width='100%'
@@ -109,5 +116,17 @@ export default React.createClass({
                 </div>
             </div>
         );
-    },
-});
+    }
+}
+
+Lightbox.propTypes = {
+    caption: PropTypes.node,
+    content: PropTypes.node,
+    visible: PropTypes.bool,
+};
+
+Lightbox.defaultProps = {
+    caption: null,
+    content: null,
+    visible: false,
+};

@@ -1,13 +1,9 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default React.createClass({
-    contextTypes: {
-        tableOfContents: React.PropTypes.array,
-    },
-
-    render() {
-        return (<ul className='table-of-contents'>
-            {this.context.tableOfContents.map(item =>
+export default function TableOfContents(props, context) {
+    return (
+        <ul className='table-of-contents'>
+            {context.tableOfContents.map(item =>
                 <li key={`contents-section-${item.id}`}>
                     <a href={`#section-${item.id}`} data-scroll>{`${item.id} ${item.text}`}</a>
                     {/* TODO: fix up the css for this, which expects the ul to be outside the li */}
@@ -22,6 +18,10 @@ export default React.createClass({
                     </ul>}
                 </li>
             )}
-        </ul>);
-    },
-});
+        </ul>
+    );
+}
+
+TableOfContents.contextTypes = {
+    tableOfContents: PropTypes.array,
+};

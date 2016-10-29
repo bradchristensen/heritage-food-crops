@@ -1,7 +1,7 @@
 import SparkPost from 'sparkpost';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import config from 'app/config';
+import config from '../../config';
 
 export default {
     post(req, res) {
@@ -57,7 +57,7 @@ Browser: ${userAgent}
                     text: bodyPlainText,
                 },
             },
-        }, (err, mailClientResponse) => {
+        }, (err) => {
             if (!err) {
                 res.status(204).send('No Content');
             } else {
