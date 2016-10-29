@@ -9,17 +9,17 @@ import _ from 'lodash';
 export default React.createClass({
     mixins: [title('Huntington\'s Disease')],
 
-    openLightbox (event) {
+    openLightbox(event) {
         if (event.button === 0) {
-            var img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
-            var caption = img ? img.alt : event.currentTarget.title;
+            const img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
+            const caption = img ? img.alt : event.currentTarget.title;
             Actions.openLightbox(event.currentTarget.href, caption);
             event.preventDefault();
         }
     },
 
-    render () {
-        return <Article className='page-huntingtons-disease'>
+    render() {
+        return (<Article className='page-huntingtons-disease'>
             <div className='page-feature' />
 
             <div className='wrapper'>
@@ -48,13 +48,14 @@ export default React.createClass({
                     <p>We processed <em>Selaginella lepidophylla</em> plant material into a dried powder and sent this to Dr Connor.</p>
                 </div>
 
-                <div className='clear'></div>
+                <div className='clear' />
 
                 <div className='splitter'>
                     <div className='box'>
                         <img src='/static/img/layout/huntingtons-disease/01.jpg'
                             alt={'Selaginella Lepidophylla (the Resurrection Plant) growing in the Trust\'s plant containment facility'}
-                            className='fill' />
+                            className='fill'
+                        />
                         <p>Selaginella Lepidophylla<em> (the Resurrection Plant) growing in the Trust's plant containment facility.</em></p>
                     </div>
                 </div>
@@ -66,7 +67,7 @@ export default React.createClass({
                     </div>
                 </div>
 
-                <div className='clear'></div>
+                <div className='clear' />
 
                 <div className='box'>
                     <img src='/static/img/layout/huntingtons-disease/all.jpg' alt={'Plants of Selaginella Lepidophylla (the Resurrection Plant) growing in the Trust\'s plant containment facility'} className='fill' />
@@ -129,6 +130,6 @@ export default React.createClass({
                     <p>Huntingtin is not a 'bad' protein per se. It appears to play a control role in embryonic development among mammals, but as humans with the mutated gene age, the over elongated protein apparently binds to other proteins vital to cellular survival, compromising their function.</p>
                 </div>
             </div>
-        </Article>;
-    }
+        </Article>);
+    },
 });

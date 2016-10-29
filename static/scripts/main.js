@@ -4,10 +4,10 @@ import { Router, browserHistory, applyRouterMiddleware } from 'react-router';
 import routes from 'infrastructure/routes';
 import smoothScroll from 'smooth-scroll';
 import ReactGA from 'react-ga';
-import useScroll from 'react-router-scroll';
+import useScroll from 'react-router-scroll/lib/useScroll';
 
 ReactGA.initialize(window.hfcrtAppConfig.gaTrackingId, {
-    debug: window.hfcrtAppConfig.debug
+    debug: window.hfcrtAppConfig.debug,
 });
 
 const unlisten = browserHistory.listen(location => ReactGA.pageview(location.pathname));

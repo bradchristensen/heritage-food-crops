@@ -10,19 +10,19 @@ import _ from 'lodash';
 // For now the only function of OutboundLink is to open in a new tab by default.
 
 export default React.createClass({
-    getDefaultProps () {
+    getDefaultProps() {
         return {
             target: '_blank',
             // react-ga's OutboundLink requires an eventLabel prop (but we don't use it)
-            eventLabel: null
+            eventLabel: null,
         };
     },
 
-    render () {
-        var props = _.assign({}, this.props);
+    render() {
+        const props = _.assign({}, this.props);
         props.href = props.to;
         delete props.eventLabel;
         delete props.to;
         return <a {...props} />;
-    }
+    },
 });

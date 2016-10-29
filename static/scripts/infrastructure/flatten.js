@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-var flattenNodes = function (nodes) {
+const flattenNodes = function (nodes) {
     // React tries to be clever and so children may just be a single child
     nodes = _.isArray(nodes) ? nodes : [nodes];
 

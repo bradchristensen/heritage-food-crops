@@ -5,168 +5,169 @@ import Article from 'components/article';
 import SectionHeading from 'components/sectionHeading';
 import _ from 'lodash';
 
-var beans = [
+const beans = [
     {
         name: 'Apache Red Bean',
-        description: 'High yield of red seeds, similar to kidney beans. The pods turn bright red to signal the green shellout stage for succotash. The dry beans can be used for soup or chilli. There is an initiative underway to reintroduce this variety to Native American farmers.'
+        description: 'High yield of red seeds, similar to kidney beans. The pods turn bright red to signal the green shellout stage for succotash. The dry beans can be used for soup or chilli. There is an initiative underway to reintroduce this variety to Native American farmers.',
     },
     {
         name: 'Blue Shackamaxon',
         image: 'jlbblueshackamaxon4',
-        description: 'Climbing dry bean, but also an excellent green bean. From Lenape tribe in Delaware, USA, and preserved among Quaker farmers. Vines will grow 6-7 feet with rose-pink flowers, pods turning purple when ripe, seeds blue, blue-black when dried. Also known as the "Treaty Bean". Very attractive plant and beans. Pods are small but are an excellent green bean that is also very cold tolerant in Spring.'
+        description: 'Climbing dry bean, but also an excellent green bean. From Lenape tribe in Delaware, USA, and preserved among Quaker farmers. Vines will grow 6-7 feet with rose-pink flowers, pods turning purple when ripe, seeds blue, blue-black when dried. Also known as the "Treaty Bean". Very attractive plant and beans. Pods are small but are an excellent green bean that is also very cold tolerant in Spring.',
     },
     {
         name: 'Cherokee Cornfield Bean',
         image: 'cherokee-cornfield-bean',
-        description: 'A traditional variety, with various attractive earthtone shades and markings. Very good yields especially when grown up corn stalks. The story goes that the various colours must be grown together or else there will be few flowers. Much like a family they are stronger when kept together. Excellent as a green snap or dry bean. A drought-tolerant variety.'
+        description: 'A traditional variety, with various attractive earthtone shades and markings. Very good yields especially when grown up corn stalks. The story goes that the various colours must be grown together or else there will be few flowers. Much like a family they are stronger when kept together. Excellent as a green snap or dry bean. A drought-tolerant variety.',
     },
     {
         name: 'Cornplanter Purple Bean',
-        description: 'An heirloom from the Seneca Indians (also known as Black Snake). Black seeds. The pods turn purple as they mature. A very versatile bean. Young beans can be used as snap beans as well as becoming a very good shellout and dry bean.'
+        description: 'An heirloom from the Seneca Indians (also known as Black Snake). Black seeds. The pods turn purple as they mature. A very versatile bean. Young beans can be used as snap beans as well as becoming a very good shellout and dry bean.',
     },
     {
         name: 'Fat Goose Bean',
-        description: 'Shocking pink pods at green shellout stage. A dry bean with long brown seeds.'
+        description: 'Shocking pink pods at green shellout stage. A dry bean with long brown seeds.',
     },
     {
         name: 'Flagg',
-        description: 'Flat and shaped like a lima bean, with black and white streaks. Very productive and cooks quickly for soups and stews. A very good dry climbing bean. Extremely rare. Originated with the Iroquois Indians.'
+        description: 'Flat and shaped like a lima bean, with black and white streaks. Very productive and cooks quickly for soups and stews. A very good dry climbing bean. Extremely rare. Originated with the Iroquois Indians.',
     },
     {
         name: 'Genuine Cornfield Bean',
-        description: 'Also known as Scotia, or Striped Creaseback, or Rattlesnake. A traditional variety cultivated by the Iroquois Indians who used it as a corn soup bean and bread bean. A shade-tolerant variety that is good for growing up corn stalks. A valuable variety for keeping nitrogen in your corn crop. The pods are tender, meaty and keep well. The seed is buff with brown mottles and stripes. Good as a snap or green shellout bean. Produces very well under conditions of high heat.'
+        description: 'Also known as Scotia, or Striped Creaseback, or Rattlesnake. A traditional variety cultivated by the Iroquois Indians who used it as a corn soup bean and bread bean. A shade-tolerant variety that is good for growing up corn stalks. A valuable variety for keeping nitrogen in your corn crop. The pods are tender, meaty and keep well. The seed is buff with brown mottles and stripes. Good as a snap or green shellout bean. Produces very well under conditions of high heat.',
     },
     {
         name: 'Gold of Bakau',
-        description: '4-inch pods with 3-4 large grey seeds. Heavy production.'
+        description: '4-inch pods with 3-4 large grey seeds. Heavy production.',
     },
     {
         name: 'Good Mother Stallard',
         image: 'goodmotherstallard',
-        description: 'An heirloom climbing bean from the Midwestern United States. A large oval seed with purple and white colourings. A very productive, drought-resistant variety.'
+        description: 'An heirloom climbing bean from the Midwestern United States. A large oval seed with purple and white colourings. A very productive, drought-resistant variety.',
     },
     {
         name: 'Hidatsa Shield Figure Climbing Bean',
         image: 'hidatsashieldfigurepolebean',
-        description: <span>An ancient variety that originated with the Hidatsa Indians of the Missouri River Valley of North Dakota. This is one of the most productive dry beans and has an excellent flavour. <strong>This is the beautiful bean that inspired our project.</strong></span>
+        description: <span>An ancient variety that originated with the Hidatsa Indians of the Missouri River Valley of North Dakota. This is one of the most productive dry beans and has an excellent flavour. <strong>This is the beautiful bean that inspired our project.</strong></span>,
     },
     {
         name: 'Hopi Beige',
-        description: 'Climbing dry bean that yields well. A folkrace variety that was collected from Hotevilla in Hopiland.'
+        description: 'Climbing dry bean that yields well. A folkrace variety that was collected from Hotevilla in Hopiland.',
     },
     {
         name: 'Hopi Black Pinto',
-        description: 'Heavy yielding climbing beans with black streaks on off-white background.'
+        description: 'Heavy yielding climbing beans with black streaks on off-white background.',
     },
     {
         name: 'Hopi Light Yellow',
         image: 'hopilightyellow',
-        description: 'Large, light yellow-beige beans from Hopi Indian collections at Hotevilla. Also called "grease beans", plants are somewhat early-maturing pole beans. High-yielding, with good green beans.'
+        description: 'Large, light yellow-beige beans from Hopi Indian collections at Hotevilla. Also called "grease beans", plants are somewhat early-maturing pole beans. High-yielding, with good green beans.',
     },
     {
         name: 'Hopi String Bean',
-        description: 'Ancient climbing bean that was used by the Anasazi cliff dwellers at Mesa Verde. Can be used as a green bean, shell-out or as a dry bean. According to Mary Ami (a Hopi lady who runs a produce stand in Hopiland), she said that Hopis always have her send seed of this variety to them, wherever they go.'
+        description: 'Ancient climbing bean that was used by the Anasazi cliff dwellers at Mesa Verde. Can be used as a green bean, shell-out or as a dry bean. According to Mary Ami (a Hopi lady who runs a produce stand in Hopiland), she said that Hopis always have her send seed of this variety to them, wherever they go.',
     },
     {
         name: 'Indian Hannah Bean',
-        description: 'A very rare cutshort bean from the Lenape/Delaware Indian Nation (also known as Lenape Cutshort or Delaware Cutshort). Small tan seed with brown markings, packed tightly into the pods, good yield.'
+        description: 'A very rare cutshort bean from the Lenape/Delaware Indian Nation (also known as Lenape Cutshort or Delaware Cutshort). Small tan seed with brown markings, packed tightly into the pods, good yield.',
     },
     {
         name: 'Mayflower Bean',
         description: 'Also known as Amish Knuttle, Colorado River Bean, Flor de Mayo, or Red Nightfall. Beautiful off-white seeds, splashed with maroon colour that looks like it has been spraypainted on. The original seed is said to have arrived in America via the pilgrims on the Mayflower ship in 1620. Used predominantly as a dry bean.',
-        images: ['mayflower-bean', 'mayflower-beantmid']
+        images: ['mayflower-bean', 'mayflower-beantmid'],
     },
     {
         name: 'Ohio Pole Bean',
-        description: 'An Ohio bean of Native American origin, possibly connected to the Native American Kickapoo tribe around Fort Wayne, in the 1790\'s. Large pods on disease-resistant, hardy, vigorous vines. The seed is purple with white speckles. Used as a dry bean.'
+        description: 'An Ohio bean of Native American origin, possibly connected to the Native American Kickapoo tribe around Fort Wayne, in the 1790\'s. Large pods on disease-resistant, hardy, vigorous vines. The seed is purple with white speckles. Used as a dry bean.',
     },
     {
         name: 'Persian Lima',
-        description: 'Small then red seed, very pretty. This is a climbing variety.'
+        description: 'Small then red seed, very pretty. This is a climbing variety.',
     },
     {
         name: 'Peruvian Goose Bean',
         image: 'peruvian-goose-bean',
-        description: 'A rare heirloom variety. Smooth texture, mild flavour and thin skin. Good for soups, baked beans, and hot dishes. A wax bean with brown and white patterned seeds.'
+        description: 'A rare heirloom variety. Smooth texture, mild flavour and thin skin. Good for soups, baked beans, and hot dishes. A wax bean with brown and white patterned seeds.',
     },
     {
         name: 'Price\'s Cherokee',
-        description: 'Price Family Cherokee heirloom dating back to the 1830\'s. Vines, flowers and pods are royal purple. Light cream coloured seeds when dried. Better as a dry bean than a snap bean.'
+        description: 'Price Family Cherokee heirloom dating back to the 1830\'s. Vines, flowers and pods are royal purple. Light cream coloured seeds when dried. Better as a dry bean than a snap bean.',
     },
     {
         name: 'San Luis Potosi Flor de Mayo',
         description: 'Faded purple specks over cream-beige background. Climbing bean from Central Mexico.',
-        image: 'sanluispotosiflordemayo'
+        image: 'sanluispotosiflordemayo',
     },
     {
         name: 'Seneka Speckled Bird Egg',
-        description: 'Prolific producer of green beans. The dry seed is round and speckled tan. This is a climbing bean.'
+        description: 'Prolific producer of green beans. The dry seed is round and speckled tan. This is a climbing bean.',
     },
     {
         name: 'Tarahumara Purple',
-        description: 'High-yielding climbing bean with gorgeous large, shiny, deep-purple seeds. Sweet taste, smooth texture. This variety produces both white and lilac flowers. From the high arid Mesa de Agostadero, Chihuahua.'
+        description: 'High-yielding climbing bean with gorgeous large, shiny, deep-purple seeds. Sweet taste, smooth texture. This variety produces both white and lilac flowers. From the high arid Mesa de Agostadero, Chihuahua.',
     },
     {
         name: 'Tarahumara Dark Purple',
-        description: 'A very unusual deep purple bean, with a few grey and dark red types mixed in. A Climbing bean with dark lilac flowers and colourful pods, from near Panalachi, Chihuahua, Mexico.'
+        description: 'A very unusual deep purple bean, with a few grey and dark red types mixed in. A Climbing bean with dark lilac flowers and colourful pods, from near Panalachi, Chihuahua, Mexico.',
     },
     {
         name: 'Tarahumara Ojo de Cabra',
         description: '"Goat\'s Eye". High yielding climbing bean producing large seeds with dark stripes over a speckled light background. A diversely coloured bean with stripes ranging from brown and tan to blue-grey and black.',
-        image: 'tarahumaragraystar'
+        image: 'tarahumaragraystar',
     },
     {
         name: 'Tarahumara Purple Star',
         image: 'tarahumarapurplestar',
-        description: 'Large purple and white beans from central and southern Tarahumara country in Chihuahua, Mexico. Purple pattern radiating outward from the seed "eye" across a white background.'
+        description: 'Large purple and white beans from central and southern Tarahumara country in Chihuahua, Mexico. Purple pattern radiating outward from the seed "eye" across a white background.',
     },
     {
         name: 'Turkey Craw',
-        description: 'Vigorous growing climbing bean. Pods are 3.5-4 inches long with 4 to 7 beans. Good for bottling or drying. Beans are frosted buff with brown on one end. The name comes from a story that a hunter shot a turkey and found the seed in its craw. The seed was planted and saved. A green bean that can also be used as a dry bean. Heirloom from Virginia, North Carolina and Tennessee.'
+        description: 'Vigorous growing climbing bean. Pods are 3.5-4 inches long with 4 to 7 beans. Good for bottling or drying. Beans are frosted buff with brown on one end. The name comes from a story that a hunter shot a turkey and found the seed in its craw. The seed was planted and saved. A green bean that can also be used as a dry bean. Heirloom from Virginia, North Carolina and Tennessee.',
     },
     {
         name: 'Yoeme Purple String',
         image: 'yoemepurplestring',
-        description: 'A prolific climbing bean from Mexico that can be eaten green or as shelled. Seeds are purple on beige. Plants are heat tolerant.'
+        description: 'A prolific climbing bean from Mexico that can be eaten green or as shelled. Seeds are purple on beige. Plants are heat tolerant.',
     },
     {
         name: 'Zuni Shalako Bean',
         image: 'raquelbean',
-        description: 'An unusual heirloom variety from Mexico. Also called the Prairie Appaloosa or Raquel bean. A dry bean.'
-    }
+        description: 'An unusual heirloom variety from Mexico. Also called the Prairie Appaloosa or Raquel bean. A dry bean.',
+    },
 ];
 
-var galleryPaths = [
+const galleryPaths = [
     'beans-growing',
     'assorted-beans',
     'assorted-beansmmch',
     'america-koanga-beans',
     'america-koanga-plant',
     'america-koanga-macro',
-    'america-koanga-flower'
+    'america-koanga-flower',
 ];
 
 export default React.createClass({
     mixins: [title('Heirloom Beans')],
 
-    openLightbox (event) {
+    openLightbox(event) {
         if (event.button === 0) {
-            var img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
-            var caption = img ? img.alt : event.currentTarget.title;
+            const img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
+            const caption = img ? img.alt : event.currentTarget.title;
             Actions.openLightbox(event.currentTarget.href, caption);
             event.preventDefault();
         }
     },
 
-    render () {
-        return <Article className='page-heirloom-beans'>
+    render() {
+        return (<Article className='page-heirloom-beans'>
             <div className='wrapper'>
                 <div className='box' style={{
                     background: '#111 url(\'/static/img/layout/heirloom-beans/background.jpg\') no-repeat top center',
                     border: '1px solid #FFF',
                     color: '#FFF',
-                    textShadow: '1px 1px 0 #000, 0 0 1px #000, 0 0 1px #000, 0 0 3px #000'
-                }}>
+                    textShadow: '1px 1px 0 #000, 0 0 1px #000, 0 0 1px #000, 0 0 3px #000',
+                }}
+                >
                     <div style={{ margin: '10px auto', maxWidth: '900px' }}>
                         <p style={{ marginTop: '240px' }}>
                         Beans originated in Central and South America and began to be cultivated in Mexico over 2,000 years ago. In North America today, there are over 4,000 different kinds of beans. All beans appear to originally have been climbing beans, but over the centuries, low growing plants were selected that have become our modern day dwarf varieties. Today almost all commercially grown beans are dwarf because of the ease of mechanical harvesting. The Trust's focus, however, is on the higher producing climbing varieties with only a few dwarf varieties grown. Several of the Trust's climbing varieties are shade-tolerant and have been traditionally grown (in North America) amongst corn crops, where they could use the corn stalks to climb up. Beans grown in this way have been a wonderful protein source; rich in minerals and a superb complement to corn in the diet.</p>
@@ -187,21 +188,22 @@ export default React.createClass({
                             if (bean.image) {
                                 bean.images = [bean.image];
                             }
-                            return <li key={'bean-' + index} className='bean-list-item'>
-                                {bean.images && <div style={{ float: 'left', margin: '10px 10px 10px 25px'}}>
+                            return (<li key={`bean-${index}`} className='bean-list-item'>
+                                {bean.images && <div style={{ float: 'left', margin: '10px 10px 10px 25px' }}>
                                     {bean.images.map((imgPath, imgIndex) => {
-                                        var imgSuffix = (imgPath === 'jlbblueshackamaxon4' ? '_800' : '');
-                                        return <a href={'/files/' + imgPath + imgSuffix + '.jpg'}
-                                            key={'bean-' + index + '-img-' + imgIndex}
+                                        const imgSuffix = (imgPath === 'jlbblueshackamaxon4' ? '_800' : '');
+                                        return (<a href={`/files/${imgPath}${imgSuffix}.jpg`}
+                                            key={`bean-${index}-img-${imgIndex}`}
                                             className='b100'
-                                            onClick={this.openLightbox}>
-                                            <img src={'/files/' + imgPath + '_100.jpg'} alt={bean.name} />
-                                        </a>;
+                                            onClick={this.openLightbox}
+                                        >
+                                            <img src={`/files/${imgPath}_100.jpg`} alt={bean.name} />
+                                        </a>);
                                     })}
                                 </div>}
                                 <h4>{bean.name}</h4>
                                 <p>{bean.description}</p>
-                            </li>;
+                            </li>);
                         })}
                     </ul>
 
@@ -244,27 +246,27 @@ export default React.createClass({
                 </div>
 
                 <div className='splitter'>
-                    {_.take(galleryPaths, Math.ceil(galleryPaths.length / 2)).map((path, index) => {
-                        return <div className='box' key={'gallery-left-' + index}>
-                            <a href={'/files/' + path + '_800.jpg'} onClick={this.openLightbox}>
-                                <img src={'/files/' + path + '_800.jpg'} alt='' className='fill' />
+                    {_.take(galleryPaths, Math.ceil(galleryPaths.length / 2)).map((path, index) =>
+                        <div className='box' key={`gallery-left-${index}`}>
+                            <a href={`/files/${path}_800.jpg`} onClick={this.openLightbox}>
+                                <img src={`/files/${path}_800.jpg`} alt='' className='fill' />
                             </a>
-                        </div>;
-                    })}
+                        </div>
+                    )}
                 </div>
 
                 <div className='splitter right'>
-                    {_.takeRight(galleryPaths, Math.floor(galleryPaths.length / 2)).map((path, index) => {
-                        return <div className='box' key={'gallery-right-' + index}>
-                            <a href={'/files/' + path + '_800.jpg'} onClick={this.openLightbox}>
-                                <img src={'/files/' + path + '_800.jpg'} alt='' className='fill' />
+                    {_.takeRight(galleryPaths, Math.floor(galleryPaths.length / 2)).map((path, index) =>
+                        <div className='box' key={`gallery-right-${index}`}>
+                            <a href={`/files/${path}_800.jpg`} onClick={this.openLightbox}>
+                                <img src={`/files/${path}_800.jpg`} alt='' className='fill' />
                             </a>
-                        </div>;
-                    })}
+                        </div>
+                    )}
                 </div>
 
                 <div className='clear' />
             </div>
-        </Article>;
-    }
+        </Article>);
+    },
 });

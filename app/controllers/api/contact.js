@@ -4,13 +4,13 @@ import ReactDOMServer from 'react-dom/server';
 import config from 'app/config';
 
 export default {
-    post (req, res) {
-        var ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-        var userAgent = req.headers['user-agent'];
+    post(req, res) {
+        const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        const userAgent = req.headers['user-agent'];
 
-        var bodyHtml = ReactDOMServer.renderToStaticMarkup(<div>
+        const bodyHtml = ReactDOMServer.renderToStaticMarkup(<div>
             <p>
-                From: {req.body.name} {'<' + req.body.email + '>'}<br />
+                From: {req.body.name} {`<${req.body.email}>`}<br />
                 Phone: {req.body.phone}<br />
                 Location: {req.body.location}
             </p>
@@ -25,7 +25,7 @@ export default {
             </p>
         </div>);
 
-        var bodyPlainText = `From: ${req.body.name} <${req.body.email}>
+        const bodyPlainText = `From: ${req.body.name} <${req.body.email}>
 Phone: ${req.body.phone}
 Location: ${req.body.location}
 
@@ -42,21 +42,21 @@ Browser: ${userAgent}
                     {
                         address: {
                             email: config.contactEmail,
-                            name: config.title
-                        }
-                    }
+                            name: config.title,
+                        },
+                    },
                 ],
                 content: {
                     from: {
                         email: config.outgoingEmail,
-                        name: config.title
+                        name: config.title,
                     },
                     reply_to: `${req.body.name} <${req.body.email}>`,
                     subject: 'HFCRT Contact Form',
                     html: bodyHtml,
-                    text: bodyPlainText
-                }
-            }
+                    text: bodyPlainText,
+                },
+            },
         }, (err, mailClientResponse) => {
             if (!err) {
                 res.status(204).send('No Content');
@@ -65,5 +65,5 @@ Browser: ${userAgent}
                 res.status(500).send('Internal Server Error');
             }
         });
-    }
+    },
 };

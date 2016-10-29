@@ -9,17 +9,17 @@ import _ from 'lodash';
 export default React.createClass({
     mixins: [title('Plums and Peaches')],
 
-    openLightbox (event) {
+    openLightbox(event) {
         if (event.button === 0) {
-            var img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
-            var caption = img ? img.alt : event.currentTarget.title;
+            const img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
+            const caption = img ? img.alt : event.currentTarget.title;
             Actions.openLightbox(event.currentTarget.href, caption);
             event.preventDefault();
         }
     },
 
-    render () {
-        return <Article className='page-plums-peaches'>
+    render() {
+        return (<Article className='page-plums-peaches'>
             <div className='wrapper'>
                 <SectionHeading tag='h1'>Plums</SectionHeading>
 
@@ -110,11 +110,13 @@ export default React.createClass({
                     <p>Blackboy peaches can contain very high levels of chlorogenic acid (5-CQA) and quercetin glycosides; Q-glu (quercetin-3-glucoside) and Q-gal (quercetin-3-galactoside).</p>
                     <div style={{ padding: '10px 20px 20px 20px' }}>
                         <a href='/files/bb-chlorogenic-acid_800.png' className='b300' onClick={this.openLightbox}
-                            title='Chlorogenic Acid in Blackboy Peaches compared with other peach and plum varieties'>
+                            title='Chlorogenic Acid in Blackboy Peaches compared with other peach and plum varieties'
+                        >
                             <img src='/files/bb-chlorogenic-acid_300.png' alt='Chlorogenic Acid in Blackboy Peaches' />
                         </a>
                         <a href='/files/bb-quercetin-galactoside_800.png' className='b300' onClick={this.openLightbox}
-                            title='Quercetin Glycoside in Blackboy Peaches compared with other peach and plum varieties'>
+                            title='Quercetin Glycoside in Blackboy Peaches compared with other peach and plum varieties'
+                        >
                             <img src='/files/bb-quercetin-galactoside_300.png' alt='Quercetin Glycoside in Blackboy Peaches' />
                         </a>
                     </div>
@@ -138,6 +140,6 @@ export default React.createClass({
 
                 <div className='clear' />
             </div>
-        </Article>;
-    }
+        </Article>);
+    },
 });

@@ -17,7 +17,7 @@ import ContactUs from 'views/contact-us';
 import Links from 'views/links';
 
 // declare our routes and their hierarchy
-var routes = (
+const routes = (
     <Route path='/' component={App}>
         <IndexRoute component={Index} />
 

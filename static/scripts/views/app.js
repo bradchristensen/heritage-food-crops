@@ -1,7 +1,7 @@
 import React from 'react';
 import Reflux from 'reflux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { Link, State } from 'react-router';
+import { Link } from 'react-router';
 import Lightbox from 'components/lightbox';
 import LightboxStore from 'stores/lightbox';
 import DocumentTitleStore from 'stores/documentTitle';
@@ -9,13 +9,13 @@ import ReactGA from 'react-ga';
 import OutboundLink from 'components/outboundLink';
 
 export default React.createClass({
-    mixins: [State, Reflux.ListenerMixin, PureRenderMixin],
+    mixins: [Reflux.ListenerMixin, PureRenderMixin],
 
     propTypes: {
-        children: React.PropTypes.node
+        children: React.PropTypes.node,
     },
 
-    getInitialState () {
+    getInitialState() {
         return {
             currentlyVisibleSubmenu: null,
 
@@ -24,35 +24,35 @@ export default React.createClass({
             lightboxContent: LightboxStore.getState().content,
             lightboxCaption: LightboxStore.getState().caption,
 
-            currentPageTitle: null
+            currentPageTitle: null,
         };
     },
 
-    componentDidMount () {
-        this.listenTo(LightboxStore, state => {
+    componentDidMount() {
+        this.listenTo(LightboxStore, (state) => {
             this.setState({
                 lightboxVisible: state.visible,
                 lightboxContent: state.content,
-                lightboxCaption: state.caption
+                lightboxCaption: state.caption,
             });
         });
 
         this.listenTo(DocumentTitleStore, currentPageTitle => this.setState({ currentPageTitle }));
     },
 
-    hideMenu () {
-        return new Promise(resolve => {
+    hideMenu() {
+        return new Promise((resolve) => {
             this.setState({
-                currentlyVisibleSubmenu: null
+                currentlyVisibleSubmenu: null,
             }, resolve);
         });
     },
 
-    onPrintClick (event) {
+    onPrintClick(event) {
         this.hideMenu().then(() => {
             ReactGA.event({
                 category: 'Navigation',
-                action: 'Clicked Print'
+                action: 'Clicked Print',
             });
             window.print();
         });
@@ -60,23 +60,23 @@ export default React.createClass({
     },
 
     blockTogglingResearchTopicsMenu: false,
-    showResearchTopicsMenu () {
+    showResearchTopicsMenu() {
         this.blockTogglingResearchTopicsMenu = true;
         setTimeout(() => { this.blockTogglingResearchTopicsMenu = false; }, 200);
 
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
             this.setState({
-                currentlyVisibleSubmenu: 'researchTopics'
+                currentlyVisibleSubmenu: 'researchTopics',
             }, resolve);
         });
     },
 
-    toggleResearchTopicsMenu () {
-        return new Promise(resolve => {
+    toggleResearchTopicsMenu() {
+        return new Promise((resolve) => {
             if (!this.blockTogglingResearchTopicsMenu) {
                 this.setState({
                     currentlyVisibleSubmenu: this.state.currentlyVisibleSubmenu === 'researchTopics' ?
-                        null : 'researchTopics'
+                        null : 'researchTopics',
                 }, resolve);
             } else {
                 resolve();
@@ -84,64 +84,64 @@ export default React.createClass({
         });
     },
 
-    renderMenu (thumbnailSize) {
-        var pngIfThumbnail = thumbnailSize === 'thumbs' ? 'png' : 'jpg';
+    renderMenu(thumbnailSize) {
+        const pngIfThumbnail = thumbnailSize === 'thumbs' ? 'png' : 'jpg';
 
-        return <ul>
+        return (<ul>
             <li>
                 <Link to='montys-surprise' onClick={this.hideMenu} activeClassName='active'>
-                    <img src={'/static/images/layout/menu-' + thumbnailSize + '/apples.jpg'} alt='' />
+                    <img src={`/static/images/layout/menu-${thumbnailSize}/apples.jpg`} alt='' />
                     <h3>Monty's Surprise</h3>
                     <p>Apple Cancer Prevention Research Project</p>
                 </Link>
             </li>
             <li>
                 <Link to='heirloom-tomatoes' onClick={this.hideMenu} activeClassName='active'>
-                    <img src={'/static/images/layout/menu-' + thumbnailSize + '/tomatoes.jpg'} alt='' />
+                    <img src={`/static/images/layout/menu-${thumbnailSize}/tomatoes.jpg`} alt='' />
                     <h3>Heirloom Tomatoes</h3>
                     <p>Investigating the Health Potential of the 'Real' Tomato</p>
                 </Link>
             </li>
             <li>
                 <Link to='heirloom-beans' onClick={this.hideMenu} activeClassName='active'>
-                    <img src={'/static/images/layout/menu-' + thumbnailSize + '/beans.' + pngIfThumbnail} alt='' />
+                    <img src={`/static/images/layout/menu-${thumbnailSize}/beans.${pngIfThumbnail}`} alt='' />
                     <h3>Heirloom Beans</h3>
                     <p>The Great New Zealand Bean Hunt</p>
                 </Link>
             </li>
             <li>
                 <Link to='plums-peaches' onClick={this.hideMenu} activeClassName='active'>
-                    <img src={'/static/images/layout/menu-' + thumbnailSize + '/plums.jpg'} alt='' />
+                    <img src={`/static/images/layout/menu-${thumbnailSize}/plums.jpg`} alt='' />
                     <h3>Plums and Peaches</h3>
                     <p>Heritage/European plum varieties and Blackboy peaches</p>
                 </Link>
             </li>
             <li>
                 <Link to='huntingtons-disease' onClick={this.hideMenu} activeClassName='active'>
-                    <img src={'/static/images/layout/menu-' + thumbnailSize + '/huntingtons.' + pngIfThumbnail} alt='' />
+                    <img src={`/static/images/layout/menu-${thumbnailSize}/huntingtons.${pngIfThumbnail}`} alt='' />
                     <h3>Huntington's Disease</h3>
                     <p>Researching a natural trehalose sugar treatment</p>
                 </Link>
             </li>
             <li>
                 <Link to='ancient-wheat' onClick={this.hideMenu} activeClassName='active'>
-                    <img src={'/static/images/layout/menu-' + thumbnailSize + '/wheat.' + pngIfThumbnail} alt='' />
+                    <img src={`/static/images/layout/menu-${thumbnailSize}/wheat.${pngIfThumbnail}`} alt='' />
                     <h3>Ancient Wheat</h3>
                     <p>Preserving ancient varieties and researching gluten intolerance</p>
                 </Link>
             </li>
-        </ul>;
+        </ul>);
     },
 
-    renderLogo () {
-        return <div className='logo'>
-            <Link to='/' title='Return to the index page' activeClassName='active'></Link>
+    renderLogo() {
+        return (<div className='logo'>
+            <Link to='/' title='Return to the index page' activeClassName='active' />
             <img src='/static/images/layout/logo@2x.png' alt='' />
-        </div>;
+        </div>);
     },
 
-    render () {
-        var currentPageTitle = this.props.children && this.props.children.type ?
+    render() {
+        const currentPageTitle = this.props.children && this.props.children.type ?
             this.props.children.type.currentPageTitle : null;
 
         return (
@@ -161,10 +161,11 @@ export default React.createClass({
                         <span className='caption'>Menu:</span>
                         <ul className='menu'>
                             <li>
-                                <a href='#' onMouseOver={this.showResearchTopicsMenu} onClick={event => {
+                                <a href='#' onMouseOver={this.showResearchTopicsMenu} onClick={(event) => {
                                     this.toggleResearchTopicsMenu();
                                     event.preventDefault();
-                                }}>
+                                }}
+                                >
                                     Research Topics
                                 </a>
                             </li>
@@ -216,7 +217,7 @@ export default React.createClass({
 
                 <div className='content'>
                     {this.props.children}
-                    <div className='clear'></div>
+                    <div className='clear' />
                 </div>
 
                 <div className='footer'>
@@ -228,8 +229,9 @@ export default React.createClass({
 
                 <Lightbox visible={this.state.lightboxVisible}
                     content={this.state.lightboxContent}
-                    caption={this.state.lightboxCaption} />
+                    caption={this.state.lightboxCaption}
+                />
             </div>
         );
-    }
+    },
 });

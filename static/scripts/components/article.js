@@ -5,7 +5,7 @@ import _ from 'lodash';
 
 export default React.createClass({
     propTypes: {
-        children: React.PropTypes.node
+        children: React.PropTypes.node,
     },
 
     childContextTypes: {
@@ -13,7 +13,7 @@ export default React.createClass({
         assignSectionSubheadingId: React.PropTypes.func,
         assignReferenceId: React.PropTypes.func,
         tableOfContents: React.PropTypes.array,
-        references: React.PropTypes.array
+        references: React.PropTypes.array,
     },
 
     // to be built by getChildContext()
@@ -21,22 +21,22 @@ export default React.createClass({
     referenceIds: null,
     tableOfContents: null,
 
-    buildTableOfContents (flattenedNodes) {
+    buildTableOfContents(flattenedNodes) {
         this.nextSectionHeading = 0;
 
-        var tableOfContents = [];
+        const tableOfContents = [];
 
-        var headingIds = 0;
-        var subheadingIds = 0;
+        let headingIds = 0;
+        let subheadingIds = 0;
 
-        _.forEach(flattenedNodes, node => {
+        _.forEach(flattenedNodes, (node) => {
             if (node.type && node.type.displayName === 'sectionHeading') {
                 if (!node.props.exclude) {
                     tableOfContents.push({
                         node,
                         text: node.props.shortText || node.props.children,
                         children: [],
-                        id: ++headingIds
+                        id: ++headingIds,
                     });
                     subheadingIds = 0;
                 }
@@ -47,7 +47,7 @@ export default React.createClass({
                     tableOfContents[tableOfContents.length - 1].children.push({
                         node,
                         text: node.props.shortText || node.props.children,
-                        id: ++subheadingIds
+                        id: ++subheadingIds,
                     });
                 }
             }
@@ -56,21 +56,21 @@ export default React.createClass({
         return tableOfContents;
     },
 
-    buildReferences (flattenedNodes) {
+    buildReferences(flattenedNodes) {
         this.referenceIds = [];
         this.nextReference = 0;
 
-        var references = [];
-        var referenceIds = 0;
+        const references = [];
+        let referenceIds = 0;
 
-        _.forEach(flattenedNodes, node => {
+        _.forEach(flattenedNodes, (node) => {
             if (node.type && node.type.displayName === 'reference') {
-                var markup = node.props.source || node.props.children;
+                let markup = node.props.source || node.props.children;
                 if (markup.toString() !== markup) {
                     markup = ReactDOMServer.renderToStaticMarkup(markup);
                 }
 
-                var duplicateReference = _.find(references, ref => ref.markup === markup);
+                const duplicateReference = _.find(references, ref => ref.markup === markup);
                 if (duplicateReference) {
                     this.referenceIds.push(duplicateReference.id);
                 } else {
@@ -79,7 +79,7 @@ export default React.createClass({
                         markup,
                         value: node.props.source || node.props.children,
                         href: node.props.href,
-                        id: ++referenceIds
+                        id: ++referenceIds,
                     });
                     this.referenceIds.push(referenceIds);
                 }
@@ -90,26 +90,26 @@ export default React.createClass({
     },
 
     nextReference: 0,
-    assignReferenceId () {
+    assignReferenceId() {
         return this.referenceIds[this.nextReference++];
     },
 
     nextSectionSubheading: 0,
-    assignSectionSubheadingId () {
+    assignSectionSubheadingId() {
         return {
             parentId: this.nextSectionHeading,
-            id: ++this.nextSectionSubheading
+            id: ++this.nextSectionSubheading,
         };
     },
 
     nextSectionHeading: 0,
-    assignSectionHeadingId () {
+    assignSectionHeadingId() {
         this.nextSectionSubheading = 0;
         return ++this.nextSectionHeading;
     },
 
-    getChildContext () {
-        var flattenedNodes = flatten(this.props.children);
+    getChildContext() {
+        const flattenedNodes = flatten(this.props.children);
         this.tableOfContents = this.buildTableOfContents(flattenedNodes);
         this.references = this.buildReferences(flattenedNodes);
 
@@ -118,13 +118,13 @@ export default React.createClass({
             assignSectionSubheadingId: this.assignSectionSubheadingId,
             assignReferenceId: this.assignReferenceId,
             tableOfContents: this.tableOfContents,
-            references: this.references
+            references: this.references,
         };
     },
 
-    render () {
-        var props = _.assign({}, this.props);
+    render() {
+        const props = _.assign({}, this.props);
         delete props.children;
         return React.createElement('div', props, this.props.children);
-    }
+    },
 });

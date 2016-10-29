@@ -5,8 +5,8 @@ import OutboundLink from 'components/outboundLink';
 export default React.createClass({
     mixins: [title('Links')],
 
-    render () {
-        return <div className='wrapper'>
+    render() {
+        return (<div className='wrapper'>
             <div className='wrapper wrap-900'>
                 <div className='box'>
                     <h2>For Purchase of Monty's Surprise Apple Trees</h2>
@@ -43,6 +43,6 @@ export default React.createClass({
             </div>
 
             <hr />
-        </div>;
-    }
+        </div>);
+    },
 });

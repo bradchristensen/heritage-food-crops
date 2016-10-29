@@ -1,15 +1,15 @@
 import Actions from 'stores/actions';
 
-var mountedInstances = [];
-var state;
+let mountedInstances = [];
+let state;
 
-var statics = {
-    currentPageTitle: null
+const statics = {
+    currentPageTitle: null,
 };
 
 // Rewind to retrieve DocumentTitle after rendering the app server-side
-export var rewind = function () {
-    let recordedState = state;
+export const rewind = function () {
+    const recordedState = state;
     state = undefined;
     mountedInstances = [];
     return recordedState;
@@ -18,7 +18,7 @@ export var rewind = function () {
 export default function (pageTitle) {
     statics.currentPageTitle = pageTitle;
 
-    var emitChange = title => {
+    const emitChange = (title) => {
         state = title;
         statics.currentPageTitle = state;
         Actions.setDocumentTitle(title);
@@ -27,19 +27,19 @@ export default function (pageTitle) {
     return {
         statics,
 
-        componentWillMount () {
+        componentWillMount() {
             mountedInstances.push(this);
             emitChange(pageTitle);
         },
 
-        componentDidUpdate () {
+        componentDidUpdate() {
             emitChange(pageTitle);
         },
 
-        componentWillUnmount () {
+        componentWillUnmount() {
             const index = mountedInstances.indexOf(this);
             mountedInstances.splice(index, 1);
             emitChange(null);
-        }
+        },
     };
 }

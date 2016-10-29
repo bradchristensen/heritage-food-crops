@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default React.createClass({
-    render () {
+    render() {
         return (
             <div className='page-index'>
                 <a className='page-feature' href='/files/jessica-and-the-golden-orb.pdf' target='_blank'>
@@ -20,7 +20,7 @@ export default React.createClass({
                     <div className='wrapper wrap-900'>
                         <div className='feature-text'>
                             <p>The <strong>Heritage Food Crops Research Trust</strong> (formerly the Central Tree Crops Research Trust) is a charitable trust, established to research the <strong>early prevention and treatment</strong> of disease through the medicinal properties of plant-based food and natural <strong>plant-based medicine</strong>.</p>
-                            <p></p>
+                            <p />
                         </div>
 
                         <ul className='menu-large'>
@@ -74,5 +74,5 @@ export default React.createClass({
                 </div>
             </div>
         );
-    }
+    },
 });

@@ -5,28 +5,28 @@ export default Reflux.createStore({
     visible: false,
     content: null,
 
-    init () {
+    init() {
         this.listenTo(Actions.openLightbox, this.openLightbox);
         this.listenTo(Actions.closeLightbox, this.closeLightbox);
     },
 
-    getState () {
+    getState() {
         return {
             visible: this.visible,
             content: this.content,
-            caption: this.caption
+            caption: this.caption,
         };
     },
 
-    openLightbox (content, caption) {
+    openLightbox(content, caption) {
         this.visible = true;
         this.content = content;
         this.caption = caption;
         this.trigger(this.getState());
     },
 
-    closeLightbox () {
+    closeLightbox() {
         this.visible = false;
         this.trigger(this.getState());
-    }
+    },
 });

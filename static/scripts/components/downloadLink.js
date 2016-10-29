@@ -4,23 +4,23 @@ export default React.createClass({
     propTypes: {
         description: React.PropTypes.node,
         href: React.PropTypes.string.isRequired,
-        title: React.PropTypes.node.isRequired
+        title: React.PropTypes.node.isRequired,
     },
 
-    getDefaultProps () {
+    getDefaultProps() {
         return {
             description: '',
             href: '',
-            title: ''
+            title: '',
         };
     },
 
-    render () {
-        var splitExt = this.props.href.split('.');
-        var ext = splitExt.length ? splitExt[splitExt.length - 1] : '';
+    render() {
+        const splitExt = this.props.href.split('.');
+        const ext = splitExt.length ? splitExt[splitExt.length - 1] : '';
 
-        var className = 'web';
-        var title = null;
+        let className = 'web';
+        let title = null;
 
         if (ext === 'pdf') {
             className = 'freader';
@@ -43,12 +43,13 @@ export default React.createClass({
                         href={this.props.href}
                         className={className}
                         title={title}
-                        target={className === 'web' ? '_blank' : null}>
+                        target={className === 'web' ? '_blank' : null}
+                    >
                         {this.props.title}
                     </a>
                 </h3>
                 {!!this.props.description && <p>{this.props.description}</p>}
             </blockquote>
         );
-    }
+    },
 });

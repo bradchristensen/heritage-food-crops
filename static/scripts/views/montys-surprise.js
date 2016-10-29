@@ -11,7 +11,7 @@ import DownloadLink from 'components/downloadLink';
 import OutboundLink from 'components/outboundLink';
 import _ from 'lodash';
 
-var galleryPaths = [
+const galleryPaths = [
     'ms-flowers',
     'ms-flowerskzji',
     'ms-tipbearing',
@@ -19,23 +19,23 @@ var galleryPaths = [
     'ms-tree',
     'ms-promo',
     'ms-promofx0z',
-    'leaf-comparison'
+    'leaf-comparison',
 ];
 
 export default React.createClass({
     mixins: [title('Monty\'s Surprise')],
 
-    openLightbox (event) {
+    openLightbox(event) {
         if (event.button === 0) {
-            var img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
-            var caption = img ? img.alt : undefined;
+            const img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
+            const caption = img ? img.alt : undefined;
             Actions.openLightbox(event.currentTarget.href, caption);
             event.preventDefault();
         }
     },
 
-    render () {
-        return <Article className='wrapper page-montys-surprise'>
+    render() {
+        return (<Article className='wrapper page-montys-surprise'>
             <div className='splitter'>
                 <h1>Monty's Surprise</h1>
                 <div className='box'>
@@ -44,7 +44,7 @@ export default React.createClass({
                 </div>
 
                 <div className='box'>
-                    <SectionHeading exclude={true}>Contents</SectionHeading>
+                    <SectionHeading exclude>Contents</SectionHeading>
                     <Contents />
                 </div>
             </div>
@@ -61,7 +61,7 @@ export default React.createClass({
                 </div>
             </div>
 
-            <div className='clear'></div>
+            <div className='clear' />
 
             <div className='box'>
                 <SectionHeading shortText='Apple Cancer Prevention Research Project'>
@@ -102,7 +102,7 @@ export default React.createClass({
                 <p>Since this date, the Heritage Food Crops Research Trust has concentrated on giving away thousands of Monty's Surprise apple trees in partnership with the Whanganui Regional Health Network around the Whanganui region.</p>
             </div>
 
-            <div className='clear'></div>
+            <div className='clear' />
 
             <div className='splitter'>
                 <div className='box'>
@@ -123,7 +123,7 @@ export default React.createClass({
                 </div>
             </div>
 
-            <div className='clear'></div>
+            <div className='clear' />
 
             <div className='box'>
                 <SectionHeading>The Role of Monty's Surprise</SectionHeading>
@@ -135,7 +135,7 @@ export default React.createClass({
                 <p>Our understanding is that the Monty's Surprise apple variety contains a combination of phytonutrients that can work with the body's immune system to prevent cancer cells in the body from becoming activated and initiating a disease process. This is the exciting potential that this variety has for the prevention of cancer. Naturally human beings are complex individuals, living diverse lifestyles, and one approach cannot be guaranteed to work for everyone. However, the potential for this variety to assist many means that we are committed to continue researching its effectiveness and to ensure that this variety can be distributed as widely as possible.</p>
             </div>
 
-            <div className='clear'></div>
+            <div className='clear' />
 
             <div className='splitter'>
                 <div className='box'>
@@ -176,7 +176,7 @@ export default React.createClass({
                 </div>
             </div>
 
-            <div className='clear'></div>
+            <div className='clear' />
 
             <div className='box'>
                 <img src='/static/images/layout/montys-surprise/roles/cider-vinegar.jpg' alt={'Monty\'s Surprise flowers infused in Monty\'s Surprise apple cider vinegar'} className='fill' />
@@ -246,10 +246,10 @@ export default React.createClass({
 
                 <p>
                     Apples are a widely consumed, rich source of phytochemicals. <span>Epidemiological studies
-                    <Reference source='Willett, W.C. Diet, nutrition, and avoidable cancer. Environ. Health Perspect. 1995, 103, 165-170.' />
-                    <Reference source='Eberhardt, M.V.; Lee, C.Y.; Liu, R.H. Antioxidant activity of fresh apples. Nature 2000, 405, 903-904.' />
-                    <Reference source='Le-Marchand, L.; Murphy, S.P.; Hankin, J.H,; Wilkens, L.R.; Kolonel, L.N. Intake of flavonoids and lung cancer. J. Natl. Cancer Inst. 2000, 92, 154-160.' />
-                    <Reference source='Xing, N.; Chen, Y.; Mitchell, S.H.; Young, C.Y.F. Quercetin inhibits the expression and function of the androgen receptor in LNCaP prostate cancer cells. Carcinogenesis 2001, 22, 409-414.' /> </span>
+                        <Reference source='Willett, W.C. Diet, nutrition, and avoidable cancer. Environ. Health Perspect. 1995, 103, 165-170.' />
+                        <Reference source='Eberhardt, M.V.; Lee, C.Y.; Liu, R.H. Antioxidant activity of fresh apples. Nature 2000, 405, 903-904.' />
+                        <Reference source='Le-Marchand, L.; Murphy, S.P.; Hankin, J.H,; Wilkens, L.R.; Kolonel, L.N. Intake of flavonoids and lung cancer. J. Natl. Cancer Inst. 2000, 92, 154-160.' />
+                        <Reference source='Xing, N.; Chen, Y.; Mitchell, S.H.; Young, C.Y.F. Quercetin inhibits the expression and function of the androgen receptor in LNCaP prostate cancer cells. Carcinogenesis 2001, 22, 409-414.' /> </span>
                     have linked the consumption of apples with reduced risk of some cancers, cardiovascular diseases, asthma and diabetes. In the laboratory, apples have been found to have very strong antioxidant activity, to inhibit cancer cell proliferation, to decrease lipid oxidation and to lower cholesterol. Apples contain a variety of phytochemicals, including quercetin, catechin, phloridzin and chlorogenic acid, all of which are strong antioxidants
                     <Reference source='Boyer, J.; Liu, R.H. Apple phytochemicals and their health benefits. Nutritional Journal 2004.' />.
                 </p>
@@ -308,7 +308,7 @@ export default React.createClass({
                 <p>In 2007, Monty's Surprise samples were also sent to Dr Izabela Konczak at Food Science Australia. Her in vitro testing against colon and stomach cancer confirmed that the samples of cider and apple that contained high levels of procyanidins did exhibit inhibition of both types of cancer cells in a dose dependent manner.</p>
 
                 <p>In 2008, Dr Francis Raul conducted a 12 month in vivo study of our Monty's Surprise cider powdered extract on rats with colon cancer. This has greatly assisted us to see where Monty's Surprise is likely to be most effective for the prevention of disease. This variety has very high levels of oligomeric procyanidins which are very active polyphenolic compounds that inhibit cancer cell activity.
-                We now believe that this activity will be most effective in working with the human body's own immune system to prevent cancerous cells (that are already within the body, through the hereditary nature of cancer) from becoming active and thereby initiating a disease process. We believe that Monty's Surprise can work very effectively as a natural preventative approach, rather than as a cure once the disease has been diagnosed, at which time there will be a full-blown disease in progress.<br />
+                We now believe that this activity will be most effective in working with the human body's own immune system to prevent cancerous cells (that are already within the body, through the hereditary nature of cancer) from becoming active and thereby initiating a disease process. We believe that Monty's Surprise can work very effectively as a natural preventative approach, rather than as a cure once the disease has been diagnosed, at which time there will be a full-blown disease in progress.                                                                                                              <br />
                 The most effective method to establish the effectiveness of consuming Monty's Surprise apples as a means of preventing cancer will be a long-term human study. We believe that we have sufficient scientific evidence to enable us to say with confidence that the consumption of this particular apple variety will be of benefit to many people for the prevention of chronic disease (and cancer in particular). We will focus our future efforts upon the wider distribution of this wonderful variety, in the hope that as many people as possible may be able to benefit from its very high levels of medicinal compounds.</p>
             </div>
 
@@ -322,7 +322,7 @@ export default React.createClass({
                     <table style={{ margin: 0, width: '100%' }}>
                         <thead>
                             <tr>
-                                <th></th>
+                                <th />
                                 <th style={{ textAlign: 'right' }}>Skin (ug/cm<sup>2</sup>)</th>
                                 <th style={{ textAlign: 'right' }}>Flesh (ug/g FW)</th>
                             </tr>
@@ -354,7 +354,7 @@ export default React.createClass({
                     <table style={{ margin: 0, width: '100%' }}>
                         <thead>
                             <tr>
-                                <th></th>
+                                <th />
                                 <th style={{ textAlign: 'right' }}>Skin (ug/cm<sup>2</sup>)</th>
                                 <th style={{ textAlign: 'right' }}>Flesh (ug/g FW)</th>
                             </tr>
@@ -401,7 +401,7 @@ export default React.createClass({
                 <p>In medieval times there was a saying 'Ate an apfel avore gwain to bed makes the doctor beg his bread', which we now know as 'An apple a day keeps the doctor away'. We have begun, firstly with the identification of Monty's Surprise as a high health variety, and secondly with the distribution of these apple trees throughout the Whanganui region and further afield, a model that we hope will turn this ancient saying into a reality, once more.</p>
 
                 <p>Mark Christensen<br />
-                Research Director<br />
+                Research Director                                      <br />
                 Heritage Food Crops Research Trust</p>
             </div>
 
@@ -414,40 +414,43 @@ export default React.createClass({
                 <SectionHeading>Associated Research Papers</SectionHeading>
 
                 <DownloadLink href='http://carcin.oxfordjournals.org/content/26/7/1291.short'
-                    title='Chemopreventive properties of apple procyanidins on human colon cancer-derived metastatic SW620 cells and in a rat model of colon carcinogenesis' />
+                    title='Chemopreventive properties of apple procyanidins on human colon cancer-derived metastatic SW620 cells and in a rat model of colon carcinogenesis'
+                />
 
                 <DownloadLink href='/files/apples-prevent-mammary-tumours-in-rats.pdf'
                     title='Apples Prevent Mammary Tumours in Rats'
-                    description='This study demonstrated that whole apple extracts effectively inhibited mammary cancer growth in the rat model; thus, consumption of apples may be an effective strategy for cancer protection.' />
+                    description='This study demonstrated that whole apple extracts effectively inhibited mammary cancer growth in the rat model; thus, consumption of apples may be an effective strategy for cancer protection.'
+                />
 
                 <DownloadLink href='https://heritagefoodcrops.org.nz/files/inbreeding-modern-apples-1996.pdf'
                     title='Inbreeding of Modern Apple Cultivars'
-                    description={<span>Founding Clones, Inbreeding, Coancestry, and Status Number of Modern Apple Cultivars<br />The Horticulture and Food Research Institute of New Zealand Ltd, Havelock North Research Center</span>} />
+                    description={<span>Founding Clones, Inbreeding, Coancestry, and Status Number of Modern Apple Cultivars<br />The Horticulture and Food Research Institute of New Zealand Ltd, Havelock North Research Center</span>}
+                />
             </div>
 
             <SectionHeading tag='h1'>Monty's Surprise Photos</SectionHeading>
 
             <div className='splitter'>
-                {_.take(galleryPaths, Math.ceil(galleryPaths.length / 2)).map((path, index) => {
-                    return <div className='box' key={'gallery-left-' + index}>
-                        <a href={'/files/' + path + '_800.jpg'} onClick={this.openLightbox}>
-                            <img src={'/files/' + path + '_800.jpg'} alt='' className='fill' />
+                {_.take(galleryPaths, Math.ceil(galleryPaths.length / 2)).map((path, index) =>
+                    <div className='box' key={`gallery-left-${index}`}>
+                        <a href={`/files/${path}_800.jpg`} onClick={this.openLightbox}>
+                            <img src={`/files/${path}_800.jpg`} alt='' className='fill' />
                         </a>
-                    </div>;
-                })}
+                    </div>
+                )}
             </div>
 
             <div className='splitter right'>
-                {_.takeRight(galleryPaths, Math.floor(galleryPaths.length / 2)).map((path, index) => {
-                    return <div className='box' key={'gallery-right-' + index}>
-                        <a href={'/files/' + path + '_800.jpg'} onClick={this.openLightbox}>
-                            <img src={'/files/' + path + '_800.jpg'} alt='' className='fill' />
+                {_.takeRight(galleryPaths, Math.floor(galleryPaths.length / 2)).map((path, index) =>
+                    <div className='box' key={`gallery-right-${index}`}>
+                        <a href={`/files/${path}_800.jpg`} onClick={this.openLightbox}>
+                            <img src={`/files/${path}_800.jpg`} alt='' className='fill' />
                         </a>
-                    </div>;
-                })}
+                    </div>
+                )}
             </div>
 
             <div className='clear' />
-        </Article>;
-    }
+        </Article>);
+    },
 });

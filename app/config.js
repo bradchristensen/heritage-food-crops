@@ -1,13 +1,13 @@
 import _ from 'lodash';
 
-var config = {};
+const config = {};
 
 // Development config will override production config, so development config files
 // must not be present in the production environment
 
-['production', 'staging', 'development'].forEach(environment => {
+['production', 'staging', 'development'].forEach((environment) => {
     try {
-        _.assign(config, require('./config/' + environment + '.json'));
+        _.assign(config, require(`./config/${environment}.json`));
     } catch (e) { _.noop(); }
 });
 

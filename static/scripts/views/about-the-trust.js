@@ -4,12 +4,12 @@ import title from 'infrastructure/documentTitle';
 export default React.createClass({
     mixins: [title('About the Trust')],
 
-    render () {
-        return <div className='wrapper'>
+    render() {
+        return (<div className='wrapper'>
             <div className='wrapper wrap-900'>
                 <div className='feature-text'>
                     <p>The <strong>Heritage Food Crops Research Trust</strong> (formerly the Central Tree Crops Research Trust) is a charitable trust, established to research the <strong>early prevention and treatment</strong> of disease through the medicinal properties of plant-based food and natural <strong>plant-based medicine</strong>.</p>
-                    <p></p>
+                    <p />
                 </div>
 
                 <div className='box'>
@@ -42,6 +42,6 @@ export default React.createClass({
                 </div>
             </div>
             <hr />
-        </div>;
-    }
+        </div>);
+    },
 });

@@ -9,17 +9,17 @@ import OutboundLink from 'components/outboundLink';
 export default React.createClass({
     mixins: [title('Ancient Wheat')],
 
-    openLightbox (event) {
+    openLightbox(event) {
         if (event.button === 0) {
-            var img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
-            var caption = img ? img.alt : event.currentTarget.title;
+            const img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
+            const caption = img ? img.alt : event.currentTarget.title;
             Actions.openLightbox(event.currentTarget.href, caption);
             event.preventDefault();
         }
     },
 
-    render () {
-        return <Article className='page-ancient-wheat'>
+    render() {
+        return (<Article className='page-ancient-wheat'>
             <div className='page-feature' />
 
             <div className='wrapper'>
@@ -45,7 +45,7 @@ export default React.createClass({
                     </div>
                 </div>
 
-                <div className='clear'></div>
+                <div className='clear' />
 
                 <div className='box'>
                     <SectionHeading>Project to revive heritage wheat varieties</SectionHeading>
@@ -108,6 +108,6 @@ export default React.createClass({
                     <p><strong>If you are interested in one day growing these ancient wheat varieties or would like to help us with this project, please contact David Hughes by e-mail at <a href='mailto:david.hughes@laposte.net'>david.hughes@laposte.net</a> or by phone on (06) 345 1302 or 021 081 30151.</strong></p>
                 </div>
             </div>
-        </Article>;
-    }
+        </Article>);
+    },
 });

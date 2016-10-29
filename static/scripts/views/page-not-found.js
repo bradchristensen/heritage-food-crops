@@ -5,8 +5,8 @@ import { Link } from 'react-router';
 export default React.createClass({
     mixins: [title('Page not found')],
 
-    render () {
-        return <div className='wrapper'>
+    render() {
+        return (<div className='wrapper'>
             <div className='wrapper wrap-900'>
                 <h1>Page not found</h1>
 
@@ -18,6 +18,6 @@ export default React.createClass({
             </div>
 
             <hr />
-        </div>;
-    }
+        </div>);
+    },
 });

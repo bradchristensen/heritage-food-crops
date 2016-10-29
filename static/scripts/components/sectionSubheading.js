@@ -8,32 +8,32 @@ export default React.createClass({
         shortText: React.PropTypes.string,
         tag: React.PropTypes.oneOfType([
             React.PropTypes.string,
-            React.PropTypes.func
-        ])
+            React.PropTypes.func,
+        ]),
     },
 
     contextTypes: {
-        assignSectionSubheadingId: React.PropTypes.func
+        assignSectionSubheadingId: React.PropTypes.func,
     },
 
-    getInitialState () {
+    getInitialState() {
         return !this.props.exclude ? this.context.assignSectionSubheadingId() : {};
     },
 
-    getDefaultProps () {
+    getDefaultProps() {
         return {
             exclude: false,
             shortText: null, // Used in the table of contents
-            tag: 'h3'
+            tag: 'h3',
         };
     },
 
-    render () {
-        var props = _.assign({}, this.props);
+    render() {
+        const props = _.assign({}, this.props);
         delete props.children;
         if (!props.exclude) {
-            props.id = 'section-' + this.state.parentId + '-' + this.state.id;
+            props.id = `section-${this.state.parentId}-${this.state.id}`;
         }
         return React.createElement(this.props.tag, props, this.props.children);
-    }
+    },
 });

@@ -4,7 +4,7 @@ import _ from 'lodash';
 import index from 'app/controllers/index';
 import contact from 'app/controllers/api/contact';
 
-var views = {
+const views = {
     '': ['', 'index'],
     'montys-surprise': ['montys-surprise', 'apples', 'heirloom-apples'],
     'heirloom-tomatoes': ['heirloom-tomatoes', 'tomatoes'],
@@ -20,28 +20,28 @@ var views = {
         'heirloom-peaches',
         'heirloom-plums',
         'heirloom-plums-peaches',
-        'heirloom-peaches-plums'
+        'heirloom-peaches-plums',
     ],
     'huntingtons-disease': ['huntingtons', 'huntingtons-disease'],
     'ancient-wheat': ['wheat', 'ancient-wheat'],
     'about-the-trust': ['about', 'about-us', 'about-the-trust'],
     'contact-us': ['contact', 'contact-us'],
-    'links': ['links']
+    links: ['links'],
 };
 
-var api = {
-    contact
+const api = {
+    contact,
 };
 
-var router = Router({ strict: true });
+const router = Router({ strict: true });
 
 _.forEach(views, (aliases, route) => {
-    router.get('/' + route, index.get);
-    router.get('/' + route + '/', (req, res) => res.redirect('/' + route));
-    _.forEach(aliases, alias => {
+    router.get(`/${route}`, index.get);
+    router.get(`/${route}/`, (req, res) => res.redirect(`/${route}`));
+    _.forEach(aliases, (alias) => {
         if (alias !== route) {
-            router.get('/' + alias, (req, res) => res.redirect('/' + route));
-            router.get('/' + alias + '/', (req, res) => res.redirect('/' + route));
+            router.get(`/${alias}`, (req, res) => res.redirect(`/${route}`));
+            router.get(`/${alias}/`, (req, res) => res.redirect(`/${route}`));
         }
     });
 });
@@ -49,7 +49,7 @@ _.forEach(views, (aliases, route) => {
 _.forEach(api, (controller, route) => {
     _.forEach(controller, (action, method) => {
         if (method in router) {
-            router[method]('/api/' + route, action);
+            router[method](`/api/${route}`, action);
         }
     });
 });
