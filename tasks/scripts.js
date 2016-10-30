@@ -4,7 +4,7 @@ import eslint from 'gulp-eslint';
 import path from 'path';
 import webpack from 'webpack';
 import _ from 'lodash';
-
+import nodeExternals from 'webpack-node-externals';
 import config from '../app/config/gulp.json';
 
 const src = config.src;
@@ -37,6 +37,38 @@ const webpackConfig = {
         ],
     },
     devtool: 'source-map',
+};
+
+const webpackNodeConfig = {
+    context: path.resolve(__dirname, '../app'),
+    entry: './plumbing/app',
+    output: {
+        path: path.resolve(__dirname, '../'),
+        filename: 'index.js',
+    },
+    module: {
+        loaders: [
+            {
+                loader: 'babel',
+                test: /\.js$/,
+                exclude: /node_modules/,
+                query: {
+                    plugins: ['transform-object-rest-spread'],
+                    presets: ['react', 'es2015'],
+                },
+            },
+            {
+                loader: 'json',
+                test: /\.json$/,
+            },
+        ],
+    },
+    target: 'node',
+    node: {
+        __dirname: false,
+        __filename: false,
+    },
+    externals: [nodeExternals()],
 };
 
 const webpackProductionConfig = _.assign({}, _.cloneDeep(webpackConfig), {
@@ -86,6 +118,30 @@ gulp.task('scripts:prod', (callback) => {
     });
 });
 
+let webpackNodeCompiler = null;
+
+gulp.task('scripts:node', (callback) => {
+    if (!webpackNodeCompiler) {
+        webpackNodeCompiler = webpack(webpackNodeConfig);
+    }
+
+    webpackNodeCompiler.run((err, stats) => {
+        if (stats) {
+            const jsonStats = stats.toJson();
+            if (jsonStats.errors.length) {
+                console.error(`Webpack errors: ${jsonStats.errors}`);
+            }
+            if (jsonStats.warnings.length) {
+                console.error(`Webpack warnings: ${jsonStats.warnings}`);
+            }
+        }
+        if (err) {
+            throw new Error(`webpack: ${err.message || err}`);
+        }
+        callback();
+    });
+});
+
 gulp.task('scripts:lint', () =>
      gulp.src([`${src.scripts}**/*.js`])
         .pipe(plumber())
@@ -93,4 +149,9 @@ gulp.task('scripts:lint', () =>
         .pipe(eslint.format())
 );
 
-export default gulp.task('scripts', ['scripts:lint', 'scripts:dev', 'scripts:prod']);
+export default gulp.task('scripts', [
+    'scripts:lint',
+    'scripts:dev',
+    'scripts:prod',
+    'scripts:node',
+]);

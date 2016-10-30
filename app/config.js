@@ -6,10 +6,14 @@ const config = {};
 // Development config will override production config, so development config files
 // must not be present in the production environment
 
+// Avoid bundling these files with Webpack
+// eslint-disable-next-line no-eval
+const dynamicRequire = eval('require');
+
 ['production', 'staging', 'development'].forEach((environment) => {
     try {
-        // eslint-disable-next-line global-require, import/no-dynamic-require
-        const environmentConfig = require(`./config/${environment}.json`);
+        // Require from the root directory, since this will be bundled into /index.js
+        const environmentConfig = dynamicRequire(`./app/config/${environment}.json`);
         Object.assign(config, environmentConfig);
     } catch (e) { _.noop(); }
 });

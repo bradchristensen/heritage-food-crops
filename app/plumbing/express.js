@@ -22,7 +22,7 @@ export default function (app) {
     // settings
     app.set('env', process.env.NODE_ENV || 'development');
     app.set('port', config.server.port || 3000);
-    app.set('views', path.join(__dirname, '../../app/views'));
+    app.set('views', path.join(__dirname, './app/views'));
     app.set('view engine', 'ejs');
 
     app.enable('trust proxy');
@@ -31,7 +31,7 @@ export default function (app) {
 
     // Express use middlewares
     try {
-        app.use(favicon(path.join(__dirname, '../../static/favicon.png')));
+        app.use(favicon(path.join(__dirname, './static/favicon.png')));
     } catch (e) {
         _.noop();
     }
@@ -60,10 +60,10 @@ export default function (app) {
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
 
-    const distPath = express.static(path.normalize(`${__dirname}/../../dist`));
-    const staticPath = express.static(path.normalize(`${__dirname}/../../static`));
-    const filesPath = express.static(path.normalize(`${__dirname}/${config.pathToDeprecatedFilesDir}`));
-    const deprecatedImagesPath = express.static(path.normalize(`${__dirname}/../../static/images`));
+    const distPath = express.static(path.normalize(`${__dirname}/dist`));
+    const staticPath = express.static(path.normalize(`${__dirname}/static`));
+    const filesPath = express.static(path.normalize(`${__dirname}/app/plumbing/${config.pathToDeprecatedFilesDir}`));
+    const deprecatedImagesPath = express.static(path.normalize(`${__dirname}/static/images`));
 
     app.use('/static', distPath);
     app.use('/static', staticPath);
