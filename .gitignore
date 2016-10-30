@@ -34,4 +34,4 @@ dist/
 .fuse_hidden*
 thumbs.db
 
-./index.js
+/index.js
