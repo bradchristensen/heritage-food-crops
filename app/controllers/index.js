@@ -4,6 +4,9 @@ import ReactDOMServer from 'react-dom/server';
 import config from '../config';
 import routes from '../../static/scripts/infrastructure/routes';
 import { rewind as getDocumentTitle } from '../../static/scripts/infrastructure/documentTitle';
+import faviconData from '../../dist/faviconData.json';
+
+const faviconHtml = faviconData.favicon.html_code.replace(/\.\/dist\//g, '/');
 
 export default {
     get(req, res) {
@@ -21,6 +24,7 @@ export default {
                 res.render('index', {
                     debug: config.debug,
                     htmlTitle: title ? `${title} — ${config.title}` : config.title,
+                    faviconHtml,
                     currentPageTitle: title,
                     siteTitle: config.title,
                     version: config.version,

@@ -3,13 +3,14 @@ import morgan from 'morgan';
 import path from 'path';
 import responseTime from 'response-time';
 import compression from 'compression';
-import favicon from 'serve-favicon';
 import bodyParser from 'body-parser';
 import errorHandler from 'errorhandler';
-import _ from 'lodash';
 import fs from 'fs';
 import router from './router';
 import config from '../config';
+import faviconData from '../../dist/faviconData.json';
+
+const faviconHtml = faviconData.favicon.html_code.replace(/\.\/dist\//g, '/');
 
 export default function (app) {
     const allowCrossDomain = (req, res, next) => {
@@ -29,12 +30,6 @@ export default function (app) {
 
     app.disable('x-powered-by');
 
-    // Express use middlewares
-    try {
-        app.use(favicon(path.join(__dirname, './static/favicon.png')));
-    } catch (e) {
-        _.noop();
-    }
     app.use(allowCrossDomain);
     if (config.debug) {
         app.use(morgan('dev'));
@@ -64,7 +59,9 @@ export default function (app) {
     const staticPath = express.static(path.normalize(`${__dirname}/static`));
     const filesPath = express.static(path.normalize(`${__dirname}/app/plumbing/${config.pathToDeprecatedFilesDir}`));
     const deprecatedImagesPath = express.static(path.normalize(`${__dirname}/static/images`));
+    const faviconsPath = express.static(path.normalize(`${__dirname}/dist/favicons`));
 
+    app.use('/', faviconsPath);
     app.use('/static', distPath);
     app.use('/static', staticPath);
     app.use('/static/img', deprecatedImagesPath);
@@ -80,6 +77,7 @@ export default function (app) {
                 debug: config.debug,
                 showHeader: true,
                 htmlTitle: `Page not found — ${config.title}`,
+                faviconHtml,
                 currentPageTitle: 'Page not found',
                 siteTitle: config.title,
                 version: config.version,
