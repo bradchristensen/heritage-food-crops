@@ -2,6 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import _ from 'lodash';
 import flatten from '../infrastructure/flatten';
+import Reference from './reference';
+import SectionHeading from './sectionHeading';
+import SectionSubheading from './sectionSubheading';
 
 export default class Article extends Component {
     constructor(props) {
@@ -45,7 +48,7 @@ export default class Article extends Component {
         let subheadingIds = 0;
 
         _.forEach(flattenedNodes, (node) => {
-            if (node.type && (node.type.displayName === 'sectionHeading' || node.type.name === 'SectionHeading')) {
+            if (node.type && node.type === SectionHeading) {
                 if (!node.props.exclude) {
                     headingIds += 1;
                     tableOfContents.push({
@@ -58,7 +61,7 @@ export default class Article extends Component {
                 }
             }
 
-            if (node.type && (node.type.displayName === 'sectionSubheading' || node.type.name === 'SectionSubheading')) {
+            if (node.type && node.type === SectionSubheading) {
                 if (!node.props.exclude) {
                     subheadingIds += 1;
                     tableOfContents[tableOfContents.length - 1].children.push({
@@ -81,7 +84,7 @@ export default class Article extends Component {
         let referenceIds = 0;
 
         _.forEach(flattenedNodes, (node) => {
-            if (node.type && (node.type.displayName === 'reference' || node.type.name === 'Reference')) {
+            if (node.type && node.type === Reference) {
                 let markup = node.props.source || node.props.children;
                 if (markup.toString() !== markup) {
                     markup = ReactDOMServer.renderToStaticMarkup(markup);
