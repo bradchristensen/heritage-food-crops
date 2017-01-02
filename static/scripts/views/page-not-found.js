@@ -1,20 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 import title from '../infrastructure/documentTitle';
 
-const titleMixin = title('Page not found');
-
-export default class PageNotFound extends Component {
-    constructor(props) {
-        super(props);
-
-        this.componentWillMount = titleMixin.componentWillMount.bind(this);
-        this.componentDidUpdate = titleMixin.componentDidUpdate.bind(this);
-        this.componentWillUnmount = titleMixin.componentWillUnmount.bind(this);
-    }
-
-    render() {
-        return (<div className='wrapper'>
+function PageNotFound() {
+    return (
+        <div className='wrapper'>
             <div className='wrapper wrap-900'>
                 <h1>Page not found</h1>
 
@@ -30,6 +20,8 @@ export default class PageNotFound extends Component {
             </div>
 
             <hr />
-        </div>);
-    }
+        </div>
+    );
 }
+
+export default title(PageNotFound, 'Page not found');

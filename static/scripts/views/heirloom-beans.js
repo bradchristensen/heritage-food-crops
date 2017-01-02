@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import _ from 'lodash';
 import Actions from '../stores/actions';
 import title from '../infrastructure/documentTitle';
@@ -162,25 +162,15 @@ function openLightbox(event) {
     }
 }
 
-const titleMixin = title('Heirloom Beans');
+function HeirloomBeans() {
+    const emailLink = (
+        <a href='mailto:info@heritagefoodcrops.org.nz'>
+            <strong>info@heritagefoodcrops.org.nz</strong>
+        </a>
+    );
 
-export default class HeirloomBeans extends Component {
-    constructor(props) {
-        super(props);
-
-        this.componentWillMount = titleMixin.componentWillMount.bind(this);
-        this.componentDidUpdate = titleMixin.componentDidUpdate.bind(this);
-        this.componentWillUnmount = titleMixin.componentWillUnmount.bind(this);
-    }
-
-    render() {
-        const emailLink = (
-            <a href='mailto:info@heritagefoodcrops.org.nz'>
-                <strong>info@heritagefoodcrops.org.nz</strong>
-            </a>
-        );
-
-        return (<Article className='page-heirloom-beans'>
+    return (
+        <Article className='page-heirloom-beans'>
             <div className='wrapper'>
                 <div
                     className='box'
@@ -408,6 +398,8 @@ export default class HeirloomBeans extends Component {
 
                 <div className='clear' />
             </div>
-        </Article>);
-    }
+        </Article>
+    );
 }
+
+export default title(HeirloomBeans, 'Heirloom Beans');

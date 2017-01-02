@@ -1,10 +1,15 @@
-import Actions from '../stores/actions';
+import React, { PureComponent } from 'react';
 
 let mountedInstances = [];
 let state;
 
-const statics = {
-    currentPageTitle: null,
+const emitChange = (title) => {
+    state = title;
+
+    if (typeof document !== 'undefined') {
+        document.title = title ? `${title} — ${window.hfcrtAppConfig.siteTitle}` :
+            window.hfcrtAppConfig.siteTitle;
+    }
 };
 
 // Rewind to retrieve DocumentTitle after rendering the app server-side
@@ -15,31 +20,33 @@ export function rewind() {
     return recordedState;
 }
 
-export default function (pageTitle) {
-    statics.currentPageTitle = pageTitle;
+export default function documentTitle(Component, pageTitle) {
+    state = pageTitle;
 
-    const emitChange = (title) => {
-        state = title;
-        statics.currentPageTitle = state;
-        Actions.setDocumentTitle(title);
-    };
-
-    return {
-        statics,
-
+    class DocumentTitle extends PureComponent {
         componentWillMount() {
             mountedInstances.push(this);
             emitChange(pageTitle);
-        },
+        }
 
         componentDidUpdate() {
             emitChange(pageTitle);
-        },
+        }
 
         componentWillUnmount() {
             const index = mountedInstances.indexOf(this);
             mountedInstances.splice(index, 1);
             emitChange(null);
-        },
-    };
+        }
+
+        render() {
+            return <Component {...this.props} />;
+        }
+    }
+
+    // Required to be provided at render-time to parent components (before this
+    // component has been rendered)
+    DocumentTitle.currentPageTitle = pageTitle;
+
+    return DocumentTitle;
 }

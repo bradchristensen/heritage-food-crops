@@ -1,20 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import title from '../infrastructure/documentTitle';
 import OutboundLink from '../components/outboundLink';
 
-const titleMixin = title('Links');
-
-export default class Links extends Component {
-    constructor(props) {
-        super(props);
-
-        this.componentWillMount = titleMixin.componentWillMount.bind(this);
-        this.componentDidUpdate = titleMixin.componentDidUpdate.bind(this);
-        this.componentWillUnmount = titleMixin.componentWillUnmount.bind(this);
-    }
-
-    render() {
-        return (<div className='wrapper'>
+function Links() {
+    return (
+        <div className='wrapper'>
             <div className='wrapper wrap-900'>
                 <div className='box'>
                     <h2>For Purchase of Monty's Surprise Apple Trees</h2>
@@ -77,6 +67,8 @@ export default class Links extends Component {
             </div>
 
             <hr />
-        </div>);
-    }
+        </div>
+    );
 }
+
+export default title(Links, 'Links');

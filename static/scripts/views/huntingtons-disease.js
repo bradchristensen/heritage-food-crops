@@ -1,22 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import title from '../infrastructure/documentTitle';
 import Article from '../components/article';
 import SectionHeading from '../components/sectionHeading';
 import SectionSubheading from '../components/sectionSubheading';
 
-const titleMixin = title('Huntington\'s Disease');
-
-export default class HuntingtonsDisease extends Component {
-    constructor(props) {
-        super(props);
-
-        this.componentWillMount = titleMixin.componentWillMount.bind(this);
-        this.componentDidUpdate = titleMixin.componentDidUpdate.bind(this);
-        this.componentWillUnmount = titleMixin.componentWillUnmount.bind(this);
-    }
-
-    render() {
-        return (<Article className='page-huntingtons-disease'>
+function HuntingtonsDisease() {
+    return (
+        <Article className='page-huntingtons-disease'>
             <div className='page-feature' />
 
             <div className='wrapper'>
@@ -351,6 +341,8 @@ export default class HuntingtonsDisease extends Component {
                     </p>
                 </div>
             </div>
-        </Article>);
-    }
+        </Article>
+    );
 }
+
+export default title(HuntingtonsDisease, 'Huntington\'s Disease');

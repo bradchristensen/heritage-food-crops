@@ -1,13 +1,11 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PropTypes, PureComponent } from 'react';
 import { Link } from 'react-router';
 import ReactGA from 'react-ga';
 import Lightbox from '../components/lightbox';
 import LightboxStore from '../stores/lightbox';
-import DocumentTitleStore from '../stores/documentTitle';
 import OutboundLink from '../components/outboundLink';
 
-export default class App extends Component {
+export default class App extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -20,11 +18,7 @@ export default class App extends Component {
             lightboxVisible: LightboxStore.getState().visible,
             lightboxContent: LightboxStore.getState().content,
             lightboxCaption: LightboxStore.getState().caption,
-
-            currentPageTitle: null,
         };
-
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 
         this.hideMenu = this.hideMenu.bind(this);
         this.onPrintClick = this.onPrintClick.bind(this);
@@ -41,14 +35,10 @@ export default class App extends Component {
                 lightboxCaption: state.caption,
             });
         });
-
-        this.unsubscribeDocumentTitleStore = DocumentTitleStore.listen(currentPageTitle =>
-            this.setState({ currentPageTitle }));
     }
 
     componentWillUnmount() {
         this.unsubscribeLightboxStore();
-        this.unsubscribeDocumentTitleStore();
     }
 
     onPrintClick(event) {

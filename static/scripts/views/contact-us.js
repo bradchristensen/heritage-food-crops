@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import fetch from 'isomorphic-fetch';
 import title from '../infrastructure/documentTitle';
 
@@ -12,9 +12,7 @@ function checkStatus(response) {
     throw error;
 }
 
-const titleMixin = title('Contact Us');
-
-export default class ContactUs extends Component {
+class ContactUs extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -28,10 +26,6 @@ export default class ContactUs extends Component {
             submittedContactForm: false,
             submitError: false,
         };
-
-        this.componentWillMount = titleMixin.componentWillMount.bind(this);
-        this.componentDidUpdate = titleMixin.componentDidUpdate.bind(this);
-        this.componentWillUnmount = titleMixin.componentWillUnmount.bind(this);
 
         this.submitContactForm = this.submitContactForm.bind(this);
     }
@@ -258,3 +252,5 @@ export default class ContactUs extends Component {
         </div>);
     }
 }
+
+export default title(ContactUs, 'Contact Us');

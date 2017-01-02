@@ -101,9 +101,7 @@ function openLightbox(event) {
     }
 }
 
-const titleMixin = title('Heirloom Tomatoes');
-
-export default class HeirloomTomatoes extends Component {
+class HeirloomTomatoes extends Component {
     constructor(props) {
         super(props);
 
@@ -113,10 +111,6 @@ export default class HeirloomTomatoes extends Component {
             tomatoTableHighlightedRow: null,
             tomatoTable,
         };
-
-        this.componentWillMount = titleMixin.componentWillMount.bind(this);
-        this.componentDidUpdate = titleMixin.componentDidUpdate.bind(this);
-        this.componentWillUnmount = titleMixin.componentWillUnmount.bind(this);
 
         this.sortTomatoTableByColumn = this.sortTomatoTableByColumn.bind(this);
         this.renderTomatoTable = this.renderTomatoTable.bind(this);
@@ -1188,3 +1182,5 @@ export default class HeirloomTomatoes extends Component {
         );
     }
 }
+
+export default title(HeirloomTomatoes, 'Heirloom Tomatoes');

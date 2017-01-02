@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import _ from 'lodash';
 import Actions from '../stores/actions';
 import title from '../infrastructure/documentTitle';
@@ -31,55 +31,45 @@ function openLightbox(event) {
     }
 }
 
-const titleMixin = title('Monty\'s Surprise');
+function MontysSurprise() {
+    const localisingFoodProjectLink = (
+        <OutboundLink
+            to={'http://earthcare-education.org/wp_earthcare/localisingfood/2013/11/22/montys-surprise-fighting-cancer-with-heritage-fruit/'}
+            eventLabel='Localising Food Project'
+        >
+            Localising Food Project
+        </OutboundLink>
+    );
 
-export default class MontysSurprise extends Component {
-    constructor(props) {
-        super(props);
+    const reportLink2006 = (
+        <OutboundLink
+            to={'https://web.archive.org/web/20150424004047/http://www.treecrops.org.nz/resrch/apple/applecanc06.html'}
+            eventLabel={'Monty\'s Surprise 2006 Research Report'}
+        >
+            2006 Research Report
+        </OutboundLink>
+    );
 
-        this.componentWillMount = titleMixin.componentWillMount.bind(this);
-        this.componentDidUpdate = titleMixin.componentDidUpdate.bind(this);
-        this.componentWillUnmount = titleMixin.componentWillUnmount.bind(this);
-    }
+    const plantNetLink = (
+        <OutboundLink
+            to='http://www.plantnet.com.au/monty-s-surprise-apple-stockists/'
+            eventLabel={'Monty\'s Surprise at PlantNet'}
+        >
+            buy a Monty's Surprise apple tree
+        </OutboundLink>
+    );
 
-    render() {
-        const localisingFoodProjectLink = (
-            <OutboundLink
-                to={'http://earthcare-education.org/wp_earthcare/localisingfood/2013/11/22/montys-surprise-fighting-cancer-with-heritage-fruit/'}
-                eventLabel='Localising Food Project'
-            >
-                Localising Food Project
-            </OutboundLink>
-        );
+    const burntRidgeNurseryLink = (
+        <OutboundLink
+            to='http://www.burntridgenursery.com/contactus.asp'
+            eventLabel='Contact Burnt Ridge Nursery'
+        >
+            Burnt Ridge Nursery
+        </OutboundLink>
+    );
 
-        const reportLink2006 = (
-            <OutboundLink
-                to={'https://web.archive.org/web/20150424004047/http://www.treecrops.org.nz/resrch/apple/applecanc06.html'}
-                eventLabel={'Monty\'s Surprise 2006 Research Report'}
-            >
-                2006 Research Report
-            </OutboundLink>
-        );
-
-        const plantNetLink = (
-            <OutboundLink
-                to='http://www.plantnet.com.au/monty-s-surprise-apple-stockists/'
-                eventLabel={'Monty\'s Surprise at PlantNet'}
-            >
-                buy a Monty's Surprise apple tree
-            </OutboundLink>
-        );
-
-        const burntRidgeNurseryLink = (
-            <OutboundLink
-                to='http://www.burntridgenursery.com/contactus.asp'
-                eventLabel='Contact Burnt Ridge Nursery'
-            >
-                Burnt Ridge Nursery
-            </OutboundLink>
-        );
-
-        return (<Article className='wrapper page-montys-surprise'>
+    return (
+        <Article className='wrapper page-montys-surprise'>
             <div className='splitter'>
                 <h1>Monty's Surprise</h1>
                 <div className='box'>
@@ -1012,6 +1002,8 @@ export default class MontysSurprise extends Component {
             </div>
 
             <div className='clear' />
-        </Article>);
-    }
+        </Article>
+    );
 }
+
+export default title(MontysSurprise, 'Monty\'s Surprise');

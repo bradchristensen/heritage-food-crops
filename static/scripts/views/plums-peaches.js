@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import _ from 'lodash';
 import Actions from '../stores/actions';
 import title from '../infrastructure/documentTitle';
@@ -15,19 +15,9 @@ function openLightbox(event) {
     }
 }
 
-const titleMixin = title('Plums and Peaches');
-
-export default class PlumsPeaches extends Component {
-    constructor(props) {
-        super(props);
-
-        this.componentWillMount = titleMixin.componentWillMount.bind(this);
-        this.componentDidUpdate = titleMixin.componentDidUpdate.bind(this);
-        this.componentWillUnmount = titleMixin.componentWillUnmount.bind(this);
-    }
-
-    render() {
-        return (<Article className='page-plums-peaches'>
+function PlumsPeaches() {
+    return (
+        <Article className='page-plums-peaches'>
             <div className='wrapper'>
                 <SectionHeading tag='h1'>Plums</SectionHeading>
 
@@ -216,6 +206,8 @@ export default class PlumsPeaches extends Component {
 
                 <div className='clear' />
             </div>
-        </Article>);
-    }
+        </Article>
+    );
 }
+
+export default title(PlumsPeaches, 'Plums and Peaches');
