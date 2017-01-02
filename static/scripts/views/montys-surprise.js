@@ -997,7 +997,7 @@ export default class MontysSurprise extends Component {
                         <a href={`/files/${path}_800.jpg`} onClick={openLightbox}>
                             <img src={`/files/${path}_800.jpg`} alt='' className='fill' />
                         </a>
-                    </div>
+                    </div>,
                 )}
             </div>
 
@@ -1007,7 +1007,7 @@ export default class MontysSurprise extends Component {
                         <a href={`/files/${path}_800.jpg`} onClick={openLightbox}>
                             <img src={`/files/${path}_800.jpg`} alt='' className='fill' />
                         </a>
-                    </div>
+                    </div>,
                 )}
             </div>
 

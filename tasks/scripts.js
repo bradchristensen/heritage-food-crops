@@ -146,7 +146,7 @@ gulp.task('scripts:lint', () =>
      gulp.src([`${src.scripts}**/*.js`])
         .pipe(plumber())
         .pipe(eslint())
-        .pipe(eslint.format())
+        .pipe(eslint.format()),
 );
 
 export default gulp.task('scripts', [

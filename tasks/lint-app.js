@@ -10,5 +10,5 @@ export default gulp.task('app:lint', () =>
      gulp.src([`${src.app}**/*.js`])
         .pipe(plumber())
         .pipe(eslint())
-        .pipe(eslint.format())
+        .pipe(eslint.format()),
 );

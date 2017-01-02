@@ -39,5 +39,5 @@ export default gulp.task('styles', () =>
     .pipe(sourcemaps.write())
     .pipe(concat('global.css'))
     .pipe(nano())
-    .pipe(gulp.dest(dest.styles))
+    .pipe(gulp.dest(dest.styles)),
 );

@@ -11,7 +11,7 @@ export default function References(props, context) {
                             {ref.value}
                         </OutboundLink>
                     )}
-                </li>
+                </li>,
             )}
         </ol>
     );

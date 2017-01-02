@@ -13,10 +13,10 @@ export default function TableOfContents(props, context) {
                                 <a href={`#section-${item.id}-${child.id}`} data-scroll>
                                     {`${item.id}.${child.id} ${child.text}`}
                                 </a>
-                            </li>
+                            </li>,
                         )}
                     </ul>}
-                </li>
+                </li>,
             )}
         </ul>
     );

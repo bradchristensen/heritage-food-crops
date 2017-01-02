@@ -18,7 +18,7 @@ ReactDOM.render(
         routes={routes}
         render={applyRouterMiddleware(useScroll())}
     />,
-    document.getElementById('page')
+    document.getElementById('page'),
 );
 smoothScroll.init();
 

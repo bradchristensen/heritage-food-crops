@@ -45,7 +45,7 @@ export default function (app) {
 
             stream: fs.createWriteStream(
                 path.resolve(`${config.logDir}/access.log`),
-                { flags: 'a' }
+                { flags: 'a' },
             ),
         }));
     }
