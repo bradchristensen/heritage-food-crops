@@ -4,85 +4,154 @@ import eslint from 'gulp-eslint';
 import path from 'path';
 import webpack from 'webpack';
 import _ from 'lodash';
+import nodeExternals from 'webpack-node-externals';
+import config from '../app/config/gulp.json';
 
-import config from 'app/config/gulp.json';
+const src = config.src;
+const dest = config.dest;
 
-var src = config.src;
-var dest = config.dest;
+let webpackCompiler = null;
 
-var webpackCache = {};
-
-var webpackConfig = {
-    context: path.resolve(__dirname, '../' + src.scripts),
+const webpackConfig = {
+    context: path.resolve(__dirname, `../${src.scripts}`),
     entry: [
         'babel-polyfill',
-        './main'
+        './main',
     ],
     output: {
-        path: path.resolve(__dirname, '../' + dest.scripts),
-        filename: 'main.js'
+        path: path.resolve(__dirname, `../${dest.scripts}`),
+        filename: 'main.js',
     },
     module: {
         loaders: [
             {
                 loader: 'babel-loader',
                 include: [
-                    path.resolve(__dirname, '../' + src.scripts)
+                    path.resolve(__dirname, `../${src.scripts}`),
                 ],
                 query: {
-                    plugins: ['transform-class-properties', 'lodash'],
-                    presets: ['react', 'es2015', 'stage-0']
-                }
-            }
-        ]
-    },
-    resolve: {
-        root: path.resolve(__dirname, '../' + src.scripts)
+                    plugins: ['lodash', 'transform-object-rest-spread'],
+                    presets: ['react', 'es2015'],
+                },
+            },
+        ],
     },
     devtool: 'source-map',
-    cache: webpackCache
 };
 
-var webpackProductionConfig = _.assign({}, webpackConfig, {
+const webpackNodeConfig = {
+    context: path.resolve(__dirname, '../app'),
+    entry: './plumbing/app',
+    output: {
+        path: path.resolve(__dirname, '../'),
+        filename: 'index.js',
+    },
+    module: {
+        loaders: [
+            {
+                loader: 'babel',
+                test: /\.js$/,
+                exclude: /node_modules/,
+                query: {
+                    plugins: ['transform-object-rest-spread'],
+                    presets: ['react', 'es2015'],
+                },
+            },
+            {
+                loader: 'json',
+                test: /\.json$/,
+            },
+        ],
+    },
+    target: 'node',
+    node: {
+        __dirname: false,
+        __filename: false,
+    },
+    externals: [nodeExternals()],
+};
+
+const webpackProductionConfig = _.assign({}, _.cloneDeep(webpackConfig), {
     output: _.assign({}, webpackConfig.output, {
-        filename: 'main.min.js'
+        filename: 'main.min.js',
     }),
     plugins: [
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin(),
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': JSON.stringify('production')
-            }
-        })
+                NODE_ENV: JSON.stringify('production'),
+            },
+        }),
     ],
     devtool: undefined,
-    cache: {}
 });
 
-gulp.task('scripts:dev', callback => {
-    webpack(webpackConfig, (err, stats) => {
+gulp.task('scripts:dev', (callback) => {
+    if (!webpackCompiler) {
+        webpackCompiler = webpack(webpackConfig);
+    }
+
+    webpackCompiler.run((err, stats) => {
+        if (stats) {
+            const jsonStats = stats.toJson();
+            if (jsonStats.errors.length) {
+                console.error(`Webpack errors: ${jsonStats.errors}`);
+            }
+            if (jsonStats.warnings.length) {
+                console.error(`Webpack warnings: ${jsonStats.warnings}`);
+            }
+        }
         if (err) {
-            throw new Error('webpack: ' + (err.message || err));
+            throw new Error(`webpack: ${err.message || err}`);
         }
         callback();
     });
 });
 
-gulp.task('scripts:prod', callback => {
-    webpack(webpackProductionConfig, (err, stats) => {
+gulp.task('scripts:prod', (callback) => {
+    webpack(webpackProductionConfig, (err) => {
         if (err) {
-            throw new Error('webpack: ' + (err.message || err));
+            throw new Error(`webpack: ${err.message || err}`);
         }
         callback();
     });
 });
 
-gulp.task('scripts:lint', () => {
-    return gulp.src([src.scripts + '**/*.js'])
+let webpackNodeCompiler = null;
+
+gulp.task('scripts:node', (callback) => {
+    if (!webpackNodeCompiler) {
+        webpackNodeCompiler = webpack(webpackNodeConfig);
+    }
+
+    webpackNodeCompiler.run((err, stats) => {
+        if (stats) {
+            const jsonStats = stats.toJson();
+            if (jsonStats.errors.length) {
+                console.error(`Webpack errors: ${jsonStats.errors}`);
+            }
+            if (jsonStats.warnings.length) {
+                console.error(`Webpack warnings: ${jsonStats.warnings}`);
+            }
+        }
+        if (err) {
+            throw new Error(`webpack: ${err.message || err}`);
+        }
+        callback();
+    });
+});
+
+gulp.task('scripts:lint', () =>
+     gulp.src([`${src.scripts}**/*.js`])
         .pipe(plumber())
         .pipe(eslint())
-        .pipe(eslint.format());
-});
+        .pipe(eslint.format()),
+);
 
-export default gulp.task('scripts', ['scripts:lint', 'scripts:dev', 'scripts:prod']);
+export default gulp.task('scripts', [
+    'scripts:lint',
+    'scripts:dev',
+    'scripts:prod',
+    'scripts:node',
+]);

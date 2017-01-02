@@ -1,36 +1,41 @@
 import React from 'react';
-import Actions from 'stores/actions';
-import title from 'infrastructure/documentTitle';
-import Article from 'components/article';
-import SectionHeading from 'components/sectionHeading';
-import SectionSubheading from 'components/sectionSubheading';
 import _ from 'lodash';
+import Actions from '../stores/actions';
+import title from '../infrastructure/documentTitle';
+import Article from '../components/article';
+import SectionHeading from '../components/sectionHeading';
+import SectionSubheading from '../components/sectionSubheading';
 
-export default React.createClass({
-    mixins: [title('Plums and Peaches')],
+function openLightbox(event) {
+    if (event.button === 0) {
+        const img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
+        const caption = img ? img.alt : event.currentTarget.title;
+        Actions.openLightbox(event.currentTarget.href, caption);
+        event.preventDefault();
+    }
+}
 
-    openLightbox (event) {
-        if (event.button === 0) {
-            var img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
-            var caption = img ? img.alt : event.currentTarget.title;
-            Actions.openLightbox(event.currentTarget.href, caption);
-            event.preventDefault();
-        }
-    },
-
-    render () {
-        return <Article className='page-plums-peaches'>
+function PlumsPeaches() {
+    return (
+        <Article className='page-plums-peaches'>
             <div className='wrapper'>
                 <SectionHeading tag='h1'>Plums</SectionHeading>
 
                 <div className='box'>
-                    <p>This research will look to find superior varieties of plums for human health, concentrating on investigating heritage and traditional European varieties in comparison with Japanese plum varieties.</p>
+                    <p>
+                        This research will look to find superior varieties of plums for human
+                        health, concentrating on investigating heritage and traditional European
+                        varieties in comparison with Japanese plum varieties.
+                    </p>
                 </div>
 
                 <div className='splitter'>
                     <div className='box'>
                         <SectionHeading>European Plums</SectionHeading>
-                        <p>These plum varieties (prunes, damsons and greengages) typically contain very high levels of:</p>
+                        <p>
+                            These plum varieties (prunes, damsons and greengages) typically contain
+                            very high levels of:
+                        </p>
                         <ul>
                             <li>Anthocyanins
                                 <ul>
@@ -51,23 +56,55 @@ export default React.createClass({
                         <SectionSubheading>Graphs</SectionSubheading>
                         <div style={{ padding: '10px 20px' }}>
                             <div className='b100 gallery-thumb'>
-                                <a href='/files/plums3cqa.png' className='gallery' title='Neochlorogenic Acid in European Plums' onClick={this.openLightbox}>
-                                    <img src='/files/plums3cqa_100.png' alt='Cinnamic Acid - 3-CQA (Neochlorogenic Acid)' />
+                                <a
+                                    href='/files/plums3cqa.png'
+                                    className='gallery'
+                                    title='Neochlorogenic Acid in European Plums'
+                                    onClick={openLightbox}
+                                >
+                                    <img
+                                        src='/files/plums3cqa_100.png'
+                                        alt='Cinnamic Acid - 3-CQA (Neochlorogenic Acid)'
+                                    />
                                 </a>
                             </div>
                             <div className='b100 gallery-thumb'>
-                                <a href='/files/plumscyrut.png' className='gallery' title='Cyanidin-3-rutinoside in European Plums' onClick={this.openLightbox}>
-                                    <img src='/files/plumscyrut_100.png' alt='Anthocyanin - Cy-rut' />
+                                <a
+                                    href='/files/plumscyrut.png'
+                                    className='gallery'
+                                    title='Cyanidin-3-rutinoside in European Plums'
+                                    onClick={openLightbox}
+                                >
+                                    <img
+                                        src='/files/plumscyrut_100.png'
+                                        alt='Anthocyanin - Cy-rut'
+                                    />
                                 </a>
                             </div>
                             <div className='b100 gallery-thumb'>
-                                <a href='/files/plumspnrut.png' className='gallery' title='Peonidin-3-rutinoside in European Plums' onClick={this.openLightbox}>
-                                    <img src='/files/plumspnrut_100.png' alt='Anthocyanin - Pn-rut' />
+                                <a
+                                    href='/files/plumspnrut.png'
+                                    className='gallery'
+                                    title='Peonidin-3-rutinoside in European Plums'
+                                    onClick={openLightbox}
+                                >
+                                    <img
+                                        src='/files/plumspnrut_100.png'
+                                        alt='Anthocyanin - Pn-rut'
+                                    />
                                 </a>
                             </div>
                             <div className='b100 gallery-thumb'>
-                                <a href='/files/plumsqpenthex.png' className='gallery' title='Quercetin Glycoside in European Plums' onClick={this.openLightbox}>
-                                    <img src='/files/plumsqpenthex_100.png' alt='Quercetin Glycoside (Q-Penthex)' />
+                                <a
+                                    href='/files/plumsqpenthex.png'
+                                    className='gallery'
+                                    title='Quercetin Glycoside in European Plums'
+                                    onClick={openLightbox}
+                                >
+                                    <img
+                                        src='/files/plumsqpenthex_100.png'
+                                        alt='Quercetin Glycoside (Q-Penthex)'
+                                    />
                                 </a>
                             </div>
                         </div>
@@ -101,27 +138,58 @@ export default React.createClass({
                 <SectionHeading tag='h1'>Peaches</SectionHeading>
 
                 <div className='box'>
-                    <p>This research looks to find superior varieties of peaches for human health.</p>
-                    <p>We have focussed on Blackboy peach varieties in New Zealand because of their distinctive red flesh and dark skin, both colourings being indicators of high levels of compounds in the variety. Blackboy Peaches are a New Zealand heirloom peach variety with dark port wine skin and blood red flesh. Similar red fleshed peach varieties exist around the world such as pêche de vigne, or the blood peach.</p>
+                    <p>
+                        This research looks to find superior varieties of peaches for human health.
+                    </p>
+                    <p>
+                        We have focussed on Blackboy peach varieties in New Zealand because of their
+                        distinctive red flesh and dark skin, both colourings being indicators of
+                        high levels of compounds in the variety. Blackboy Peaches are a New Zealand
+                        heirloom peach variety with dark port wine skin and blood red flesh.
+                        Similar red fleshed peach varieties exist around the world such as
+                        pêche de vigne, or the blood peach.
+                    </p>
                 </div>
 
                 <div className='box'>
                     <h2>Blackboy Peaches</h2>
-                    <p>Blackboy peaches can contain very high levels of chlorogenic acid (5-CQA) and quercetin glycosides; Q-glu (quercetin-3-glucoside) and Q-gal (quercetin-3-galactoside).</p>
+                    <p>
+                        Blackboy peaches can contain very high levels of chlorogenic acid (5-CQA)
+                        and quercetin glycosides; Q-glu (quercetin-3-glucoside) and Q-gal
+                        (quercetin-3-galactoside).
+                    </p>
                     <div style={{ padding: '10px 20px 20px 20px' }}>
-                        <a href='/files/bb-chlorogenic-acid_800.png' className='b300' onClick={this.openLightbox}
-                            title='Chlorogenic Acid in Blackboy Peaches compared with other peach and plum varieties'>
-                            <img src='/files/bb-chlorogenic-acid_300.png' alt='Chlorogenic Acid in Blackboy Peaches' />
+                        <a
+                            href='/files/bb-chlorogenic-acid_800.png'
+                            className='b300'
+                            onClick={openLightbox}
+                            title={'Chlorogenic Acid in Blackboy Peaches compared with other peach and plum varieties'}
+                        >
+                            <img
+                                src='/files/bb-chlorogenic-acid_300.png'
+                                alt='Chlorogenic Acid in Blackboy Peaches'
+                            />
                         </a>
-                        <a href='/files/bb-quercetin-galactoside_800.png' className='b300' onClick={this.openLightbox}
-                            title='Quercetin Glycoside in Blackboy Peaches compared with other peach and plum varieties'>
-                            <img src='/files/bb-quercetin-galactoside_300.png' alt='Quercetin Glycoside in Blackboy Peaches' />
+                        <a
+                            href='/files/bb-quercetin-galactoside_800.png'
+                            className='b300'
+                            onClick={openLightbox}
+                            title={'Quercetin Glycoside in Blackboy Peaches compared with other peach and plum varieties'}
+                        >
+                            <img
+                                src='/files/bb-quercetin-galactoside_300.png'
+                                alt='Quercetin Glycoside in Blackboy Peaches'
+                            />
                         </a>
                     </div>
                 </div>
 
                 <div className='box'>
-                    <img src='/static/images/layout/plums-peaches/blackboy-peach-action-shot.jpg' alt='' className='fill' />
+                    <img
+                        src='/static/images/layout/plums-peaches/blackboy-peach-action-shot.jpg'
+                        alt=''
+                        className='fill'
+                    />
                 </div>
 
                 <div className='splitter'>
@@ -138,6 +206,8 @@ export default React.createClass({
 
                 <div className='clear' />
             </div>
-        </Article>;
-    }
-});
+        </Article>
+    );
+}
+
+export default title(PlumsPeaches, 'Plums and Peaches');

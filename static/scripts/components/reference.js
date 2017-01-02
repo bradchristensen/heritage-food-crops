@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 
-export default React.createClass({
-    contextTypes: {
-        assignReferenceId: React.PropTypes.func
-    },
+export default class Reference extends Component {
+    constructor(props, context) {
+        super(props, context);
 
-    getInitialState () {
-        return {
-            id: this.context.assignReferenceId()
+        this.state = {
+            id: context.assignReferenceId(),
         };
-    },
-
-    render () {
-        return <sup>
-            <a href={'#cite-' + this.state.id} data-scroll>
-                {'[' + this.state.id + ']'}
-            </a>
-        </sup>;
     }
-});
+
+    render() {
+        return (
+            <sup>
+                <a href={`#cite-${this.state.id}`} data-scroll>
+                    {`[${this.state.id}]`}
+                </a>
+            </sup>
+        );
+    }
+}
+
+Reference.contextTypes = {
+    assignReferenceId: PropTypes.func,
+};

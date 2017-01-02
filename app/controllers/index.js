@@ -1,35 +1,35 @@
-import config from 'app/config';
-import routes from 'infrastructure/routes';
 import { match, RouterContext } from 'react-router';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { rewind as getDocumentTitle } from 'infrastructure/documentTitle';
+import config from '../config';
+import routes from '../../static/scripts/infrastructure/routes';
+import { rewind as getDocumentTitle } from '../../static/scripts/infrastructure/documentTitle';
 
 export default {
-    get (req, res) {
+    get(req, res) {
         match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
             if (error) {
                 res.status(500).send(error.message);
             } else if (redirectLocation) {
                 res.redirect(302, redirectLocation.pathname + redirectLocation.search);
             } else if (renderProps) {
-                let content = ReactDOMServer.renderToString(<RouterContext {...renderProps} />);
+                const content = ReactDOMServer.renderToString(<RouterContext {...renderProps} />);
 
                 // content must be rendered before we can retrieve the page title
-                let title = getDocumentTitle();
+                const title = getDocumentTitle();
 
                 res.render('index', {
                     debug: config.debug,
-                    htmlTitle: title ? title + ' — ' + config.title : config.title,
+                    htmlTitle: title ? `${title} — ${config.title}` : config.title,
                     currentPageTitle: title,
                     siteTitle: config.title,
                     version: config.version,
                     gaTrackingId: config.gaTrackingId,
-                    content
+                    content,
                 });
             } else {
                 res.status(404).send('Not found');
             }
         });
-    }
+    },
 };

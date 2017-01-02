@@ -33,3 +33,5 @@ dist/
 *.bak
 .fuse_hidden*
 thumbs.db
+
+/index.js
