@@ -99,42 +99,42 @@ export default class App extends Component {
 
         return (<ul>
             <li>
-                <Link to='montys-surprise' onClick={this.hideMenu} activeClassName='active'>
+                <Link to='/montys-surprise' onClick={this.hideMenu} activeClassName='active'>
                     <img src={`/static/images/layout/menu-${thumbnailSize}/apples.jpg`} alt='' />
                     <h3>Monty's Surprise</h3>
                     <p>Apple Cancer Prevention Research Project</p>
                 </Link>
             </li>
             <li>
-                <Link to='heirloom-tomatoes' onClick={this.hideMenu} activeClassName='active'>
+                <Link to='/heirloom-tomatoes' onClick={this.hideMenu} activeClassName='active'>
                     <img src={`/static/images/layout/menu-${thumbnailSize}/tomatoes.jpg`} alt='' />
                     <h3>Heirloom Tomatoes</h3>
                     <p>Investigating the Health Potential of the 'Real' Tomato</p>
                 </Link>
             </li>
             <li>
-                <Link to='heirloom-beans' onClick={this.hideMenu} activeClassName='active'>
+                <Link to='/heirloom-beans' onClick={this.hideMenu} activeClassName='active'>
                     <img src={`/static/images/layout/menu-${thumbnailSize}/beans.${pngIfThumbnail}`} alt='' />
                     <h3>Heirloom Beans</h3>
                     <p>The Great New Zealand Bean Hunt</p>
                 </Link>
             </li>
             <li>
-                <Link to='plums-peaches' onClick={this.hideMenu} activeClassName='active'>
+                <Link to='/plums-peaches' onClick={this.hideMenu} activeClassName='active'>
                     <img src={`/static/images/layout/menu-${thumbnailSize}/plums.jpg`} alt='' />
                     <h3>Plums and Peaches</h3>
                     <p>Heritage/European plum varieties and Blackboy peaches</p>
                 </Link>
             </li>
             <li>
-                <Link to='huntingtons-disease' onClick={this.hideMenu} activeClassName='active'>
+                <Link to='/huntingtons-disease' onClick={this.hideMenu} activeClassName='active'>
                     <img src={`/static/images/layout/menu-${thumbnailSize}/huntingtons.${pngIfThumbnail}`} alt='' />
                     <h3>Huntington's Disease</h3>
                     <p>Researching a natural trehalose sugar treatment</p>
                 </Link>
             </li>
             <li>
-                <Link to='ancient-wheat' onClick={this.hideMenu} activeClassName='active'>
+                <Link to='/ancient-wheat' onClick={this.hideMenu} activeClassName='active'>
                     <img src={`/static/images/layout/menu-${thumbnailSize}/wheat.${pngIfThumbnail}`} alt='' />
                     <h3>Ancient Wheat</h3>
                     <p>Preserving ancient varieties and researching gluten intolerance</p>
@@ -205,15 +205,15 @@ export default class App extends Component {
                             </li>
                             <li>
                                 <Link
-                                    to='about-the-trust'
+                                    to='/about-the-trust'
                                     onClick={this.hideMenu}
                                 >About the Trust</Link>
                             </li>
                             <li>
-                                <Link to='contact-us' onClick={this.hideMenu}>Contact Us</Link>
+                                <Link to='/contact-us' onClick={this.hideMenu}>Contact Us</Link>
                             </li>
                             <li>
-                                <Link to='links' onClick={this.hideMenu}>Links</Link>
+                                <Link to='/links' onClick={this.hideMenu}>Links</Link>
                             </li>
                             <li className='menu-item-print-this-page'>
                                 <a onClick={this.onPrintClick} href='#print'>Print this page</a>
@@ -234,32 +234,32 @@ export default class App extends Component {
                             <span className='category-text'>Research Topics</span>
                         </li>
                         <li>
-                            <Link to='montys-surprise' activeClassName='active'>
+                            <Link to='/montys-surprise' activeClassName='active'>
                                 Monty's Surprise
                             </Link>
                         </li>
                         <li>
-                            <Link to='heirloom-tomatoes' activeClassName='active'>
+                            <Link to='/heirloom-tomatoes' activeClassName='active'>
                                 Heirloom Tomatoes
                             </Link>
                         </li>
                         <li>
-                            <Link to='heirloom-beans' activeClassName='active'>
+                            <Link to='/heirloom-beans' activeClassName='active'>
                                 Heirloom Beans
                             </Link>
                         </li>
                         <li>
-                            <Link to='plums-peaches' activeClassName='active'>
+                            <Link to='/plums-peaches' activeClassName='active'>
                                 Plums and Peaches
                             </Link>
                         </li>
                         <li>
-                            <Link to='huntingtons-disease' activeClassName='active'>
+                            <Link to='/huntingtons-disease' activeClassName='active'>
                                 Huntington's Disease
                             </Link>
                         </li>
                         <li>
-                            <Link to='ancient-wheat' activeClassName='active'>
+                            <Link to='/ancient-wheat' activeClassName='active'>
                                 Ancient Wheat
                             </Link>
                         </li>
@@ -268,12 +268,12 @@ export default class App extends Component {
                             <span className='category-text'>Other Resources</span>
                         </li>
                         <li>
-                            <Link to='about-the-trust' activeClassName='active'>
+                            <Link to='/about-the-trust' activeClassName='active'>
                                 About the Trust
                             </Link>
                         </li>
-                        <li><Link to='contact-us' activeClassName='active'>Contact Us</Link></li>
-                        <li><Link to='links' activeClassName='active'>Links</Link></li>
+                        <li><Link to='/contact-us' activeClassName='active'>Contact Us</Link></li>
+                        <li><Link to='/links' activeClassName='active'>Links</Link></li>
                         <li>
                             <a onClick={this.onPrintClick} href='#print'>Print this page</a>
                         </li>
