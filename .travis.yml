@@ -1,9 +1,10 @@
 language: node_js
 node_js:
 - stable
+cache: yarn
 before_script:
 - npm install -g gulp
-script: npm run build
+script: npm run build && npm test
 env:
   global:
   - secure: Tdec+17B/Ba6PO6IID60nyzCJQYVi8NYI4NK2rJlue3lYdRbU3JgC9EJUF1ZLjaVyqpJ8PZYBNggOaaDb0OBlvBHEMIzspG0dEg2rHqQ5KfszQN3sil9Rn8mXQB9wQ0a0pT3JUqmADiawKaHxWaYTc6a7jgzw9WQbB47XiBtnQDscxzpiJt7yfo1folx/PC2fwYL6Q3u6ADKqlR+dTwZFFohmc5BK/NPN3aLSkYtpF8JBAOZaCUAaMVAb9LHSBN20nOsL2SX+Gm0szEPFxdiAS/CT11U6GW2ORc93zViYXZOlWEiPp6ACjidymqW0TQar4sQjNdFgQyZEshFKU/jmD+90tazncoNrXWT79bL8FiDqXDzIHaqEh3Gxx1LhZfE6CJFvtUNpyPz/eyVj2vr35pNI2eUuoVvKeZ51OyzPvJmkRBXXZmhjTHXVzYM6xjyFPoki7oWDhGSfI1/P/Tl5nAefxeAhoYS1W8c4sm7809jpGcHKMhUF9evCM9v3wlug3W8c3XBV1awkFAhTpGdkFXDJyh28ow+FhTnK+PZaljc002ctBVnZNwHvmGoypxm6D5PbO4RAdDiCYliT9mA3rwCvf2012ILfep8FTLZOpJAKhH4Dnlpi3EjMMM9t7P/ysTL+toDxA/IT57PI4iLj4NETWslmWsEdvoR3rH0F64=
