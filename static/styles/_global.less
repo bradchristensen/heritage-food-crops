@@ -701,6 +701,28 @@ button:focus {
     text-align: left;
 }
 
+ol.table-of-contents,  {
+    counter-reset: outer;
+    list-style: none;
+
+    > li:before {
+        counter-increment: outer;
+        content: counter(outer, decimal)".";
+        padding-right: 9px;
+    }
+}
+
+ol.table-of-contents ol {
+    counter-reset: inner;
+    list-style: none;
+
+    > li:before {
+        counter-increment: inner;
+        content: counter(outer, decimal)"."counters(inner,".")".";
+        padding-right: 8px;
+    }
+}
+
 .download-link {
     background-color: rgba(242, 102, 102, 0.1);
     border: 1px solid rgba(242, 102, 102, 0.3);
