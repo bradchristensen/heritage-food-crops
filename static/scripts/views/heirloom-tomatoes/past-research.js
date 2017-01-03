@@ -241,7 +241,7 @@ function PastResearch() {
                     </p>
 
                     <p>
-                        In 2007 the Central Tree Crops Research Trust (in conjunction with the
+                        In 2007 the Heritage Food Crops Research Trust (in conjunction with the
                         New Zealand Tree Crops Association Central Districts Branch and
                         Bristol Plants and Seeds) grew 64 tomato varieties, and had them
                         chemically analysed by Dr Tony McGhie at Hort Research in

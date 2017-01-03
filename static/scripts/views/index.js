@@ -43,9 +43,9 @@ function Index() {
                 <div className='wrapper wrap-900'>
                     <div className='feature-text'>
                         <p>
-                            The <strong>Heritage Food Crops Research Trust</strong> (formerly the
-                            Central Tree Crops Research Trust) is a charitable trust, established
-                            to research the <strong>early prevention and treatment</strong> of
+                            The <strong>Heritage Food Crops Research Trust</strong> is a
+                            charitable trust, established to research
+                            the <strong>early prevention and treatment</strong> of
                             disease through the medicinal properties of plant-based food and
                             natural <strong>plant-based medicine</strong>.
                         </p>

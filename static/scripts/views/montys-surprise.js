@@ -149,7 +149,7 @@ function MontysSurprise() {
                     >
                         <img
                             src='/files/06markfrancesandtony_300.jpg'
-                            alt={'Mark Christensen (Central Tree Crops Research Trust), Dr Frances Raul (Ircad, Strasbourg, France), and Dr Tony McGhie (Plant and Food Research)'}
+                            alt={'Mark Christensen (Heritage Food Crops Research Trust), Dr Frances Raul (Ircad, Strasbourg, France), and Dr Tony McGhie (Plant and Food Research)'}
                             title='Mark Christensen, Dr Frances Raul and Dr Tony McGhie'
                         />
                     </a>
@@ -967,7 +967,7 @@ function MontysSurprise() {
                 />
 
                 <DownloadLink
-                    href='https://heritagefoodcrops.org.nz/files/inbreeding-modern-apples-1996.pdf'
+                    href='/files/inbreeding-modern-apples-1996.pdf'
                     title='Inbreeding of Modern Apple Cultivars'
                     description={
                         <span>
