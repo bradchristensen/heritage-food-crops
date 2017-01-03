@@ -21,6 +21,26 @@ function beansGallery(path, newPath) {
     };
 }
 
+function plumGraph(path) {
+    const dir = '/static/images/layout/plums-peaches/graphs/';
+    return {
+        [`/files/${path}.png`]: `${dir}${path}.png`,
+        [`/files/${path}_100.png`]: `${dir}${path}_100.png`,
+        [`/files/${path}_300.png`]: `${dir}${path}.png`,
+        [`/files/${path}_800.png`]: `${dir}${path}.png`,
+    };
+}
+
+function peachGraph(path) {
+    const dir = '/static/images/layout/plums-peaches/graphs/';
+    return {
+        [`/files/${path}.png`]: `${dir}${path}_800.png`,
+        [`/files/${path}_100.png`]: `${dir}${path}_300.png`,
+        [`/files/${path}_300.png`]: `${dir}${path}_300.png`,
+        [`/files/${path}_800.png`]: `${dir}${path}_800.png`,
+    };
+}
+
 export default {
     '/files/anasazi-beans.jpg': '/static/images/layout/heirloom-beans/anasazi-beans.jpg',
     '/files/jessica-and-the-golden-orb.pdf': '/static/docs/jessica-and-the-golden-orb.pdf',
@@ -44,4 +64,12 @@ export default {
     ...beansGallery('assorted-beansmmch', 'assorted-beans'),
     ...beansGallery('assorted-beans', 'assorted-beans-pods'),
     ...beansGallery('beans-growing'),
+    '/files/blackboy-peaches_800.jpg': '/static/images/layout/plums-peaches/blackboy-peach.jpg',
+    '/files/bb-peaches-mason_800.jpg': '/static/images/layout/plums-peaches/bb-peaches-mason.jpg',
+    ...peachGraph('bb-chlorogenic-acid'),
+    ...peachGraph('bb-quercetin-galactoside'),
+    ...plumGraph('plums3cqa'),
+    ...plumGraph('plumscyrut'),
+    ...plumGraph('plumspnrut'),
+    ...plumGraph('plumsqpenthex'),
 };
