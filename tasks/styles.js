@@ -1,10 +1,7 @@
 import gulp from 'gulp';
-import plumber from 'gulp-plumber';
-import sourcemaps from 'gulp-sourcemaps';
 import less from 'gulp-less';
 import nano from 'gulp-cssnano';
 import del from 'del';
-import cache from 'gulp-cache-stream';
 import concat from 'gulp-concat';
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
@@ -27,16 +24,10 @@ export default gulp.task('styles', () =>
          `${src.styles}_reset.less`,
          `${src.styles}_global.less`,
      ])
-    .pipe(plumber())
-    .pipe(sourcemaps.init())
-    .pipe(cache(stream =>
-         stream
-        .pipe(less())
-        .pipe(postcss([
-            autoprefixer({ browsers: ['last 3 versions'] }),
-        ]))
-    , 'less'))
-    .pipe(sourcemaps.write())
+    .pipe(less())
+    .pipe(postcss([
+        autoprefixer({ browsers: ['last 3 versions'] }),
+    ]))
     .pipe(concat('global.css'))
     .pipe(nano())
     .pipe(gulp.dest(dest.styles)),

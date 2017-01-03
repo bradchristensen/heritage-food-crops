@@ -1,6 +1,4 @@
 import gulp from 'gulp';
-import plumber from 'gulp-plumber';
-import eslint from 'gulp-eslint';
 import path from 'path';
 import webpack from 'webpack';
 import _ from 'lodash';
@@ -142,15 +140,7 @@ gulp.task('scripts:node', (callback) => {
     });
 });
 
-gulp.task('scripts:lint', () =>
-     gulp.src([`${src.scripts}**/*.js`])
-        .pipe(plumber())
-        .pipe(eslint())
-        .pipe(eslint.format()),
-);
-
 export default gulp.task('scripts', [
-    'scripts:lint',
     'scripts:dev',
     'scripts:prod',
     'scripts:node',
