@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import title from '../infrastructure/documentTitle';
 
 // Shortcut for applying target='_blank' props in accordance with
 // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md
@@ -8,7 +9,7 @@ const targetBlank = {
     rel: 'noreferrer noopener',
 };
 
-export default function Index() {
+function Index() {
     return (
         <div className='page-index'>
             <a
@@ -155,3 +156,8 @@ export default function Index() {
         </div>
     );
 }
+
+// The index page must populate a blank title on componentWillMount (otherwise the title will be
+// whatever was defined last, i.e. the last component that was *created* - it doesn't even have
+// to have been mounted)
+export default title(Index, '');
