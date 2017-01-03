@@ -244,7 +244,7 @@ class HeirloomTomatoes extends Component {
 
                         <div className='box jessica'>
                             <img
-                                src='/static/img/layout/jessica-cover.jpg'
+                                src='/static/images/layout/jessica-cover.jpg'
                                 alt='Jessica and the Golden Orb'
                                 className='left'
                                 width='50%'
@@ -252,7 +252,7 @@ class HeirloomTomatoes extends Component {
                             <div style={{ marginLeft: '50%' }}>
                                 <h2 style={{ clear: 'none' }}>
                                     <a
-                                        href='/files/jessica-and-the-golden-orb.pdf'
+                                        href='/static/docs/jessica-and-the-golden-orb.pdf'
                                         {...targetBlank}
                                     >
                                         Jessica and the Golden Orb
@@ -270,7 +270,7 @@ class HeirloomTomatoes extends Component {
                                 <p>
                                     <a
                                         className='button'
-                                        href='/files/jessica-and-the-golden-orb.pdf'
+                                        href='/static/docs/jessica-and-the-golden-orb.pdf'
                                         {...targetBlank}
                                     >Download</a>
                                 </p>
@@ -482,7 +482,7 @@ class HeirloomTomatoes extends Component {
                     <div className='splitter'>
                         <div className='box'>
                             <img
-                                src='/static/img/layout/tomatoes/moonglow-vertical.jpg'
+                                src='/static/images/layout/tomatoes/moonglow-vertical.jpg'
                                 alt='Moonglow tomatoes'
                                 className='fill'
                             />
@@ -493,7 +493,7 @@ class HeirloomTomatoes extends Component {
                     <div className='splitter right'>
                         <div className='box'>
                             <img
-                                src='/static/img/layout/tomatoes/rosalita-vertical.jpg'
+                                src='/static/images/layout/tomatoes/rosalita-vertical.jpg'
                                 alt='Rosalita tomatoes'
                                 className='fill'
                             />
@@ -768,7 +768,7 @@ class HeirloomTomatoes extends Component {
 
                     <div className='box'>
                         <img
-                            src='/static/img/layout/tomatoes/moonglow-centrepiece.jpg'
+                            src='/static/images/layout/tomatoes/moonglow-centrepiece.jpg'
                             alt='The Moonglow tomato variety'
                         />
                         <p><em>Moonglow tomatoes also make a terrific centrepiece!</em></p>
@@ -1126,7 +1126,7 @@ class HeirloomTomatoes extends Component {
 
                     <div className='box'>
                         <img
-                            src='/static/img/layout/tomatoes/mark-golden-orange-tomatoes.jpg'
+                            src='/static/images/layout/tomatoes/mark-golden-orange-tomatoes.jpg'
                             alt='Mark Christensen'
                         />
                         <p><em>Mark Christensen inspects some of the Trust's

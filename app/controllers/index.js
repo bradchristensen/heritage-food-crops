@@ -6,8 +6,6 @@ import routes from '../../static/scripts/infrastructure/routes';
 import { rewind as getDocumentTitle } from '../../static/scripts/infrastructure/documentTitle';
 import faviconData from '../../dist/faviconData.json';
 
-const faviconHtml = faviconData.favicon.html_code.replace(/\.\/dist\//g, '/');
-
 export default {
     get(req, res) {
         match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
@@ -24,7 +22,7 @@ export default {
                 res.render('index', {
                     debug: config.debug,
                     htmlTitle: title ? `${title} — ${config.title}` : config.title,
-                    faviconHtml,
+                    faviconHtml: faviconData.favicon.html_code,
                     currentPageTitle: title,
                     siteTitle: config.title,
                     version: config.version,

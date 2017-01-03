@@ -39,7 +39,7 @@ function AncientWheat() {
                 <div className='splitter'>
                     <div className='box'>
                         <img
-                            src='/static/img/layout/wheat/david-mark-wheat.jpg'
+                            src='/static/images/layout/wheat/david-mark-wheat.jpg'
                             alt={'David Hughes and Mark Christensen inspecting heritage wheat, December 2015'}
                             className='full'
                         />
@@ -53,7 +53,7 @@ function AncientWheat() {
                 <div className='splitter right'>
                     <div className='box'>
                         <img
-                            src='/static/img/layout/wheat/green-wheat-centennial.jpg'
+                            src='/static/images/layout/wheat/green-wheat-centennial.jpg'
                             alt=''
                             className='full'
                         />
@@ -106,7 +106,7 @@ function AncientWheat() {
 
                     <div className='right' style={{ width: '400px', margin: '7px 25px' }}>
                         <img
-                            src='/static/img/layout/wheat/bread.jpg'
+                            src='/static/images/layout/wheat/bread.jpg'
                             alt='Organic heritage stone ground whole wheat bread'
                             className='fill'
                         />

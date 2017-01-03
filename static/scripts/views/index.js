@@ -14,14 +14,14 @@ function Index() {
         <div className='page-index'>
             <a
                 className='page-feature'
-                href='/files/jessica-and-the-golden-orb.pdf'
+                href='/static/docs/jessica-and-the-golden-orb.pdf'
                 {...targetBlank}
             >
                 <div className='wrapper wrap-900'>
                     <div className='wrap-right'>
                         <p>
                             <img
-                                src='/static/img/layout/jessica.svg'
+                                src='/static/images/layout/jessica.svg'
                                 alt='Jessica and the Golden Orb'
                                 width='100%'
                             />
@@ -56,7 +56,7 @@ function Index() {
                         <li className='box'>
                             <Link to='montys-surprise'>
                                 <img
-                                    src='/static/img/layout/menu-large/apples.jpg'
+                                    src='/static/images/layout/menu-large/apples.jpg'
                                     className='hero'
                                     alt={'Monty\'s Surprise'}
                                 />
@@ -76,7 +76,7 @@ function Index() {
                         <li className='box'>
                             <Link to='heirloom-tomatoes'>
                                 <img
-                                    src='/static/img/layout/menu-large/tomatoes.jpg'
+                                    src='/static/images/layout/menu-large/tomatoes.jpg'
                                     className='hero'
                                     alt='Heirloom Tomatoes'
                                 />
@@ -93,7 +93,7 @@ function Index() {
                         <li className='box'>
                             <Link to='heirloom-beans'>
                                 <img
-                                    src='/static/img/layout/menu-large/beans.jpg'
+                                    src='/static/images/layout/menu-large/beans.jpg'
                                     className='hero'
                                     alt='Heirloom Beans'
                                 />
@@ -107,7 +107,7 @@ function Index() {
                         <li className='box'>
                             <Link to='plums-peaches'>
                                 <img
-                                    src='/static/img/layout/menu-large/plums.jpg'
+                                    src='/static/images/layout/menu-large/plums.jpg'
                                     className='hero'
                                     alt='Plums and Peaches'
                                 />
@@ -121,7 +121,7 @@ function Index() {
                         <li className='box'>
                             <Link to='huntingtons-disease'>
                                 <img
-                                    src='/static/img/layout/menu-large/huntingtons.jpg'
+                                    src='/static/images/layout/menu-large/huntingtons.jpg'
                                     className='hero'
                                     alt={'Huntington\'s Disease'}
                                 />
@@ -135,7 +135,7 @@ function Index() {
                         <li className='box'>
                             <Link to='ancient-wheat'>
                                 <img
-                                    src='/static/img/layout/menu-large/wheat.jpg'
+                                    src='/static/images/layout/menu-large/wheat.jpg'
                                     className='hero'
                                     alt='Ancient Wheat'
                                 />

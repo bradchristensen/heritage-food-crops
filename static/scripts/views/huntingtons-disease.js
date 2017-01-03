@@ -86,7 +86,7 @@ function HuntingtonsDisease() {
                 <div className='splitter'>
                     <div className='box'>
                         <img
-                            src='/static/img/layout/huntingtons-disease/01.jpg'
+                            src='/static/images/layout/huntingtons-disease/01.jpg'
                             alt={'Selaginella Lepidophylla (the Resurrection Plant) growing in the Trust\'s plant containment facility'}
                             className='fill'
                         />
@@ -100,7 +100,7 @@ function HuntingtonsDisease() {
                 <div className='splitter right'>
                     <div className='box'>
                         <img
-                            src='/static/img/layout/huntingtons-disease/03.jpg'
+                            src='/static/images/layout/huntingtons-disease/03.jpg'
                             alt={'Selaginella Lepidophylla (the Resurrection Plant) growing in the Trust\'s plant containment facility'}
                             className='fill'
                         />
@@ -115,7 +115,7 @@ function HuntingtonsDisease() {
 
                 <div className='box'>
                     <img
-                        src='/static/img/layout/huntingtons-disease/all.jpg'
+                        src='/static/images/layout/huntingtons-disease/all.jpg'
                         alt={'Plants of Selaginella Lepidophylla (the Resurrection Plant) growing in the Trust\'s plant containment facility'}
                         className='fill'
                     />
