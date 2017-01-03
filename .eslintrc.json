@@ -16,7 +16,6 @@
         "jsx-a11y/anchor-has-content": [1],
         "jsx-a11y/href-no-hash": [1],
         "jsx-quotes": [2, "prefer-single"],
-        "linebreak-style": [2, "windows"],
         "no-param-reassign": [2, { "props": false }],
         "no-underscore-dangle": [2, { "allow": ["__set__", "__ga__"] }],
         "react/jsx-filename-extension": [0],
