@@ -49,10 +49,9 @@ export default function (app) {
     app.use(allowCrossDomain);
     if (config.debug) {
         app.use(morgan('dev'));
-    } else if (!config.disableLogging) {
+    } else if (!config.disableLogging && config.logDir) {
         app.use(morgan('combined', {
-            skip: (req, res) =>
-                 res.statusCode < 400,
+            skip: (req, res) => res.statusCode < 400,
 
             stream: fs.createWriteStream(
                 path.resolve(`${config.logDir}/access.log`),
