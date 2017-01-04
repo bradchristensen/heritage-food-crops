@@ -14,7 +14,6 @@ import faviconData from '../../dist/faviconData.json';
 function serveStaticFiles(app) {
     const distPath = express.static(path.normalize(`${__dirname}/dist`));
     const staticPath = express.static(path.normalize(`${__dirname}/static`));
-    const filesPath = express.static(path.normalize(`${__dirname}/app/plumbing/${config.pathToDeprecatedFilesDir}`));
     const deprecatedImagesPath = express.static(path.normalize(`${__dirname}/static/images`));
     const faviconsPath = express.static(path.normalize(`${__dirname}/dist/favicons`));
 
@@ -25,9 +24,6 @@ function serveStaticFiles(app) {
     app.use('/static', distPath);
     // Serve other files that don't need to be generated from the same /static path
     app.use('/static', staticPath);
-    // Serve deprecated files from the /files path (should be moved to relevant locations
-    // in /static in future)
-    app.use('/files', filesPath);
     // TODO: images are no longer served from this path, so this line can be removed in future
     app.use('/static/img', deprecatedImagesPath);
 }
