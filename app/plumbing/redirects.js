@@ -42,8 +42,10 @@ function peachGraph(path) {
 }
 
 export default {
-    '/files/anasazi-beans.jpg': '/static/images/layout/heirloom-beans/anasazi-beans.jpg',
     '/files/jessica-and-the-golden-orb.pdf': '/static/docs/jessica-and-the-golden-orb.pdf',
+
+    // Heirloom Beans
+    '/files/anasazi-beans.jpg': '/static/images/layout/heirloom-beans/anasazi-beans.jpg',
     ...beans('cherokee-cornfield-bean'),
     ...beans('goodmotherstallard', 'good-mother-stallard'),
     ...beans('hidatsashieldfigurepolebean', 'hidatsa-shield-figure'),
@@ -64,6 +66,8 @@ export default {
     ...beansGallery('assorted-beansmmch', 'assorted-beans'),
     ...beansGallery('assorted-beans', 'assorted-beans-pods'),
     ...beansGallery('beans-growing'),
+
+    // Plums & Peaches
     '/files/blackboy-peaches_800.jpg': '/static/images/layout/plums-peaches/blackboy-peach.jpg',
     '/files/bb-peaches-mason_800.jpg': '/static/images/layout/plums-peaches/bb-peaches-mason.jpg',
     ...peachGraph('bb-chlorogenic-acid'),
@@ -72,4 +76,32 @@ export default {
     ...plumGraph('plumscyrut'),
     ...plumGraph('plumspnrut'),
     ...plumGraph('plumsqpenthex'),
+
+    // Huntington's Disease
+    '/files/HPLC-Chromatogram.png': '/static/images/layout/huntingtons-disease/hplc-chromatogram.png',
+
+    // Documents from the Heirloom Tomatoes page (and past research page)
+    '/files/2015-carotenoid-composition-of-tomatoes.pdf': '/static/docs/2015-carotenoid-composition-of-tomatoes.pdf',
+    '/files/2014-bioavailability-of-tetra-cis-lycopene-in-humans.pdf': '/static/docs/2014-bioavailability-of-tetra-cis-lycopene-in-humans.pdf',
+    '/files/2013reportgrapefruitandtomatometabolitesforhealth.pdf': '/static/docs/2013-report-grapefruit-tomato-metabolites-health.pdf',
+    '/files/appendix1.pdf': '/static/docs/2013-report-appendix1.pdf',
+    '/files/appendix2.pdf': '/static/docs/2013-report-appendix2.pdf',
+    '/files/2009-tomato-top-varieties.pdf': '/static/docs/2009-tomato-top-varieties.pdf',
+    '/files/2008-tomato-top-varieties.xls': '/static/docs/2008-tomato-top-varieties.xls',
+    '/files/2007-tomato-top-varieties.xls': '/static/docs/2007-tomato-top-varieties.xls',
+    '/files/tomato-varieties-chemical-analysis.xls': '/static/docs/tomato-varieties-chemical-analysis.xls',
+
+    // Tomatoes from the table on the Heirloom Tomatoes page
+    '/files/amishorangesherbertheirloom_800.jpg': '/static/images/layout/tomatoes/table/amish-orange-sherbert-heirloom.jpg',
+    '/files/amishyellowishorangeoxheart_800.jpg': '/static/images/layout/tomatoes/table/amish-yellowish-orange-oxheart.jpg',
+    '/files/auntgertiesgold_800.jpg': '/static/images/layout/tomatoes/table/aunt-gerties-gold.jpg',
+    '/files/bigorange_800.jpg': '/static/images/layout/tomatoes/table/big-orange.jpg',
+    '/files/dadssunset_800.jpg': '/static/images/layout/tomatoes/table/dads-sunset.jpg',
+    '/files/earlofedgecomb_800.jpg': '/static/images/layout/tomatoes/table/earl-of-edgecomb.jpg',
+    '/files/elbe_800.jpg': '/static/images/layout/tomatoes/table/elbe.jpg',
+    '/files/moonglow_800.jpg': '/static/images/layout/tomatoes/table/moonglow.jpg',
+    '/files/orangefleshedpurplesmudge_800.jpg': '/static/images/layout/tomatoes/table/orange-fleshed-purple-smudge.jpg',
+    '/files/orangeroma.jpg': '/static/images/layout/tomatoes/table/orange-roma.jpg',
+    '/files/sibirischeorange_800.jpg': '/static/images/layout/tomatoes/table/sibirische-orange.jpg',
+    '/files/tangerine_800.jpg': '/static/images/layout/tomatoes/table/tangerine.jpg',
 };

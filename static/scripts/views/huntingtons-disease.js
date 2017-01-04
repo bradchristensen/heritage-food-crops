@@ -189,7 +189,11 @@ function HuntingtonsDisease() {
                 </div>
 
                 <div className='box'>
-                    <img src='/files/HPLC-Chromatogram.png' alt='' className='full' />
+                    <img
+                        src='/static/images/layout/huntingtons-disease/hplc-chromatogram.png'
+                        alt=''
+                        className='full'
+                    />
                 </div>
 
                 <div className='box'>
