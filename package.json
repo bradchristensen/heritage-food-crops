@@ -14,7 +14,9 @@
   "scripts": {
     "build": "npm run generate-favicons && gulp",
     "generate-favicons": "real-favicon generate favicons.json ./dist/faviconData.json ./dist/favicons/",
-    "test": "eslint **/*.js"
+    "test": "npm run test-eslint && npm run test-check-broken-links",
+    "test-check-broken-links": "node ./test/check-broken-links",
+    "test-eslint": "eslint **/*.js"
   },
   "dependencies": {
     "babel-core": "^6.18.0",
@@ -50,6 +52,7 @@
     "autoprefixer": "^6.5.1",
     "babel-eslint": "^7.1.0",
     "babel-plugin-lodash": "^3.2.9",
+    "broken-link-checker": "^0.7.4",
     "cli-real-favicon": "^0.0.6",
     "del": "^2.2.2",
     "eslint": "^3.9.0",

@@ -20,7 +20,7 @@ export default {
                 const title = getDocumentTitle();
 
                 res.render('index', {
-                    debug: config.debug,
+                    useMinifiedCode: config.debug,
                     htmlTitle: title ? `${title} — ${config.title}` : config.title,
                     faviconHtml: faviconData.favicon.html_code,
                     currentPageTitle: title,
