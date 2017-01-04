@@ -54,7 +54,7 @@ function Index() {
 
                     <ul className='menu-large'>
                         <li className='box'>
-                            <Link to='montys-surprise'>
+                            <Link to='/montys-surprise'>
                                 <img
                                     src='/static/images/layout/menu-large/apples.jpg'
                                     className='hero'
@@ -74,7 +74,7 @@ function Index() {
                             </Link>
                         </li>
                         <li className='box'>
-                            <Link to='heirloom-tomatoes'>
+                            <Link to='/heirloom-tomatoes'>
                                 <img
                                     src='/static/images/layout/menu-large/tomatoes.jpg'
                                     className='hero'
@@ -91,7 +91,7 @@ function Index() {
                             </Link>
                         </li>
                         <li className='box'>
-                            <Link to='heirloom-beans'>
+                            <Link to='/heirloom-beans'>
                                 <img
                                     src='/static/images/layout/menu-large/beans.jpg'
                                     className='hero'
@@ -105,7 +105,7 @@ function Index() {
                             </Link>
                         </li>
                         <li className='box'>
-                            <Link to='plums-peaches'>
+                            <Link to='/plums-peaches'>
                                 <img
                                     src='/static/images/layout/menu-large/plums.jpg'
                                     className='hero'
@@ -119,7 +119,7 @@ function Index() {
                             </Link>
                         </li>
                         <li className='box'>
-                            <Link to='huntingtons-disease'>
+                            <Link to='/huntingtons-disease'>
                                 <img
                                     src='/static/images/layout/menu-large/huntingtons.jpg'
                                     className='hero'
@@ -133,7 +133,7 @@ function Index() {
                             </Link>
                         </li>
                         <li className='box'>
-                            <Link to='ancient-wheat'>
+                            <Link to='/ancient-wheat'>
                                 <img
                                     src='/static/images/layout/menu-large/wheat.jpg'
                                     className='hero'

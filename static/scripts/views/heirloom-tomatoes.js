@@ -1121,7 +1121,12 @@ class HeirloomTomatoes extends Component {
                             possibilities through the medium of "tomatoes".
                         </p>
 
-                        <p><strong><em>Tomato seeds can be purchased from <OutboundLink to='http://www.bristol.co.nz' eventLabel='Bristol Plants & Seeds'>Bristol Plants & Seeds</OutboundLink>, or <Link to='contact-us'>contact us</Link> if you would like to be a part of our research and trial one of these varieties.</em></strong></p>
+                        <p>
+                            <strong><em>Tomato seeds can be purchased
+                            from <OutboundLink to='http://www.bristol.co.nz' eventLabel='Bristol Plants & Seeds'>Bristol Plants & Seeds</OutboundLink>,
+                            or <Link to='/contact-us'>contact us</Link> if you would like to be a
+                            part of our research and trial one of these varieties.</em></strong>
+                        </p>
                     </div>
 
                     <div className='box'>
