@@ -41,6 +41,13 @@ function MontysSurprise() {
         </OutboundLink>
     );
 
+    // This link is no longer available on the Tree Crops website, and unfortunately has recently
+    // also become unavailable from the Internet Archive due to a misconfigured robots.txt file
+    // on the current Tree Crops website.
+    // The Internet Archive unfortunately adheres to the robots.txt file which disallows all
+    // web crawlers from indexing the site.
+    // Hopefully one day we'll be able to obtain an archived version of the page once more.
+    /*
     const reportLink2006 = (
         <OutboundLink
             to={'https://web.archive.org/web/20150424004047/http://www.treecrops.org.nz/resrch/apple/applecanc06.html'}
@@ -49,6 +56,7 @@ function MontysSurprise() {
             2006 Research Report
         </OutboundLink>
     );
+    */
 
     const plantNetLink = (
         <OutboundLink
@@ -429,7 +437,8 @@ function MontysSurprise() {
                     recent years, played a leading role in locating, identifying and propagating
                     heritage apple varieties. Six years of research were completed to evaluate the
                     levels of beneficial compounds in these heritage apple varieties and to compare
-                    the results with those of commercial apples (see the {reportLink2006}).
+                    the results with those of commercial apples.
+                    {/* (see the {reportLink2006}) */}
                 </p>
 
                 <p>
