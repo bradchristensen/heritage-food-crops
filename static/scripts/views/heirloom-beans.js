@@ -12,7 +12,7 @@ const beans = [
     },
     {
         name: 'Blue Shackamaxon',
-        image: 'jlbblueshackamaxon4',
+        image: 'blue-shackamaxon',
         description: 'Climbing dry bean, but also an excellent green bean. From Lenape tribe in Delaware, USA, and preserved among Quaker farmers. Vines will grow 6-7 feet with rose-pink flowers, pods turning purple when ripe, seeds blue, blue-black when dried. Also known as the "Treaty Bean". Very attractive plant and beans. Pods are small but are an excellent green bean that is also very cold tolerant in Spring.',
     },
     {
@@ -42,12 +42,12 @@ const beans = [
     },
     {
         name: 'Good Mother Stallard',
-        image: 'goodmotherstallard',
+        image: 'good-mother-stallard',
         description: 'An heirloom climbing bean from the Midwestern United States. A large oval seed with purple and white colourings. A very productive, drought-resistant variety.',
     },
     {
         name: 'Hidatsa Shield Figure Climbing Bean',
-        image: 'hidatsashieldfigurepolebean',
+        image: 'hidatsa-shield-figure',
         description: (
             <span>
                 An ancient variety that originated with the Hidatsa Indians of the Missouri River
@@ -67,7 +67,7 @@ const beans = [
     },
     {
         name: 'Hopi Light Yellow',
-        image: 'hopilightyellow',
+        image: 'hopi-light-yellow',
         description: 'Large, light yellow-beige beans from Hopi Indian collections at Hotevilla. Also called "grease beans", plants are somewhat early-maturing pole beans. High-yielding, with good green beans.',
     },
     {
@@ -81,7 +81,7 @@ const beans = [
     {
         name: 'Mayflower Bean',
         description: 'Also known as Amish Knuttle, Colorado River Bean, Flor de Mayo, or Red Nightfall. Beautiful off-white seeds, splashed with maroon colour that looks like it has been spraypainted on. The original seed is said to have arrived in America via the pilgrims on the Mayflower ship in 1620. Used predominantly as a dry bean.',
-        images: ['mayflower-bean', 'mayflower-beantmid'],
+        images: ['mayflower-bean', 'mayflower-bean-2'],
     },
     {
         name: 'Ohio Pole Bean',
@@ -103,7 +103,7 @@ const beans = [
     {
         name: 'San Luis Potosi Flor de Mayo',
         description: 'Faded purple specks over cream-beige background. Climbing bean from Central Mexico.',
-        image: 'sanluispotosiflordemayo',
+        image: 'san-luis-potosi-flor-de-mayo',
     },
     {
         name: 'Seneka Speckled Bird Egg',
@@ -120,11 +120,11 @@ const beans = [
     {
         name: 'Tarahumara Ojo de Cabra',
         description: '"Goat\'s Eye". High yielding climbing bean producing large seeds with dark stripes over a speckled light background. A diversely coloured bean with stripes ranging from brown and tan to blue-grey and black.',
-        image: 'tarahumaragraystar',
+        image: 'tarahumara-gray-star',
     },
     {
         name: 'Tarahumara Purple Star',
-        image: 'tarahumarapurplestar',
+        image: 'tarahumara-purple-star',
         description: 'Large purple and white beans from central and southern Tarahumara country in Chihuahua, Mexico. Purple pattern radiating outward from the seed "eye" across a white background.',
     },
     {
@@ -133,20 +133,23 @@ const beans = [
     },
     {
         name: 'Yoeme Purple String',
-        image: 'yoemepurplestring',
+        image: 'yoeme-purple-string',
         description: 'A prolific climbing bean from Mexico that can be eaten green or as shelled. Seeds are purple on beige. Plants are heat tolerant.',
     },
     {
         name: 'Zuni Shalako Bean',
-        image: 'raquelbean',
+        image: 'raquel',
         description: 'An unusual heirloom variety from Mexico. Also called the Prairie Appaloosa or Raquel bean. A dry bean.',
     },
 ];
 
+const galleryBaseUrl = '/static/images/layout/heirloom-beans/gallery/';
+const thumbnailsBaseUrl = '/static/images/layout/heirloom-beans/thumbnails/';
+
 const galleryPaths = [
     'beans-growing',
+    'assorted-beans-pods',
     'assorted-beans',
-    'assorted-beansmmch',
     'america-koanga-beans',
     'america-koanga-plant',
     'america-koanga-macro',
@@ -175,7 +178,7 @@ function HeirloomBeans() {
                 <div
                     className='box'
                     style={{
-                        background: '#111 url(\'/static/img/layout/heirloom-beans/background.jpg\') no-repeat top center',
+                        background: '#111 url(\'/static/images/layout/heirloom-beans/background.jpg\') no-repeat top center',
                         border: '1px solid #FFF',
                         color: '#FFF',
                         textShadow: '1px 1px 0 #000, 0 0 1px #000, 0 0 1px #000, 0 0 3px #000',
@@ -242,22 +245,19 @@ function HeirloomBeans() {
                             }
                             return (<li key={`bean-${index}`} className='bean-list-item'>
                                 {bean.images && <div style={{ float: 'left', margin: '10px 10px 10px 25px' }}>
-                                    {bean.images.map((imgPath, imgIndex) => {
-                                        const imgSuffix = (imgPath === 'jlbblueshackamaxon4' ? '_800' : '');
-                                        return (
-                                            <a
-                                                href={`/files/${imgPath}${imgSuffix}.jpg`}
-                                                key={`bean-${index}-img-${imgIndex}`}
-                                                className='b100'
-                                                onClick={openLightbox}
-                                            >
-                                                <img
-                                                    src={`/files/${imgPath}_100.jpg`}
-                                                    alt={bean.name}
-                                                />
-                                            </a>
-                                        );
-                                    })}
+                                    {bean.images.map((imgPath, imgIndex) => (
+                                        <a
+                                            href={`${thumbnailsBaseUrl}${imgPath}.jpg`}
+                                            key={`bean-${index}-img-${imgIndex}`}
+                                            className='b100'
+                                            onClick={openLightbox}
+                                        >
+                                            <img
+                                                src={`${thumbnailsBaseUrl}${imgPath}_100.jpg`}
+                                                alt={bean.name}
+                                            />
+                                        </a>
+                                    ))}
                                 </div>}
                                 <h4>{bean.name}</h4>
                                 <p>{bean.description}</p>
@@ -300,7 +300,7 @@ function HeirloomBeans() {
                         2008 Press Release: The Great New Zealand Bean Hunt
                     </SectionHeading>
                     <img
-                        src='/files/anasazi-beans.jpg'
+                        src='/static/images/layout/heirloom-beans/anasazi-beans.jpg'
                         alt=''
                         title='Pictured: Anasazi Beans'
                         width='184'
@@ -377,8 +377,8 @@ function HeirloomBeans() {
                 <div className='splitter'>
                     {_.take(galleryPaths, Math.ceil(galleryPaths.length / 2)).map((path, index) =>
                         <div className='box' key={`gallery-left-${index}`}>
-                            <a href={`/files/${path}_800.jpg`} onClick={openLightbox}>
-                                <img src={`/files/${path}_800.jpg`} alt='' className='fill' />
+                            <a href={`${galleryBaseUrl}${path}.jpg`} onClick={openLightbox}>
+                                <img src={`${galleryBaseUrl}${path}.jpg`} alt='' className='fill' />
                             </a>
                         </div>,
                     )}
@@ -388,8 +388,8 @@ function HeirloomBeans() {
                     {_.takeRight(galleryPaths,
                         Math.floor(galleryPaths.length / 2)).map((path, index) => (
                             <div className='box' key={`gallery-right-${index}`}>
-                                <a href={`/files/${path}_800.jpg`} onClick={openLightbox}>
-                                    <img src={`/files/${path}_800.jpg`} alt='' className='fill' />
+                                <a href={`${galleryBaseUrl}${path}.jpg`} onClick={openLightbox}>
+                                    <img src={`${galleryBaseUrl}${path}.jpg`} alt='' className='fill' />
                                 </a>
                             </div>
                         ),

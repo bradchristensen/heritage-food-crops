@@ -6,11 +6,27 @@ import compression from 'compression';
 import bodyParser from 'body-parser';
 import errorHandler from 'errorhandler';
 import fs from 'fs';
+import redirects from './redirects';
 import router from './router';
 import config from '../config';
 import faviconData from '../../dist/faviconData.json';
 
-const faviconHtml = faviconData.favicon.html_code.replace(/\.\/dist\//g, '/');
+function serveStaticFiles(app) {
+    const distPath = express.static(path.normalize(`${__dirname}/dist`));
+    const staticPath = express.static(path.normalize(`${__dirname}/static`));
+    const deprecatedImagesPath = express.static(path.normalize(`${__dirname}/static/images`));
+    const faviconsPath = express.static(path.normalize(`${__dirname}/dist/favicons`));
+
+    // Favicons are served from the root directory in order to be compatible with browsers
+    // or services that don't bother scanning the HTML meta tags for favicon config
+    app.use('/', faviconsPath);
+    // Serve bundled/generated files (e.g. CSS, webpacked javascript) from the /static path
+    app.use('/static', distPath);
+    // Serve other files that don't need to be generated from the same /static path
+    app.use('/static', staticPath);
+    // TODO: images are no longer served from this path, so this line can be removed in future
+    app.use('/static/img', deprecatedImagesPath);
+}
 
 export default function (app) {
     const allowCrossDomain = (req, res, next) => {
@@ -33,10 +49,9 @@ export default function (app) {
     app.use(allowCrossDomain);
     if (config.debug) {
         app.use(morgan('dev'));
-    } else if (!config.disableLogging) {
+    } else if (!config.disableLogging && config.logDir) {
         app.use(morgan('combined', {
-            skip: (req, res) =>
-                 res.statusCode < 400,
+            skip: (req, res) => res.statusCode < 400,
 
             stream: fs.createWriteStream(
                 path.resolve(`${config.logDir}/access.log`),
@@ -55,29 +70,28 @@ export default function (app) {
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
 
-    const distPath = express.static(path.normalize(`${__dirname}/dist`));
-    const staticPath = express.static(path.normalize(`${__dirname}/static`));
-    const filesPath = express.static(path.normalize(`${__dirname}/app/plumbing/${config.pathToDeprecatedFilesDir}`));
-    const deprecatedImagesPath = express.static(path.normalize(`${__dirname}/static/images`));
-    const faviconsPath = express.static(path.normalize(`${__dirname}/dist/favicons`));
+    serveStaticFiles(app);
 
-    app.use('/', faviconsPath);
-    app.use('/static', distPath);
-    app.use('/static', staticPath);
-    app.use('/static/img', deprecatedImagesPath);
-    app.use('/files', filesPath);
-
+    // Load routes defined by view controllers and API controllers
     app.use(router);
+
+    // Map redirects (e.g. from '/files/old-filename.pdf' to '/static/docs/new-filename.pdf')
+    Object.keys(redirects).forEach((redirectFrom) => {
+        const redirectTo = redirects[redirectFrom];
+        app.get(redirectFrom, (req, res) => {
+            res.redirect(301, redirectTo);
+        });
+    });
 
     app.use((req, res) => {
         res.status(404);
 
         if (req.accepts('html')) {
             res.render('index', {
-                debug: config.debug,
+                useMinifiedCode: config.debug,
                 showHeader: true,
                 htmlTitle: `Page not found — ${config.title}`,
-                faviconHtml,
+                faviconHtml: faviconData.favicon.html_code,
                 currentPageTitle: 'Page not found',
                 siteTitle: config.title,
                 version: config.version,

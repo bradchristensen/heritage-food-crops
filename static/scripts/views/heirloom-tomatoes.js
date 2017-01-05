@@ -244,7 +244,7 @@ class HeirloomTomatoes extends Component {
 
                         <div className='box jessica'>
                             <img
-                                src='/static/img/layout/jessica-cover.jpg'
+                                src='/static/images/layout/jessica-cover.jpg'
                                 alt='Jessica and the Golden Orb'
                                 className='left'
                                 width='50%'
@@ -252,7 +252,7 @@ class HeirloomTomatoes extends Component {
                             <div style={{ marginLeft: '50%' }}>
                                 <h2 style={{ clear: 'none' }}>
                                     <a
-                                        href='/files/jessica-and-the-golden-orb.pdf'
+                                        href='/static/docs/jessica-and-the-golden-orb.pdf'
                                         {...targetBlank}
                                     >
                                         Jessica and the Golden Orb
@@ -270,7 +270,7 @@ class HeirloomTomatoes extends Component {
                                 <p>
                                     <a
                                         className='button'
-                                        href='/files/jessica-and-the-golden-orb.pdf'
+                                        href='/static/docs/jessica-and-the-golden-orb.pdf'
                                         {...targetBlank}
                                     >Download</a>
                                 </p>
@@ -283,36 +283,36 @@ class HeirloomTomatoes extends Component {
                             <SectionHeading>Research Papers</SectionHeading>
 
                             <DownloadLink
-                                href='/files/2015-carotenoid-composition-of-tomatoes.pdf'
+                                href='/static/docs/2015-carotenoid-composition-of-tomatoes.pdf'
                                 title='2015 Report - Carotenoid composition of tomatoes'
                             />
 
                             <DownloadLink
-                                href={'/files/2014-bioavailability-of-tetra-cis-lycopene-in-humans.pdf'}
+                                href={'/static/docs/2014-bioavailability-of-tetra-cis-lycopene-in-humans.pdf'}
                                 title={'2014 Report - The bioavailability of tetra-cis-lycopene in humans and tetra-cis lycopene concentrations in selections of heritage tomatoes'}
                             />
 
                             <DownloadLink
-                                href={'/files/2013reportgrapefruitandtomatometabolitesforhealth.pdf'}
+                                href={'/static/docs/2013-report-grapefruit-tomato-metabolites-health.pdf'}
                                 title='2013 Report - Grapefruit and Tomato Metabolites for Health'
                             />
 
                             <aside>
                                 <DownloadLink
-                                    href='/files/appendix1.pdf'
+                                    href='/static/docs/2013-report-appendix1.pdf'
                                     title='2013 Report - Appendix 1'
                                     description={'Tangerine tomatoes increase total and tetra-cis-lycopene isomer concentrations more than red tomatoes in healthy adult humans'}
                                 />
 
                                 <DownloadLink
-                                    href='/files/appendix2.pdf'
+                                    href='/static/docs/2013-report-appendix2.pdf'
                                     title='2013 Report - Appendix 2'
                                     description={'Processing Tangerine Tomatoes: Effects of Lycopene-Isomer Concentrations and Profile'}
                                 />
                             </aside>
 
                             <DownloadLink
-                                href='/files/2009-tomato-top-varieties.pdf'
+                                href='/static/docs/2009-tomato-top-varieties.pdf'
                                 title='2009 Summary of Top Tomato Varieties'
                             />
                         </div>
@@ -482,7 +482,7 @@ class HeirloomTomatoes extends Component {
                     <div className='splitter'>
                         <div className='box'>
                             <img
-                                src='/static/img/layout/tomatoes/moonglow-vertical.jpg'
+                                src='/static/images/layout/tomatoes/moonglow-vertical.jpg'
                                 alt='Moonglow tomatoes'
                                 className='fill'
                             />
@@ -493,7 +493,7 @@ class HeirloomTomatoes extends Component {
                     <div className='splitter right'>
                         <div className='box'>
                             <img
-                                src='/static/img/layout/tomatoes/rosalita-vertical.jpg'
+                                src='/static/images/layout/tomatoes/rosalita-vertical.jpg'
                                 alt='Rosalita tomatoes'
                                 className='fill'
                             />
@@ -564,7 +564,7 @@ class HeirloomTomatoes extends Component {
                                     <tr>
                                         <td>
                                             <a
-                                                href='/files/moonglow_800.jpg'
+                                                href={'/static/images/layout/tomatoes/table/moonglow.jpg'}
                                                 title='Moonglow'
                                                 onClick={openLightbox}
                                             >Moonglow</a>
@@ -574,7 +574,7 @@ class HeirloomTomatoes extends Component {
                                     <tr>
                                         <td>
                                             <a
-                                                href='/files/tangerine_800.jpg'
+                                                href={'/static/images/layout/tomatoes/table/tangerine.jpg'}
                                                 title='Tangerine'
                                                 onClick={openLightbox}
                                             >Tangerine</a>
@@ -584,7 +584,7 @@ class HeirloomTomatoes extends Component {
                                     <tr>
                                         <td>
                                             <a
-                                                href='/files/orangefleshedpurplesmudge_800.jpg'
+                                                href={'/static/images/layout/tomatoes/table/orange-fleshed-purple-smudge.jpg'}
                                                 title='Orange Fleshed Purple Smudge'
                                                 onClick={openLightbox}
                                             >Orange Fleshed Purple Smudge</a>
@@ -594,7 +594,7 @@ class HeirloomTomatoes extends Component {
                                     <tr>
                                         <td>
                                             <a
-                                                href='/files/amishorangesherbertheirloom_800.jpg'
+                                                href={'/static/images/layout/tomatoes/table/amish-orange-sherbert-heirloom.jpg'}
                                                 title='Amish Orange Sherbert Heirloom'
                                                 onClick={openLightbox}
                                             >Amish Orange Sherbert Heirloom</a>
@@ -604,7 +604,7 @@ class HeirloomTomatoes extends Component {
                                     <tr>
                                         <td>
                                             <a
-                                                href='/files/auntgertiesgold_800.jpg'
+                                                href={'/static/images/layout/tomatoes/table/aunt-gerties-gold.jpg'}
                                                 title={'Aunt Gertie\'s Gold'}
                                                 onClick={openLightbox}
                                             >Aunt Gertie's Gold</a>
@@ -614,7 +614,7 @@ class HeirloomTomatoes extends Component {
                                     <tr>
                                         <td>
                                             <a
-                                                href='/files/bigorange_800.jpg'
+                                                href={'/static/images/layout/tomatoes/table/big-orange.jpg'}
                                                 title='Big Orange'
                                                 onClick={openLightbox}
                                             >Big Orange</a>
@@ -624,7 +624,7 @@ class HeirloomTomatoes extends Component {
                                     <tr>
                                         <td>
                                             <a
-                                                href='/files/amishyellowishorangeoxheart_800.jpg'
+                                                href={'/static/images/layout/tomatoes/table/amish-yellowish-orange-oxheart.jpg'}
                                                 title='Amish Yellowish Orange Oxheart'
                                                 onClick={openLightbox}
                                             >Amish Yellowish Orange Oxheart</a>
@@ -634,7 +634,7 @@ class HeirloomTomatoes extends Component {
                                     <tr>
                                         <td>
                                             <a
-                                                href='/files/earlofedgecomb_800.jpg'
+                                                href={'/static/images/layout/tomatoes/table/earl-of-edgecomb.jpg'}
                                                 title='Earl of Edgecomb'
                                                 onClick={openLightbox}
                                             >Earl of Edgecomb</a>
@@ -644,7 +644,7 @@ class HeirloomTomatoes extends Component {
                                     <tr>
                                         <td>
                                             <a
-                                                href='/files/elbe_800.jpg'
+                                                href='/static/images/layout/tomatoes/table/elbe.jpg'
                                                 title='Elbe'
                                                 onClick={openLightbox}
                                             >Elbe</a>
@@ -654,7 +654,7 @@ class HeirloomTomatoes extends Component {
                                     <tr>
                                         <td>
                                             <a
-                                                href='/files/sibirischeorange_800.jpg'
+                                                href={'/static/images/layout/tomatoes/table/sibirische-orange.jpg'}
                                                 title='Sibirische Orange'
                                                 onClick={openLightbox}
                                             >Sibirische Orange</a>
@@ -664,7 +664,7 @@ class HeirloomTomatoes extends Component {
                                     <tr>
                                         <td>
                                             <a
-                                                href='/files/orangeroma.jpg'
+                                                href={'/static/images/layout/tomatoes/table/orange-roma.jpg'}
                                                 title='Orange Roma'
                                                 onClick={openLightbox}
                                             >Orange Roma</a>
@@ -674,7 +674,7 @@ class HeirloomTomatoes extends Component {
                                     <tr>
                                         <td>
                                             <a
-                                                href='/files/dadssunset_800.jpg'
+                                                href={'/static/images/layout/tomatoes/table/dads-sunset.jpg'}
                                                 title={'Dad\'s Sunset'}
                                                 onClick={openLightbox}
                                             >Dad's Sunset</a>
@@ -768,7 +768,7 @@ class HeirloomTomatoes extends Component {
 
                     <div className='box'>
                         <img
-                            src='/static/img/layout/tomatoes/moonglow-centrepiece.jpg'
+                            src='/static/images/layout/tomatoes/moonglow-centrepiece.jpg'
                             alt='The Moonglow tomato variety'
                         />
                         <p><em>Moonglow tomatoes also make a terrific centrepiece!</em></p>
@@ -986,13 +986,13 @@ class HeirloomTomatoes extends Component {
 
                         <p className='right'>
                             <a
-                                href='/files/tomato-selection_800.jpg'
+                                href='/static/images/layout/tomatoes/tomato-selection_800.jpg'
                                 className='b300'
                                 onClick={openLightbox}
                                 title={'Just a few of the 100 heirloom tomato varieties grown in 2009 for scientific analysis.'}
                             >
                                 <img
-                                    src='/files/tomato-selection_300.jpg'
+                                    src='/static/images/layout/tomatoes/tomato-selection_300.jpg'
                                     alt={'Just a few of the 100 heirloom tomato varieties grown in 2009 for scientific analysis.'}
                                 />
                             </a>
@@ -1121,12 +1121,17 @@ class HeirloomTomatoes extends Component {
                             possibilities through the medium of "tomatoes".
                         </p>
 
-                        <p><strong><em>Tomato seeds can be purchased from <OutboundLink to='http://www.bristol.co.nz' eventLabel='Bristol Plants & Seeds'>Bristol Plants & Seeds</OutboundLink>, or <Link to='contact-us'>contact us</Link> if you would like to be a part of our research and trial one of these varieties.</em></strong></p>
+                        <p>
+                            <strong><em>Tomato seeds can be purchased
+                            from <OutboundLink to='http://www.bristol.co.nz' eventLabel='Bristol Plants & Seeds'>Bristol Plants & Seeds</OutboundLink>,
+                            or <Link to='/contact-us'>contact us</Link> if you would like to be a
+                            part of our research and trial one of these varieties.</em></strong>
+                        </p>
                     </div>
 
                     <div className='box'>
                         <img
-                            src='/static/img/layout/tomatoes/mark-golden-orange-tomatoes.jpg'
+                            src='/static/images/layout/tomatoes/mark-golden-orange-tomatoes.jpg'
                             alt='Mark Christensen'
                         />
                         <p><em>Mark Christensen inspects some of the Trust's

@@ -156,7 +156,7 @@ export default class App extends PureComponent {
 
         const bradLink = (
             <OutboundLink
-                to='//christensen.co.nz'
+                to='https://christensen.co.nz'
                 eventLabel={'Brad\'s website'}
                 title='Website development by Brad Christensen'
             >

@@ -12,7 +12,7 @@ function PageNotFound() {
                     <p>You've stumbled upon a page that doesn't exist!</p>
                     <p>
                         If this page has mysteriously gone missing, we would greatly appreciate if
-                        you could let us know using our <Link to='contact-us'>contact form</Link>,
+                        you could let us know using our <Link to='/contact-us'>contact form</Link>,
                         so that we can fix the error as soon as possible.
                     </p>
                     <p><Link to='/'>Go back to the home page</Link></p>

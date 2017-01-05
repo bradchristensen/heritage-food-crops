@@ -41,12 +41,12 @@ function PastResearch() {
                         <SectionHeading>Research Findings</SectionHeading>
 
                         <DownloadLink
-                            href='/files/2008-tomato-top-varieties.xls'
+                            href='/static/docs/2008-tomato-top-varieties.xls'
                             title='2008 Summary of Top Tomato Varieties'
                         />
 
                         <DownloadLink
-                            href='/files/2007-tomato-top-varieties.xls'
+                            href='/static/docs/2007-tomato-top-varieties.xls'
                             title='2007 Summary of Top Tomato Varieties'
                         />
                     </div>
@@ -130,7 +130,7 @@ function PastResearch() {
                         found on this spreadsheet:
                     </p>
                     <DownloadLink
-                        href='/files/tomato-varieties-chemical-analysis.xls'
+                        href='/static/docs/tomato-varieties-chemical-analysis.xls'
                         title='Tomato Varieties Grown or to be Grown for Chemical Analysis'
                     />
 

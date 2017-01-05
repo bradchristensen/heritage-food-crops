@@ -12,13 +12,13 @@ import DownloadLink from '../components/downloadLink';
 import OutboundLink from '../components/outboundLink';
 
 const galleryPaths = [
-    'ms-flowers',
-    'ms-flowerskzji',
-    'ms-tipbearing',
-    'floweressence',
-    'ms-tree',
-    'ms-promo',
-    'ms-promofx0z',
+    'flowers',
+    'flowers2',
+    'tip-bearing',
+    'flower-essence',
+    'mother-tree-trunk',
+    'promo-children',
+    'promo',
     'leaf-comparison',
 ];
 
@@ -41,6 +41,13 @@ function MontysSurprise() {
         </OutboundLink>
     );
 
+    // This link is no longer available on the Tree Crops website, and unfortunately has recently
+    // also become unavailable from the Internet Archive due to a misconfigured robots.txt file
+    // on the current Tree Crops website.
+    // The Internet Archive unfortunately adheres to the robots.txt file which disallows all
+    // web crawlers from indexing the site.
+    // Hopefully one day we'll be able to obtain an archived version of the page once more.
+    /*
     const reportLink2006 = (
         <OutboundLink
             to={'https://web.archive.org/web/20150424004047/http://www.treecrops.org.nz/resrch/apple/applecanc06.html'}
@@ -49,6 +56,7 @@ function MontysSurprise() {
             2006 Research Report
         </OutboundLink>
     );
+    */
 
     const plantNetLink = (
         <OutboundLink
@@ -143,12 +151,12 @@ function MontysSurprise() {
 
                 <p className='right'>
                     <a
-                        href='/files/06markfrancesandtony_800.jpg'
+                        href='/static/images/layout/montys-surprise/mark-frances-tony_800.jpg'
                         className='b300'
                         onClick={openLightbox}
                     >
                         <img
-                            src='/files/06markfrancesandtony_300.jpg'
+                            src='/static/images/layout/montys-surprise/mark-frances-tony_300.jpg'
                             alt={'Mark Christensen (Heritage Food Crops Research Trust), Dr Frances Raul (Ircad, Strasbourg, France), and Dr Tony McGhie (Plant and Food Research)'}
                             title='Mark Christensen, Dr Frances Raul and Dr Tony McGhie'
                         />
@@ -256,7 +264,7 @@ function MontysSurprise() {
             <div className='splitter'>
                 <div className='box'>
                     <img
-                        src='/files/07brad.jpg'
+                        src='/static/images/layout/montys-surprise/brad-mother-tree.jpg'
                         alt={'Brad Christensen helping pick Monty\'s Surprise apples from the mother tree for research'}
                         className='fill'
                     />
@@ -268,7 +276,7 @@ function MontysSurprise() {
             <div className='splitter right'>
                 <div className='box'>
                     <img
-                        src='/files/08cider_800.jpg'
+                        src='/static/images/layout/montys-surprise/apples-cider-jelly.jpg'
                         alt={'Monty\'s Surprise apples, cider and apple jelly'}
                         className='fill'
                     />
@@ -277,7 +285,7 @@ function MontysSurprise() {
 
                 <div className='box'>
                     <img
-                        src='/files/02donandtree_800.jpg'
+                        src='/static/images/layout/montys-surprise/mother-tree.jpg'
                         alt={'The original Monty\'s Surprise tree'}
                         className='fill'
                     />
@@ -429,7 +437,8 @@ function MontysSurprise() {
                     recent years, played a leading role in locating, identifying and propagating
                     heritage apple varieties. Six years of research were completed to evaluate the
                     levels of beneficial compounds in these heritage apple varieties and to compare
-                    the results with those of commercial apples (see the {reportLink2006}).
+                    the results with those of commercial apples.
+                    {/* (see the {reportLink2006}) */}
                 </p>
 
                 <p>
@@ -456,12 +465,12 @@ function MontysSurprise() {
 
                 <p className='left'>
                     <a
-                        href='/files/10rivertradersmarket_800.jpg'
+                        href='/static/images/layout/montys-surprise/market-locals_800.jpg'
                         className='b300'
                         onClick={openLightbox}
                     >
                         <img
-                            src='/files/10rivertradersmarket_300.jpg'
+                            src='/static/images/layout/montys-surprise/market-locals_300.jpg'
                             alt={'Local Whanganui people growing Monty\'s Surprise apples'}
                             title={'Local Whanganui people growing Monty\'s Surprise apples'}
                         />
@@ -497,11 +506,16 @@ function MontysSurprise() {
 
             <div className='splitter'>
                 <div className='box'>
-                    <img
-                        src='/static/images/layout/montys-surprise/fraternites-ouvrieres.jpg'
-                        alt={'Members of the Fraternités Ouvrières in France holding Monty\'s Surprise grafting wood'}
-                        className='fill'
-                    />
+                    <a
+                        href='/static/images/layout/montys-surprise/fraternites-ouvrieres.jpg'
+                        onClick={openLightbox}
+                    >
+                        <img
+                            src='/static/images/layout/montys-surprise/fraternites-ouvrieres.jpg'
+                            alt={'Members of the Fraternités Ouvrières in France holding Monty\'s Surprise grafting wood'}
+                            className='fill'
+                        />
+                    </a>
                     <p><em>Members of the Fraternités Ouvrières in France holding
                     Monty's Surprise grafting wood.</em></p>
                 </div>
@@ -736,9 +750,13 @@ function MontysSurprise() {
                 </p>
 
                 <p className='right'>
-                    <a href='/files/09flowers_800.jpg' className='b300' onClick={openLightbox}>
+                    <a
+                        href='/static/images/layout/montys-surprise/flowers_800.jpg'
+                        className='b300'
+                        onClick={openLightbox}
+                    >
                         <img
-                            src='/files/09flowers_300.jpg'
+                            src='/static/images/layout/montys-surprise/flowers_300.jpg'
                             alt={'Monty\'s Surprise flowers'}
                             title={'Monty\'s Surprise flowers'}
                         />
@@ -900,7 +918,7 @@ function MontysSurprise() {
 
                 <p style={{ textAlign: 'center' }}>
                     <img
-                        src='/files/ms-procyanidins-graph.png'
+                        src={'/static/images/layout/montys-surprise/graph-cancer-cell-proliferation.png'}
                         alt={'Effect of Apple Extracts on the Growth of Human Colon Cancer-derived Metastatic Cells (SW620)'}
                     />
                 </p>
@@ -961,13 +979,13 @@ function MontysSurprise() {
                 />
 
                 <DownloadLink
-                    href='/files/apples-prevent-mammary-tumours-in-rats.pdf'
+                    href='/static/docs/apples-prevent-mammary-tumours-in-rats.pdf'
                     title='Apples Prevent Mammary Tumours in Rats'
                     description={'This study demonstrated that whole apple extracts effectively inhibited mammary cancer growth in the rat model; thus, consumption of apples may be an effective strategy for cancer protection.'}
                 />
 
                 <DownloadLink
-                    href='/files/inbreeding-modern-apples-1996.pdf'
+                    href='/static/docs/inbreeding-modern-apples-1996.pdf'
                     title='Inbreeding of Modern Apple Cultivars'
                     description={
                         <span>
@@ -984,8 +1002,15 @@ function MontysSurprise() {
             <div className='splitter'>
                 {_.take(galleryPaths, Math.ceil(galleryPaths.length / 2)).map((path, index) =>
                     <div className='box' key={`gallery-left-${index}`}>
-                        <a href={`/files/${path}_800.jpg`} onClick={openLightbox}>
-                            <img src={`/files/${path}_800.jpg`} alt='' className='fill' />
+                        <a
+                            href={`/static/images/layout/montys-surprise/gallery/${path}.jpg`}
+                            onClick={openLightbox}
+                        >
+                            <img
+                                src={`/static/images/layout/montys-surprise/gallery/${path}.jpg`}
+                                alt=''
+                                className='fill'
+                            />
                         </a>
                     </div>,
                 )}
@@ -994,8 +1019,15 @@ function MontysSurprise() {
             <div className='splitter right'>
                 {_.takeRight(galleryPaths, Math.floor(galleryPaths.length / 2)).map((path, index) =>
                     <div className='box' key={`gallery-right-${index}`}>
-                        <a href={`/files/${path}_800.jpg`} onClick={openLightbox}>
-                            <img src={`/files/${path}_800.jpg`} alt='' className='fill' />
+                        <a
+                            href={`/static/images/layout/montys-surprise/gallery/${path}.jpg`}
+                            onClick={openLightbox}
+                        >
+                            <img
+                                src={`/static/images/layout/montys-surprise/gallery/${path}.jpg`}
+                                alt=''
+                                className='fill'
+                            />
                         </a>
                     </div>,
                 )}

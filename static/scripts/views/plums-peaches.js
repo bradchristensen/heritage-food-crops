@@ -15,6 +15,8 @@ function openLightbox(event) {
     }
 }
 
+const graphBaseUrl = '/static/images/layout/plums-peaches/graphs/';
+
 function PlumsPeaches() {
     return (
         <Article className='page-plums-peaches'>
@@ -57,52 +59,52 @@ function PlumsPeaches() {
                         <div style={{ padding: '10px 20px' }}>
                             <div className='b100 gallery-thumb'>
                                 <a
-                                    href='/files/plums3cqa.png'
+                                    href={`${graphBaseUrl}plums3cqa.png`}
                                     className='gallery'
                                     title='Neochlorogenic Acid in European Plums'
                                     onClick={openLightbox}
                                 >
                                     <img
-                                        src='/files/plums3cqa_100.png'
+                                        src={`${graphBaseUrl}plums3cqa_100.png`}
                                         alt='Cinnamic Acid - 3-CQA (Neochlorogenic Acid)'
                                     />
                                 </a>
                             </div>
                             <div className='b100 gallery-thumb'>
                                 <a
-                                    href='/files/plumscyrut.png'
+                                    href={`${graphBaseUrl}plumscyrut.png`}
                                     className='gallery'
                                     title='Cyanidin-3-rutinoside in European Plums'
                                     onClick={openLightbox}
                                 >
                                     <img
-                                        src='/files/plumscyrut_100.png'
+                                        src={`${graphBaseUrl}plumscyrut_100.png`}
                                         alt='Anthocyanin - Cy-rut'
                                     />
                                 </a>
                             </div>
                             <div className='b100 gallery-thumb'>
                                 <a
-                                    href='/files/plumspnrut.png'
+                                    href={`${graphBaseUrl}plumspnrut.png`}
                                     className='gallery'
                                     title='Peonidin-3-rutinoside in European Plums'
                                     onClick={openLightbox}
                                 >
                                     <img
-                                        src='/files/plumspnrut_100.png'
+                                        src={`${graphBaseUrl}plumspnrut_100.png`}
                                         alt='Anthocyanin - Pn-rut'
                                     />
                                 </a>
                             </div>
                             <div className='b100 gallery-thumb'>
                                 <a
-                                    href='/files/plumsqpenthex.png'
+                                    href={`${graphBaseUrl}plumsqpenthex.png`}
                                     className='gallery'
                                     title='Quercetin Glycoside in European Plums'
                                     onClick={openLightbox}
                                 >
                                     <img
-                                        src='/files/plumsqpenthex_100.png'
+                                        src={`${graphBaseUrl}plumsqpenthex_100.png`}
                                         alt='Quercetin Glycoside (Q-Penthex)'
                                     />
                                 </a>
@@ -160,24 +162,24 @@ function PlumsPeaches() {
                     </p>
                     <div style={{ padding: '10px 20px 20px 20px' }}>
                         <a
-                            href='/files/bb-chlorogenic-acid_800.png'
+                            href={`${graphBaseUrl}bb-chlorogenic-acid_800.png`}
                             className='b300'
                             onClick={openLightbox}
                             title={'Chlorogenic Acid in Blackboy Peaches compared with other peach and plum varieties'}
                         >
                             <img
-                                src='/files/bb-chlorogenic-acid_300.png'
+                                src={`${graphBaseUrl}bb-chlorogenic-acid_300.png`}
                                 alt='Chlorogenic Acid in Blackboy Peaches'
                             />
                         </a>
                         <a
-                            href='/files/bb-quercetin-galactoside_800.png'
+                            href={`${graphBaseUrl}bb-quercetin-galactoside_800.png`}
                             className='b300'
                             onClick={openLightbox}
                             title={'Quercetin Glycoside in Blackboy Peaches compared with other peach and plum varieties'}
                         >
                             <img
-                                src='/files/bb-quercetin-galactoside_300.png'
+                                src={`${graphBaseUrl}bb-quercetin-galactoside_300.png`}
                                 alt='Quercetin Glycoside in Blackboy Peaches'
                             />
                         </a>
@@ -194,13 +196,21 @@ function PlumsPeaches() {
 
                 <div className='splitter'>
                     <div className='box'>
-                        <img src='/files/bb-peaches-mason_800.jpg' alt='' className='fill' />
+                        <img
+                            src='/static/images/layout/plums-peaches/bb-peaches-mason.jpg'
+                            alt=''
+                            className='fill'
+                        />
                     </div>
                 </div>
 
                 <div className='splitter right'>
                     <div className='box'>
-                        <img src='/files/blackboy-peaches_800.jpg' alt='' className='fill' />
+                        <img
+                            src='/static/images/layout/plums-peaches/blackboy-peach.jpg'
+                            alt=''
+                            className='fill'
+                        />
                     </div>
                 </div>
 
