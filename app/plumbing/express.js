@@ -6,26 +6,39 @@ import compression from 'compression';
 import bodyParser from 'body-parser';
 import errorHandler from 'errorhandler';
 import fs from 'fs';
+import robots from 'robots.txt';
 import redirects from './redirects';
 import router from './router';
 import config from '../config';
 import faviconData from '../../dist/faviconData.json';
 
 function serveStaticFiles(app) {
-    const distPath = express.static(path.normalize(`${__dirname}/dist`));
-    const staticPath = express.static(path.normalize(`${__dirname}/static`));
-    const deprecatedImagesPath = express.static(path.normalize(`${__dirname}/static/images`));
-    const faviconsPath = express.static(path.normalize(`${__dirname}/dist/favicons`));
+    // Serve bundled/generated files (e.g. CSS, webpacked javascript) from the /static path
+    const staticFavicons = express.static(path.normalize(`${__dirname}/dist/favicons`));
+    const staticScripts = express.static(path.normalize(`${__dirname}/dist/scripts`));
+    const staticStyles = express.static(path.normalize(`${__dirname}/dist/styles`));
+
+    // Serve other files that don't need to be generated from the same /static path
+    const staticDocs = express.static(path.normalize(`${__dirname}/static/docs`));
+    const staticFonts = express.static(path.normalize(`${__dirname}/static/fonts`));
+    const staticImages = express.static(path.normalize(`${__dirname}/static/images`));
 
     // Favicons are served from the root directory in order to be compatible with browsers
     // or services that don't bother scanning the HTML meta tags for favicon config
-    app.use('/', faviconsPath);
-    // Serve bundled/generated files (e.g. CSS, webpacked javascript) from the /static path
-    app.use('/static', distPath);
-    // Serve other files that don't need to be generated from the same /static path
-    app.use('/static', staticPath);
+    app.use('/', staticFavicons);
+
+    // Serve bundled/generated files and static files
+    app.use('/static/docs', staticDocs);
+    app.use('/static/fonts', staticFonts);
+    app.use('/static/images', staticImages);
+    app.use('/static/scripts', staticScripts);
+    app.use('/static/styles', staticStyles);
+
     // TODO: images are no longer served from this path, so this line can be removed in future
-    app.use('/static/img', deprecatedImagesPath);
+    app.use('/static/img', staticImages);
+
+    // Serve robots.txt from the root
+    app.use(robots(`${__dirname}/static/robots.txt`));
 }
 
 export default function (app) {
