@@ -2,45 +2,39 @@ import React from 'react';
 import { Link } from 'react-router';
 import title from '../infrastructure/documentTitle';
 
-// Shortcut for applying target='_blank' props in accordance with
-// https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md
-const targetBlank = {
-    target: '_blank',
-    rel: 'noreferrer noopener',
-};
-
 function Index() {
     return (
         <div className='page-index'>
-            <a
-                className='page-feature'
-                href='/static/docs/jessica-and-the-golden-orb.pdf'
-                {...targetBlank}
-            >
-                <div className='wrapper wrap-900'>
-                    <div className='wrap-right'>
-                        <p>
-                            <img
-                                src='/static/images/layout/jessica.svg'
-                                alt='Jessica and the Golden Orb'
-                                width='100%'
-                            />
-                        </p>
-                        <p>
-                            A story for children about the very special properties of golden-orange
-                            tomatoes, written and illustrated by Janet Bradbury.
-                        </p>
-                        <p>
-                            We welcome you to download a copy of the book to print or read from
-                            your computer for free.
-                        </p>
-                        <p><span className='button'>Download</span></p>
-                    </div>
-                </div>
-            </a>
-
             <div className='wrapper'>
                 <div className='wrapper wrap-900'>
+                    <ul className='menu-large'>
+                        <li className='box feature-jessica feature-text'>
+                            <Link to='/publications' className='feature-jessica-flex'>
+                                <img
+                                    src='/static/images/layout/jessica-seed-saver-cover.jpg'
+                                    alt='Jessica, the Seed Saver'
+                                    className='feature-jessica-cover'
+                                />
+
+                                <span className='flex-right'>
+                                    <p><span className='feature-flag'>New</span></p>
+
+                                    <h2>Jessica, the Seed Saver</h2>
+
+                                    <p>
+                                        A story for children about the very special properties of
+                                        golden-orange tomatoes, written and illustrated
+                                        by <strong>Janet Bradbury</strong>.
+                                    </p>
+                                    <p>
+                                        We welcome you to download a copy of the book to print or
+                                        read from your computer for free.
+                                    </p>
+                                </span>
+                            </Link>
+                        </li>
+                    </ul>
+
                     <div className='feature-text'>
                         <p>
                             The <strong>Heritage Food Crops Research Trust</strong> is a
@@ -49,7 +43,6 @@ function Index() {
                             disease through the medicinal properties of plant-based food and
                             natural <strong>plant-based medicine</strong>.
                         </p>
-                        <p />
                     </div>
 
                     <ul className='menu-large'>

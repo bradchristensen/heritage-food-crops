@@ -12,6 +12,7 @@ import HeirloomBeans from '../views/heirloom-beans';
 import PlumsPeaches from '../views/plums-peaches';
 import HuntingtonsDisease from '../views/huntingtons-disease';
 import AncientWheat from '../views/ancient-wheat';
+import Publications from '../views/publications';
 import AboutTheTrust from '../views/about-the-trust';
 import ContactUs from '../views/contact-us';
 import Links from '../views/links';
@@ -28,6 +29,8 @@ const routes = (
         <Route path='plums-peaches' component={PlumsPeaches} />
         <Route path='huntingtons-disease' component={HuntingtonsDisease} />
         <Route path='ancient-wheat' component={AncientWheat} />
+
+        <Route path='publications' component={Publications} />
 
         <Route path='about-the-trust' component={AboutTheTrust} />
         <Route path='contact-us' component={ContactUs} />
