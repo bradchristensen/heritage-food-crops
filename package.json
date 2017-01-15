@@ -16,7 +16,7 @@
     "generate-favicons": "real-favicon generate favicons.json ./dist/faviconData.json ./dist/favicons/",
     "test": "npm run test-eslint && npm run test-check-broken-links",
     "test-check-broken-links": "node ./test/check-broken-links",
-    "test-eslint": "eslint **/*.js"
+    "test-eslint": "eslint \"**/*.js\""
   },
   "dependencies": {
     "babel-core": "^6.18.0",
