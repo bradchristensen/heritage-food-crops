@@ -26,6 +26,7 @@ const views = {
     'ancient-wheat': ['wheat', 'ancient-wheat'],
     'about-the-trust': ['about', 'about-us', 'about-the-trust'],
     'contact-us': ['contact', 'contact-us'],
+    publications: ['publications'],
     links: ['links'],
 };
 

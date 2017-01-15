@@ -178,7 +178,7 @@ button:focus {
         background: #cbe8a0;
     }
 
-    li a[href='#']:after {
+    li a[href^='#']:after {
         content: ' ';
         background: url('/static/images/icons/dropdown.png') no-repeat center right;
         height: 7px;
@@ -250,6 +250,24 @@ button:focus {
         width: 350px;
     }
 
+    ul.publications li {
+        height: 214px;
+
+        img {
+            height: 100%;
+        }
+
+        p {
+            line-height: 150%;
+            margin-left: 135px;
+            padding: 6px 15px 0;
+        }
+
+        h3 {
+            margin-left: 145px;
+        }
+    }
+
     ul li a {
         .clearfix;
         border: 1px solid transparent;
@@ -270,6 +288,7 @@ button:focus {
 
     img {
         border-radius: 2px;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
         float: left;
     }
 
@@ -421,6 +440,7 @@ button:focus {
 }
 
 .menu-large {
+    .clearfix;
     list-style: none;
 
     .box {
@@ -568,6 +588,94 @@ button:focus {
 
 .jessica .button {
     padding: 8px 16px;
+}
+
+.feature-jessica {
+    padding: 0;
+
+    .feature-jessica-cover {
+        border-radius: 4px;
+        flex: 0 0 250px;
+        height: 338.33px;
+    }
+
+    .feature-jessica-flex {
+        align-items: center;
+        display: flex !important;
+        justify-content: center;
+    }
+
+    &.box h2 {
+        border-bottom: none;
+        color: #f9ab1a;
+        font-size: 42px;
+        font-weight: bold;
+        margin-bottom: 0;
+        margin-left: 20px;
+        padding-bottom: 0;
+        text-shadow:
+            1px 1px 0 #fff,
+            -1px -1px 0 #fff,
+            -1px 1px 0 #fff,
+            1px -1px 0 #fff,
+            2px 2px 0 rgba(255, 255, 255, 0.5),
+            -2px -2px 0 rgba(255, 255, 255, 0.5),
+            -2px 2px 0 rgba(255, 255, 255, 0.5),
+            2px -2px 0 rgba(255, 255, 255, 0.5),
+            3px 3px 3px rgba(0, 0, 0, 0.2)
+            ;
+    }
+
+    &.box p {
+        line-height: 170%;
+        margin-bottom: 0;
+        margin-left: 0;
+        padding-bottom: 0;
+    }
+}
+
+.feature-flag {
+    background-color: #9e1f7e;
+    color: #fff;
+    display: inline-block;
+    font-family: 'Novecento Sans Wide', Roboto, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 0 0 0 10px;
+    position: relative;
+    text-transform: uppercase;
+
+    &::after {
+        border: 17px solid #9e1f7e;
+        border-right: 13px solid transparent;
+        bottom: 0px;
+        content: '';
+        display: block;
+        position: absolute;
+        left: 100%;
+        top: 0px;
+    }
+}
+
+.publication-box-jessica {
+    display: flex;
+    justify-content: center;
+
+    .flex-left {
+        align-items: center;
+        display: flex;
+        flex: 0 0 250px;
+        flex-direction: column;
+        padding-left: 5px;
+
+        img {
+            height: 338.33px;
+        }
+    }
+
+    .flex-right {
+        flex: 1 1 auto;
+    }
 }
 
 .page-heirloom-tomatoes .page-feature .wrapper {
@@ -1148,8 +1256,8 @@ ul.bean-list {
         }
     }
 
-    .menu-large .box {
-        padding-bottom: 10px;
+    .menu-large .box > a {
+        padding-bottom: 20px;
     }
 
     .menu-large .hero {
@@ -1164,6 +1272,10 @@ ul.bean-list {
         font-size: 24px;
         margin-left: 15px;
         padding-left: 15px;
+    }
+    .menu-large .box .feature-flag::after {
+        border-width: 15px;
+        border-right-width: 13px;
     }
 
     .feature-text {
@@ -1199,12 +1311,41 @@ ul.bean-list {
 
     .submenu ul li {
         float: none;
-        height: 107px;
-        padding: 10px;
         width: 100%;
     }
 
     .hide-mobile {
         display: none;
+    }
+}
+
+@media only screen and (max-width: 610px) {
+    .feature-jessica .feature-flag {
+        margin-top: 10px;
+    }
+
+    .publication-box-jessica .flex-left {
+        padding-left: 0;
+
+        .button {
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px 24px;
+        }
+    }
+
+    .feature-jessica-flex,
+    .publication-box-jessica {
+        flex-wrap: wrap;
+
+        .flex-right {
+            width: 100%;
+        }
+    }
+
+    .feature-jessica.box h2,
+    .feature-jessica.box p {
+        margin: 10px 10px 0;
+        padding: 0;
     }
 }

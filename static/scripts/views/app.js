@@ -1,6 +1,5 @@
 import React, { PropTypes, PureComponent } from 'react';
 import { Link } from 'react-router';
-import ReactGA from 'react-ga';
 import Lightbox from '../components/lightbox';
 import LightboxStore from '../stores/lightbox';
 import OutboundLink from '../components/outboundLink';
@@ -10,6 +9,7 @@ export default class App extends PureComponent {
         super(props);
 
         this.blockTogglingResearchTopicsMenu = false;
+        this.blockTogglingPublicationsMenu = false;
 
         this.state = {
             currentlyVisibleSubmenu: null,
@@ -21,10 +21,23 @@ export default class App extends PureComponent {
         };
 
         this.hideMenu = this.hideMenu.bind(this);
-        this.onPrintClick = this.onPrintClick.bind(this);
+        this.hideMenuDelayed = this.hideMenuDelayed.bind(this);
         this.showResearchTopicsMenu = this.showResearchTopicsMenu.bind(this);
+        this.showPublicationsMenu = this.showPublicationsMenu.bind(this);
         this.toggleResearchTopicsMenu = this.toggleResearchTopicsMenu.bind(this);
-        this.renderMenu = this.renderMenu.bind(this);
+        this.togglePublicationsMenu = this.togglePublicationsMenu.bind(this);
+        this.renderResearchTopicsMenu = this.renderResearchTopicsMenu.bind(this);
+        this.renderPublicationsMenu = this.renderPublicationsMenu.bind(this);
+
+        this.cancelShowingResearchTopicsMenu = () => {
+            this.blockShowingResearchTopicsMenu = true;
+        };
+        this.cancelShowingPublicationsMenu = () => {
+            this.blockShowingPublicationsMenu = true;
+        };
+        this.cancelHidingMenu = () => {
+            this.blockHidingMenu = true;
+        };
     }
 
     componentDidMount() {
@@ -41,17 +54,6 @@ export default class App extends PureComponent {
         this.unsubscribeLightboxStore();
     }
 
-    onPrintClick(event) {
-        this.hideMenu().then(() => {
-            ReactGA.event({
-                category: 'Navigation',
-                action: 'Clicked Print',
-            });
-            window.print();
-        });
-        event.preventDefault();
-    }
-
     hideMenu() {
         return new Promise((resolve) => {
             this.setState({
@@ -60,14 +62,66 @@ export default class App extends PureComponent {
         });
     }
 
+    hideMenuDelayed() {
+        this.blockHidingMenu = false;
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                if (!this.blockHidingMenu) {
+                    this.setState({
+                        currentlyVisibleSubmenu: null,
+                    }, resolve);
+                }
+            }, 200);
+        });
+    }
+
     showResearchTopicsMenu() {
+        this.blockHidingMenu = true;
+        this.blockShowingResearchTopicsMenu = false;
         this.blockTogglingResearchTopicsMenu = true;
         setTimeout(() => { this.blockTogglingResearchTopicsMenu = false; }, 200);
 
         return new Promise((resolve) => {
-            this.setState({
-                currentlyVisibleSubmenu: 'researchTopics',
-            }, resolve);
+            if (!this.state.currentlyVisibleSubmenu) {
+                this.setState({
+                    currentlyVisibleSubmenu: 'researchTopics',
+                }, resolve);
+            } else {
+                setTimeout(() => {
+                    if (!this.blockShowingResearchTopicsMenu) {
+                        this.setState({
+                            currentlyVisibleSubmenu: 'researchTopics',
+                        }, resolve);
+                    } else {
+                        resolve();
+                    }
+                }, 50);
+            }
+        });
+    }
+
+    showPublicationsMenu() {
+        this.blockHidingMenu = true;
+        this.blockShowingPublicationsMenu = false;
+        this.blockTogglingPublicationsMenu = true;
+        setTimeout(() => { this.blockTogglingPublicationsMenu = false; }, 200);
+
+        return new Promise((resolve) => {
+            if (!this.state.currentlyVisibleSubmenu) {
+                this.setState({
+                    currentlyVisibleSubmenu: 'publications',
+                }, resolve);
+            } else {
+                setTimeout(() => {
+                    if (!this.blockShowingPublicationsMenu) {
+                        this.setState({
+                            currentlyVisibleSubmenu: 'publications',
+                        }, resolve);
+                    } else {
+                        resolve();
+                    }
+                }, 50);
+            }
         });
     }
 
@@ -84,53 +138,112 @@ export default class App extends PureComponent {
         });
     }
 
-    renderMenu(thumbnailSize) {
-        const pngIfThumbnail = thumbnailSize === 'thumbs' ? 'png' : 'jpg';
+    togglePublicationsMenu() {
+        return new Promise((resolve) => {
+            if (!this.blockTogglingPublicationsMenu) {
+                this.setState({
+                    currentlyVisibleSubmenu: this.state.currentlyVisibleSubmenu === 'publications' ?
+                        null : 'publications',
+                }, resolve);
+            } else {
+                resolve();
+            }
+        });
+    }
 
-        return (<ul>
-            <li>
-                <Link to='/montys-surprise' onClick={this.hideMenu} activeClassName='active'>
-                    <img src={`/static/images/layout/menu-${thumbnailSize}/apples.jpg`} alt='' />
-                    <h3>Monty's Surprise</h3>
-                    <p>Apple Cancer Prevention Research Project</p>
-                </Link>
-            </li>
-            <li>
-                <Link to='/heirloom-tomatoes' onClick={this.hideMenu} activeClassName='active'>
-                    <img src={`/static/images/layout/menu-${thumbnailSize}/tomatoes.jpg`} alt='' />
-                    <h3>Heirloom Tomatoes</h3>
-                    <p>Investigating the Health Potential of the 'Real' Tomato</p>
-                </Link>
-            </li>
-            <li>
-                <Link to='/heirloom-beans' onClick={this.hideMenu} activeClassName='active'>
-                    <img src={`/static/images/layout/menu-${thumbnailSize}/beans.${pngIfThumbnail}`} alt='' />
-                    <h3>Heirloom Beans</h3>
-                    <p>The Great New Zealand Bean Hunt</p>
-                </Link>
-            </li>
-            <li>
-                <Link to='/plums-peaches' onClick={this.hideMenu} activeClassName='active'>
-                    <img src={`/static/images/layout/menu-${thumbnailSize}/plums.jpg`} alt='' />
-                    <h3>Plums and Peaches</h3>
-                    <p>Heritage/European plum varieties and Blackboy peaches</p>
-                </Link>
-            </li>
-            <li>
-                <Link to='/huntingtons-disease' onClick={this.hideMenu} activeClassName='active'>
-                    <img src={`/static/images/layout/menu-${thumbnailSize}/huntingtons.${pngIfThumbnail}`} alt='' />
-                    <h3>Huntington's Disease</h3>
-                    <p>Researching a natural trehalose sugar treatment</p>
-                </Link>
-            </li>
-            <li>
-                <Link to='/ancient-wheat' onClick={this.hideMenu} activeClassName='active'>
-                    <img src={`/static/images/layout/menu-${thumbnailSize}/wheat.${pngIfThumbnail}`} alt='' />
-                    <h3>Ancient Wheat</h3>
-                    <p>Preserving ancient varieties and researching gluten intolerance</p>
-                </Link>
-            </li>
-        </ul>);
+    renderResearchTopicsMenu() {
+        return (
+            <ul>
+                <li>
+                    <Link to='/montys-surprise' onClick={this.hideMenu} activeClassName='active'>
+                        <img src='/static/images/layout/menu-thumbs/apples.jpg' alt='' />
+                        <h3>Monty's Surprise</h3>
+                        <p>Apple Cancer Prevention Research Project</p>
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/heirloom-tomatoes' onClick={this.hideMenu} activeClassName='active'>
+                        <img src='/static/images/layout/menu-thumbs/tomatoes.jpg' alt='' />
+                        <h3>Heirloom Tomatoes</h3>
+                        <p>Investigating the Health Potential of the 'Real' Tomato</p>
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/heirloom-beans' onClick={this.hideMenu} activeClassName='active'>
+                        <img src='/static/images/layout/menu-thumbs/beans.png' alt='' />
+                        <h3>Heirloom Beans</h3>
+                        <p>The Great New Zealand Bean Hunt</p>
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/plums-peaches' onClick={this.hideMenu} activeClassName='active'>
+                        <img src='/static/images/layout/menu-thumbs/plums.jpg' alt='' />
+                        <h3>Plums and Peaches</h3>
+                        <p>Heritage/European plum varieties and Blackboy peaches</p>
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        to='/huntingtons-disease'
+                        onClick={this.hideMenu}
+                        activeClassName='active'
+                    >
+                        <img src='/static/images/layout/menu-thumbs/huntingtons.png' alt='' />
+                        <h3>Huntington's Disease</h3>
+                        <p>Researching a natural trehalose sugar treatment</p>
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/ancient-wheat' onClick={this.hideMenu} activeClassName='active'>
+                        <img src='/static/images/layout/menu-thumbs/wheat.png' alt='' />
+                        <h3>Ancient Wheat</h3>
+                        <p>Preserving ancient varieties and researching gluten intolerance</p>
+                    </Link>
+                </li>
+            </ul>
+        );
+    }
+
+    renderPublicationsMenu() {
+        return (
+            <ul className='publications'>
+                <li>
+                    <Link
+                        to='/publications#jessica-and-the-golden-orb'
+                        onClick={this.hideMenu}
+                    >
+                        <img src='/static/images/layout/jessica-cover.jpg' alt='' />
+                        <h3>Jessica and the <nobr>Golden Orb</nobr></h3>
+                        <p>
+                            A story for children about the very special properties of
+                            golden-orange tomatoes.
+                        </p>
+                        <p>Written and illustrated by <strong>Janet Bradbury</strong>.</p>
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        to='/publications#jessica-the-seed-saver'
+                        onClick={this.hideMenu}
+                    >
+                        <img src='/static/images/layout/jessica-seed-saver-cover.jpg' alt='' />
+                        <h3>
+                            Jessica, {
+                                // Force 'the Seed Saver' to wrap (but only when the menu item is
+                                // width-constrained) by adding a few pixels to the line
+                                <span style={{ display: 'inline-block', paddingRight: '20px' }}>
+                                    the Seed Saver
+                                </span>
+                            }
+                        </h3>
+                        <p>
+                            Jessica returns in a story about saving the seeds of heritage tomatoes.
+                        </p>
+                        <p>Written and illustrated by <strong>Janet Bradbury</strong>.</p>
+                    </Link>
+                </li>
+            </ul>
+        );
     }
 
     render() {
@@ -177,20 +290,34 @@ export default class App extends PureComponent {
                     </div>
                 </div>
 
-                <div className='navbar' onMouseLeave={this.hideMenu}>
+                <div className='navbar' onMouseLeave={this.hideMenuDelayed}>
                     <div className='wrapper'>
                         <span className='caption'>Menu:</span>
                         <ul className='menu'>
                             <li>
                                 <a
-                                    href='#'
+                                    href='#showResearchTopicsMenu'
                                     onMouseOver={this.showResearchTopicsMenu}
+                                    onMouseOut={this.cancelShowingResearchTopicsMenu}
                                     onClick={(event) => {
                                         this.toggleResearchTopicsMenu();
                                         event.preventDefault();
                                     }}
                                 >
                                     Research Topics
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href='#showPublicationsMenu'
+                                    onMouseOver={this.showPublicationsMenu}
+                                    onMouseOut={this.cancelShowingPublicationsMenu}
+                                    onClick={(event) => {
+                                        this.togglePublicationsMenu();
+                                        event.preventDefault();
+                                    }}
+                                >
+                                    Publications
                                 </a>
                             </li>
                             <li>
@@ -205,14 +332,17 @@ export default class App extends PureComponent {
                             <li>
                                 <Link to='/links' onClick={this.hideMenu}>Links</Link>
                             </li>
-                            <li className='menu-item-print-this-page'>
-                                <a onClick={this.onPrintClick} href='#print'>Print this page</a>
-                            </li>
                         </ul>
                     </div>
-                    <div className={this.state.currentlyVisibleSubmenu !== null ? 'submenu fade-visible' : 'submenu'}>
+                    <div
+                        className={this.state.currentlyVisibleSubmenu !== null ? 'submenu fade-visible' : 'submenu'}
+                        onMouseOver={this.cancelHidingMenu}
+                    >
                         <div className='wrapper'>
-                            {this.state.currentlyVisibleSubmenu === 'researchTopics' ? this.renderMenu('thumbs') : <div />}
+                            {this.state.currentlyVisibleSubmenu === 'researchTopics' &&
+                                this.renderResearchTopicsMenu()}
+                            {this.state.currentlyVisibleSubmenu === 'publications' &&
+                                this.renderPublicationsMenu()}
                         </div>
                     </div>
                 </div>
@@ -258,15 +388,17 @@ export default class App extends PureComponent {
                             <span className='category-text'>Other Resources</span>
                         </li>
                         <li>
+                            <Link to='/publications' activeClassName='active'>
+                                Publications
+                            </Link>
+                        </li>
+                        <li>
                             <Link to='/about-the-trust' activeClassName='active'>
                                 About the Trust
                             </Link>
                         </li>
                         <li><Link to='/contact-us' activeClassName='active'>Contact Us</Link></li>
                         <li><Link to='/links' activeClassName='active'>Links</Link></li>
-                        <li>
-                            <a onClick={this.onPrintClick} href='#print'>Print this page</a>
-                        </li>
                     </ul>
                 </div>
 
