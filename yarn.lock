@@ -4250,6 +4250,10 @@ robots-txt-parse@~0.0.4:
     stream-combiner "^0.2.1"
     through "^2.3.4"
 
+robots.txt@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/robots.txt/-/robots.txt-1.1.0.tgz#13f73331fe6eab40c4c347d6be8b49255ddc9f46"
+
 run-async@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/run-async/-/run-async-0.1.0.tgz#c8ad4a5e110661e402a7d21b530e009f25f8e389"
