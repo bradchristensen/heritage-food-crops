@@ -1,6 +1,5 @@
 import React, { PropTypes, PureComponent } from 'react';
 import { Link } from 'react-router';
-import ReactGA from 'react-ga';
 import Lightbox from '../components/lightbox';
 import LightboxStore from '../stores/lightbox';
 import OutboundLink from '../components/outboundLink';
