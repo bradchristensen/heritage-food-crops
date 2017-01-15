@@ -657,6 +657,23 @@ button:focus {
     }
 }
 
+.publication-box-jessica {
+    display: flex;
+    justify-content: center;
+
+    .flex-left {
+        align-items: center;
+        display: flex;
+        flex: 0 0 250px;
+        flex-direction: column;
+        padding-left: 5px;
+    }
+
+    .flex-right {
+        flex: 1 1 auto;
+    }
+}
+
 .page-heirloom-tomatoes .page-feature .wrapper {
     background: rgba(0, 0, 0, 0.5);
     bottom: 0px;
@@ -1303,7 +1320,18 @@ ul.bean-list {
         margin-top: 10px;
     }
 
-    .feature-jessica-flex {
+    .publication-box-jessica .flex-left {
+        padding-left: 0;
+
+        .button {
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px 24px;
+        }
+    }
+
+    .feature-jessica-flex,
+    .publication-box-jessica {
         flex-wrap: wrap;
 
         .flex-right {

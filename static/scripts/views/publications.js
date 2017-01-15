@@ -52,8 +52,8 @@ function Publications() {
                     </p>
                 </div>
 
-                <div className='box jessica'>
-                    <div style={{ float: 'left', marginLeft: '6px' }}>
+                <div className='box jessica publication-box-jessica'>
+                    <div className='flex-left'>
                         <a
                             href='/static/docs/jessica-and-the-golden-orb.pdf'
                             {...targetBlank}
@@ -61,7 +61,6 @@ function Publications() {
                             <img
                                 src='/static/images/layout/jessica-cover.jpg'
                                 alt=''
-                                style={{ width: '250px' }}
                             />
                         </a>
 
@@ -75,8 +74,8 @@ function Publications() {
                             </a>
                         </p>
                     </div>
-                    <div style={{ marginLeft: '256px' }}>
-                        <h2 id='jessica-and-the-golden-orb' style={{ clear: 'none' }}>
+                    <div className='flex-right'>
+                        <h2 id='jessica-and-the-golden-orb'>
                             <a
                                 href='/static/docs/jessica-and-the-golden-orb.pdf'
                                 {...targetBlank}
@@ -102,7 +101,7 @@ function Publications() {
                             planting instructions for your own heritage tomatoes.
                         </p>
 
-                        <h3 style={{ clear: 'none' }}>In the news:</h3>
+                        <h3>In the news:</h3>
                         <ul>
                             <li>{midweekLinkGoldenOrb} &mdash; Wanganui Midweek</li>
                             <li>{tlcLinkGoldenOrb} &mdash; The Learning Connexion</li>
@@ -110,8 +109,8 @@ function Publications() {
                     </div>
                 </div>
 
-                <div className='box jessica'>
-                    <div style={{ float: 'left', marginLeft: '6px' }}>
+                <div className='box jessica publication-box-jessica'>
+                    <div className='flex-left'>
                         <a
                             href='/static/docs/jessica-the-seed-saver.pdf'
                             {...targetBlank}
@@ -119,7 +118,6 @@ function Publications() {
                             <img
                                 src='/static/images/layout/jessica-seed-saver-cover.jpg'
                                 alt=''
-                                style={{ width: '250px' }}
                             />
                         </a>
 
@@ -133,8 +131,8 @@ function Publications() {
                             </a>
                         </p>
                     </div>
-                    <div style={{ marginLeft: '256px' }}>
-                        <h2 id='jessica-the-seed-saver' style={{ clear: 'none' }}>
+                    <div className='flex-right'>
+                        <h2 id='jessica-the-seed-saver'>
                             <a
                                 href='/static/docs/jessica-the-seed-saver.pdf'
                                 {...targetBlank}
@@ -158,7 +156,7 @@ function Publications() {
                         </p>
                         <p>Includes recipes and planting instructions.</p>
 
-                        <h3 style={{ clear: 'none' }}>In the news:</h3>
+                        <h3>In the news:</h3>
                         <ul>
                             <li>{midweekLinkSeedSaver} &mdash; Wanganui Midweek</li>
                         </ul>
