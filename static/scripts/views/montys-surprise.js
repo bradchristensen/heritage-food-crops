@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import _ from 'lodash';
-import Actions from '../stores/actions';
 import title from '../infrastructure/documentTitle';
 import Article from '../components/article';
 import Contents from '../components/tableOfContents';
@@ -10,6 +12,8 @@ import SectionSubheading from '../components/sectionSubheading';
 import Reference from '../components/reference';
 import DownloadLink from '../components/downloadLink';
 import OutboundLink from '../components/outboundLink';
+
+import * as Lightbox from '../actions/lightbox';
 
 const galleryPaths = [
     'flowers',
@@ -22,16 +26,16 @@ const galleryPaths = [
     'leaf-comparison',
 ];
 
-function openLightbox(event) {
-    if (event.button === 0) {
-        const img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
-        const caption = img ? img.alt : undefined;
-        Actions.openLightbox(event.currentTarget.href, caption);
-        event.preventDefault();
+function MontysSurprise({ dispatch }) {
+    function openLightbox(event) {
+        if (event.button === 0) {
+            const img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
+            const caption = img ? img.alt : undefined;
+            dispatch(Lightbox.openLightbox(event.currentTarget.href, caption));
+            event.preventDefault();
+        }
     }
-}
 
-function MontysSurprise() {
     const localisingFoodProjectLink = (
         <OutboundLink
             to={'http://earthcare-education.org/wp_earthcare/localisingfood/2013/11/22/montys-surprise-fighting-cancer-with-heritage-fruit/'}
@@ -60,7 +64,7 @@ function MontysSurprise() {
 
     const plantNetLink = (
         <OutboundLink
-            to='http://www.plantnet.com.au/monty-s-surprise-apple-stockists/'
+            to='http://www.plantnet.com.au/monty-s-surprise-apple/'
             eventLabel={'Monty\'s Surprise at PlantNet'}
         >
             buy a Monty's Surprise apple tree
@@ -103,6 +107,7 @@ function MontysSurprise() {
             <div className='splitter right'>
                 <div className='box'>
                     <iframe
+                        title='Fighting cancer with heritage fruit'
                         width='100%'
                         height='338'
                         src='https://www.youtube.com/embed/XiLWjJk9Xk8'
@@ -118,6 +123,7 @@ function MontysSurprise() {
 
                 <div className='box'>
                     <iframe
+                        title={'How to prune the Monty\'s Surprise apple tree'}
                         width='100%'
                         height='338'
                         src='https://www.youtube.com/embed/1t8skmtdDmU'
@@ -524,6 +530,7 @@ function MontysSurprise() {
             <div className='splitter right'>
                 <div className='box'>
                     <iframe
+                        title={'Uses of Monty\'s Surprise apples'}
                         width='100%'
                         height='338'
                         src='https://www.youtube.com/embed/wBkgZHN44sw'
@@ -1000,37 +1007,43 @@ function MontysSurprise() {
             <SectionHeading tag='h1'>Monty's Surprise Photos</SectionHeading>
 
             <div className='splitter'>
-                {_.take(galleryPaths, Math.ceil(galleryPaths.length / 2)).map((path, index) =>
-                    <div className='box' key={`gallery-left-${index}`}>
-                        <a
-                            href={`/static/images/layout/montys-surprise/gallery/${path}.jpg`}
-                            onClick={openLightbox}
-                        >
-                            <img
-                                src={`/static/images/layout/montys-surprise/gallery/${path}.jpg`}
-                                alt=''
-                                className='fill'
-                            />
-                        </a>
-                    </div>,
-                )}
+                {_.take(galleryPaths, Math.ceil(galleryPaths.length / 2))
+                    .map((path, index) => (
+                        // eslint-disable-next-line react/no-array-index-key
+                        <div className='box' key={`gallery-left-${index}`}>
+                            <a
+                                href={`/static/images/layout/montys-surprise/gallery/${path}.jpg`}
+                                onClick={openLightbox}
+                            >
+                                <img
+                                    src={`/static/images/layout/montys-surprise/gallery/${path}.jpg`}
+                                    alt=''
+                                    className='fill'
+                                />
+                            </a>
+                        </div>
+                    ))
+                }
             </div>
 
             <div className='splitter right'>
-                {_.takeRight(galleryPaths, Math.floor(galleryPaths.length / 2)).map((path, index) =>
-                    <div className='box' key={`gallery-right-${index}`}>
-                        <a
-                            href={`/static/images/layout/montys-surprise/gallery/${path}.jpg`}
-                            onClick={openLightbox}
-                        >
-                            <img
-                                src={`/static/images/layout/montys-surprise/gallery/${path}.jpg`}
-                                alt=''
-                                className='fill'
-                            />
-                        </a>
-                    </div>,
-                )}
+                {_.takeRight(galleryPaths, Math.floor(galleryPaths.length / 2))
+                    .map((path, index) => (
+                        // eslint-disable-next-line react/no-array-index-key
+                        <div className='box' key={`gallery-right-${index}`}>
+                            <a
+                                href={`/static/images/layout/montys-surprise/gallery/${path}.jpg`}
+                                onClick={openLightbox}
+                            >
+                                <img
+                                    src={`/static/images/layout/montys-surprise/gallery/${path}.jpg`}
+                                    alt=''
+                                    className='fill'
+                                />
+                            </a>
+                        </div>
+                    ))
+                }
             </div>
 
             <div className='clear' />
@@ -1038,4 +1051,8 @@ function MontysSurprise() {
     );
 }
 
-export default title(MontysSurprise, 'Monty\'s Surprise');
+MontysSurprise.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+};
+
+export default withRouter(connect()(title(MontysSurprise, 'Monty\'s Surprise')));

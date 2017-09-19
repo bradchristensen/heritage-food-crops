@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function TableOfContents(props, context) {
     return (
@@ -24,5 +25,12 @@ export default function TableOfContents(props, context) {
 }
 
 TableOfContents.contextTypes = {
-    tableOfContents: PropTypes.array,
+    tableOfContents: PropTypes.arrayOf(PropTypes.shape({
+        children: PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            text: PropTypes.string.isRequired,
+        })).isRequired,
+        id: PropTypes.number.isRequired,
+        text: PropTypes.string.isRequired,
+    })).isRequired,
 };

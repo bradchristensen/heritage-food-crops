@@ -1,10 +1,12 @@
-import React, { PropTypes, PureComponent } from 'react';
-import { Link } from 'react-router';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { Link, NavLink } from 'react-router-dom';
 import Lightbox from '../components/lightbox';
-import LightboxStore from '../stores/lightbox';
 import OutboundLink from '../components/outboundLink';
 
-export default class App extends PureComponent {
+class App extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -13,11 +15,6 @@ export default class App extends PureComponent {
 
         this.state = {
             currentlyVisibleSubmenu: null,
-
-            // state from LightboxStore
-            lightboxVisible: LightboxStore.getState().visible,
-            lightboxContent: LightboxStore.getState().content,
-            lightboxCaption: LightboxStore.getState().caption,
         };
 
         this.hideMenu = this.hideMenu.bind(this);
@@ -38,20 +35,6 @@ export default class App extends PureComponent {
         this.cancelHidingMenu = () => {
             this.blockHidingMenu = true;
         };
-    }
-
-    componentDidMount() {
-        this.unsubscribeLightboxStore = LightboxStore.listen((state) => {
-            this.setState({
-                lightboxVisible: state.visible,
-                lightboxContent: state.content,
-                lightboxCaption: state.caption,
-            });
-        });
-    }
-
-    componentWillUnmount() {
-        this.unsubscribeLightboxStore();
     }
 
     hideMenu() {
@@ -155,35 +138,39 @@ export default class App extends PureComponent {
         return (
             <ul>
                 <li>
-                    <Link to='/montys-surprise' onClick={this.hideMenu} activeClassName='active'>
+                    <NavLink to='/montys-surprise' onClick={this.hideMenu} activeClassName='active'>
                         <img src='/static/images/layout/menu-thumbs/apples.jpg' alt='' />
                         <h3>Monty's Surprise</h3>
                         <p>Apple Cancer Prevention Research Project</p>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to='/heirloom-tomatoes' onClick={this.hideMenu} activeClassName='active'>
+                    <NavLink
+                        to='/heirloom-tomatoes'
+                        onClick={this.hideMenu}
+                        activeClassName='active'
+                    >
                         <img src='/static/images/layout/menu-thumbs/tomatoes.jpg' alt='' />
                         <h3>Heirloom Tomatoes</h3>
                         <p>Investigating the Health Potential of the 'Real' Tomato</p>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to='/heirloom-beans' onClick={this.hideMenu} activeClassName='active'>
+                    <NavLink to='/heirloom-beans' onClick={this.hideMenu} activeClassName='active'>
                         <img src='/static/images/layout/menu-thumbs/beans.png' alt='' />
                         <h3>Heirloom Beans</h3>
                         <p>The Great New Zealand Bean Hunt</p>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to='/plums-peaches' onClick={this.hideMenu} activeClassName='active'>
+                    <NavLink to='/plums-peaches' onClick={this.hideMenu} activeClassName='active'>
                         <img src='/static/images/layout/menu-thumbs/plums.jpg' alt='' />
                         <h3>Plums and Peaches</h3>
                         <p>Heritage/European plum varieties and Blackboy peaches</p>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link
+                    <NavLink
                         to='/huntingtons-disease'
                         onClick={this.hideMenu}
                         activeClassName='active'
@@ -191,14 +178,14 @@ export default class App extends PureComponent {
                         <img src='/static/images/layout/menu-thumbs/huntingtons.png' alt='' />
                         <h3>Huntington's Disease</h3>
                         <p>Researching a natural trehalose sugar treatment</p>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to='/ancient-wheat' onClick={this.hideMenu} activeClassName='active'>
+                    <NavLink to='/ancient-wheat' onClick={this.hideMenu} activeClassName='active'>
                         <img src='/static/images/layout/menu-thumbs/wheat.png' alt='' />
                         <h3>Ancient Wheat</h3>
                         <p>Preserving ancient varieties and researching gluten intolerance</p>
-                    </Link>
+                    </NavLink>
                 </li>
             </ul>
         );
@@ -208,7 +195,7 @@ export default class App extends PureComponent {
         return (
             <ul className='publications'>
                 <li>
-                    <Link
+                    <NavLink
                         to='/publications#jessica-and-the-golden-orb'
                         onClick={this.hideMenu}
                     >
@@ -219,10 +206,10 @@ export default class App extends PureComponent {
                             golden-orange tomatoes.
                         </p>
                         <p>Written and illustrated by <strong>Janet Bradbury</strong>.</p>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link
+                    <NavLink
                         to='/publications#jessica-the-seed-saver'
                         onClick={this.hideMenu}
                     >
@@ -240,19 +227,16 @@ export default class App extends PureComponent {
                             Jessica returns in a story about saving the seeds of heritage tomatoes.
                         </p>
                         <p>Written and illustrated by <strong>Janet Bradbury</strong>.</p>
-                    </Link>
+                    </NavLink>
                 </li>
             </ul>
         );
     }
 
     render() {
-        const currentPageTitle = this.props.children && this.props.children.type ?
-            this.props.children.type.currentPageTitle : null;
-
         const logo = (
             <div className='logo'>
-                <Link to='/' title='Return to the index page' activeClassName='active' />
+                <NavLink to='/' title='Return to the index page' activeClassName='active' />
                 <img src='/static/images/layout/logo@2x.png' alt='' />
             </div>
         );
@@ -278,15 +262,16 @@ export default class App extends PureComponent {
         );
 
         return (
-            <div className={!currentPageTitle ? 'show-header' : ''}>
+            <div className={!this.props.title ? 'show-header' : ''}>
                 <div className='header'>
                     <div className='wrapper'>
                         {logo}
                         <h1 className='site-title'>
                             <Link to='/'><strong>Heritage Food Crops</strong> Research Trust</Link>
                         </h1>
-                        {!!currentPageTitle &&
-                            <h2 className='current-page-title'>{currentPageTitle}</h2>}
+                        {!!this.props.title && (
+                            <h2 className='current-page-title'>{this.props.title}</h2>
+                        )}
                     </div>
                 </div>
 
@@ -321,16 +306,22 @@ export default class App extends PureComponent {
                                 </a>
                             </li>
                             <li>
-                                <Link
+                                <NavLink
                                     to='/about-the-trust'
                                     onClick={this.hideMenu}
-                                >About the Trust</Link>
+                                >
+                                    About the Trust
+                                </NavLink>
                             </li>
                             <li>
-                                <Link to='/contact-us' onClick={this.hideMenu}>Contact Us</Link>
+                                <NavLink to='/contact-us' onClick={this.hideMenu}>
+                                    Contact Us
+                                </NavLink>
                             </li>
                             <li>
-                                <Link to='/links' onClick={this.hideMenu}>Links</Link>
+                                <NavLink to='/links' onClick={this.hideMenu}>
+                                    Links
+                                </NavLink>
                             </li>
                         </ul>
                     </div>
@@ -354,56 +345,59 @@ export default class App extends PureComponent {
                             <span className='category-text'>Research Topics</span>
                         </li>
                         <li>
-                            <Link to='/montys-surprise' activeClassName='active'>
+                            <NavLink to='/montys-surprise' activeClassName='active'>
                                 Monty's Surprise
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to='/heirloom-tomatoes' activeClassName='active'>
+                            <NavLink to='/heirloom-tomatoes' activeClassName='active'>
                                 Heirloom Tomatoes
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to='/heirloom-beans' activeClassName='active'>
+                            <NavLink to='/heirloom-beans' activeClassName='active'>
                                 Heirloom Beans
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to='/plums-peaches' activeClassName='active'>
+                            <NavLink to='/plums-peaches' activeClassName='active'>
                                 Plums and Peaches
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to='/huntingtons-disease' activeClassName='active'>
+                            <NavLink to='/huntingtons-disease' activeClassName='active'>
                                 Huntington's Disease
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to='/ancient-wheat' activeClassName='active'>
+                            <NavLink to='/ancient-wheat' activeClassName='active'>
                                 Ancient Wheat
-                            </Link>
+                            </NavLink>
                         </li>
 
                         <li className='category category-other-resources'>
                             <span className='category-text'>Other Resources</span>
                         </li>
                         <li>
-                            <Link to='/publications' activeClassName='active'>
+                            <NavLink to='/publications' activeClassName='active'>
                                 Publications
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to='/about-the-trust' activeClassName='active'>
+                            <NavLink to='/about-the-trust' activeClassName='active'>
                                 About the Trust
-                            </Link>
+                            </NavLink>
                         </li>
-                        <li><Link to='/contact-us' activeClassName='active'>Contact Us</Link></li>
-                        <li><Link to='/links' activeClassName='active'>Links</Link></li>
+                        <li>
+                            <NavLink to='/contact-us' activeClassName='active'>Contact Us</NavLink>
+                        </li>
+                        <li><NavLink to='/links' activeClassName='active'>Links</NavLink></li>
                     </ul>
                 </div>
 
                 <div className='content'>
                     {this.props.children}
+
                     <div className='clear' />
                 </div>
 
@@ -420,9 +414,9 @@ export default class App extends PureComponent {
                 </div>
 
                 <Lightbox
-                    visible={this.state.lightboxVisible}
-                    content={this.state.lightboxContent}
-                    caption={this.state.lightboxCaption}
+                    visible={this.props.lightbox.visible}
+                    content={this.props.lightbox.content}
+                    caption={this.props.lightbox.caption}
                 />
             </div>
         );
@@ -430,5 +424,19 @@ export default class App extends PureComponent {
 }
 
 App.propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
+    lightbox: PropTypes.shape({
+        caption: PropTypes.string,
+        content: PropTypes.string,
+        visible: PropTypes.bool,
+    }).isRequired,
+    title: PropTypes.string,
 };
+
+App.defaultProps = {
+    title: null,
+};
+
+export default withRouter(connect(state => ({
+    lightbox: state.lightbox,
+}))(App));

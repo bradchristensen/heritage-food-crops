@@ -3,14 +3,13 @@ import morgan from 'morgan';
 import path from 'path';
 import responseTime from 'response-time';
 import compression from 'compression';
-import bodyParser from 'body-parser';
 import errorHandler from 'errorhandler';
 import fs from 'fs';
 import robots from 'robots.txt';
 import redirects from './redirects';
-import router from './router';
 import config from '../config';
 import faviconData from '../../dist/faviconData.json';
+import reactRouter from '../routes';
 
 function serveStaticFiles(app) {
     // Serve bundled/generated files (e.g. CSS, webpacked javascript) from the /static path
@@ -42,13 +41,6 @@ function serveStaticFiles(app) {
 }
 
 export default function (app) {
-    const allowCrossDomain = (req, res, next) => {
-        res.header('Access-Control-Allow-Origin', '*');
-        res.header('Access-Control-Allow-Credentials', true);
-        res.header('Access-Control-Allow-Headers', 'X-Requested-With');
-        next();
-    };
-
     // settings
     app.set('env', process.env.NODE_ENV || 'development');
     app.set('port', config.server.port || 3000);
@@ -59,7 +51,6 @@ export default function (app) {
 
     app.disable('x-powered-by');
 
-    app.use(allowCrossDomain);
     if (config.debug) {
         app.use(morgan('dev'));
     } else if (!config.disableLogging && config.logDir) {
@@ -80,13 +71,7 @@ export default function (app) {
         }));
     }
 
-    app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(bodyParser.json());
-
     serveStaticFiles(app);
-
-    // Load routes defined by view controllers and API controllers
-    app.use(router);
 
     // Map redirects (e.g. from '/files/old-filename.pdf' to '/static/docs/new-filename.pdf')
     Object.keys(redirects).forEach((redirectFrom) => {
@@ -95,6 +80,9 @@ export default function (app) {
             res.redirect(301, redirectTo);
         });
     });
+
+    // Load routes defined by view controllers and API controllers
+    app.use(reactRouter);
 
     app.use((req, res) => {
         res.status(404);

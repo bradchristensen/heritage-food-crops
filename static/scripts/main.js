@@ -1,33 +1,22 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Router, browserHistory, applyRouterMiddleware } from 'react-router';
-import smoothScroll from 'smooth-scroll';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
-import useScroll from 'react-router-scroll/lib/useScroll';
+import createApiClientStore from './store/init';
 import routes from './infrastructure/routes';
+
+const store = createApiClientStore();
 
 ReactGA.initialize(window.hfcrtAppConfig.gaTrackingId, {
     debug: window.hfcrtAppConfig.debug,
 });
 
-const unlisten = browserHistory.listen(location => ReactGA.pageview(location.pathname));
-
-ReactDOM.render(
-    <Router
-        history={browserHistory}
-        routes={routes}
-        render={applyRouterMiddleware(useScroll())}
-    />,
+render(
+    <Provider store={store}>
+        <BrowserRouter>
+            {routes}
+        </BrowserRouter>
+    </Provider>,
     document.getElementById('page'),
 );
-smoothScroll.init();
-
-unlisten();
-
-// TODO: React-based replacement for highlighting clicked references
-/*
-$('.ref').bind('click', function () {
-    $('.cite').removeClass('highlight');
-    $($(this).attr('href')).addClass('highlight');
-});
-*/

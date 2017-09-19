@@ -1,9 +1,10 @@
-import gulp from 'gulp';
-import path from 'path';
-import webpack from 'webpack';
-import _ from 'lodash';
-import nodeExternals from 'webpack-node-externals';
-import config from '../app/config/gulp.json';
+/* eslint-disable no-console */
+
+const gulp = require('gulp');
+const path = require('path');
+const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
+const config = require('../app/config/gulp.json');
 
 const src = config.src;
 const dest = config.dest;
@@ -24,17 +25,25 @@ const webpackConfig = {
         loaders: [
             {
                 loader: 'babel-loader',
-                include: [
-                    path.resolve(__dirname, `../${src.scripts}`),
-                ],
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
                 query: {
                     plugins: ['lodash', 'transform-object-rest-spread'],
-                    presets: ['react', 'es2015'],
+                    presets: ['env', 'react'],
                 },
             },
         ],
     },
     devtool: 'source-map',
+};
+
+const BABEL_PRESET_ENV_NODE = {
+    targets: {
+        /* Targeting Node 8 since it has many new features over 6, including async/await,
+         * so transformations are minimal. */
+        node: '8.0.0',
+    },
+    useBuiltIns: 'usage',
 };
 
 const webpackNodeConfig = {
@@ -47,16 +56,19 @@ const webpackNodeConfig = {
     module: {
         loaders: [
             {
-                loader: 'babel',
-                test: /\.js$/,
+                loader: 'babel-loader',
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 query: {
                     plugins: ['transform-object-rest-spread'],
-                    presets: ['react', 'es2015'],
+                    presets: [
+                        ['env', BABEL_PRESET_ENV_NODE],
+                        'react',
+                    ],
                 },
             },
             {
-                loader: 'json',
+                loader: 'json-loader',
                 test: /\.json$/,
             },
         ],
@@ -69,8 +81,8 @@ const webpackNodeConfig = {
     externals: [nodeExternals()],
 };
 
-const webpackProductionConfig = _.assign({}, _.cloneDeep(webpackConfig), {
-    output: _.assign({}, webpackConfig.output, {
+const webpackProductionConfig = Object.assign({}, webpackConfig, {
+    output: Object.assign({}, webpackConfig.output, {
         filename: 'main.min.js',
     }),
     plugins: [
@@ -140,7 +152,7 @@ gulp.task('scripts:node', (callback) => {
     });
 });
 
-export default gulp.task('scripts', [
+module.exports = gulp.task('scripts', [
     'scripts:dev',
     'scripts:prod',
     'scripts:node',

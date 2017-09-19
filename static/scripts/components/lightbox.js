@@ -1,8 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import _ from 'lodash';
-import Actions from '../stores/actions';
+import { closeLightbox } from '../actions/lightbox';
 
-export default class Lightbox extends Component {
+class Lightbox extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -15,6 +18,8 @@ export default class Lightbox extends Component {
         };
 
         this.onWindowResize = this.onWindowResize.bind(this);
+
+        this.closeLightbox = () => this.props.dispatch(closeLightbox());
     }
 
     componentDidMount() {
@@ -61,7 +66,7 @@ export default class Lightbox extends Component {
             // eslint-disable-next-line jsx-a11y/no-static-element-interactions
             <div
                 className={`lightbox${this.props.visible ? ' fade-visible' : ''}`}
-                onClick={Actions.closeLightbox}
+                onClick={this.closeLightbox}
             >
                 <div
                     className='lightbox-modal'
@@ -74,7 +79,7 @@ export default class Lightbox extends Component {
                 >
                     <button
                         type='button'
-                        onClick={Actions.closeLightbox}
+                        onClick={this.closeLightbox}
                         className='lightbox-close'
                     >
                         Close
@@ -122,6 +127,7 @@ export default class Lightbox extends Component {
 Lightbox.propTypes = {
     caption: PropTypes.node,
     content: PropTypes.node,
+    dispatch: PropTypes.func.isRequired,
     visible: PropTypes.bool,
 };
 
@@ -130,3 +136,5 @@ Lightbox.defaultProps = {
     content: null,
     visible: false,
 };
+
+export default withRouter(connect()(Lightbox));

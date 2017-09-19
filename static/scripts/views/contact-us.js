@@ -30,7 +30,9 @@ class ContactUs extends PureComponent {
         this.submitContactForm = this.submitContactForm.bind(this);
     }
 
-    submitContactForm(event) {
+    async submitContactForm(event) {
+        event.preventDefault();
+
         if (!this.state.name) {
             alert('Please enter your name');
         } else if (!this.state.email) {
@@ -40,39 +42,38 @@ class ContactUs extends PureComponent {
         } else {
             this.setState({ submittingContactForm: true });
 
-            fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: this.state.name,
-                    email: this.state.email,
-                    phone: this.state.phone,
-                    location: this.state.location,
-                    message: this.state.message,
-                }),
-            })
-            .then(checkStatus) // Should return a 204, otherwise throw an error
-            .then(() => {
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: this.state.name,
+                        email: this.state.email,
+                        phone: this.state.phone,
+                        location: this.state.location,
+                        message: this.state.message,
+                    }),
+                });
+
+                checkStatus(response); // Should return a 204, otherwise throw an error
+
                 this.setState({
                     message: '',
                     submittingContactForm: false,
                     submittedContactForm: true,
                 });
-            })
-            .catch((err) => {
+            } catch (err) {
                 this.setState({
                     submittingContactForm: false,
                     submittedContactForm: true,
                     submitError: true,
                 });
                 console.error(err);
-            });
+            }
         }
-
-        event.preventDefault();
     }
 
     render() {

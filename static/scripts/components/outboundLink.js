@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 // One day we might track outbound links with Google Analytics, but I'd rather not
 // mess with the native click behaviour - e.g. open in new tab on middle click.
@@ -23,6 +24,8 @@ OutboundLink.propTypes = {
 };
 
 OutboundLink.defaultProps = {
+    href: null,
+    to: null,
     target: '_blank',
     // react-ga's OutboundLink requires an eventLabel prop (but we don't use it)
     eventLabel: null,

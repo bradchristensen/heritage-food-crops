@@ -1,23 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import _ from 'lodash';
-import Actions from '../stores/actions';
+import * as Lightbox from '../actions/lightbox';
 import title from '../infrastructure/documentTitle';
 import Article from '../components/article';
 import SectionHeading from '../components/sectionHeading';
 import SectionSubheading from '../components/sectionSubheading';
 
-function openLightbox(event) {
-    if (event.button === 0) {
-        const img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
-        const caption = img ? img.alt : event.currentTarget.title;
-        Actions.openLightbox(event.currentTarget.href, caption);
-        event.preventDefault();
-    }
-}
-
 const graphBaseUrl = '/static/images/layout/plums-peaches/graphs/';
 
-function PlumsPeaches() {
+function PlumsPeaches({ dispatch }) {
+    function openLightbox(event) {
+        if (event.button === 0) {
+            const img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
+            const caption = img ? img.alt : event.currentTarget.title;
+            dispatch(Lightbox.openLightbox(event.currentTarget.href, caption));
+            event.preventDefault();
+        }
+    }
+
     return (
         <Article className='page-plums-peaches'>
             <div className='wrapper'>
@@ -220,4 +223,8 @@ function PlumsPeaches() {
     );
 }
 
-export default title(PlumsPeaches, 'Plums and Peaches');
+PlumsPeaches.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+};
+
+export default withRouter(connect()(title(PlumsPeaches, 'Plums and Peaches')));

@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
-export default class Reference extends Component {
+export default class Reference extends PureComponent {
     constructor(props, context) {
         super(props, context);
 
@@ -21,5 +22,5 @@ export default class Reference extends Component {
 }
 
 Reference.contextTypes = {
-    assignReferenceId: PropTypes.func,
+    assignReferenceId: PropTypes.func.isRequired,
 };

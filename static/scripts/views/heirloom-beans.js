@@ -1,6 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import _ from 'lodash';
-import Actions from '../stores/actions';
+import * as Lightbox from '../actions/lightbox';
 import title from '../infrastructure/documentTitle';
 import Article from '../components/article';
 import SectionHeading from '../components/sectionHeading';
@@ -156,16 +159,58 @@ const galleryPaths = [
     'america-koanga-flower',
 ];
 
-function openLightbox(event) {
-    if (event.button === 0) {
-        const img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
-        const caption = img ? img.alt : event.currentTarget.title;
-        Actions.openLightbox(event.currentTarget.href, caption);
-        event.preventDefault();
-    }
+function Bean({ description, name, openLightbox, ...bean }) {
+    const images = bean.image ? [bean.image] : bean.images;
+
+    return (
+        <li className='bean-list-item'>
+            {images && (
+                <div style={{ float: 'left', margin: '10px 10px 10px 25px' }}>
+                    {images.map((imgPath, imgIndex) => (
+                        <a
+                            href={`${thumbnailsBaseUrl}${imgPath}.jpg`}
+                            // eslint-disable-next-line react/no-array-index-key
+                            key={`bean-img-${imgIndex}`}
+                            className='b100'
+                            onClick={openLightbox}
+                        >
+                            <img
+                                src={`${thumbnailsBaseUrl}${imgPath}_100.jpg`}
+                                alt={name}
+                            />
+                        </a>
+                    ))}
+                </div>
+            )}
+            <h4>{name}</h4>
+            <p>{description}</p>
+        </li>
+    );
 }
 
-function HeirloomBeans() {
+Bean.propTypes = {
+    description: PropTypes.node.isRequired,
+    image: PropTypes.string,
+    images: PropTypes.arrayOf(PropTypes.string),
+    name: PropTypes.string.isRequired,
+    openLightbox: PropTypes.func.isRequired,
+};
+
+Bean.defaultProps = {
+    image: null,
+    images: null,
+};
+
+function HeirloomBeans({ dispatch }) {
+    function openLightbox(event) {
+        if (event.button === 0) {
+            const img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
+            const caption = img ? img.alt : event.currentTarget.title;
+            dispatch(Lightbox.openLightbox(event.currentTarget.href, caption));
+            event.preventDefault();
+        }
+    }
+
     const emailLink = (
         <a href='mailto:info@heritagefoodcrops.org.nz'>
             <strong>info@heritagefoodcrops.org.nz</strong>
@@ -239,30 +284,14 @@ function HeirloomBeans() {
                     <SectionHeading>Climbing Beans imported from North America</SectionHeading>
 
                     <ul className='bean-list'>
-                        {beans.map((bean, index) => {
-                            if (bean.image) {
-                                bean.images = [bean.image];
-                            }
-                            return (<li key={`bean-${index}`} className='bean-list-item'>
-                                {bean.images && <div style={{ float: 'left', margin: '10px 10px 10px 25px' }}>
-                                    {bean.images.map((imgPath, imgIndex) => (
-                                        <a
-                                            href={`${thumbnailsBaseUrl}${imgPath}.jpg`}
-                                            key={`bean-${index}-img-${imgIndex}`}
-                                            className='b100'
-                                            onClick={openLightbox}
-                                        >
-                                            <img
-                                                src={`${thumbnailsBaseUrl}${imgPath}_100.jpg`}
-                                                alt={bean.name}
-                                            />
-                                        </a>
-                                    ))}
-                                </div>}
-                                <h4>{bean.name}</h4>
-                                <p>{bean.description}</p>
-                            </li>);
-                        })}
+                        {beans.map((bean, index) => (
+                            <Bean
+                                // eslint-disable-next-line react/no-array-index-key
+                                key={`bean-${index}`}
+                                openLightbox={openLightbox}
+                                {...bean}
+                            />
+                        ))}
                     </ul>
 
                     <div className='clear' />
@@ -375,25 +404,37 @@ function HeirloomBeans() {
                 </div>
 
                 <div className='splitter'>
-                    {_.take(galleryPaths, Math.ceil(galleryPaths.length / 2)).map((path, index) =>
-                        <div className='box' key={`gallery-left-${index}`}>
-                            <a href={`${galleryBaseUrl}${path}.jpg`} onClick={openLightbox}>
-                                <img src={`${galleryBaseUrl}${path}.jpg`} alt='' className='fill' />
-                            </a>
-                        </div>,
-                    )}
+                    {_.take(galleryPaths, Math.ceil(galleryPaths.length / 2))
+                        .map((path, index) => (
+                            // eslint-disable-next-line react/no-array-index-key
+                            <div className='box' key={`gallery-left-${index}`}>
+                                <a href={`${galleryBaseUrl}${path}.jpg`} onClick={openLightbox}>
+                                    <img
+                                        src={`${galleryBaseUrl}${path}.jpg`}
+                                        alt=''
+                                        className='fill'
+                                    />
+                                </a>
+                            </div>
+                        ))
+                    }
                 </div>
 
                 <div className='splitter right'>
-                    {_.takeRight(galleryPaths,
-                        Math.floor(galleryPaths.length / 2)).map((path, index) => (
+                    {_.takeRight(galleryPaths, Math.floor(galleryPaths.length / 2))
+                        .map((path, index) => (
+                            // eslint-disable-next-line react/no-array-index-key
                             <div className='box' key={`gallery-right-${index}`}>
                                 <a href={`${galleryBaseUrl}${path}.jpg`} onClick={openLightbox}>
-                                    <img src={`${galleryBaseUrl}${path}.jpg`} alt='' className='fill' />
+                                    <img
+                                        src={`${galleryBaseUrl}${path}.jpg`}
+                                        alt=''
+                                        className='fill'
+                                    />
                                 </a>
                             </div>
-                        ),
-                    )}
+                        ))
+                    }
                 </div>
 
                 <div className='clear' />
@@ -402,4 +443,8 @@ function HeirloomBeans() {
     );
 }
 
-export default title(HeirloomBeans, 'Heirloom Beans');
+HeirloomBeans.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+};
+
+export default withRouter(connect()(title(HeirloomBeans, 'Heirloom Beans')));

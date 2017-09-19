@@ -1,0 +1,13 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "node": false
+    },
+    "globals": {
+        "process": false
+    },
+    "rules": {
+        "no-console": [1]
+    }
+}

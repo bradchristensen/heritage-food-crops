@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
-export default class SectionHeading extends Component {
+export default class SectionHeading extends PureComponent {
     constructor(props, context) {
         super(props, context);
 
@@ -27,9 +28,9 @@ export default class SectionHeading extends Component {
 }
 
 SectionHeading.propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
     exclude: PropTypes.bool,
-    shortText: PropTypes.string,
+    shortText: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
     tag: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.func,
@@ -43,5 +44,5 @@ SectionHeading.defaultProps = {
 };
 
 SectionHeading.contextTypes = {
-    assignSectionHeadingId: PropTypes.func,
+    assignSectionHeadingId: PropTypes.func.isRequired,
 };

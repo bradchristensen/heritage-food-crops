@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import App from '../views/app';
 
 let mountedInstances = [];
 let state;
@@ -40,13 +41,13 @@ export default function documentTitle(Component, pageTitle) {
         }
 
         render() {
-            return <Component {...this.props} />;
+            return (
+                <App title={pageTitle}>
+                    <Component {...this.props} />
+                </App>
+            );
         }
     }
-
-    // Required to be provided at render-time to parent components (before this
-    // component has been rendered)
-    DocumentTitle.currentPageTitle = pageTitle;
 
     return DocumentTitle;
 }

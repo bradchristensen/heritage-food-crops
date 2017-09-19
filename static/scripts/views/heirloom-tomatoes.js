@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import _ from 'lodash';
-import { Link } from 'react-router';
-import Actions from '../stores/actions';
+import { Link } from 'react-router-dom';
+import * as Lightbox from '../actions/lightbox';
 import title from '../infrastructure/documentTitle';
 import Article from '../components/article';
 import Contents from '../components/tableOfContents';
@@ -92,16 +95,7 @@ const tomatoTable = [
     ranking: item[6],
 }));
 
-function openLightbox(event) {
-    if (event.button === 0) {
-        const img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
-        const caption = img ? img.alt : event.currentTarget.title;
-        Actions.openLightbox(event.currentTarget.href, caption);
-        event.preventDefault();
-    }
-}
-
-class HeirloomTomatoes extends Component {
+class HeirloomTomatoes extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -112,8 +106,18 @@ class HeirloomTomatoes extends Component {
             tomatoTable,
         };
 
+        this.openLightbox = this.openLightbox.bind(this);
         this.sortTomatoTableByColumn = this.sortTomatoTableByColumn.bind(this);
         this.renderTomatoTable = this.renderTomatoTable.bind(this);
+    }
+
+    openLightbox(event) {
+        if (event.button === 0) {
+            const img = _.find(event.currentTarget.childNodes, node => node.tagName === 'IMG');
+            const caption = img ? img.alt : event.currentTarget.title;
+            this.props.dispatch(Lightbox.openLightbox(event.currentTarget.href, caption));
+            event.preventDefault();
+        }
     }
 
     sortTomatoTableByColumn(column) {
@@ -148,26 +152,27 @@ class HeirloomTomatoes extends Component {
                             ['pH', 'pH'],
                             ['ranking', 'Ranking'],
                         ]
-                        .map(column => ({ id: column[0], name: column[1] }))
-                        .map((column, index) => (
-                            // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-                            <th
-                                key={`tomato-table-header-${column.id}`}
-                                style={{ textAlign: index === 0 ? 'left' : 'right' }}
-                                className={`sortable-column-header${
-                        this.state.tomatoTableSortColumn === column.id ? ' highlight' : ''
-                        }${column.id === 'pH' || column.id === 'ranking' ? ' hide-mobile' : ''}`}
-                                onClick={() => this.sortTomatoTableByColumn(column.id)}
-                            >
-                                {column.name}
-                            </th>
-                        ))}
+                            .map(column => ({ id: column[0], name: column[1] }))
+                            .map((column, index) => (
+                                // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+                                <th
+                                    key={`tomato-table-header-${column.id}`}
+                                    style={{ textAlign: index === 0 ? 'left' : 'right' }}
+                                    className={`sortable-column-header${
+                                        this.state.tomatoTableSortColumn === column.id ? ' highlight' : ''
+                                    }${column.id === 'pH' || column.id === 'ranking' ? ' hide-mobile' : ''}`}
+                                    onClick={() => this.sortTomatoTableByColumn(column.id)}
+                                >
+                                    {column.name}
+                                </th>
+                            ))}
                     </tr>
                 </thead>
                 <tbody>
                     {this.state.tomatoTable.map((row, index) => (
                         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
                         <tr
+                            // eslint-disable-next-line react/no-array-index-key
                             key={`tomato-table-row-${index}`}
                             className={row.ranking === this.state.tomatoTableHighlightedRow ? 'highlight' : ''}
                             onClick={() => {
@@ -566,7 +571,7 @@ class HeirloomTomatoes extends Component {
                                             <a
                                                 href={'/static/images/layout/tomatoes/table/moonglow.jpg'}
                                                 title='Moonglow'
-                                                onClick={openLightbox}
+                                                onClick={this.openLightbox}
                                             >Moonglow</a>
                                         </td>
                                         <td>5.36</td><td>0.05</td><td>n.d.</td><td>0.06</td>
@@ -576,7 +581,7 @@ class HeirloomTomatoes extends Component {
                                             <a
                                                 href={'/static/images/layout/tomatoes/table/tangerine.jpg'}
                                                 title='Tangerine'
-                                                onClick={openLightbox}
+                                                onClick={this.openLightbox}
                                             >Tangerine</a>
                                         </td>
                                         <td>4.43</td><td>n.d.</td><td>n.d.</td><td>0.05</td>
@@ -586,7 +591,7 @@ class HeirloomTomatoes extends Component {
                                             <a
                                                 href={'/static/images/layout/tomatoes/table/orange-fleshed-purple-smudge.jpg'}
                                                 title='Orange Fleshed Purple Smudge'
-                                                onClick={openLightbox}
+                                                onClick={this.openLightbox}
                                             >Orange Fleshed Purple Smudge</a>
                                         </td>
                                         <td>4.36</td><td>0.06</td><td>n.d.</td><td>0.09</td>
@@ -596,7 +601,7 @@ class HeirloomTomatoes extends Component {
                                             <a
                                                 href={'/static/images/layout/tomatoes/table/amish-orange-sherbert-heirloom.jpg'}
                                                 title='Amish Orange Sherbert Heirloom'
-                                                onClick={openLightbox}
+                                                onClick={this.openLightbox}
                                             >Amish Orange Sherbert Heirloom</a>
                                         </td>
                                         <td>4.35</td><td>0.01</td><td>n.d.</td><td>0.02</td>
@@ -606,7 +611,7 @@ class HeirloomTomatoes extends Component {
                                             <a
                                                 href={'/static/images/layout/tomatoes/table/aunt-gerties-gold.jpg'}
                                                 title={'Aunt Gertie\'s Gold'}
-                                                onClick={openLightbox}
+                                                onClick={this.openLightbox}
                                             >Aunt Gertie's Gold</a>
                                         </td>
                                         <td>4.21</td><td>0.02</td><td>n.d.</td><td>0.04</td>
@@ -616,7 +621,7 @@ class HeirloomTomatoes extends Component {
                                             <a
                                                 href={'/static/images/layout/tomatoes/table/big-orange.jpg'}
                                                 title='Big Orange'
-                                                onClick={openLightbox}
+                                                onClick={this.openLightbox}
                                             >Big Orange</a>
                                         </td>
                                         <td>3.79</td><td>0.03</td><td>1.36</td><td>0.02</td>
@@ -626,7 +631,7 @@ class HeirloomTomatoes extends Component {
                                             <a
                                                 href={'/static/images/layout/tomatoes/table/amish-yellowish-orange-oxheart.jpg'}
                                                 title='Amish Yellowish Orange Oxheart'
-                                                onClick={openLightbox}
+                                                onClick={this.openLightbox}
                                             >Amish Yellowish Orange Oxheart</a>
                                         </td>
                                         <td>2.67</td><td>0.02</td><td>n.d.</td><td>0.05</td>
@@ -636,7 +641,7 @@ class HeirloomTomatoes extends Component {
                                             <a
                                                 href={'/static/images/layout/tomatoes/table/earl-of-edgecomb.jpg'}
                                                 title='Earl of Edgecomb'
-                                                onClick={openLightbox}
+                                                onClick={this.openLightbox}
                                             >Earl of Edgecomb</a>
                                         </td>
                                         <td>2.63</td><td>n.d.</td><td>n.d.</td><td>0.07</td>
@@ -646,7 +651,7 @@ class HeirloomTomatoes extends Component {
                                             <a
                                                 href='/static/images/layout/tomatoes/table/elbe.jpg'
                                                 title='Elbe'
-                                                onClick={openLightbox}
+                                                onClick={this.openLightbox}
                                             >Elbe</a>
                                         </td>
                                         <td>2.45</td><td>n.d.</td><td>n.d.</td><td>0.06</td>
@@ -656,7 +661,7 @@ class HeirloomTomatoes extends Component {
                                             <a
                                                 href={'/static/images/layout/tomatoes/table/sibirische-orange.jpg'}
                                                 title='Sibirische Orange'
-                                                onClick={openLightbox}
+                                                onClick={this.openLightbox}
                                             >Sibirische Orange</a>
                                         </td>
                                         <td>1.72</td><td>0.03</td><td>n.d.</td><td>0.04</td>
@@ -666,7 +671,7 @@ class HeirloomTomatoes extends Component {
                                             <a
                                                 href={'/static/images/layout/tomatoes/table/orange-roma.jpg'}
                                                 title='Orange Roma'
-                                                onClick={openLightbox}
+                                                onClick={this.openLightbox}
                                             >Orange Roma</a>
                                         </td>
                                         <td>1.42</td><td>0.10</td><td>0.41</td><td>0.13</td>
@@ -676,7 +681,7 @@ class HeirloomTomatoes extends Component {
                                             <a
                                                 href={'/static/images/layout/tomatoes/table/dads-sunset.jpg'}
                                                 title={'Dad\'s Sunset'}
-                                                onClick={openLightbox}
+                                                onClick={this.openLightbox}
                                             >Dad's Sunset</a>
                                         </td>
                                         <td>1.01</td><td>0.04</td><td>0.13</td><td>0.04</td>
@@ -841,7 +846,7 @@ class HeirloomTomatoes extends Component {
                             fat, in order to improve our absorption of lycopene
                             <Reference
                                 source={'Turning up the heat on tomatoes boosts absorption of lycopene'}
-                                href='http://researchnews.osu.edu/archive/lycoproc.htm'
+                                href='https://news.osu.edu/news/2008/08/13/lycoproc/'
                             />. This has always seemed to me to be unusual, given that natural
                             food in its raw state is typically better for us, and each stage of
                             processing of food does diminish the medicinal quality of that food.
@@ -988,7 +993,7 @@ class HeirloomTomatoes extends Component {
                             <a
                                 href='/static/images/layout/tomatoes/tomato-selection_800.jpg'
                                 className='b300'
-                                onClick={openLightbox}
+                                onClick={this.openLightbox}
                                 title={'Just a few of the 100 heirloom tomato varieties grown in 2009 for scientific analysis.'}
                             >
                                 <img
@@ -1188,4 +1193,8 @@ class HeirloomTomatoes extends Component {
     }
 }
 
-export default title(HeirloomTomatoes, 'Heirloom Tomatoes');
+HeirloomTomatoes.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+};
+
+export default withRouter(connect()(title(HeirloomTomatoes, 'Heirloom Tomatoes')));

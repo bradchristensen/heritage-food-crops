@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOMServer from 'react-dom/server';
 import _ from 'lodash';
 import flatten from '../infrastructure/flatten';
@@ -6,7 +7,7 @@ import Reference from './reference';
 import SectionHeading from './sectionHeading';
 import SectionSubheading from './sectionSubheading';
 
-export default class Article extends Component {
+export default class Article extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -136,7 +137,7 @@ export default class Article extends Component {
 }
 
 Article.propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
 };
 
 Article.childContextTypes = {

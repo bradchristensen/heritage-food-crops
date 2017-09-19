@@ -1,8 +1,7 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
+import withTracker from './withTracker';
 
-// Routes
-import App from '../views/app';
 import Index from '../views/index';
 import PageNotFound from '../views/page-not-found';
 import MontysSurprise from '../views/montys-surprise';
@@ -17,27 +16,47 @@ import AboutTheTrust from '../views/about-the-trust';
 import ContactUs from '../views/contact-us';
 import Links from '../views/links';
 
-// declare our routes and their hierarchy
 const routes = (
-    <Route path='/' component={App}>
-        <IndexRoute component={Index} />
+    <Switch>
+        <Route exact path='/' component={withTracker(Index)} />
 
-        <Route path='montys-surprise' component={MontysSurprise} />
-        <Route path='heirloom-tomatoes' component={HeirloomTomatoes} />
-        <Route path='heirloom-tomatoes/past-research' component={HeirloomTomatoesPastResearch} />
-        <Route path='heirloom-beans' component={HeirloomBeans} />
-        <Route path='plums-peaches' component={PlumsPeaches} />
-        <Route path='huntingtons-disease' component={HuntingtonsDisease} />
-        <Route path='ancient-wheat' component={AncientWheat} />
+        <Route
+            path='/montys-surprise'
+            component={withTracker(MontysSurprise)}
+        />
+        <Route
+            path='/heirloom-tomatoes'
+            component={withTracker(HeirloomTomatoes)}
+        />
+        <Route
+            path='/heirloom-tomatoes/past-research'
+            component={withTracker(HeirloomTomatoesPastResearch)}
+        />
+        <Route
+            path='/heirloom-beans'
+            component={withTracker(HeirloomBeans)}
+        />
+        <Route
+            path='/plums-peaches'
+            component={withTracker(PlumsPeaches)}
+        />
+        <Route
+            path='/huntingtons-disease'
+            component={withTracker(HuntingtonsDisease)}
+        />
+        <Route
+            path='/ancient-wheat'
+            component={withTracker(AncientWheat)}
+        />
 
-        <Route path='publications' component={Publications} />
+        <Route path='/publications' component={withTracker(Publications)} />
 
-        <Route path='about-the-trust' component={AboutTheTrust} />
-        <Route path='contact-us' component={ContactUs} />
-        <Route path='links' component={Links} />
+        <Route path='/about-the-trust' component={withTracker(AboutTheTrust)} />
+        <Route path='/contact-us' component={withTracker(ContactUs)} />
+        <Route path='/links' component={withTracker(Links)} />
 
-        <Route path='*' component={PageNotFound} />
-    </Route>
+        <Route component={withTracker(PageNotFound)} />
+    </Switch>
 );
 
 export default routes;
