@@ -3,6 +3,7 @@ import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
+import ScrollToTop from './components/ScrollToTop';
 import createApiClientStore from './store/init';
 import routes from './infrastructure/routes';
 
@@ -15,7 +16,9 @@ ReactGA.initialize(window.hfcrtAppConfig.gaTrackingId, {
 hydrate(
     <Provider store={store}>
         <BrowserRouter>
-            {routes}
+            <ScrollToTop>
+                {routes}
+            </ScrollToTop>
         </BrowserRouter>
     </Provider>,
     document.getElementById('page'),

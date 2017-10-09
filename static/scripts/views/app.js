@@ -37,6 +37,10 @@ class App extends PureComponent {
         };
     }
 
+    componentWillUnmount() {
+        this.unmounted = true;
+    }
+
     hideMenu() {
         return new Promise((resolve) => {
             this.setState({
@@ -49,7 +53,7 @@ class App extends PureComponent {
         this.blockHidingMenu = false;
         return new Promise((resolve) => {
             setTimeout(() => {
-                if (!this.blockHidingMenu) {
+                if (!this.blockHidingMenu && !this.unmounted) {
                     this.setState({
                         currentlyVisibleSubmenu: null,
                     }, resolve);
@@ -71,7 +75,7 @@ class App extends PureComponent {
                 }, resolve);
             } else {
                 setTimeout(() => {
-                    if (!this.blockShowingResearchTopicsMenu) {
+                    if (!this.blockShowingResearchTopicsMenu && !this.unmounted) {
                         this.setState({
                             currentlyVisibleSubmenu: 'researchTopics',
                         }, resolve);
@@ -96,7 +100,7 @@ class App extends PureComponent {
                 }, resolve);
             } else {
                 setTimeout(() => {
-                    if (!this.blockShowingPublicationsMenu) {
+                    if (!this.blockShowingPublicationsMenu && !this.unmounted) {
                         this.setState({
                             currentlyVisibleSubmenu: 'publications',
                         }, resolve);
