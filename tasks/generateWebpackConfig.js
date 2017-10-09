@@ -90,7 +90,7 @@ module.exports = function generateWebpackConfig(forProduction) {
         },
         plugins: [
             /* Extract the stylesheet into its own bundle. */
-            new ExtractTextPlugin(`styles/[name]${minSuffix}.css`),
+            new ExtractTextPlugin(`styles/global${minSuffix}.css`),
         ].concat(!forProduction ? [] : [
             /* Define the "production" environment variable, required to strip out React
              * performance measurements at runtime. */
