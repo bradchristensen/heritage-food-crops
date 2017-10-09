@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
@@ -12,7 +12,7 @@ ReactGA.initialize(window.hfcrtAppConfig.gaTrackingId, {
     debug: window.hfcrtAppConfig.debug,
 });
 
-render(
+hydrate(
     <Provider store={store}>
         <BrowserRouter>
             {routes}
