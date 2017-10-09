@@ -6,6 +6,7 @@ import ReactGA from 'react-ga';
 import ScrollToTop from './components/ScrollToTop';
 import createApiClientStore from './store/init';
 import routes from './infrastructure/routes';
+import initSmoothScroll from './infrastructure/smoothScroll';
 
 const store = createApiClientStore();
 
@@ -23,3 +24,5 @@ hydrate(
     </Provider>,
     document.getElementById('page'),
 );
+
+initSmoothScroll();

@@ -5,8 +5,8 @@ import { withRouter } from 'react-router';
 import _ from 'lodash';
 import * as Lightbox from '../actions/lightbox';
 import title from '../infrastructure/documentTitle';
-import Article from '../components/article';
-import SectionHeading from '../components/sectionHeading';
+import Article from '../components/Article';
+import SectionHeading from '../components/SectionHeading';
 
 const beans = [
     {
@@ -55,8 +55,8 @@ const beans = [
             <span>
                 An ancient variety that originated with the Hidatsa Indians of the Missouri River
                 Valley of North Dakota. This is one of the most productive dry beans and has an
-                excellent flavour. <strong>This is the beautiful bean that inspired our
-                project.</strong>
+                excellent flavour.{' '}
+                <strong>This is the beautiful bean that inspired our project.</strong>
             </span>
         ),
     },
@@ -159,11 +159,16 @@ const galleryPaths = [
     'america-koanga-flower',
 ];
 
-function Bean({ description, name, openLightbox, ...bean }) {
+function Bean({
+    description,
+    name,
+    openLightbox,
+    ...bean
+}) {
     const images = bean.image ? [bean.image] : bean.images;
 
     return (
-        <li className='bean-list-item'>
+        <li className="bean-list-item">
             {images && (
                 <div style={{ float: 'left', margin: '10px 10px 10px 25px' }}>
                     {images.map((imgPath, imgIndex) => (
@@ -171,7 +176,7 @@ function Bean({ description, name, openLightbox, ...bean }) {
                             href={`${thumbnailsBaseUrl}${imgPath}.jpg`}
                             // eslint-disable-next-line react/no-array-index-key
                             key={`bean-img-${imgIndex}`}
-                            className='b100'
+                            className="b100"
                             onClick={openLightbox}
                         >
                             <img
@@ -212,16 +217,16 @@ function HeirloomBeans({ dispatch }) {
     }
 
     const emailLink = (
-        <a href='mailto:info@heritagefoodcrops.org.nz'>
+        <a href="mailto:info@heritagefoodcrops.org.nz">
             <strong>info@heritagefoodcrops.org.nz</strong>
         </a>
     );
 
     return (
-        <Article className='page-heirloom-beans'>
-            <div className='wrapper'>
+        <Article className="page-heirloom-beans">
+            <div className="wrapper">
                 <div
-                    className='box'
+                    className="box"
                     style={{
                         background: '#111 url(\'/static/images/layout/heirloom-beans/background.jpg\') no-repeat top center',
                         border: '1px solid #FFF',
@@ -280,10 +285,10 @@ function HeirloomBeans({ dispatch }) {
                     </div>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <SectionHeading>Climbing Beans imported from North America</SectionHeading>
 
-                    <ul className='bean-list'>
+                    <ul className="bean-list">
                         {beans.map((bean, index) => (
                             <Bean
                                 // eslint-disable-next-line react/no-array-index-key
@@ -294,10 +299,10 @@ function HeirloomBeans({ dispatch }) {
                         ))}
                     </ul>
 
-                    <div className='clear' />
+                    <div className="clear" />
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <SectionHeading>The Great New Zealand Bean Hunt</SectionHeading>
                     <p>
                         The Heritage Food Crops Research Trust has undertaken a project to find
@@ -312,10 +317,13 @@ function HeirloomBeans({ dispatch }) {
                     <p>
                         If anyone in New Zealand has an old variety of bean that they would like to
                         share (whether it be a climbing bean, a Runner, a dwarf or a Broad bean)
-                        we would be very pleased to hear from you. Beans may be sent to
-                        <strong>Heritage Food Crops Research Trust, 126A Springvale Road,
-                        Whanganui 4501</strong>, and we can be contacted by this address; or by
-                        email at {emailLink}; or using the contact form on this website.</p>
+                        we would be very pleased to hear from you. Beans may be sent to{' '}
+                        <strong>
+                            Heritage Food Crops Research Trust, 126A Springvale Road,
+                            Whanganui 4501
+                        </strong>, and we can be contacted by this address; or by
+                        email at {emailLink}; or using the contact form on this website.
+                    </p>
 
                     <p>
                         If anyone outside of New Zealand has information on beans (whether relating
@@ -324,17 +332,17 @@ function HeirloomBeans({ dispatch }) {
                     </p>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <SectionHeading>
                         2008 Press Release: The Great New Zealand Bean Hunt
                     </SectionHeading>
                     <img
-                        src='/static/images/layout/heirloom-beans/anasazi-beans.jpg'
-                        alt=''
-                        title='Pictured: Anasazi Beans'
-                        width='184'
-                        height='562'
-                        className='right'
+                        src="/static/images/layout/heirloom-beans/anasazi-beans.jpg"
+                        alt=""
+                        title="Pictured: Anasazi Beans"
+                        width="184"
+                        height="562"
+                        className="right"
                         style={{ padding: '0 15px' }}
                     />
 
@@ -395,24 +403,24 @@ function HeirloomBeans({ dispatch }) {
                     </p>
                 </div>
 
-                <SectionHeading tag='h1'>Gallery</SectionHeading>
-                <div className='box'>
+                <SectionHeading tag="h1">Gallery</SectionHeading>
+                <div className="box">
                     <p>
                         These are photos of a selection of beans and bean seed from the varieties
                         grown March/April 2009.
                     </p>
                 </div>
 
-                <div className='splitter'>
+                <div className="splitter">
                     {_.take(galleryPaths, Math.ceil(galleryPaths.length / 2))
                         .map((path, index) => (
                             // eslint-disable-next-line react/no-array-index-key
-                            <div className='box' key={`gallery-left-${index}`}>
+                            <div className="box" key={`gallery-left-${index}`}>
                                 <a href={`${galleryBaseUrl}${path}.jpg`} onClick={openLightbox}>
                                     <img
                                         src={`${galleryBaseUrl}${path}.jpg`}
-                                        alt=''
-                                        className='fill'
+                                        alt=""
+                                        className="fill"
                                     />
                                 </a>
                             </div>
@@ -420,16 +428,16 @@ function HeirloomBeans({ dispatch }) {
                     }
                 </div>
 
-                <div className='splitter right'>
+                <div className="splitter right">
                     {_.takeRight(galleryPaths, Math.floor(galleryPaths.length / 2))
                         .map((path, index) => (
                             // eslint-disable-next-line react/no-array-index-key
-                            <div className='box' key={`gallery-right-${index}`}>
+                            <div className="box" key={`gallery-right-${index}`}>
                                 <a href={`${galleryBaseUrl}${path}.jpg`} onClick={openLightbox}>
                                     <img
                                         src={`${galleryBaseUrl}${path}.jpg`}
-                                        alt=''
-                                        className='fill'
+                                        alt=""
+                                        className="fill"
                                     />
                                 </a>
                             </div>
@@ -437,7 +445,7 @@ function HeirloomBeans({ dispatch }) {
                     }
                 </div>
 
-                <div className='clear' />
+                <div className="clear" />
             </div>
         </Article>
     );

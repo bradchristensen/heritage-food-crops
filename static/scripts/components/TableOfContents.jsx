@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function TableOfContents(props, context) {
     return (
-        <ol className='table-of-contents'>
+        <ol className="table-of-contents">
             {context.tableOfContents.map(item => (
                 <li key={`contents-section-${item.id}`}>
                     <a href={`#section-${item.id}`} data-scroll>{item.text}</a>

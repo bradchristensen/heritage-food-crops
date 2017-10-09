@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import OutboundLink from './outboundLink';
+import OutboundLink from './OutboundLink';
 
 export default function References(props, context) {
     return (
-        <ol className='references-list'>
+        <ol className="references-list">
             {context.references.map(ref => (
                 <li key={`references-${ref.id}`} id={`cite-${ref.id}`}>
                     {!ref.href ? ref.value : (

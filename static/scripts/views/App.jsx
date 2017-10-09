@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Link, NavLink } from 'react-router-dom';
-import Lightbox from '../components/lightbox';
-import OutboundLink from '../components/outboundLink';
+import Lightbox from '../components/Lightbox';
+import OutboundLink from '../components/OutboundLink';
+
+const noOp = () => {};
 
 class App extends PureComponent {
     constructor(props) {
@@ -142,51 +144,51 @@ class App extends PureComponent {
         return (
             <ul>
                 <li>
-                    <NavLink to='/montys-surprise' onClick={this.hideMenu} activeClassName='active'>
-                        <img src='/static/images/layout/menu-thumbs/apples.jpg' alt='' />
+                    <NavLink to="/montys-surprise" onClick={this.hideMenu} activeClassName="active">
+                        <img src="/static/images/layout/menu-thumbs/apples.jpg" alt="" />
                         <h3>Monty's Surprise</h3>
                         <p>Apple Cancer Prevention Research Project</p>
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to='/heirloom-tomatoes'
+                        to="/heirloom-tomatoes"
                         onClick={this.hideMenu}
-                        activeClassName='active'
+                        activeClassName="active"
                     >
-                        <img src='/static/images/layout/menu-thumbs/tomatoes.jpg' alt='' />
+                        <img src="/static/images/layout/menu-thumbs/tomatoes.jpg" alt="" />
                         <h3>Heirloom Tomatoes</h3>
                         <p>Investigating the Health Potential of the 'Real' Tomato</p>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/heirloom-beans' onClick={this.hideMenu} activeClassName='active'>
-                        <img src='/static/images/layout/menu-thumbs/beans.png' alt='' />
+                    <NavLink to="/heirloom-beans" onClick={this.hideMenu} activeClassName="active">
+                        <img src="/static/images/layout/menu-thumbs/beans.png" alt="" />
                         <h3>Heirloom Beans</h3>
                         <p>The Great New Zealand Bean Hunt</p>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/plums-peaches' onClick={this.hideMenu} activeClassName='active'>
-                        <img src='/static/images/layout/menu-thumbs/plums.jpg' alt='' />
+                    <NavLink to="/plums-peaches" onClick={this.hideMenu} activeClassName="active">
+                        <img src="/static/images/layout/menu-thumbs/plums.jpg" alt="" />
                         <h3>Plums and Peaches</h3>
                         <p>Heritage/European plum varieties and Blackboy peaches</p>
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to='/huntingtons-disease'
+                        to="/huntingtons-disease"
                         onClick={this.hideMenu}
-                        activeClassName='active'
+                        activeClassName="active"
                     >
-                        <img src='/static/images/layout/menu-thumbs/huntingtons.png' alt='' />
+                        <img src="/static/images/layout/menu-thumbs/huntingtons.png" alt="" />
                         <h3>Huntington's Disease</h3>
                         <p>Researching a natural trehalose sugar treatment</p>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/ancient-wheat' onClick={this.hideMenu} activeClassName='active'>
-                        <img src='/static/images/layout/menu-thumbs/wheat.png' alt='' />
+                    <NavLink to="/ancient-wheat" onClick={this.hideMenu} activeClassName="active">
+                        <img src="/static/images/layout/menu-thumbs/wheat.png" alt="" />
                         <h3>Ancient Wheat</h3>
                         <p>Preserving ancient varieties and researching gluten intolerance</p>
                     </NavLink>
@@ -197,13 +199,13 @@ class App extends PureComponent {
 
     renderPublicationsMenu() {
         return (
-            <ul className='publications'>
+            <ul className="publications">
                 <li>
                     <NavLink
-                        to='/publications#jessica-and-the-golden-orb'
+                        to="/publications#jessica-and-the-golden-orb"
                         onClick={this.hideMenu}
                     >
-                        <img src='/static/images/layout/jessica-cover.jpg' alt='' />
+                        <img src="/static/images/layout/jessica-cover.jpg" alt="" />
                         <h3>Jessica and the <nobr>Golden Orb</nobr></h3>
                         <p>
                             A story for children about the very special properties of
@@ -214,10 +216,10 @@ class App extends PureComponent {
                 </li>
                 <li>
                     <NavLink
-                        to='/publications#jessica-the-seed-saver'
+                        to="/publications#jessica-the-seed-saver"
                         onClick={this.hideMenu}
                     >
-                        <img src='/static/images/layout/jessica-seed-saver-cover.jpg' alt='' />
+                        <img src="/static/images/layout/jessica-seed-saver-cover.jpg" alt="" />
                         <h3>
                             Jessica, {
                                 // Force 'the Seed Saver' to wrap (but only when the menu item is
@@ -239,17 +241,17 @@ class App extends PureComponent {
 
     render() {
         const logo = (
-            <div className='logo'>
-                <NavLink to='/' title='Return to the index page' activeClassName='active' />
-                <img src='/static/images/layout/logo@2x.png' alt='' />
+            <div className="logo">
+                <NavLink to="/" title="Return to the index page" activeClassName="active" />
+                <img src="/static/images/layout/logo@2x.png" alt="" />
             </div>
         );
 
         const githubLink = (
             <OutboundLink
-                to='https://github.com/bradchristensen/heritage-food-crops'
-                eventLabel='GitHub Project'
-                title='Contribute via GitHub'
+                to="https://github.com/bradchristensen/heritage-food-crops"
+                eventLabel="GitHub Project"
+                title="Contribute via GitHub"
             >
                 open source
             </OutboundLink>
@@ -257,9 +259,9 @@ class App extends PureComponent {
 
         const bradLink = (
             <OutboundLink
-                to='https://christensen.co.nz'
-                eventLabel={'Brad\'s website'}
-                title='Website development by Brad Christensen'
+                to="https://christensen.co.nz"
+                eventLabel="Brad's website"
+                title="Website development by Brad Christensen"
             >
                 designed with love
             </OutboundLink>
@@ -267,27 +269,29 @@ class App extends PureComponent {
 
         return (
             <div className={!this.props.title ? 'show-header' : ''}>
-                <div className='header'>
-                    <div className='wrapper'>
+                <div className="header">
+                    <div className="wrapper">
                         {logo}
-                        <h1 className='site-title'>
-                            <Link to='/'><strong>Heritage Food Crops</strong> Research Trust</Link>
+                        <h1 className="site-title">
+                            <Link to="/"><strong>Heritage Food Crops</strong> Research Trust</Link>
                         </h1>
                         {!!this.props.title && (
-                            <h2 className='current-page-title'>{this.props.title}</h2>
+                            <h2 className="current-page-title">{this.props.title}</h2>
                         )}
                     </div>
                 </div>
 
-                <div className='navbar' onMouseLeave={this.hideMenuDelayed}>
-                    <div className='wrapper'>
-                        <span className='caption'>Menu:</span>
-                        <ul className='menu'>
+                <div className="navbar" onMouseLeave={this.hideMenuDelayed}>
+                    <div className="wrapper">
+                        <span className="caption">Menu:</span>
+                        <ul className="menu">
                             <li>
                                 <a
-                                    href='#showResearchTopicsMenu'
+                                    href="#showResearchTopicsMenu"
                                     onMouseOver={this.showResearchTopicsMenu}
+                                    onFocus={noOp}
                                     onMouseOut={this.cancelShowingResearchTopicsMenu}
+                                    onBlur={noOp}
                                     onClick={(event) => {
                                         this.toggleResearchTopicsMenu();
                                         event.preventDefault();
@@ -298,9 +302,11 @@ class App extends PureComponent {
                             </li>
                             <li>
                                 <a
-                                    href='#showPublicationsMenu'
+                                    href="#showPublicationsMenu"
                                     onMouseOver={this.showPublicationsMenu}
+                                    onFocus={noOp}
                                     onMouseOut={this.cancelShowingPublicationsMenu}
+                                    onBlur={noOp}
                                     onClick={(event) => {
                                         this.togglePublicationsMenu();
                                         event.preventDefault();
@@ -311,19 +317,19 @@ class App extends PureComponent {
                             </li>
                             <li>
                                 <NavLink
-                                    to='/about-the-trust'
+                                    to="/about-the-trust"
                                     onClick={this.hideMenu}
                                 >
                                     About the Trust
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to='/contact-us' onClick={this.hideMenu}>
+                                <NavLink to="/contact-us" onClick={this.hideMenu}>
                                     Contact Us
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to='/links' onClick={this.hideMenu}>
+                                <NavLink to="/links" onClick={this.hideMenu}>
                                     Links
                                 </NavLink>
                             </li>
@@ -331,9 +337,10 @@ class App extends PureComponent {
                     </div>
                     <div
                         className={this.state.currentlyVisibleSubmenu !== null ? 'submenu fade-visible' : 'submenu'}
+                        onFocus={this.cancelHidingMenu}
                         onMouseOver={this.cancelHidingMenu}
                     >
-                        <div className='wrapper'>
+                        <div className="wrapper">
                             {this.state.currentlyVisibleSubmenu === 'researchTopics' &&
                                 this.renderResearchTopicsMenu()}
                             {this.state.currentlyVisibleSubmenu === 'publications' &&
@@ -342,71 +349,71 @@ class App extends PureComponent {
                     </div>
                 </div>
 
-                <div className='sidebar'>
+                <div className="sidebar">
                     {logo}
-                    <ul className='sidebar-menu'>
-                        <li className='category category-research-topics'>
-                            <span className='category-text'>Research Topics</span>
+                    <ul className="sidebar-menu">
+                        <li className="category category-research-topics">
+                            <span className="category-text">Research Topics</span>
                         </li>
                         <li>
-                            <NavLink to='/montys-surprise' activeClassName='active'>
+                            <NavLink to="/montys-surprise" activeClassName="active">
                                 Monty's Surprise
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='/heirloom-tomatoes' activeClassName='active'>
+                            <NavLink to="/heirloom-tomatoes" activeClassName="active">
                                 Heirloom Tomatoes
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='/heirloom-beans' activeClassName='active'>
+                            <NavLink to="/heirloom-beans" activeClassName="active">
                                 Heirloom Beans
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='/plums-peaches' activeClassName='active'>
+                            <NavLink to="/plums-peaches" activeClassName="active">
                                 Plums and Peaches
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='/huntingtons-disease' activeClassName='active'>
+                            <NavLink to="/huntingtons-disease" activeClassName="active">
                                 Huntington's Disease
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='/ancient-wheat' activeClassName='active'>
+                            <NavLink to="/ancient-wheat" activeClassName="active">
                                 Ancient Wheat
                             </NavLink>
                         </li>
 
-                        <li className='category category-other-resources'>
-                            <span className='category-text'>Other Resources</span>
+                        <li className="category category-other-resources">
+                            <span className="category-text">Other Resources</span>
                         </li>
                         <li>
-                            <NavLink to='/publications' activeClassName='active'>
+                            <NavLink to="/publications" activeClassName="active">
                                 Publications
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='/about-the-trust' activeClassName='active'>
+                            <NavLink to="/about-the-trust" activeClassName="active">
                                 About the Trust
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='/contact-us' activeClassName='active'>Contact Us</NavLink>
+                            <NavLink to="/contact-us" activeClassName="active">Contact Us</NavLink>
                         </li>
-                        <li><NavLink to='/links' activeClassName='active'>Links</NavLink></li>
+                        <li><NavLink to="/links" activeClassName="active">Links</NavLink></li>
                     </ul>
                 </div>
 
-                <div className='content'>
+                <div className="content">
                     {this.props.children}
 
-                    <div className='clear' />
+                    <div className="clear" />
                 </div>
 
-                <div className='footer'>
-                    <div className='wrapper'>
+                <div className="footer">
+                    <div className="wrapper">
                         Our website is {githubLink} and {bradLink}.<br />
                         <small>
                             Copyright &copy; Heritage Food Crops Research Trust,

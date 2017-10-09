@@ -22,7 +22,7 @@ module.exports = function generateWebpackConfig(forProduction) {
 
                 /* Our application's actual entrypoint, which will mount a React root component,
                  * initialise the Redux environment and so on). */
-                './static/scripts/main.js',
+                './static/scripts/main.jsx',
 
                 /* This entrypoint is not really an entrypoint as it won't be bundled into the
                  * main.js/main.min.js bundle, but instead bundled into its own

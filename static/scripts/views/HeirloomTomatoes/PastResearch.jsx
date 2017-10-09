@@ -1,12 +1,12 @@
 import React from 'react';
 import title from '../../infrastructure/documentTitle';
-import Article from '../../components/article';
-import Contents from '../../components/tableOfContents';
-import References from '../../components/references';
-import SectionHeading from '../../components/sectionHeading';
-import SectionSubheading from '../../components/sectionSubheading';
-import Reference from '../../components/reference';
-import DownloadLink from '../../components/downloadLink';
+import Article from '../../components/Article';
+import Contents from '../../components/TableOfContents';
+import References from '../../components/References';
+import SectionHeading from '../../components/SectionHeading';
+import SectionSubheading from '../../components/SectionSubheading';
+import Reference from '../../components/Reference';
+import DownloadLink from '../../components/DownloadLink';
 
 const refFrusciante = 'Frusciante L., Carli P., Ercolana M.R., Pernice R., Di Matteo A., Fogliano V., Pellegrini N. Antioxidant nutritional quality of tomato. Mol. Nutr. Food Res. 2007, 51, 609-617.';
 const refGiovannucci = 'Giovannucci, E., Tomatoes, tomato-based products, Lycopene and cancer: Review of epidemiologic literature, J. Natl Cancer Inst 1999, 91,317-331.';
@@ -28,31 +28,31 @@ const refHertog = 'Hertog, M.G.L., Feskens, E.J.M., Hollman, P.C.H., Katan, M.B.
 function PastResearch() {
     return (
         <Article>
-            <div className='wrapper'>
-                <div className='splitter'>
-                    <div className='box'>
+            <div className="wrapper">
+                <div className="splitter">
+                    <div className="box">
                         <SectionHeading exclude>Contents</SectionHeading>
                         <Contents />
                     </div>
                 </div>
 
-                <div className='splitter right'>
-                    <div className='box'>
+                <div className="splitter right">
+                    <div className="box">
                         <SectionHeading>Research Findings</SectionHeading>
 
                         <DownloadLink
-                            href='/static/docs/2008-tomato-top-varieties.xls'
-                            title='2008 Summary of Top Tomato Varieties'
+                            href="/static/docs/2008-tomato-top-varieties.xls"
+                            title="2008 Summary of Top Tomato Varieties"
                         />
 
                         <DownloadLink
-                            href='/static/docs/2007-tomato-top-varieties.xls'
-                            title='2007 Summary of Top Tomato Varieties'
+                            href="/static/docs/2007-tomato-top-varieties.xls"
+                            title="2007 Summary of Top Tomato Varieties"
                         />
                     </div>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <SectionHeading>2008 Tomato Research Report</SectionHeading>
                     <p>
                         Our research continued during the 2008 year with a further 80 heirloom
@@ -130,8 +130,8 @@ function PastResearch() {
                         found on this spreadsheet:
                     </p>
                     <DownloadLink
-                        href='/static/docs/tomato-varieties-chemical-analysis.xls'
-                        title='Tomato Varieties Grown or to be Grown for Chemical Analysis'
+                        href="/static/docs/tomato-varieties-chemical-analysis.xls"
+                        title="Tomato Varieties Grown or to be Grown for Chemical Analysis"
                     />
 
                     <p>
@@ -178,7 +178,7 @@ function PastResearch() {
                         excellent comparative information for future <em>in vitro</em> testing.
                     </p>
 
-                    <SectionSubheading shortText='Other International Research'>
+                    <SectionSubheading shortText="Other International Research">
                         Other Research Occuring Internationally
                     </SectionSubheading>
                     <p>
@@ -220,7 +220,7 @@ function PastResearch() {
                     </p>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <SectionHeading>2007 Tomato Research Report</SectionHeading>
                     <p>
                         Tomato is one of the most popular and extensively consumed vegetable
@@ -336,11 +336,11 @@ function PastResearch() {
                         chronic disease.
                     </p>
 
-                    <table cellSpacing='4'>
+                    <table cellSpacing="4">
                         <thead>
                             <tr>
                                 <th>
-                                    <span title='Study Ranking' className='abbr'>Ranking</span>
+                                    <span title="Study Ranking" className="abbr">Ranking</span>
                                 </th>
                                 <th>Cultivar</th>
                                 <th>Carotenoid Lycopene (mg/100gFW)</th>
@@ -525,7 +525,7 @@ function PastResearch() {
                     </p>
 
                     <SectionSubheading
-                        shortText='Health Benefits of Phenolic Compounds &mdash; Flavonoids'
+                        shortText="Health Benefits of Phenolic Compounds &mdash; Flavonoids"
                     >
                         Health Benefits of Phenolic Compounds &mdash;
                         Flavonoids<Reference source={refFrusciante} />
@@ -565,7 +565,7 @@ function PastResearch() {
                     </p>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <SectionHeading>References</SectionHeading>
                     <References />
                 </div>

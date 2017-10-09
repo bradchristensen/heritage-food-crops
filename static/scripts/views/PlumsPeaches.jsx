@@ -5,9 +5,9 @@ import { withRouter } from 'react-router';
 import _ from 'lodash';
 import * as Lightbox from '../actions/lightbox';
 import title from '../infrastructure/documentTitle';
-import Article from '../components/article';
-import SectionHeading from '../components/sectionHeading';
-import SectionSubheading from '../components/sectionSubheading';
+import Article from '../components/Article';
+import SectionHeading from '../components/SectionHeading';
+import SectionSubheading from '../components/SectionSubheading';
 
 const graphBaseUrl = '/static/images/layout/plums-peaches/graphs/';
 
@@ -22,11 +22,11 @@ function PlumsPeaches({ dispatch }) {
     }
 
     return (
-        <Article className='page-plums-peaches'>
-            <div className='wrapper'>
-                <SectionHeading tag='h1'>Plums</SectionHeading>
+        <Article className="page-plums-peaches">
+            <div className="wrapper">
+                <SectionHeading tag="h1">Plums</SectionHeading>
 
-                <div className='box'>
+                <div className="box">
                     <p>
                         This research will look to find superior varieties of plums for human
                         health, concentrating on investigating heritage and traditional European
@@ -34,8 +34,8 @@ function PlumsPeaches({ dispatch }) {
                     </p>
                 </div>
 
-                <div className='splitter'>
-                    <div className='box'>
+                <div className="splitter">
+                    <div className="box">
                         <SectionHeading>European Plums</SectionHeading>
                         <p>
                             These plum varieties (prunes, damsons and greengages) typically contain
@@ -60,55 +60,55 @@ function PlumsPeaches({ dispatch }) {
 
                         <SectionSubheading>Graphs</SectionSubheading>
                         <div style={{ padding: '10px 20px' }}>
-                            <div className='b100 gallery-thumb'>
+                            <div className="b100 gallery-thumb">
                                 <a
                                     href={`${graphBaseUrl}plums3cqa.png`}
-                                    className='gallery'
-                                    title='Neochlorogenic Acid in European Plums'
+                                    className="gallery"
+                                    title="Neochlorogenic Acid in European Plums"
                                     onClick={openLightbox}
                                 >
                                     <img
                                         src={`${graphBaseUrl}plums3cqa_100.png`}
-                                        alt='Cinnamic Acid - 3-CQA (Neochlorogenic Acid)'
+                                        alt="Cinnamic Acid - 3-CQA (Neochlorogenic Acid)"
                                     />
                                 </a>
                             </div>
-                            <div className='b100 gallery-thumb'>
+                            <div className="b100 gallery-thumb">
                                 <a
                                     href={`${graphBaseUrl}plumscyrut.png`}
-                                    className='gallery'
-                                    title='Cyanidin-3-rutinoside in European Plums'
+                                    className="gallery"
+                                    title="Cyanidin-3-rutinoside in European Plums"
                                     onClick={openLightbox}
                                 >
                                     <img
                                         src={`${graphBaseUrl}plumscyrut_100.png`}
-                                        alt='Anthocyanin - Cy-rut'
+                                        alt="Anthocyanin - Cy-rut"
                                     />
                                 </a>
                             </div>
-                            <div className='b100 gallery-thumb'>
+                            <div className="b100 gallery-thumb">
                                 <a
                                     href={`${graphBaseUrl}plumspnrut.png`}
-                                    className='gallery'
-                                    title='Peonidin-3-rutinoside in European Plums'
+                                    className="gallery"
+                                    title="Peonidin-3-rutinoside in European Plums"
                                     onClick={openLightbox}
                                 >
                                     <img
                                         src={`${graphBaseUrl}plumspnrut_100.png`}
-                                        alt='Anthocyanin - Pn-rut'
+                                        alt="Anthocyanin - Pn-rut"
                                     />
                                 </a>
                             </div>
-                            <div className='b100 gallery-thumb'>
+                            <div className="b100 gallery-thumb">
                                 <a
                                     href={`${graphBaseUrl}plumsqpenthex.png`}
-                                    className='gallery'
-                                    title='Quercetin Glycoside in European Plums'
+                                    className="gallery"
+                                    title="Quercetin Glycoside in European Plums"
                                     onClick={openLightbox}
                                 >
                                     <img
                                         src={`${graphBaseUrl}plumsqpenthex_100.png`}
-                                        alt='Quercetin Glycoside (Q-Penthex)'
+                                        alt="Quercetin Glycoside (Q-Penthex)"
                                     />
                                 </a>
                             </div>
@@ -116,8 +116,8 @@ function PlumsPeaches({ dispatch }) {
                     </div>
                 </div>
 
-                <div className='splitter right'>
-                    <div className='box'>
+                <div className="splitter right">
+                    <div className="box">
                         <SectionHeading>Black Doris Plum</SectionHeading>
                         <p>Black Doris can contain very high levels of:</p>
                         <ul>
@@ -138,11 +138,11 @@ function PlumsPeaches({ dispatch }) {
                     </div>
                 </div>
 
-                <div className='clear' />
+                <div className="clear" />
 
-                <SectionHeading tag='h1'>Peaches</SectionHeading>
+                <SectionHeading tag="h1">Peaches</SectionHeading>
 
-                <div className='box'>
+                <div className="box">
                     <p>
                         This research looks to find superior varieties of peaches for human health.
                     </p>
@@ -156,7 +156,7 @@ function PlumsPeaches({ dispatch }) {
                     </p>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <h2>Blackboy Peaches</h2>
                     <p>
                         Blackboy peaches can contain very high levels of chlorogenic acid (5-CQA)
@@ -166,58 +166,58 @@ function PlumsPeaches({ dispatch }) {
                     <div style={{ padding: '10px 20px 20px 20px' }}>
                         <a
                             href={`${graphBaseUrl}bb-chlorogenic-acid_800.png`}
-                            className='b300'
+                            className="b300"
                             onClick={openLightbox}
-                            title={'Chlorogenic Acid in Blackboy Peaches compared with other peach and plum varieties'}
+                            title="Chlorogenic Acid in Blackboy Peaches compared with other peach and plum varieties"
                         >
                             <img
                                 src={`${graphBaseUrl}bb-chlorogenic-acid_300.png`}
-                                alt='Chlorogenic Acid in Blackboy Peaches'
+                                alt="Chlorogenic Acid in Blackboy Peaches"
                             />
                         </a>
                         <a
                             href={`${graphBaseUrl}bb-quercetin-galactoside_800.png`}
-                            className='b300'
+                            className="b300"
                             onClick={openLightbox}
-                            title={'Quercetin Glycoside in Blackboy Peaches compared with other peach and plum varieties'}
+                            title="Quercetin Glycoside in Blackboy Peaches compared with other peach and plum varieties"
                         >
                             <img
                                 src={`${graphBaseUrl}bb-quercetin-galactoside_300.png`}
-                                alt='Quercetin Glycoside in Blackboy Peaches'
+                                alt="Quercetin Glycoside in Blackboy Peaches"
                             />
                         </a>
                     </div>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <img
-                        src='/static/images/layout/plums-peaches/blackboy-peach-action-shot.jpg'
-                        alt=''
-                        className='fill'
+                        src="/static/images/layout/plums-peaches/blackboy-peach-action-shot.jpg"
+                        alt=""
+                        className="fill"
                     />
                 </div>
 
-                <div className='splitter'>
-                    <div className='box'>
+                <div className="splitter">
+                    <div className="box">
                         <img
-                            src='/static/images/layout/plums-peaches/bb-peaches-mason.jpg'
-                            alt=''
-                            className='fill'
+                            src="/static/images/layout/plums-peaches/bb-peaches-mason.jpg"
+                            alt=""
+                            className="fill"
                         />
                     </div>
                 </div>
 
-                <div className='splitter right'>
-                    <div className='box'>
+                <div className="splitter right">
+                    <div className="box">
                         <img
-                            src='/static/images/layout/plums-peaches/blackboy-peach.jpg'
-                            alt=''
-                            className='fill'
+                            src="/static/images/layout/plums-peaches/blackboy-peach.jpg"
+                            alt=""
+                            className="fill"
                         />
                     </div>
                 </div>
 
-                <div className='clear' />
+                <div className="clear" />
             </div>
         </Article>
     );

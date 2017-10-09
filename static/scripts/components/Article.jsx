@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import ReactDOMServer from 'react-dom/server';
 import _ from 'lodash';
 import flatten from '../infrastructure/flatten';
-import Reference from './reference';
-import SectionHeading from './sectionHeading';
-import SectionSubheading from './sectionSubheading';
+import Reference from './Reference';
+import SectionHeading from './SectionHeading';
+import SectionSubheading from './SectionSubheading';
 
 export default class Article extends PureComponent {
     constructor(props) {

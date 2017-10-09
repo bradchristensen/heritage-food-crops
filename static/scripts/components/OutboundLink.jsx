@@ -14,12 +14,14 @@ export default function OutboundLink(props) {
     passthroughProps.href = props.to;
     delete passthroughProps.eventLabel;
     delete passthroughProps.to;
+    // eslint-disable-next-line jsx-a11y/anchor-has-content
     return (<a {...passthroughProps} />);
 }
 
 OutboundLink.propTypes = {
     eventLabel: PropTypes.string,
     href: PropTypes.string,
+    target: PropTypes.string,
     to: PropTypes.string,
 };
 

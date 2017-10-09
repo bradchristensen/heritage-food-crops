@@ -17,13 +17,15 @@ router.use('/api', api);
 router.use((req, res) => {
     const store = createApiClientStore({});
 
-    const content = renderToString(
+    const toRender = (
         <Provider store={store}>
             <StaticRouter context={{}} location={req.url}>
                 {routes}
             </StaticRouter>
-        </Provider>,
+        </Provider>
     );
+
+    const content = renderToString(toRender);
 
     // content must be rendered before we can retrieve the page title
     const title = getDocumentTitle();

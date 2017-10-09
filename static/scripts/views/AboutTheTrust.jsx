@@ -3,9 +3,9 @@ import title from '../infrastructure/documentTitle';
 
 function AboutTheTrust() {
     return (
-        <div className='wrapper'>
-            <div className='wrapper wrap-900'>
-                <div className='feature-text'>
+        <div className="wrapper">
+            <div className="wrapper wrap-900">
+                <div className="feature-text">
                     <p>
                         The <strong>Heritage Food Crops Research Trust</strong> (formerly the
                         Central Tree Crops Research Trust) is a charitable trust, established
@@ -16,7 +16,7 @@ function AboutTheTrust() {
                     <p />
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <h2>Objectives and Aims of the Trust</h2>
                     <p>
                         To conduct and co-ordinate research for the public good, on diseases
@@ -43,7 +43,7 @@ function AboutTheTrust() {
                     </ul>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <h2>Trust Officers</h2>
 
                     <h3>Mark Christensen</h3>

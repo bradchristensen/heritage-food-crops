@@ -1,17 +1,17 @@
 import React from 'react';
 import title from '../infrastructure/documentTitle';
-import Article from '../components/article';
-import SectionHeading from '../components/sectionHeading';
-import SectionSubheading from '../components/sectionSubheading';
+import Article from '../components/Article';
+import SectionHeading from '../components/SectionHeading';
+import SectionSubheading from '../components/SectionSubheading';
 
 function HuntingtonsDisease() {
     return (
-        <Article className='page-huntingtons-disease'>
-            <div className='page-feature' />
+        <Article className="page-huntingtons-disease">
+            <div className="page-feature" />
 
-            <div className='wrapper'>
+            <div className="wrapper">
                 <h1>Huntington's Disease</h1>
-                <div className='box'>
+                <div className="box">
                     <p>
                         This research sought to determine whether natural trehalose sugar found in
                         a particular desert plant could prove effective for treating the symptoms
@@ -19,7 +19,7 @@ function HuntingtonsDisease() {
                     </p>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <SectionHeading>Research</SectionHeading>
 
                     <p>
@@ -81,51 +81,60 @@ function HuntingtonsDisease() {
                     </p>
                 </div>
 
-                <div className='clear' />
+                <div className="clear" />
 
-                <div className='splitter'>
-                    <div className='box'>
+                <div className="splitter">
+                    <div className="box">
                         <img
-                            src='/static/images/layout/huntingtons-disease/01.jpg'
-                            alt={'Selaginella Lepidophylla (the Resurrection Plant) growing in the Trust\'s plant containment facility'}
-                            className='fill'
+                            src="/static/images/layout/huntingtons-disease/01.jpg"
+                            alt="Selaginella Lepidophylla (the Resurrection Plant) growing in the Trust's plant containment facility"
+                            className="fill"
                         />
                         <p>
-                            Selaginella Lepidophylla<em> (the Resurrection Plant) growing in the
-                            Trust's plant containment facility.</em>
+                            Selaginella Lepidophylla{' '}
+                            <em>
+                                (the Resurrection Plant) growing in the
+                                Trust's plant containment facility.
+                            </em>
                         </p>
                     </div>
                 </div>
 
-                <div className='splitter right'>
-                    <div className='box'>
+                <div className="splitter right">
+                    <div className="box">
                         <img
-                            src='/static/images/layout/huntingtons-disease/03.jpg'
-                            alt={'Selaginella Lepidophylla (the Resurrection Plant) growing in the Trust\'s plant containment facility'}
-                            className='fill'
+                            src="/static/images/layout/huntingtons-disease/03.jpg"
+                            alt="Selaginella Lepidophylla (the Resurrection Plant) growing in the Trust's plant containment facility"
+                            className="fill"
                         />
                         <p>
-                            Selaginella Lepidophylla<em> (the Resurrection Plant) growing in the
-                            Trust's plant containment facility.</em>
+                            Selaginella Lepidophylla{' '}
+                            <em>
+                                (the Resurrection Plant) growing in the
+                                Trust's plant containment facility.
+                            </em>
                         </p>
                     </div>
                 </div>
 
-                <div className='clear' />
+                <div className="clear" />
 
-                <div className='box'>
+                <div className="box">
                     <img
-                        src='/static/images/layout/huntingtons-disease/all.jpg'
-                        alt={'Plants of Selaginella Lepidophylla (the Resurrection Plant) growing in the Trust\'s plant containment facility'}
-                        className='fill'
+                        src="/static/images/layout/huntingtons-disease/all.jpg"
+                        alt="Plants of Selaginella Lepidophylla (the Resurrection Plant) growing in the Trust's plant containment facility"
+                        className="fill"
                     />
                     <p>
-                        <em>Plants of </em>Selaginella Lepidophylla<em> (the Resurrection Plant)
-                        growing in the Trust's plant containment facility.</em>
+                        <em>Plants of</em> Selaginella Lepidophylla{' '}
+                        <em>
+                            (the Resurrection Plant)
+                            growing in the Trust's plant containment facility.
+                        </em>
                     </p>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <SectionSubheading>
                         HPLC Chromatogram of <em>Selaginella lepidophylla</em> Dried Powder
                     </SectionSubheading>
@@ -188,15 +197,15 @@ function HuntingtonsDisease() {
                     </p>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <img
-                        src='/static/images/layout/huntingtons-disease/hplc-chromatogram.png'
-                        alt=''
-                        className='full'
+                        src="/static/images/layout/huntingtons-disease/hplc-chromatogram.png"
+                        alt=""
+                        className="full"
                     />
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <SectionHeading>The Trust's Research Background</SectionHeading>
                     <p>
                         The Trust (which was created to continue research begun by the Central
@@ -243,12 +252,13 @@ function HuntingtonsDisease() {
                     </p>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <SectionHeading>Further Information on Huntington's Disease</SectionHeading>
                     <p>
                         <strong>The following paragraphs are referenced from the April/May 2006
                         magazine, "Scientific American Mind", article by Andrich Juergen &
-                        Joerg T. Epplen.</strong>
+                        Joerg T. Epplen.
+                        </strong>
                     </p>
 
                     <p>

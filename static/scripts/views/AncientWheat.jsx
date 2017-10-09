@@ -1,22 +1,22 @@
 import React from 'react';
 import title from '../infrastructure/documentTitle';
-import Article from '../components/article';
-import SectionHeading from '../components/sectionHeading';
-import OutboundLink from '../components/outboundLink';
+import Article from '../components/Article';
+import SectionHeading from '../components/SectionHeading';
+import OutboundLink from '../components/OutboundLink';
 
 function AncientWheat() {
     const emailLink = (
-        <a href='mailto:david.hughes@laposte.net'>david.hughes@laposte.net</a>
+        <a href="mailto:david.hughes@laposte.net">david.hughes@laposte.net</a>
     );
 
     return (
-        <Article className='page-ancient-wheat'>
-            <div className='page-feature' />
+        <Article className="page-ancient-wheat">
+            <div className="page-feature" />
 
-            <div className='wrapper'>
+            <div className="wrapper">
                 <h1>Ancient Wheat</h1>
 
-                <div className='box'>
+                <div className="box">
                     <SectionHeading>Introduction</SectionHeading>
                     <p>
                         David Hughes joins us as our heritage wheat project coordinator. He has
@@ -36,40 +36,45 @@ function AncientWheat() {
                     </p>
                 </div>
 
-                <div className='splitter'>
-                    <div className='box'>
+                <div className="splitter">
+                    <div className="box">
                         <img
-                            src='/static/images/layout/wheat/david-mark-wheat.jpg'
-                            alt={'David Hughes and Mark Christensen inspecting heritage wheat, December 2015'}
-                            className='full'
+                            src="/static/images/layout/wheat/david-mark-wheat.jpg"
+                            alt="David Hughes and Mark Christensen inspecting heritage wheat, December 2015"
+                            className="full"
                         />
                         <p>
                             <em>David Hughes and Mark Christensen inspecting heritage wheat,
-                            December 2015.</em>
+                            December 2015.
+                            </em>
                         </p>
                     </div>
                 </div>
 
-                <div className='splitter right'>
-                    <div className='box'>
+                <div className="splitter right">
+                    <div className="box">
                         <img
-                            src='/static/images/layout/wheat/green-wheat-centennial.jpg'
-                            alt=''
-                            className='full'
+                            src="/static/images/layout/wheat/green-wheat-centennial.jpg"
+                            alt=""
+                            className="full"
                         />
                         <p><em>Centennial wheat growing in November 2015.</em></p>
                     </div>
                 </div>
 
-                <div className='clear' />
+                <div className="clear" />
 
-                <div className='box'>
+                <div className="box">
                     <SectionHeading>Project to revive heritage wheat varieties</SectionHeading>
 
                     <p>
-                        <strong><em>David Hughes suggests a possible solution as to how
-                        heritage wheat varieties could counter some modern wheat health
-                        issues</em></strong>
+                        <strong>
+                            <em>
+                                David Hughes suggests a possible solution as to how
+                                heritage wheat varieties could counter some modern wheat health
+                                issues
+                            </em>
+                        </strong>
                     </p>
 
                     <p>
@@ -104,19 +109,21 @@ function AncientWheat() {
                         and used in New Zealand today.
                     </p>
 
-                    <div className='right' style={{ width: '400px', margin: '7px 25px' }}>
+                    <div className="right" style={{ width: '400px', margin: '7px 25px' }}>
                         <img
-                            src='/static/images/layout/wheat/bread.jpg'
-                            alt='Organic heritage stone ground whole wheat bread'
-                            className='fill'
+                            src="/static/images/layout/wheat/bread.jpg"
+                            alt="Organic heritage stone ground whole wheat bread"
+                            className="fill"
                         />
                         <p style={{ paddingLeft: 0, paddingRight: 0 }}>
                             <em>Organic heritage stone ground whole wheat bread (
                                 <OutboundLink
-                                    to='http://bonton.ca/product/stone-ground-whole-wheat/'
-                                    eventLabel='http://bonton.ca/product/stone-ground-whole-wheat/'
-                                >source</OutboundLink>
-                            )</em>
+                                    to="http://bonton.ca/product/stone-ground-whole-wheat/"
+                                    eventLabel="http://bonton.ca/product/stone-ground-whole-wheat/"
+                                >source
+                                </OutboundLink>
+                            )
+                            </em>
                         </p>
                     </div>
 

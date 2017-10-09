@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
-import App from '../views/app';
+import App from '../views/App';
 
-let mountedInstances = [];
 let state;
 
 const emitChange = (title) => {
@@ -17,7 +16,6 @@ const emitChange = (title) => {
 export function rewind() {
     const recordedState = state;
     state = undefined;
-    mountedInstances = [];
     return recordedState;
 }
 
@@ -25,8 +23,7 @@ export default function documentTitle(Component, pageTitle) {
     state = pageTitle;
 
     class DocumentTitle extends PureComponent {
-        componentWillMount() {
-            mountedInstances.push(this);
+        componentDidMount() {
             emitChange(pageTitle);
         }
 
@@ -35,8 +32,6 @@ export default function documentTitle(Component, pageTitle) {
         }
 
         componentWillUnmount() {
-            const index = mountedInstances.indexOf(this);
-            mountedInstances.splice(index, 1);
             emitChange(null);
         }
 

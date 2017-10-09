@@ -20,6 +20,7 @@ class Lightbox extends PureComponent {
         this.onWindowResize = this.onWindowResize.bind(this);
 
         this.closeLightbox = () => this.props.dispatch(closeLightbox());
+        this.closeLightboxOnKeyDown = this.closeLightboxOnKeyDown.bind(this);
     }
 
     componentDidMount() {
@@ -48,9 +49,18 @@ class Lightbox extends PureComponent {
     onWindowResize() {
         this.setState({
             viewportWidth: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-            viewportHeight: Math.max(document.documentElement.clientHeight,
-                window.innerHeight || 0),
+            viewportHeight: Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0,
+            ),
         });
+    }
+
+    closeLightboxOnKeyDown(event) {
+        if (event.keyCode === 27) { // escape
+            this.closeLightbox();
+            event.preventDefault();
+        }
     }
 
     render() {
@@ -67,9 +77,10 @@ class Lightbox extends PureComponent {
             <div
                 className={`lightbox${this.props.visible ? ' fade-visible' : ''}`}
                 onClick={this.closeLightbox}
+                onKeyDown={this.closeLightboxOnKeyDown}
             >
                 <div
-                    className='lightbox-modal'
+                    className="lightbox-modal"
                     style={{
                         marginLeft: `-${width / 2}px`,
                         marginTop: `-${height / 2}px`,
@@ -78,14 +89,14 @@ class Lightbox extends PureComponent {
                     }}
                 >
                     <button
-                        type='button'
+                        type="button"
                         onClick={this.closeLightbox}
-                        className='lightbox-close'
+                        className="lightbox-close"
                     >
                         Close
                     </button>
                     <div
-                        className='lightbox-modal-content'
+                        className="lightbox-modal-content"
                         style={{
                             backgroundColor: this.state.loading || contentIsVector ?
                                 '#fff' : 'transparent',
@@ -95,7 +106,7 @@ class Lightbox extends PureComponent {
                             <img
                                 ref={(img) => { this.imgRef = img; }}
                                 src={this.props.content.toString()}
-                                alt=''
+                                alt=""
                                 onLoad={() => {
                                     this.setState({
                                         loading: false,
@@ -103,21 +114,23 @@ class Lightbox extends PureComponent {
                                         imageHeight: this.imgRef.naturalHeight,
                                     });
                                 }}
-                                width='100%'
-                                height='100%'
+                                width="100%"
+                                height="100%"
                                 style={{ display: this.state.loading ? 'none' : 'block' }}
                             />
                         }
                         {!!this.state.loading && <img
-                            src='/static/images/icons/spinner.svg'
-                            alt='Loading...'
-                            width='50'
+                            src="/static/images/icons/spinner.svg"
+                            alt="Loading..."
+                            width="50"
                             style={{ margin: '75px' }}
                         />}
                     </div>
-                    {!!this.props.caption && <div className='lightbox-caption'>
-                        <span className='lightbox-caption-text'>{this.props.caption}</span>
-                    </div>}
+                    {!!this.props.caption && (
+                        <div className="lightbox-caption">
+                            <span className="lightbox-caption-text">{this.props.caption}</span>
+                        </div>
+                    )}
                 </div>
             </div>
         );

@@ -4,16 +4,16 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
-import * as Lightbox from '../actions/lightbox';
-import title from '../infrastructure/documentTitle';
-import Article from '../components/article';
-import Contents from '../components/tableOfContents';
-import References from '../components/references';
-import SectionHeading from '../components/sectionHeading';
-import SectionSubheading from '../components/sectionSubheading';
-import Reference from '../components/reference';
-import DownloadLink from '../components/downloadLink';
-import OutboundLink from '../components/outboundLink';
+import * as Lightbox from '../../actions/lightbox';
+import title from '../../infrastructure/documentTitle';
+import Article from '../../components/Article';
+import Contents from '../../components/TableOfContents';
+import References from '../../components/References';
+import SectionHeading from '../../components/SectionHeading';
+import SectionSubheading from '../../components/SectionSubheading';
+import Reference from '../../components/Reference';
+import DownloadLink from '../../components/DownloadLink';
+import OutboundLink from '../../components/OutboundLink';
 
 // Shortcut for applying target='_blank' props in accordance with
 // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md
@@ -139,8 +139,8 @@ class HeirloomTomatoes extends PureComponent {
                 <thead>
                     <tr>
                         <th style={{ border: 'none' }} />
-                        <th colSpan='4' style={{ textAlign: 'center' }}>Concentration (mg/100g FW)</th>
-                        <th colSpan='2' className='hide-mobile' style={{ border: 'none' }} />
+                        <th colSpan="4" style={{ textAlign: 'center' }}>Concentration (mg/100g FW)</th>
+                        <th colSpan="2" className="hide-mobile" style={{ border: 'none' }} />
                     </tr>
                     <tr>
                         {[
@@ -188,8 +188,8 @@ class HeirloomTomatoes extends PureComponent {
                             <td style={{ textAlign: 'right' }}>{row.tetraCisLycopene || 'n.d.'}</td>
                             <td style={{ textAlign: 'right' }}>{row.betaCarotene || 'n.d.'}</td>
                             <td style={{ textAlign: 'right' }}>{row.allTransLycopene || 'n.d.'}</td>
-                            <td style={{ textAlign: 'right' }} className='hide-mobile'>{row.pH}</td>
-                            <td style={{ textAlign: 'right' }} className='hide-mobile'>{row.ranking}</td>
+                            <td style={{ textAlign: 'right' }} className="hide-mobile">{row.pH}</td>
+                            <td style={{ textAlign: 'right' }} className="hide-mobile">{row.ranking}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -200,23 +200,23 @@ class HeirloomTomatoes extends PureComponent {
     render() {
         const midweekLink = (
             <OutboundLink
-                to={'http://www.nzherald.co.nz/wanganui-chronicle/midweek/news/article.cfm?c_id=1503658&objectid=11533472'}
-                eventLabel='Wanganui Midweek tomato book article'
+                to="http://www.nzherald.co.nz/wanganui-chronicle/midweek/news/article.cfm?c_id=1503658&objectid=11533472"
+                eventLabel="Wanganui Midweek tomato book article"
             >
                 'Tomato stars in new book'
             </OutboundLink>
         );
 
         const bristolLink = (
-            <OutboundLink to='http://bristol.co.nz' eventLabel='Bristol Plants & Seeds'>
+            <OutboundLink to="http://bristol.co.nz" eventLabel="Bristol Plants & Seeds">
                 www.bristol.co.nz
             </OutboundLink>
         );
 
         return (
-            <Article className='page-heirloom-tomatoes'>
-                <div className='page-feature'>
-                    <div className='wrapper'>
+            <Article className="page-heirloom-tomatoes">
+                <div className="page-feature">
+                    <div className="wrapper">
                         <p>
                             One of these tomato varieties contains lycopene that is more easily
                             absorbed into your bloodstream, and therefore better for you. Can you
@@ -225,11 +225,11 @@ class HeirloomTomatoes extends PureComponent {
                     </div>
                 </div>
 
-                <div className='wrapper'>
-                    <div className='splitter'>
+                <div className="wrapper">
+                    <div className="splitter">
                         <h1>Heirloom Tomatoes</h1>
 
-                        <div className='box'>
+                        <div className="box">
                             <SectionHeading>Introduction</SectionHeading>
                             <p>
                                 This research is looking to find the best open-pollinated tomato
@@ -242,22 +242,22 @@ class HeirloomTomatoes extends PureComponent {
                             </p>
                         </div>
 
-                        <div className='box'>
+                        <div className="box">
                             <SectionHeading exclude>Contents</SectionHeading>
                             <Contents />
                         </div>
 
-                        <div className='box jessica'>
+                        <div className="box jessica">
                             <img
-                                src='/static/images/layout/jessica-cover.jpg'
-                                alt='Jessica and the Golden Orb'
-                                className='left'
-                                width='50%'
+                                src="/static/images/layout/jessica-cover.jpg"
+                                alt="Jessica and the Golden Orb"
+                                className="left"
+                                width="50%"
                             />
                             <div style={{ marginLeft: '50%' }}>
                                 <h2 style={{ clear: 'none' }}>
                                     <a
-                                        href='/static/docs/jessica-and-the-golden-orb.pdf'
+                                        href="/static/docs/jessica-and-the-golden-orb.pdf"
                                         {...targetBlank}
                                     >
                                         Jessica and the Golden Orb
@@ -274,68 +274,73 @@ class HeirloomTomatoes extends PureComponent {
                                 </p>
                                 <p>
                                     <a
-                                        className='button'
-                                        href='/static/docs/jessica-and-the-golden-orb.pdf'
+                                        className="button"
+                                        href="/static/docs/jessica-and-the-golden-orb.pdf"
                                         {...targetBlank}
-                                    >Download</a>
+                                    >Download
+                                    </a>
                                 </p>
-                                <p><em>'Jessica and the Golden Orb' was featured by the Wanganui
-                                    Midweek newspaper in the article {midweekLink}.</em></p>
+                                <p>
+                                    <em>
+                                        'Jessica and the Golden Orb' was featured by the Wanganui
+                                        Midweek newspaper in the article {midweekLink}.
+                                    </em>
+                                </p>
                             </div>
                         </div>
 
-                        <div className='box'>
+                        <div className="box">
                             <SectionHeading>Research Papers</SectionHeading>
 
                             <DownloadLink
-                                href='/static/docs/2015-carotenoid-composition-of-tomatoes.pdf'
-                                title='2015 Report - Carotenoid composition of tomatoes'
+                                href="/static/docs/2015-carotenoid-composition-of-tomatoes.pdf"
+                                title="2015 Report - Carotenoid composition of tomatoes"
                             />
 
                             <DownloadLink
-                                href={'/static/docs/2014-bioavailability-of-tetra-cis-lycopene-in-humans.pdf'}
-                                title={'2014 Report - The bioavailability of tetra-cis-lycopene in humans and tetra-cis lycopene concentrations in selections of heritage tomatoes'}
+                                href="/static/docs/2014-bioavailability-of-tetra-cis-lycopene-in-humans.pdf"
+                                title="2014 Report - The bioavailability of tetra-cis-lycopene in humans and tetra-cis lycopene concentrations in selections of heritage tomatoes"
                             />
 
                             <DownloadLink
-                                href={'/static/docs/2013-report-grapefruit-tomato-metabolites-health.pdf'}
-                                title='2013 Report - Grapefruit and Tomato Metabolites for Health'
+                                href="/static/docs/2013-report-grapefruit-tomato-metabolites-health.pdf"
+                                title="2013 Report - Grapefruit and Tomato Metabolites for Health"
                             />
 
                             <aside>
                                 <DownloadLink
-                                    href='/static/docs/2013-report-appendix1.pdf'
-                                    title='2013 Report - Appendix 1'
-                                    description={'Tangerine tomatoes increase total and tetra-cis-lycopene isomer concentrations more than red tomatoes in healthy adult humans'}
+                                    href="/static/docs/2013-report-appendix1.pdf"
+                                    title="2013 Report - Appendix 1"
+                                    description="Tangerine tomatoes increase total and tetra-cis-lycopene isomer concentrations more than red tomatoes in healthy adult humans"
                                 />
 
                                 <DownloadLink
-                                    href='/static/docs/2013-report-appendix2.pdf'
-                                    title='2013 Report - Appendix 2'
-                                    description={'Processing Tangerine Tomatoes: Effects of Lycopene-Isomer Concentrations and Profile'}
+                                    href="/static/docs/2013-report-appendix2.pdf"
+                                    title="2013 Report - Appendix 2"
+                                    description="Processing Tangerine Tomatoes: Effects of Lycopene-Isomer Concentrations and Profile"
                                 />
                             </aside>
 
                             <DownloadLink
-                                href='/static/docs/2009-tomato-top-varieties.pdf'
-                                title='2009 Summary of Top Tomato Varieties'
+                                href="/static/docs/2009-tomato-top-varieties.pdf"
+                                title="2009 Summary of Top Tomato Varieties"
                             />
                         </div>
 
-                        <div className='box'>
+                        <div className="box">
                             <h2>
-                                <Link to='/heirloom-tomatoes/past-research'>Past Research</Link>
+                                <Link to="/heirloom-tomatoes/past-research">Past Research</Link>
                             </h2>
                             <p>
-                                <Link to='/heirloom-tomatoes/past-research'>
+                                <Link to="/heirloom-tomatoes/past-research">
                                     Click here to see more of our research in this area up to 2008.
                                 </Link>
                             </p>
                         </div>
                     </div>
 
-                    <div className='splitter right'>
-                        <div className='box'>
+                    <div className="splitter right">
+                        <div className="box">
                             <SectionHeading>
                                 The Secret to Our Health Lies in Older Varieties of Fruit
                             </SectionHeading>
@@ -482,33 +487,33 @@ class HeirloomTomatoes extends PureComponent {
                         </div>
                     </div>
 
-                    <div className='clear' />
+                    <div className="clear" />
 
-                    <div className='splitter'>
-                        <div className='box'>
+                    <div className="splitter">
+                        <div className="box">
                             <img
-                                src='/static/images/layout/tomatoes/moonglow-vertical.jpg'
-                                alt='Moonglow tomatoes'
-                                className='fill'
+                                src="/static/images/layout/tomatoes/moonglow-vertical.jpg"
+                                alt="Moonglow tomatoes"
+                                className="fill"
                             />
                             <p><em>Moonglow tomatoes</em></p>
                         </div>
                     </div>
 
-                    <div className='splitter right'>
-                        <div className='box'>
+                    <div className="splitter right">
+                        <div className="box">
                             <img
-                                src='/static/images/layout/tomatoes/rosalita-vertical.jpg'
-                                alt='Rosalita tomatoes'
-                                className='fill'
+                                src="/static/images/layout/tomatoes/rosalita-vertical.jpg"
+                                alt="Rosalita tomatoes"
+                                className="fill"
                             />
                             <p><em>Rosalita tomatoes</em></p>
                         </div>
                     </div>
 
-                    <div className='clear' />
+                    <div className="clear" />
 
-                    <div className='box'>
+                    <div className="box">
                         <SectionHeading>
                             Discovery of the Real Tomato (12 April 2013)
                         </SectionHeading>
@@ -555,7 +560,7 @@ class HeirloomTomatoes extends PureComponent {
                                 <thead>
                                     <tr>
                                         <th style={{ border: 'none' }} />
-                                        <th colSpan='4' style={{ border: 'none', textAlign: 'center' }}>Carotenoids (mg/100g FW)</th>
+                                        <th colSpan="4" style={{ border: 'none', textAlign: 'center' }}>Carotenoids (mg/100g FW)</th>
                                     </tr>
                                     <tr>
                                         <th style={{ border: 'none' }}>Cultivar Name</th>
@@ -569,128 +574,140 @@ class HeirloomTomatoes extends PureComponent {
                                     <tr>
                                         <td>
                                             <a
-                                                href={'/static/images/layout/tomatoes/table/moonglow.jpg'}
-                                                title='Moonglow'
+                                                href="/static/images/layout/tomatoes/table/moonglow.jpg"
+                                                title="Moonglow"
                                                 onClick={this.openLightbox}
-                                            >Moonglow</a>
+                                            >Moonglow
+                                            </a>
                                         </td>
                                         <td>5.36</td><td>0.05</td><td>n.d.</td><td>0.06</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a
-                                                href={'/static/images/layout/tomatoes/table/tangerine.jpg'}
-                                                title='Tangerine'
+                                                href="/static/images/layout/tomatoes/table/tangerine.jpg"
+                                                title="Tangerine"
                                                 onClick={this.openLightbox}
-                                            >Tangerine</a>
+                                            >Tangerine
+                                            </a>
                                         </td>
                                         <td>4.43</td><td>n.d.</td><td>n.d.</td><td>0.05</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a
-                                                href={'/static/images/layout/tomatoes/table/orange-fleshed-purple-smudge.jpg'}
-                                                title='Orange Fleshed Purple Smudge'
+                                                href="/static/images/layout/tomatoes/table/orange-fleshed-purple-smudge.jpg"
+                                                title="Orange Fleshed Purple Smudge"
                                                 onClick={this.openLightbox}
-                                            >Orange Fleshed Purple Smudge</a>
+                                            >Orange Fleshed Purple Smudge
+                                            </a>
                                         </td>
                                         <td>4.36</td><td>0.06</td><td>n.d.</td><td>0.09</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a
-                                                href={'/static/images/layout/tomatoes/table/amish-orange-sherbert-heirloom.jpg'}
-                                                title='Amish Orange Sherbert Heirloom'
+                                                href="/static/images/layout/tomatoes/table/amish-orange-sherbert-heirloom.jpg"
+                                                title="Amish Orange Sherbert Heirloom"
                                                 onClick={this.openLightbox}
-                                            >Amish Orange Sherbert Heirloom</a>
+                                            >Amish Orange Sherbert Heirloom
+                                            </a>
                                         </td>
                                         <td>4.35</td><td>0.01</td><td>n.d.</td><td>0.02</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a
-                                                href={'/static/images/layout/tomatoes/table/aunt-gerties-gold.jpg'}
-                                                title={'Aunt Gertie\'s Gold'}
+                                                href="/static/images/layout/tomatoes/table/aunt-gerties-gold.jpg"
+                                                title="Aunt Gertie's Gold"
                                                 onClick={this.openLightbox}
-                                            >Aunt Gertie's Gold</a>
+                                            >Aunt Gertie's Gold
+                                            </a>
                                         </td>
                                         <td>4.21</td><td>0.02</td><td>n.d.</td><td>0.04</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a
-                                                href={'/static/images/layout/tomatoes/table/big-orange.jpg'}
-                                                title='Big Orange'
+                                                href="/static/images/layout/tomatoes/table/big-orange.jpg"
+                                                title="Big Orange"
                                                 onClick={this.openLightbox}
-                                            >Big Orange</a>
+                                            >Big Orange
+                                            </a>
                                         </td>
                                         <td>3.79</td><td>0.03</td><td>1.36</td><td>0.02</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a
-                                                href={'/static/images/layout/tomatoes/table/amish-yellowish-orange-oxheart.jpg'}
-                                                title='Amish Yellowish Orange Oxheart'
+                                                href="/static/images/layout/tomatoes/table/amish-yellowish-orange-oxheart.jpg"
+                                                title="Amish Yellowish Orange Oxheart"
                                                 onClick={this.openLightbox}
-                                            >Amish Yellowish Orange Oxheart</a>
+                                            >Amish Yellowish Orange Oxheart
+                                            </a>
                                         </td>
                                         <td>2.67</td><td>0.02</td><td>n.d.</td><td>0.05</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a
-                                                href={'/static/images/layout/tomatoes/table/earl-of-edgecomb.jpg'}
-                                                title='Earl of Edgecomb'
+                                                href="/static/images/layout/tomatoes/table/earl-of-edgecomb.jpg"
+                                                title="Earl of Edgecomb"
                                                 onClick={this.openLightbox}
-                                            >Earl of Edgecomb</a>
+                                            >Earl of Edgecomb
+                                            </a>
                                         </td>
                                         <td>2.63</td><td>n.d.</td><td>n.d.</td><td>0.07</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a
-                                                href='/static/images/layout/tomatoes/table/elbe.jpg'
-                                                title='Elbe'
+                                                href="/static/images/layout/tomatoes/table/elbe.jpg"
+                                                title="Elbe"
                                                 onClick={this.openLightbox}
-                                            >Elbe</a>
+                                            >Elbe
+                                            </a>
                                         </td>
                                         <td>2.45</td><td>n.d.</td><td>n.d.</td><td>0.06</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a
-                                                href={'/static/images/layout/tomatoes/table/sibirische-orange.jpg'}
-                                                title='Sibirische Orange'
+                                                href="/static/images/layout/tomatoes/table/sibirische-orange.jpg"
+                                                title="Sibirische Orange"
                                                 onClick={this.openLightbox}
-                                            >Sibirische Orange</a>
+                                            >Sibirische Orange
+                                            </a>
                                         </td>
                                         <td>1.72</td><td>0.03</td><td>n.d.</td><td>0.04</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a
-                                                href={'/static/images/layout/tomatoes/table/orange-roma.jpg'}
-                                                title='Orange Roma'
+                                                href="/static/images/layout/tomatoes/table/orange-roma.jpg"
+                                                title="Orange Roma"
                                                 onClick={this.openLightbox}
-                                            >Orange Roma</a>
+                                            >Orange Roma
+                                            </a>
                                         </td>
                                         <td>1.42</td><td>0.10</td><td>0.41</td><td>0.13</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a
-                                                href={'/static/images/layout/tomatoes/table/dads-sunset.jpg'}
-                                                title={'Dad\'s Sunset'}
+                                                href="/static/images/layout/tomatoes/table/dads-sunset.jpg"
+                                                title="Dad's Sunset"
                                                 onClick={this.openLightbox}
-                                            >Dad's Sunset</a>
+                                            >Dad's Sunset
+                                            </a>
                                         </td>
                                         <td>1.01</td><td>0.04</td><td>0.13</td><td>0.04</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <p>
-                                (n.d. = not detected)<br /><strong>Click on the cultivar names to
-                                see photos.</strong>
+                                (n.d. = not detected)<br />
+                                <strong>Click on the cultivar names to see photos.</strong>
                             </p>
                         </div>
 
@@ -771,15 +788,15 @@ class HeirloomTomatoes extends PureComponent {
                         </p>
                     </div>
 
-                    <div className='box'>
+                    <div className="box">
                         <img
-                            src='/static/images/layout/tomatoes/moonglow-centrepiece.jpg'
-                            alt='The Moonglow tomato variety'
+                            src="/static/images/layout/tomatoes/moonglow-centrepiece.jpg"
+                            alt="The Moonglow tomato variety"
                         />
                         <p><em>Moonglow tomatoes also make a terrific centrepiece!</em></p>
                     </div>
 
-                    <div className='box'>
+                    <div className="box">
                         <SectionHeading>
                             2013: The Health Potential of the 'Real' Tomato
                         </SectionHeading>
@@ -845,8 +862,8 @@ class HeirloomTomatoes extends PureComponent {
                             is why we hear recommendations to cook tomatoes and combine them with
                             fat, in order to improve our absorption of lycopene
                             <Reference
-                                source={'Turning up the heat on tomatoes boosts absorption of lycopene'}
-                                href='https://news.osu.edu/news/2008/08/13/lycoproc/'
+                                source="Turning up the heat on tomatoes boosts absorption of lycopene"
+                                href="https://news.osu.edu/news/2008/08/13/lycoproc/"
                             />. This has always seemed to me to be unusual, given that natural
                             food in its raw state is typically better for us, and each stage of
                             processing of food does diminish the medicinal quality of that food.
@@ -865,7 +882,9 @@ class HeirloomTomatoes extends PureComponent {
                             efficiently absorbed by the body. Further, oxidative damage decreased
                             after eating either of the sauces, but the effect was greater after
                             eating the Tangerine tomato sauce.
-                            <Reference source={'"Tangerine Tomatoes top reds in preliminary lycopene study": Agricultural Research, February 2011'} />
+                            <Reference
+                                source='"Tangerine Tomatoes top reds in preliminary lycopene study": Agricultural Research, February 2011'
+                            />
                         </p>
 
                         <p>
@@ -984,21 +1003,21 @@ class HeirloomTomatoes extends PureComponent {
                         </p>
                     </div>
 
-                    <div className='box'>
+                    <div className="box">
                         <SectionHeading>
                             Invitation to New Zealand Tomato Growers (April 2013)
                         </SectionHeading>
 
-                        <p className='right'>
+                        <p className="right">
                             <a
-                                href='/static/images/layout/tomatoes/tomato-selection_800.jpg'
-                                className='b300'
+                                href="/static/images/layout/tomatoes/tomato-selection_800.jpg"
+                                className="b300"
                                 onClick={this.openLightbox}
-                                title={'Just a few of the 100 heirloom tomato varieties grown in 2009 for scientific analysis.'}
+                                title="Just a few of the 100 heirloom tomato varieties grown in 2009 for scientific analysis."
                             >
                                 <img
-                                    src='/static/images/layout/tomatoes/tomato-selection_300.jpg'
-                                    alt={'Just a few of the 100 heirloom tomato varieties grown in 2009 for scientific analysis.'}
+                                    src="/static/images/layout/tomatoes/tomato-selection_300.jpg"
+                                    alt="Just a few of the 100 heirloom tomato varieties grown in 2009 for scientific analysis."
                                 />
                             </a>
                         </p>
@@ -1127,28 +1146,42 @@ class HeirloomTomatoes extends PureComponent {
                         </p>
 
                         <p>
-                            <strong><em>Tomato seeds can be purchased
-                            from <OutboundLink to='http://www.bristol.co.nz' eventLabel='Bristol Plants & Seeds'>Bristol Plants & Seeds</OutboundLink>,
-                            or <Link to='/contact-us'>contact us</Link> if you would like to be a
-                            part of our research and trial one of these varieties.</em></strong>
+                            <strong>
+                                <em>
+                                    Tomato seeds can be purchased from{' '}
+                                    <OutboundLink
+                                        to="http://www.bristol.co.nz"
+                                        eventLabel="Bristol Plants & Seeds"
+                                    >
+                                        Bristol Plants & Seeds
+                                    </OutboundLink>,
+                                    or{' '}
+                                    <Link to="/contact-us">contact us</Link> if you would like
+                                    to be a part of our research and trial one of these varieties.
+                                </em>
+                            </strong>
                         </p>
                     </div>
 
-                    <div className='box'>
+                    <div className="box">
                         <img
-                            src='/static/images/layout/tomatoes/mark-golden-orange-tomatoes.jpg'
-                            alt='Mark Christensen'
+                            src="/static/images/layout/tomatoes/mark-golden-orange-tomatoes.jpg"
+                            alt="Mark Christensen"
                         />
-                        <p><em>Mark Christensen inspects some of the Trust's
-                        golden/orange tomatoes.</em></p>
+                        <p>
+                            <em>
+                                Mark Christensen inspects some of the Trust's
+                                golden/orange tomatoes.
+                            </em>
+                        </p>
                     </div>
 
-                    <div className='box'>
+                    <div className="box">
                         <SectionHeading>References</SectionHeading>
                         <References />
                     </div>
 
-                    <div className='box'>
+                    <div className="box">
                         <SectionHeading>
                             Appendix: Tomato varieties confirmed to contain Tetra-cis-lycopene
                         </SectionHeading>
@@ -1179,7 +1212,8 @@ class HeirloomTomatoes extends PureComponent {
                         state of the tomato, with maximum levels appearing to be at the optimum
                         full ripeness stage for picking and immediate eating. Our 'Moonglow'
                         tomatoes were picked early and therefore their level of 5.38 for
-                        tetra-cis-lycopene will be greater if left to ripen further.</p>
+                        tetra-cis-lycopene will be greater if left to ripen further.
+                        </p>
                         {/*
                             <p>**Data for the 'Tangerine' variety was not available for this 2015
                             season, however based on its previous analysis we have estimated its

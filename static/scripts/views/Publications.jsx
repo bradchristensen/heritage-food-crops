@@ -1,6 +1,6 @@
 import React from 'react';
 import title from '../infrastructure/documentTitle';
-import OutboundLink from '../components/outboundLink';
+import OutboundLink from '../components/OutboundLink';
 
 // Shortcut for applying target='_blank' props in accordance with
 // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md
@@ -11,8 +11,8 @@ const targetBlank = {
 
 const midweekLinkGoldenOrb = (
     <OutboundLink
-        to={'http://www.nzherald.co.nz/wanganui-chronicle/midweek/news/article.cfm?c_id=1503658&objectid=11533472'}
-        eventLabel={'Wanganui Midweek article \'Tomato stars in new book\''}
+        to="http://www.nzherald.co.nz/wanganui-chronicle/midweek/news/article.cfm?c_id=1503658&objectid=11533472"
+        eventLabel="Wanganui Midweek article 'Tomato stars in new book'"
     >
         'Tomato stars in new book'
     </OutboundLink>
@@ -20,8 +20,8 @@ const midweekLinkGoldenOrb = (
 
 const tlcLinkGoldenOrb = (
     <OutboundLink
-        to='https://www.tlc.ac.nz/news/q-what-came-first-the-chicken-or-the-egg/'
-        eventLabel={'The Learning Connexion article \'Q. Why did the tomato blush?\''}
+        to="https://www.tlc.ac.nz/news/q-what-came-first-the-chicken-or-the-egg/"
+        eventLabel="The Learning Connexion article 'Q. Why did the tomato blush?'"
     >
         'Q. Why did the tomato blush?'
     </OutboundLink>
@@ -29,8 +29,8 @@ const tlcLinkGoldenOrb = (
 
 const midweekLinkSeedSaver = (
     <OutboundLink
-        to={'http://www.nzherald.co.nz/wanganui-chronicle/midweek/news/article.cfm?c_id=1503658&objectid=11741263'}
-        eventLabel={'Wanganui Midweek article \'Spreading the seeds of heritage\''}
+        to="http://www.nzherald.co.nz/wanganui-chronicle/midweek/news/article.cfm?c_id=1503658&objectid=11741263"
+        eventLabel="Wanganui Midweek article 'Spreading the seeds of heritage'"
     >
         'Spreading the seeds of heritage'
     </OutboundLink>
@@ -38,9 +38,9 @@ const midweekLinkSeedSaver = (
 
 function Publications() {
     return (
-        <div className='wrapper'>
-            <div className='wrapper wrap-900'>
-                <div className='feature-text'>
+        <div className="wrapper">
+            <div className="wrapper wrap-900">
+                <div className="feature-text">
                     <p>
                         The following stories for children, written and illustrated by
                         Janet Bradbury, explain the very special properties
@@ -52,32 +52,32 @@ function Publications() {
                     </p>
                 </div>
 
-                <div className='box jessica publication-box-jessica'>
-                    <div className='flex-left'>
+                <div className="box jessica publication-box-jessica">
+                    <div className="flex-left">
                         <a
-                            href='/static/docs/jessica-and-the-golden-orb.pdf'
+                            href="/static/docs/jessica-and-the-golden-orb.pdf"
                             {...targetBlank}
                         >
                             <img
-                                src='/static/images/layout/jessica-cover.jpg'
-                                alt=''
+                                src="/static/images/layout/jessica-cover.jpg"
+                                alt=""
                             />
                         </a>
 
                         <p style={{ textAlign: 'center' }}>
                             <a
-                                className='button'
-                                href='/static/docs/jessica-and-the-golden-orb.pdf'
+                                className="button"
+                                href="/static/docs/jessica-and-the-golden-orb.pdf"
                                 {...targetBlank}
                             >
                                 Download PDF
                             </a>
                         </p>
                     </div>
-                    <div className='flex-right'>
-                        <h2 id='jessica-and-the-golden-orb'>
+                    <div className="flex-right">
+                        <h2 id="jessica-and-the-golden-orb">
                             <a
-                                href='/static/docs/jessica-and-the-golden-orb.pdf'
+                                href="/static/docs/jessica-and-the-golden-orb.pdf"
                                 {...targetBlank}
                             >
                                 Jessica and the Golden Orb
@@ -109,32 +109,32 @@ function Publications() {
                     </div>
                 </div>
 
-                <div className='box jessica publication-box-jessica'>
-                    <div className='flex-left'>
+                <div className="box jessica publication-box-jessica">
+                    <div className="flex-left">
                         <a
-                            href='/static/docs/jessica-the-seed-saver.pdf'
+                            href="/static/docs/jessica-the-seed-saver.pdf"
                             {...targetBlank}
                         >
                             <img
-                                src='/static/images/layout/jessica-seed-saver-cover.jpg'
-                                alt=''
+                                src="/static/images/layout/jessica-seed-saver-cover.jpg"
+                                alt=""
                             />
                         </a>
 
                         <p style={{ textAlign: 'center' }}>
                             <a
-                                className='button'
-                                href='/static/docs/jessica-the-seed-saver.pdf'
+                                className="button"
+                                href="/static/docs/jessica-the-seed-saver.pdf"
                                 {...targetBlank}
                             >
                                 Download PDF
                             </a>
                         </p>
                     </div>
-                    <div className='flex-right'>
-                        <h2 id='jessica-the-seed-saver'>
+                    <div className="flex-right">
+                        <h2 id="jessica-the-seed-saver">
                             <a
-                                href='/static/docs/jessica-the-seed-saver.pdf'
+                                href="/static/docs/jessica-the-seed-saver.pdf"
                                 {...targetBlank}
                             >
                                 Jessica, the Seed Saver

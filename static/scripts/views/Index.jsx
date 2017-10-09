@@ -4,20 +4,20 @@ import title from '../infrastructure/documentTitle';
 
 function Index() {
     return (
-        <div className='page-index'>
-            <div className='wrapper'>
-                <div className='wrapper wrap-900'>
-                    <ul className='menu-large'>
-                        <li className='box feature-jessica feature-text'>
-                            <Link to='/publications' className='feature-jessica-flex'>
+        <div className="page-index">
+            <div className="wrapper">
+                <div className="wrapper wrap-900">
+                    <ul className="menu-large">
+                        <li className="box feature-jessica feature-text">
+                            <Link to="/publications" className="feature-jessica-flex">
                                 <img
-                                    src='/static/images/layout/jessica-seed-saver-cover.jpg'
-                                    alt='Jessica, the Seed Saver'
-                                    className='feature-jessica-cover'
+                                    src="/static/images/layout/jessica-seed-saver-cover.jpg"
+                                    alt="Jessica, the Seed Saver"
+                                    className="feature-jessica-cover"
                                 />
 
-                                <span className='flex-right'>
-                                    <p><span className='feature-flag'>New</span></p>
+                                <span className="flex-right">
+                                    <p><span className="feature-flag">New</span></p>
 
                                     <h2>Jessica, the Seed Saver</h2>
 
@@ -35,7 +35,7 @@ function Index() {
                         </li>
                     </ul>
 
-                    <div className='feature-text'>
+                    <div className="feature-text">
                         <p>
                             The <strong>Heritage Food Crops Research Trust</strong> is a
                             charitable trust, established to research
@@ -45,13 +45,13 @@ function Index() {
                         </p>
                     </div>
 
-                    <ul className='menu-large'>
-                        <li className='box'>
-                            <Link to='/montys-surprise'>
+                    <ul className="menu-large">
+                        <li className="box">
+                            <Link to="/montys-surprise">
                                 <img
-                                    src='/static/images/layout/menu-large/apples.jpg'
-                                    className='hero'
-                                    alt={'Monty\'s Surprise'}
+                                    src="/static/images/layout/menu-large/apples.jpg"
+                                    className="hero"
+                                    alt="Monty's Surprise"
                                 />
                                 <h2>Monty's Surprise</h2>
                                 <p>
@@ -66,12 +66,12 @@ function Index() {
                                 </p>
                             </Link>
                         </li>
-                        <li className='box'>
-                            <Link to='/heirloom-tomatoes'>
+                        <li className="box">
+                            <Link to="/heirloom-tomatoes">
                                 <img
-                                    src='/static/images/layout/menu-large/tomatoes.jpg'
-                                    className='hero'
-                                    alt='Heirloom Tomatoes'
+                                    src="/static/images/layout/menu-large/tomatoes.jpg"
+                                    className="hero"
+                                    alt="Heirloom Tomatoes"
                                 />
                                 <h2>Heirloom Tomatoes</h2>
                                 <p>
@@ -83,12 +83,12 @@ function Index() {
                                 </p>
                             </Link>
                         </li>
-                        <li className='box'>
-                            <Link to='/heirloom-beans'>
+                        <li className="box">
+                            <Link to="/heirloom-beans">
                                 <img
-                                    src='/static/images/layout/menu-large/beans.jpg'
-                                    className='hero'
-                                    alt='Heirloom Beans'
+                                    src="/static/images/layout/menu-large/beans.jpg"
+                                    className="hero"
+                                    alt="Heirloom Beans"
                                 />
                                 <h2>Heirloom Beans</h2>
                                 <p>
@@ -97,12 +97,12 @@ function Index() {
                                 </p>
                             </Link>
                         </li>
-                        <li className='box'>
-                            <Link to='/plums-peaches'>
+                        <li className="box">
+                            <Link to="/plums-peaches">
                                 <img
-                                    src='/static/images/layout/menu-large/plums.jpg'
-                                    className='hero'
-                                    alt='Plums and Peaches'
+                                    src="/static/images/layout/menu-large/plums.jpg"
+                                    className="hero"
+                                    alt="Plums and Peaches"
                                 />
                                 <h2>Plums and Peaches</h2>
                                 <p>
@@ -111,12 +111,12 @@ function Index() {
                                 </p>
                             </Link>
                         </li>
-                        <li className='box'>
-                            <Link to='/huntingtons-disease'>
+                        <li className="box">
+                            <Link to="/huntingtons-disease">
                                 <img
-                                    src='/static/images/layout/menu-large/huntingtons.jpg'
-                                    className='hero'
-                                    alt={'Huntington\'s Disease'}
+                                    src="/static/images/layout/menu-large/huntingtons.jpg"
+                                    className="hero"
+                                    alt="Huntington's Disease"
                                 />
                                 <h2>Huntington's Disease</h2>
                                 <p>
@@ -125,12 +125,12 @@ function Index() {
                                 </p>
                             </Link>
                         </li>
-                        <li className='box'>
-                            <Link to='/ancient-wheat'>
+                        <li className="box">
+                            <Link to="/ancient-wheat">
                                 <img
-                                    src='/static/images/layout/menu-large/wheat.jpg'
-                                    className='hero'
-                                    alt='Ancient Wheat'
+                                    src="/static/images/layout/menu-large/wheat.jpg"
+                                    className="hero"
+                                    alt="Ancient Wheat"
                                 />
                                 <h2>Ancient Wheat</h2>
                                 <p>

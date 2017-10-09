@@ -13,7 +13,7 @@ router.post('/', parse, async (req, res) => {
     const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     const userAgent = req.headers['user-agent'];
 
-    const bodyHtml = renderToStaticMarkup(
+    const toRender = (
         <div>
             <p>
                 From: {req.body.name} {`<${req.body.email}>`}<br />
@@ -29,8 +29,10 @@ router.post('/', parse, async (req, res) => {
                     </em>
                 </small>
             </p>
-        </div>,
+        </div>
     );
+
+    const bodyHtml = renderToStaticMarkup(toRender);
 
     const bodyPlainText = `From: ${req.body.name} <${req.body.email}>
 Phone: ${req.body.phone}
@@ -64,8 +66,6 @@ Browser: ${userAgent}
             text: bodyPlainText,
         },
     };
-
-    console.log(message);
 
     try {
         await mailClient.transmissions.send(message);

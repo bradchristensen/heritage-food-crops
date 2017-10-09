@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import _ from 'lodash';
 import title from '../infrastructure/documentTitle';
-import Article from '../components/article';
-import Contents from '../components/tableOfContents';
-import References from '../components/references';
-import SectionHeading from '../components/sectionHeading';
-import SectionSubheading from '../components/sectionSubheading';
-import Reference from '../components/reference';
-import DownloadLink from '../components/downloadLink';
-import OutboundLink from '../components/outboundLink';
+import Article from '../components/Article';
+import Contents from '../components/TableOfContents';
+import References from '../components/References';
+import SectionHeading from '../components/SectionHeading';
+import SectionSubheading from '../components/SectionSubheading';
+import Reference from '../components/Reference';
+import DownloadLink from '../components/DownloadLink';
+import OutboundLink from '../components/OutboundLink';
 
 import * as Lightbox from '../actions/lightbox';
 
@@ -38,8 +38,8 @@ function MontysSurprise({ dispatch }) {
 
     const localisingFoodProjectLink = (
         <OutboundLink
-            to={'http://earthcare-education.org/wp_earthcare/localisingfood/2013/11/22/montys-surprise-fighting-cancer-with-heritage-fruit/'}
-            eventLabel='Localising Food Project'
+            to="http://earthcare-education.org/wp_earthcare/localisingfood/2013/11/22/montys-surprise-fighting-cancer-with-heritage-fruit/"
+            eventLabel="Localising Food Project"
         >
             Localising Food Project
         </OutboundLink>
@@ -54,8 +54,8 @@ function MontysSurprise({ dispatch }) {
     /*
     const reportLink2006 = (
         <OutboundLink
-            to={'https://web.archive.org/web/20150424004047/http://www.treecrops.org.nz/resrch/apple/applecanc06.html'}
-            eventLabel={'Monty\'s Surprise 2006 Research Report'}
+            to="https://web.archive.org/web/20150424004047/http://www.treecrops.org.nz/resrch/apple/applecanc06.html"
+            eventLabel="Monty's Surprise 2006 Research Report"
         >
             2006 Research Report
         </OutboundLink>
@@ -64,8 +64,8 @@ function MontysSurprise({ dispatch }) {
 
     const plantNetLink = (
         <OutboundLink
-            to='http://www.plantnet.com.au/monty-s-surprise-apple/'
-            eventLabel={'Monty\'s Surprise at PlantNet'}
+            to="http://www.plantnet.com.au/monty-s-surprise-apple/"
+            eventLabel="Monty's Surprise at PlantNet"
         >
             buy a Monty's Surprise apple tree
         </OutboundLink>
@@ -73,18 +73,18 @@ function MontysSurprise({ dispatch }) {
 
     const burntRidgeNurseryLink = (
         <OutboundLink
-            to='http://www.burntridgenursery.com/contactus.asp'
-            eventLabel='Contact Burnt Ridge Nursery'
+            to="http://www.burntridgenursery.com/contactus.asp"
+            eventLabel="Contact Burnt Ridge Nursery"
         >
             Burnt Ridge Nursery
         </OutboundLink>
     );
 
     return (
-        <Article className='wrapper page-montys-surprise'>
-            <div className='splitter'>
+        <Article className="wrapper page-montys-surprise">
+            <div className="splitter">
                 <h1>Monty's Surprise</h1>
-                <div className='box'>
+                <div className="box">
                     <SectionHeading>Introduction</SectionHeading>
                     <p>
                         The chemical analysis of over 250 apple varieties has identified a unique
@@ -92,56 +92,65 @@ function MontysSurprise({ dispatch }) {
                         apple contains very high levels of procyanidins as well as quercetin
                         flavonoid compounds. In vitro cancer testing conducted in France and
                         Australia on this variety has shown its potent effectiveness at inhibiting
-                        cancer cell proliferation. <strong>We believe that this apple is the best
-                        in the world for human health, and can be eaten as a preventative measure
-                        to reduce the incidence of disease in the human body.</strong>
+                        cancer cell proliferation.{' '}
+                        <strong>
+                            We believe that this apple is the best in the world for human health,
+                            and can be eaten as a preventative measure to reduce the
+                            incidence of disease in the human body.
+                        </strong>
                     </p>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <SectionHeading exclude>Contents</SectionHeading>
                     <Contents />
                 </div>
             </div>
 
-            <div className='splitter right'>
-                <div className='box'>
+            <div className="splitter right">
+                <div className="box">
                     <iframe
-                        title='Fighting cancer with heritage fruit'
-                        width='100%'
-                        height='338'
-                        src='https://www.youtube.com/embed/XiLWjJk9Xk8'
-                        frameBorder='0'
+                        title="Fighting cancer with heritage fruit"
+                        width="100%"
+                        height="338"
+                        src="https://www.youtube.com/embed/XiLWjJk9Xk8"
+                        frameBorder="0"
                         allowFullScreen
                     />
                     <p>
-                        <em><strong>Join Mark Christensen as he introduces us to this heritage
-                        variety of apple that is fast becoming a favourite around the
-                        country.</strong> Filmed as part of the {localisingFoodProjectLink}.</em>
+                        <em>
+                            <strong>
+                                Join Mark Christensen as he introduces us to this heritage
+                                variety of apple that is fast becoming a favourite around the
+                                country.
+                            </strong>{' '}
+                            Filmed as part of the {localisingFoodProjectLink}.
+                        </em>
                     </p>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <iframe
-                        title={'How to prune the Monty\'s Surprise apple tree'}
-                        width='100%'
-                        height='338'
-                        src='https://www.youtube.com/embed/1t8skmtdDmU'
-                        frameBorder='0'
+                        title="How to prune the Monty's Surprise apple tree"
+                        width="100%"
+                        height="338"
+                        src="https://www.youtube.com/embed/1t8skmtdDmU"
+                        frameBorder="0"
                         allowFullScreen
                     />
                     <p>
                         <em>Murray Jones from TreeLife Organic Nursery in Whanganui demonstrates
                         how to prune the Monty's Surprise apple tree. Narrated by David Hughes and
-                        filmed by Phil Thomsen.</em>
+                        filmed by Phil Thomsen.
+                        </em>
                     </p>
                 </div>
             </div>
 
-            <div className='clear' />
+            <div className="clear" />
 
-            <div className='box'>
-                <SectionHeading shortText='Apple Cancer Prevention Research Project'>
+            <div className="box">
+                <SectionHeading shortText="Apple Cancer Prevention Research Project">
                     Apple Cancer Prevention Research Project - Update: December 2015
                 </SectionHeading>
                 <p>
@@ -155,16 +164,16 @@ function MontysSurprise({ dispatch }) {
                     compounds and ability to prevent cancer.
                 </p>
 
-                <p className='right'>
+                <p className="right">
                     <a
-                        href='/static/images/layout/montys-surprise/mark-frances-tony_800.jpg'
-                        className='b300'
+                        href="/static/images/layout/montys-surprise/mark-frances-tony_800.jpg"
+                        className="b300"
                         onClick={openLightbox}
                     >
                         <img
-                            src='/static/images/layout/montys-surprise/mark-frances-tony_300.jpg'
-                            alt={'Mark Christensen (Heritage Food Crops Research Trust), Dr Frances Raul (Ircad, Strasbourg, France), and Dr Tony McGhie (Plant and Food Research)'}
-                            title='Mark Christensen, Dr Frances Raul and Dr Tony McGhie'
+                            src="/static/images/layout/montys-surprise/mark-frances-tony_300.jpg"
+                            alt="Mark Christensen (Heritage Food Crops Research Trust), Dr Frances Raul (Ircad, Strasbourg, France), and Dr Tony McGhie (Plant and Food Research)"
+                            title="Mark Christensen, Dr Frances Raul and Dr Tony McGhie"
                         />
                     </a>
                 </p>
@@ -204,35 +213,35 @@ function MontysSurprise({ dispatch }) {
                     findings, at an in vitro (or cell culture) level.
                 </p>
 
-                <p className='clear' style={{ textAlign: 'center' }}>
+                <p className="clear" style={{ textAlign: 'center' }}>
                     <a
-                        href='/static/images/layout/montys-surprise/graph-procyanidin-compounds.svg'
+                        href="/static/images/layout/montys-surprise/graph-procyanidin-compounds.svg"
                         onClick={openLightbox}
                     >
                         <img
-                            src={'/static/images/layout/montys-surprise/graph-procyanidin-compounds.svg'}
-                            alt='Procyanidin Compounds'
-                            width='33%'
+                            src="/static/images/layout/montys-surprise/graph-procyanidin-compounds.svg"
+                            alt="Procyanidin Compounds"
+                            width="33%"
                         />
                     </a>
                     <a
-                        href={'/static/images/layout/montys-surprise/graph-comparison-of-flavonoids.svg'}
+                        href="/static/images/layout/montys-surprise/graph-comparison-of-flavonoids.svg"
                         onClick={openLightbox}
                     >
                         <img
-                            src={'/static/images/layout/montys-surprise/graph-comparison-of-flavonoids.svg'}
-                            alt='Comparison of Flavonoids'
-                            width='33%'
+                            src="/static/images/layout/montys-surprise/graph-comparison-of-flavonoids.svg"
+                            alt="Comparison of Flavonoids"
+                            width="33%"
                         />
                     </a>
                     <a
-                        href='/static/images/layout/montys-surprise/graph-total-phenolics.svg'
+                        href="/static/images/layout/montys-surprise/graph-total-phenolics.svg"
                         onClick={openLightbox}
                     >
                         <img
-                            src='/static/images/layout/montys-surprise/graph-total-phenolics.svg'
-                            alt='Total Phenolics'
-                            width='33%'
+                            src="/static/images/layout/montys-surprise/graph-total-phenolics.svg"
+                            alt="Total Phenolics"
+                            width="33%"
                         />
                     </a>
                 </p>
@@ -265,50 +274,56 @@ function MontysSurprise({ dispatch }) {
                 </p>
             </div>
 
-            <div className='clear' />
+            <div className="clear" />
 
-            <div className='splitter'>
-                <div className='box'>
+            <div className="splitter">
+                <div className="box">
                     <img
-                        src='/static/images/layout/montys-surprise/brad-mother-tree.jpg'
-                        alt={'Brad Christensen helping pick Monty\'s Surprise apples from the mother tree for research'}
-                        className='fill'
+                        src="/static/images/layout/montys-surprise/brad-mother-tree.jpg"
+                        alt="Brad Christensen helping pick Monty's Surprise apples from the mother tree for research"
+                        className="fill"
                     />
-                    <p><em>Brad Christensen helping pick Monty's Surprise apples from the mother
-                    tree for research.</em></p>
+                    <p>
+                        <em>
+                            Brad Christensen helping pick Monty's Surprise apples from the mother
+                            tree for research.
+                        </em>
+                    </p>
                 </div>
             </div>
 
-            <div className='splitter right'>
-                <div className='box'>
+            <div className="splitter right">
+                <div className="box">
                     <img
-                        src='/static/images/layout/montys-surprise/apples-cider-jelly.jpg'
-                        alt={'Monty\'s Surprise apples, cider and apple jelly'}
-                        className='fill'
+                        src="/static/images/layout/montys-surprise/apples-cider-jelly.jpg"
+                        alt="Monty's Surprise apples, cider and apple jelly"
+                        className="fill"
                     />
                     <p><em>Monty's Surprise apples, cider and apple jelly.</em></p>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <img
-                        src='/static/images/layout/montys-surprise/mother-tree.jpg'
-                        alt={'The original Monty\'s Surprise tree'}
-                        className='fill'
+                        src="/static/images/layout/montys-surprise/mother-tree.jpg"
+                        alt="The original Monty's Surprise tree"
+                        className="fill"
                     />
                     <p><em>The original Monty's Surprise tree.</em></p>
                 </div>
             </div>
 
-            <div className='clear' />
+            <div className="clear" />
 
-            <div className='box'>
+            <div className="box">
                 <SectionHeading>The Role of Monty's Surprise</SectionHeading>
 
                 <p>
                     It is important to have an understanding of the disease that you wish to prevent
-                    or treat. Our research has come to the conclusion that <strong>cancer is an
-                    hereditary disease, largely activated by environmental factors</strong>. The
-                    disease also exhibits the characteristic of being able to skip a generation.
+                    or treat. Our research has come to the conclusion that{' '}
+                    <strong>
+                        cancer is an hereditary disease, largely activated by environmental factors
+                    </strong>.
+                    The disease also exhibits the characteristic of being able to skip a generation.
                     The genetic nature of the disease means that many people will have an hereditary
                     predisposition for cancer, which in the absence of modern environmental factors
                     would remain dormant (as it did pre-1850, as evidenced by examination of human
@@ -341,93 +356,117 @@ function MontysSurprise({ dispatch }) {
                 </p>
             </div>
 
-            <div className='clear' />
+            <div className="clear" />
 
-            <div className='splitter'>
-                <div className='box'>
+            <div className="splitter">
+                <div className="box">
                     <img
-                        src='/static/images/layout/montys-surprise/roles/dried-apple-rings.jpg'
-                        alt={'Preparing apple for dehydrating for eating as dried apple rings later in the year'}
-                        className='fill'
+                        src="/static/images/layout/montys-surprise/roles/dried-apple-rings.jpg"
+                        alt="Preparing apple for dehydrating for eating as dried apple rings later in the year"
+                        className="fill"
                     />
-                    <p><em>Preparing apple for dehydrating for eating as dried apple rings later
-                    in the year.</em></p>
+                    <p>
+                        <em>
+                            Preparing apple for dehydrating for eating as dried apple rings later
+                            in the year.
+                        </em>
+                    </p>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <img
-                        src='/static/images/layout/montys-surprise/roles/biscotti.jpg'
-                        alt={'Monty\'s Surprise biscotti made by Melinda Hatherly-Jones'}
-                        className='fill'
+                        src="/static/images/layout/montys-surprise/roles/biscotti.jpg"
+                        alt="Monty's Surprise biscotti made by Melinda Hatherly-Jones"
+                        className="fill"
                     />
                     <p><em>Monty's Surprise biscotti made by Melinda Hatherly-Jones.</em></p>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <img
-                        src='/static/images/layout/montys-surprise/roles/steph-apple-cake.jpg'
-                        alt={'Steph Lambert with her Monty\'s Surprise Winter apple cake, made from Monty\'s Surprise dried apple pulp'}
-                        className='fill'
+                        src="/static/images/layout/montys-surprise/roles/steph-apple-cake.jpg"
+                        alt="Steph Lambert with her Monty's Surprise Winter apple cake, made from Monty's Surprise dried apple pulp"
+                        className="fill"
                     />
-                    <p><em>Steph Lambert with her Monty's Surprise Winter apple cake, made from
-                    Monty's Surprise dried apple pulp.</em></p>
+                    <p>
+                        <em>
+                            Steph Lambert with her Monty's Surprise Winter apple cake, made from
+                            Monty's Surprise dried apple pulp.
+                        </em>
+                    </p>
                 </div>
             </div>
 
-            <div className='splitter right'>
-                <div className='box'>
+            <div className="splitter right">
+                <div className="box">
                     <img
-                        src='/static/images/layout/montys-surprise/roles/joy-and-sharon.jpg'
-                        alt={'Joy Bristol and Sharon Duff with one of the Monty\'s Surprise apples about to be pressed for juice, cider or cider vinegar'}
-                        className='fill'
+                        src="/static/images/layout/montys-surprise/roles/joy-and-sharon.jpg"
+                        alt="Joy Bristol and Sharon Duff with one of the Monty's Surprise apples about to be pressed for juice, cider or cider vinegar"
+                        className="fill"
                     />
-                    <p><em>Joy Bristol and Sharon Duff with one of the Monty's Surprise apples
-                    about to be pressed for juice, cider or cider vinegar.</em></p>
+                    <p>
+                        <em>
+                            Joy Bristol and Sharon Duff with one of the Monty's Surprise apples
+                            about to be pressed for juice, cider or cider vinegar.
+                        </em>
+                    </p>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <img
-                        src='/static/images/layout/montys-surprise/roles/flower-essence.jpg'
-                        alt={'Monty\'s Surprise flowers floating in spring water as part of the process for making a Monty\'s Surprise Bach flower essence'}
-                        className='fill'
+                        src="/static/images/layout/montys-surprise/roles/flower-essence.jpg"
+                        alt="Monty's Surprise flowers floating in spring water as part of the process for making a Monty's Surprise Bach flower essence"
+                        className="fill"
                     />
-                    <p><em>Monty's Surprise flowers floating in spring water as part of the process
-                    for making a Monty's Surprise Bach flower essence.</em></p>
+                    <p>
+                        <em>
+                            Monty's Surprise flowers floating in spring water as part of the process
+                            for making a Monty's Surprise Bach flower essence.
+                        </em>
+                    </p>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <img
-                        src='/static/images/layout/montys-surprise/roles/flowers-2.jpg'
-                        alt={'Monty\'s Surprise flowers'}
-                        className='fill'
+                        src="/static/images/layout/montys-surprise/roles/flowers-2.jpg"
+                        alt="Monty's Surprise flowers"
+                        className="fill"
                     />
                     <p><em>Monty's Surprise flowers.</em></p>
                 </div>
 
-                <div className='box'>
+                <div className="box">
                     <img
-                        src='/static/images/layout/montys-surprise/roles/infused-cider-vinegar.jpg'
-                        alt={'Monty\'s Surprise flowers infused in Monty\'s Surprise apple cider vinegar'}
-                        className='fill'
+                        src="/static/images/layout/montys-surprise/roles/infused-cider-vinegar.jpg"
+                        alt="Monty's Surprise flowers infused in Monty's Surprise apple cider vinegar"
+                        className="fill"
                     />
-                    <p><em>Monty's Surprise flowers infused in Monty's Surprise apple cider
-                    vinegar.</em></p>
+                    <p>
+                        <em>
+                            Monty's Surprise flowers infused in Monty's Surprise apple cider
+                            vinegar.
+                        </em>
+                    </p>
                 </div>
             </div>
 
-            <div className='clear' />
+            <div className="clear" />
 
-            <div className='box'>
+            <div className="box">
                 <img
-                    src='/static/images/layout/montys-surprise/roles/cider-vinegar.jpg'
-                    alt={'Monty\'s Surprise flowers infused in Monty\'s Surprise apple cider vinegar'}
-                    className='fill'
+                    src="/static/images/layout/montys-surprise/roles/cider-vinegar.jpg"
+                    alt="Monty's Surprise flowers infused in Monty's Surprise apple cider vinegar"
+                    className="fill"
                 />
-                <p><em>Monty's Surprise flowers infused in Monty's Surprise apple cider
-                vinegar.</em></p>
+                <p>
+                    <em>
+                        Monty's Surprise flowers infused in Monty's Surprise apple cider
+                        vinegar.
+                    </em>
+                </p>
             </div>
 
-            <div className='box'>
+            <div className="box">
                 <SectionHeading>Research Background</SectionHeading>
 
                 <p>
@@ -469,16 +508,16 @@ function MontysSurprise({ dispatch }) {
                     the best apples high in medicinal potential and anti-cancer effectiveness.
                 </p>
 
-                <p className='left'>
+                <p className="left">
                     <a
-                        href='/static/images/layout/montys-surprise/market-locals_800.jpg'
-                        className='b300'
+                        href="/static/images/layout/montys-surprise/market-locals_800.jpg"
+                        className="b300"
                         onClick={openLightbox}
                     >
                         <img
-                            src='/static/images/layout/montys-surprise/market-locals_300.jpg'
-                            alt={'Local Whanganui people growing Monty\'s Surprise apples'}
-                            title={'Local Whanganui people growing Monty\'s Surprise apples'}
+                            src="/static/images/layout/montys-surprise/market-locals_300.jpg"
+                            alt="Local Whanganui people growing Monty's Surprise apples"
+                            title="Local Whanganui people growing Monty's Surprise apples"
                         />
                     </a>
                 </p>
@@ -510,51 +549,59 @@ function MontysSurprise({ dispatch }) {
                 </p>
             </div>
 
-            <div className='splitter'>
-                <div className='box'>
+            <div className="splitter">
+                <div className="box">
                     <a
-                        href='/static/images/layout/montys-surprise/fraternites-ouvrieres.jpg'
+                        href="/static/images/layout/montys-surprise/fraternites-ouvrieres.jpg"
                         onClick={openLightbox}
                     >
                         <img
-                            src='/static/images/layout/montys-surprise/fraternites-ouvrieres.jpg'
-                            alt={'Members of the Fraternités Ouvrières in France holding Monty\'s Surprise grafting wood'}
-                            className='fill'
+                            src="/static/images/layout/montys-surprise/fraternites-ouvrieres.jpg"
+                            alt="Members of the Fraternités Ouvrières in France holding Monty's Surprise grafting wood"
+                            className="fill"
                         />
                     </a>
-                    <p><em>Members of the Fraternités Ouvrières in France holding
-                    Monty's Surprise grafting wood.</em></p>
+                    <p>
+                        <em>
+                            Members of the Fraternités Ouvrières in France holding
+                            Monty's Surprise grafting wood.
+                        </em>
+                    </p>
                 </div>
             </div>
 
-            <div className='splitter right'>
-                <div className='box'>
+            <div className="splitter right">
+                <div className="box">
                     <iframe
-                        title={'Uses of Monty\'s Surprise apples'}
-                        width='100%'
-                        height='338'
-                        src='https://www.youtube.com/embed/wBkgZHN44sw'
-                        frameBorder='0'
+                        title="Uses of Monty's Surprise apples"
+                        width="100%"
+                        height="338"
+                        src="https://www.youtube.com/embed/wBkgZHN44sw"
+                        frameBorder="0"
                         allowFullScreen
                     />
-                    <p><em>Phil Thomsen shows some of the ways in which Monty's Surprise apples
-                    can be cooked or processed to enjoy all year round.</em></p>
+                    <p>
+                        <em>
+                            Phil Thomsen shows some of the ways in which Monty's Surprise apples
+                            can be cooked or processed to enjoy all year round.
+                        </em>
+                    </p>
                 </div>
             </div>
 
-            <div className='box'>
+            <div className="box">
                 <h3>Community Partnerships</h3>
 
-                <p className='right'>
+                <p className="right">
                     <a
-                        href='/static/images/layout/montys-surprise/market-stall.jpg'
-                        className='b300'
+                        href="/static/images/layout/montys-surprise/market-stall.jpg"
+                        className="b300"
                         onClick={openLightbox}
                     >
                         <img
-                            src='/static/images/layout/montys-surprise/market-stall.jpg'
-                            alt=''
-                            width='400'
+                            src="/static/images/layout/montys-surprise/market-stall.jpg"
+                            alt=""
+                            width="400"
                         />
                     </a>
                 </p>
@@ -591,7 +638,7 @@ function MontysSurprise({ dispatch }) {
                 </p>
             </div>
 
-            <div className='box'>
+            <div className="box">
                 <h3>Recent International Research</h3>
 
                 <p>
@@ -605,10 +652,18 @@ function MontysSurprise({ dispatch }) {
                     Apples are a widely consumed, rich source of phytochemicals.
                     Epidemiological studies
                     <span>
-                        <Reference source={'Willett, W.C. Diet, nutrition, and avoidable cancer. Environ. Health Perspect. 1995, 103, 165-170.'} />
-                        <Reference source={'Eberhardt, M.V.; Lee, C.Y.; Liu, R.H. Antioxidant activity of fresh apples. Nature 2000, 405, 903-904.'} />
-                        <Reference source={'Le-Marchand, L.; Murphy, S.P.; Hankin, J.H,; Wilkens, L.R.; Kolonel, L.N. Intake of flavonoids and lung cancer. J. Natl. Cancer Inst. 2000, 92, 154-160.'} />
-                        <Reference source={'Xing, N.; Chen, Y.; Mitchell, S.H.; Young, C.Y.F. Quercetin inhibits the expression and function of the androgen receptor in LNCaP prostate cancer cells. Carcinogenesis 2001, 22, 409-414.'} />
+                        <Reference
+                            source="Willett, W.C. Diet, nutrition, and avoidable cancer. Environ. Health Perspect. 1995, 103, 165-170."
+                        />
+                        <Reference
+                            source="Eberhardt, M.V.; Lee, C.Y.; Liu, R.H. Antioxidant activity of fresh apples. Nature 2000, 405, 903-904."
+                        />
+                        <Reference
+                            source="Le-Marchand, L.; Murphy, S.P.; Hankin, J.H,; Wilkens, L.R.; Kolonel, L.N. Intake of flavonoids and lung cancer. J. Natl. Cancer Inst. 2000, 92, 154-160."
+                        />
+                        <Reference
+                            source="Xing, N.; Chen, Y.; Mitchell, S.H.; Young, C.Y.F. Quercetin inhibits the expression and function of the androgen receptor in LNCaP prostate cancer cells. Carcinogenesis 2001, 22, 409-414."
+                        />
                     </span>
                     <span> have</span> linked the consumption of apples with reduced risk of some
                     cancers, cardiovascular diseases, asthma and diabetes. In the laboratory,
@@ -616,13 +671,17 @@ function MontysSurprise({ dispatch }) {
                     cancer cell proliferation, to decrease lipid oxidation and to lower cholesterol.
                     Apples contain a variety of phytochemicals, including quercetin, catechin,
                     phloridzin and chlorogenic acid, all of which are strong antioxidants
-                    <Reference source={'Boyer, J.; Liu, R.H. Apple phytochemicals and their health benefits. Nutritional Journal 2004.'} />.
+                    <Reference
+                        source="Boyer, J.; Liu, R.H. Apple phytochemicals and their health benefits. Nutritional Journal 2004."
+                    />.
                 </p>
 
                 <p>
                     One of the studies referred to was conducted by the National Public Health
                     Institute in Helsinki, Finland
-                    <Reference source={'Knekt, P.; Jarvinen, R.; Reunanen, A.; Maatela, J. Flavonoid intake and coronary mortality in Finland: a cohort study. Br. Med. J. 1996, 312, 478-81.'} />.
+                    <Reference
+                        source="Knekt, P.; Jarvinen, R.; Reunanen, A.; Maatela, J. Flavonoid intake and coronary mortality in Finland: a cohort study. Br. Med. J. 1996, 312, 478-81."
+                    />.
                     It involved 10,054 Finnish men and women. This cohort epidemiological study on
                     the association between dietary intake of flavonoids and the risk of several
                     chronic diseases reported that of all the main flavonoid sources, apple intake
@@ -663,7 +722,9 @@ function MontysSurprise({ dispatch }) {
 
                 <p>
                     A more recent 2005 Cornell Study
-                    <Reference source={'Liu, R.H.; Liu, J.; Chen, B. Apples prevent mammary tumors in rats. Journal of Agricultural and Food Chemistry. 2005.'} />,
+                    <Reference
+                        source="Liu, R.H.; Liu, J.; Chen, B. Apples prevent mammary tumors in rats. Journal of Agricultural and Food Chemistry. 2005."
+                    />,
                     found that breast cancer incidence was reduced by 17, 39 and 44 percent in rats
                     fed the human equivalent of one, three or six apples a day, respectively over 24
                     weeks.
@@ -756,16 +817,16 @@ function MontysSurprise({ dispatch }) {
                     apple, as well as additional compounds with potential health benefits.
                 </p>
 
-                <p className='right'>
+                <p className="right">
                     <a
-                        href='/static/images/layout/montys-surprise/flowers_800.jpg'
-                        className='b300'
+                        href="/static/images/layout/montys-surprise/flowers_800.jpg"
+                        className="b300"
                         onClick={openLightbox}
                     >
                         <img
-                            src='/static/images/layout/montys-surprise/flowers_300.jpg'
-                            alt={'Monty\'s Surprise flowers'}
-                            title={'Monty\'s Surprise flowers'}
+                            src="/static/images/layout/montys-surprise/flowers_300.jpg"
+                            alt="Monty's Surprise flowers"
+                            title="Monty's Surprise flowers"
                         />
                     </a>
                 </p>
@@ -830,7 +891,7 @@ function MontysSurprise({ dispatch }) {
                 </p>
             </div>
 
-            <div className='box'>
+            <div className="box">
                 <SectionHeading>Comparison of Levels of Health-Promoting Compounds</SectionHeading>
 
                 <SectionSubheading>Total Flavonoids</SectionSubheading>
@@ -842,7 +903,10 @@ function MontysSurprise({ dispatch }) {
                     onion. Apple is a good dietary source of quercetin.
                 </p>
 
-                <div style={{ width: '500px', maxWidth: '100%', margin: '0 auto', padding: '7px 17px' }}>
+                <div style={{
+                    width: '500px', maxWidth: '100%', margin: '0 auto', padding: '7px 17px',
+                }}
+                >
                     <table style={{ margin: 0, width: '100%' }}>
                         <thead>
                             <tr>
@@ -853,9 +917,9 @@ function MontysSurprise({ dispatch }) {
                         </thead>
                         <tbody>
                             <tr>
-                                <td className='highlight'>Monty's Surprise</td>
-                                <td className='highlight' style={{ textAlign: 'right' }}>398.8</td>
-                                <td className='highlight' style={{ textAlign: 'right' }}>20.9</td>
+                                <td className="highlight">Monty's Surprise</td>
+                                <td className="highlight" style={{ textAlign: 'right' }}>398.8</td>
+                                <td className="highlight" style={{ textAlign: 'right' }}>20.9</td>
                             </tr>
                             <tr>
                                 <td>Red Delicious</td>
@@ -883,7 +947,10 @@ function MontysSurprise({ dispatch }) {
                     of cocoa (and chocolate) are promoted due to the high procyanidin content.
                 </p>
 
-                <div style={{ width: '500px', maxWidth: '100%', margin: '0 auto', padding: '7px 17px' }}>
+                <div style={{
+                    width: '500px', maxWidth: '100%', margin: '0 auto', padding: '7px 17px',
+                }}
+                >
                     <table style={{ margin: 0, width: '100%' }}>
                         <thead>
                             <tr>
@@ -894,9 +961,9 @@ function MontysSurprise({ dispatch }) {
                         </thead>
                         <tbody>
                             <tr>
-                                <td className='highlight'>Monty's Surprise</td>
-                                <td className='highlight' style={{ textAlign: 'right' }}>722.0</td>
-                                <td className='highlight' style={{ textAlign: 'right' }}>1426.5</td>
+                                <td className="highlight">Monty's Surprise</td>
+                                <td className="highlight" style={{ textAlign: 'right' }}>722.0</td>
+                                <td className="highlight" style={{ textAlign: 'right' }}>1426.5</td>
                             </tr>
                             <tr>
                                 <td>Red Delicious</td>
@@ -912,7 +979,9 @@ function MontysSurprise({ dispatch }) {
                     </table>
                 </div>
 
-                <SectionSubheading shortText={'Effectiveness of Monty\'s Surprise at inhibiting colon cancer proliferation'}>
+                <SectionSubheading
+                    shortText="Effectiveness of Monty's Surprise at inhibiting colon cancer proliferation"
+                >
                     Effectiveness of Monty's Surprise (procyanidins) at inhibiting colon cancer
                     cell proliferation
                 </SectionSubheading>
@@ -925,20 +994,22 @@ function MontysSurprise({ dispatch }) {
 
                 <p style={{ textAlign: 'center' }}>
                     <img
-                        src={'/static/images/layout/montys-surprise/graph-cancer-cell-proliferation.png'}
-                        alt={'Effect of Apple Extracts on the Growth of Human Colon Cancer-derived Metastatic Cells (SW620)'}
+                        src="/static/images/layout/montys-surprise/graph-cancer-cell-proliferation.png"
+                        alt="Effect of Apple Extracts on the Growth of Human Colon Cancer-derived Metastatic Cells (SW620)"
                     />
                 </p>
             </div>
 
-            <div className='box'>
+            <div className="box">
                 <SectionHeading>Our Vision</SectionHeading>
 
                 <p>
                     Plant & Food Research in their own research have concluded that "to maximise
                     intake of apple polyphenols it is necessary to consume apples of cultivars with
                     high polyphenolic concentration...".
-                    <Reference source={'McGhie, T.K.; Hunt, M.; Barnett, L.E. Cultivar and growing region determine the antioxidant polyphenolic concentration and composition of apples grown in New Zealand.'} />
+                    <Reference
+                        source="McGhie, T.K.; Hunt, M.; Barnett, L.E. Cultivar and growing region determine the antioxidant polyphenolic concentration and composition of apples grown in New Zealand."
+                    />
                 </p>
 
                 <p>
@@ -972,28 +1043,28 @@ function MontysSurprise({ dispatch }) {
                 </p>
             </div>
 
-            <div className='box'>
+            <div className="box">
                 <SectionHeading>References</SectionHeading>
                 <References />
             </div>
 
-            <div className='box'>
+            <div className="box">
                 <SectionHeading>Associated Research Papers</SectionHeading>
 
                 <DownloadLink
-                    href='http://carcin.oxfordjournals.org/content/26/7/1291.short'
-                    title={'Chemopreventive properties of apple procyanidins on human colon cancer-derived metastatic SW620 cells and in a rat model of colon carcinogenesis'}
+                    href="http://carcin.oxfordjournals.org/content/26/7/1291.short"
+                    title="Chemopreventive properties of apple procyanidins on human colon cancer-derived metastatic SW620 cells and in a rat model of colon carcinogenesis"
                 />
 
                 <DownloadLink
-                    href='/static/docs/apples-prevent-mammary-tumours-in-rats.pdf'
-                    title='Apples Prevent Mammary Tumours in Rats'
-                    description={'This study demonstrated that whole apple extracts effectively inhibited mammary cancer growth in the rat model; thus, consumption of apples may be an effective strategy for cancer protection.'}
+                    href="/static/docs/apples-prevent-mammary-tumours-in-rats.pdf"
+                    title="Apples Prevent Mammary Tumours in Rats"
+                    description="This study demonstrated that whole apple extracts effectively inhibited mammary cancer growth in the rat model; thus, consumption of apples may be an effective strategy for cancer protection."
                 />
 
                 <DownloadLink
-                    href='/static/docs/inbreeding-modern-apples-1996.pdf'
-                    title='Inbreeding of Modern Apple Cultivars'
+                    href="/static/docs/inbreeding-modern-apples-1996.pdf"
+                    title="Inbreeding of Modern Apple Cultivars"
                     description={
                         <span>
                             Founding Clones, Inbreeding, Coancestry, and Status Number of Modern
@@ -1004,21 +1075,21 @@ function MontysSurprise({ dispatch }) {
                 />
             </div>
 
-            <SectionHeading tag='h1'>Monty's Surprise Photos</SectionHeading>
+            <SectionHeading tag="h1">Monty's Surprise Photos</SectionHeading>
 
-            <div className='splitter'>
+            <div className="splitter">
                 {_.take(galleryPaths, Math.ceil(galleryPaths.length / 2))
                     .map((path, index) => (
                         // eslint-disable-next-line react/no-array-index-key
-                        <div className='box' key={`gallery-left-${index}`}>
+                        <div className="box" key={`gallery-left-${index}`}>
                             <a
                                 href={`/static/images/layout/montys-surprise/gallery/${path}.jpg`}
                                 onClick={openLightbox}
                             >
                                 <img
                                     src={`/static/images/layout/montys-surprise/gallery/${path}.jpg`}
-                                    alt=''
-                                    className='fill'
+                                    alt=""
+                                    className="fill"
                                 />
                             </a>
                         </div>
@@ -1026,19 +1097,19 @@ function MontysSurprise({ dispatch }) {
                 }
             </div>
 
-            <div className='splitter right'>
+            <div className="splitter right">
                 {_.takeRight(galleryPaths, Math.floor(galleryPaths.length / 2))
                     .map((path, index) => (
                         // eslint-disable-next-line react/no-array-index-key
-                        <div className='box' key={`gallery-right-${index}`}>
+                        <div className="box" key={`gallery-right-${index}`}>
                             <a
                                 href={`/static/images/layout/montys-surprise/gallery/${path}.jpg`}
                                 onClick={openLightbox}
                             >
                                 <img
                                     src={`/static/images/layout/montys-surprise/gallery/${path}.jpg`}
-                                    alt=''
-                                    className='fill'
+                                    alt=""
+                                    className="fill"
                                 />
                             </a>
                         </div>
@@ -1046,7 +1117,7 @@ function MontysSurprise({ dispatch }) {
                 }
             </div>
 
-            <div className='clear' />
+            <div className="clear" />
         </Article>
     );
 }

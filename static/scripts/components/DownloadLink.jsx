@@ -23,7 +23,7 @@ export default function DownloadLink(props) {
     }
 
     return (
-        <blockquote className='download-link highlight'>
+        <blockquote className="download-link highlight">
             <h3>
                 <a
                     href={props.href}
@@ -47,6 +47,4 @@ DownloadLink.propTypes = {
 
 DownloadLink.defaultProps = {
     description: '',
-    href: '',
-    title: '',
 };
