@@ -209,9 +209,9 @@ class App extends PureComponent {
                         <h3>Jessica and the <nobr>Golden Orb</nobr></h3>
                         <p>
                             A story for children about the very special properties of
-                            golden-orange tomatoes.
+                            golden-orange tomatoes, written and illustrated
+                            by <strong>Janet Bradbury</strong>.
                         </p>
-                        <p>Written and illustrated by <strong>Janet Bradbury</strong>.</p>
                     </NavLink>
                 </li>
                 <li>
@@ -268,7 +268,7 @@ class App extends PureComponent {
         );
 
         return (
-            <div className={!this.props.title ? 'show-header' : ''}>
+            <div className="hfcrt-app">
                 <div className="header">
                     <div className="wrapper">
                         {logo}
@@ -340,70 +340,15 @@ class App extends PureComponent {
                         onFocus={this.cancelHidingMenu}
                         onMouseOver={this.cancelHidingMenu}
                     >
-                        <div className="wrapper">
-                            {this.state.currentlyVisibleSubmenu === 'researchTopics' &&
-                                this.renderResearchTopicsMenu()}
-                            {this.state.currentlyVisibleSubmenu === 'publications' &&
-                                this.renderPublicationsMenu()}
+                        <div className="submenu-inner">
+                            <div className="wrapper">
+                                {this.state.currentlyVisibleSubmenu === 'researchTopics' &&
+                                    this.renderResearchTopicsMenu()}
+                                {this.state.currentlyVisibleSubmenu === 'publications' &&
+                                    this.renderPublicationsMenu()}
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div className="sidebar">
-                    {logo}
-                    <ul className="sidebar-menu">
-                        <li className="category category-research-topics">
-                            <span className="category-text">Research Topics</span>
-                        </li>
-                        <li>
-                            <NavLink to="/montys-surprise" activeClassName="active">
-                                Monty's Surprise
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/heirloom-tomatoes" activeClassName="active">
-                                Heirloom Tomatoes
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/heirloom-beans" activeClassName="active">
-                                Heirloom Beans
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/plums-peaches" activeClassName="active">
-                                Plums and Peaches
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/huntingtons-disease" activeClassName="active">
-                                Huntington's Disease
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/ancient-wheat" activeClassName="active">
-                                Ancient Wheat
-                            </NavLink>
-                        </li>
-
-                        <li className="category category-other-resources">
-                            <span className="category-text">Other Resources</span>
-                        </li>
-                        <li>
-                            <NavLink to="/publications" activeClassName="active">
-                                Publications
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/about-the-trust" activeClassName="active">
-                                About the Trust
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/contact-us" activeClassName="active">Contact Us</NavLink>
-                        </li>
-                        <li><NavLink to="/links" activeClassName="active">Links</NavLink></li>
-                    </ul>
                 </div>
 
                 <div className="content">

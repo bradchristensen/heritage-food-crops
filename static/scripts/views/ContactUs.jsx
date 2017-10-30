@@ -106,11 +106,11 @@ class ContactUs extends PureComponent {
                             The Heritage Food Crops Research Trust is a registered New Zealand
                             Charitable Trust working to find natural plant-based solutions to combat
                             disease.
-                            <br />
+
                             We operate from funding received from charitable grants and donations
                             from members of the public. Trustees and staff of the Trust work on an
                             unpaid, voluntary basis.
-                            <br />
+
                             We would very much appreciate your support to assist us in the work
                             that we do.
                         </p>

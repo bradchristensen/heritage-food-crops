@@ -6,7 +6,9 @@ import Index from '../views/Index';
 import PageNotFound from '../views/PageNotFound';
 import MontysSurprise from '../views/MontysSurprise';
 import HeirloomTomatoes from '../views/HeirloomTomatoes/Index';
+import HeirloomTomatoesHealthPotential from '../views/HeirloomTomatoes/HealthPotential';
 import HeirloomTomatoesPastResearch from '../views/HeirloomTomatoes/PastResearch';
+import HeirloomTomatoesTetraCisLycopeneTable from '../views/HeirloomTomatoes/TetraCisLycopeneTable';
 import HeirloomBeans from '../views/HeirloomBeans';
 import PlumsPeaches from '../views/PlumsPeaches';
 import HuntingtonsDisease from '../views/HuntingtonsDisease';
@@ -25,12 +27,20 @@ const routes = (
             component={withTracker(MontysSurprise)}
         />
         <Route
-            path="/heirloom-tomatoes"
-            component={withTracker(HeirloomTomatoes)}
-        />
-        <Route
             path="/heirloom-tomatoes/past-research"
             component={withTracker(HeirloomTomatoesPastResearch)}
+        />
+        <Route
+            path="/heirloom-tomatoes/health-potential"
+            component={withTracker(HeirloomTomatoesHealthPotential)}
+        />
+        <Route
+            path="/heirloom-tomatoes/tetra-cis-lycopene"
+            component={withTracker(HeirloomTomatoesTetraCisLycopeneTable)}
+        />
+        <Route
+            path="/heirloom-tomatoes"
+            component={withTracker(HeirloomTomatoes)}
         />
         <Route
             path="/heirloom-beans"

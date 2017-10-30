@@ -12,8 +12,11 @@ export default class Reference extends PureComponent {
 
     render() {
         return (
-            <sup>
-                <a href={`#cite-${this.state.id}`} data-scroll>
+            <sup className="reference-sup">
+                <a
+                    href={`#cite-${this.state.id}`}
+                    data-scroll
+                >
                     {`[${this.state.id}]`}
                 </a>
             </sup>

@@ -20,8 +20,6 @@ export function rewind() {
 }
 
 export default function documentTitle(Component, pageTitle) {
-    state = pageTitle;
-
     class DocumentTitle extends PureComponent {
         componentDidMount() {
             emitChange(pageTitle);
@@ -36,6 +34,8 @@ export default function documentTitle(Component, pageTitle) {
         }
 
         render() {
+            state = pageTitle;
+
             return (
                 <App title={pageTitle}>
                     <Component {...this.props} />

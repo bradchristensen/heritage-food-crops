@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import _ from 'lodash';
 import { closeLightbox } from '../actions/lightbox';
 
 class Lightbox extends PureComponent {
@@ -21,13 +20,15 @@ class Lightbox extends PureComponent {
 
         this.closeLightbox = () => this.props.dispatch(closeLightbox());
         this.closeLightboxOnKeyDown = this.closeLightboxOnKeyDown.bind(this);
+
+        if (props.visible) {
+            window.addEventListener('keydown', this.closeLightboxOnKeyDown);
+        }
     }
 
     componentDidMount() {
-        if (typeof window !== 'undefined') {
-            window.addEventListener('resize', this.onWindowResize, false);
-            this.onWindowResize();
-        }
+        window.addEventListener('resize', this.onWindowResize, false);
+        this.onWindowResize();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -38,12 +39,29 @@ class Lightbox extends PureComponent {
                 imageHeight: 200,
             });
         }
+
+        if (nextProps.visible) {
+            window.addEventListener('keydown', this.closeLightboxOnKeyDown);
+
+            if (nextProps.content === this.props.content) {
+                this.setState({
+                    imageWidth: this.imgRef.naturalWidth,
+                    imageHeight: this.imgRef.naturalHeight,
+                });
+            }
+        } else {
+            window.removeEventListener('keydown', this.closeLightboxOnKeyDown);
+
+            this.setState({
+                imageWidth: 200,
+                imageHeight: 200,
+            });
+        }
     }
 
     componentWillUnmount() {
-        if (typeof window !== 'undefined') {
-            window.removeEventListener('resize', this.onWindowResize, false);
-        }
+        window.removeEventListener('keydown', this.closeLightboxOnKeyDown);
+        window.removeEventListener('resize', this.onWindowResize, false);
     }
 
     onWindowResize() {
@@ -70,7 +88,7 @@ class Lightbox extends PureComponent {
         const height = multiplier * this.state.imageHeight;
         const width = multiplier * this.state.imageWidth;
 
-        const contentIsVector = this.props.content && _.endsWith(this.props.content.toString(), '.svg');
+        const contentIsVector = this.props.content && this.props.content.toString().endsWith('.svg');
 
         return (
             // eslint-disable-next-line jsx-a11y/no-static-element-interactions
