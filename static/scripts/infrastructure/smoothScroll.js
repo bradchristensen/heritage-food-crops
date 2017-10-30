@@ -1,6 +1,15 @@
 import SmoothScroll from 'smooth-scroll';
 
-// Wrap the SmoothScroll instantiation, as it technically has side effects.
 export default function init() {
-    return new SmoothScroll('[data-scroll]');
+    const scroll = new SmoothScroll();
+
+    window.addEventListener('click', (event) => {
+        const toggle = event.target.closest('[data-scroll]');
+        if (!toggle || toggle.tagName.toLowerCase() !== 'a') return;
+        const anchor = document.querySelector(toggle.hash);
+        if (!anchor) return;
+
+        event.preventDefault(); // Prevent default click event
+        scroll.animateScroll(anchor, toggle, {}); // Animate scroll
+    }, false);
 }

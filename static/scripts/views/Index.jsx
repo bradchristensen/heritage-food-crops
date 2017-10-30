@@ -7,34 +7,6 @@ function Index() {
         <div className="page-index">
             <div className="wrapper">
                 <div className="wrapper wrap-900">
-                    <ul className="menu-large">
-                        <li className="box feature-jessica feature-text">
-                            <Link to="/publications" className="feature-jessica-flex">
-                                <img
-                                    src="/static/images/layout/jessica-seed-saver-cover.jpg"
-                                    alt="Jessica, the Seed Saver"
-                                    className="feature-jessica-cover"
-                                />
-
-                                <span className="flex-right">
-                                    <p><span className="feature-flag">New</span></p>
-
-                                    <h2>Jessica, the Seed Saver</h2>
-
-                                    <p>
-                                        A story for children about the very special properties of
-                                        golden-orange tomatoes, written and illustrated
-                                        by <strong>Janet Bradbury</strong>.
-                                    </p>
-                                    <p>
-                                        We welcome you to download a copy of the book to print or
-                                        read from your computer for free.
-                                    </p>
-                                </span>
-                            </Link>
-                        </li>
-                    </ul>
-
                     <div className="feature-text">
                         <p>
                             The <strong>Heritage Food Crops Research Trust</strong> is a

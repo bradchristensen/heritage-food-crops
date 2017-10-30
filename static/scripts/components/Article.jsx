@@ -132,12 +132,27 @@ export default class Article extends PureComponent {
     }
 
     render() {
-        return <div {...this.props} />;
+        const {
+            className,
+            children,
+            ...props
+        } = this.props;
+
+        return (
+            <div className={className} {...props}>
+                {children}
+            </div>
+        );
     }
 }
 
 Article.propTypes = {
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
+};
+
+Article.defaultProps = {
+    className: undefined,
 };
 
 Article.childContextTypes = {

@@ -27,9 +27,10 @@
     "test": "npm-run-all test-eslint test-check-broken-links",
     "test-check-broken-links": "node ./test/check-broken-links",
     "test-eslint": "eslint --ext .js --ext .jsx .",
-    "watch": "npm-run-all --parallel watch-js watch-js-server",
+    "watch": "npm-run-all --parallel watch-js watch-js-server watch-start",
     "watch-js": "npm run build-js -- --watch",
-    "watch-js-server": "npm run build-js-server -- --watch"
+    "watch-js-server": "npm run build-js-server -- --watch",
+    "watch-start": "nodemon index"
   },
   "dependencies": {
     "babel-polyfill": "^7.0.0-beta.2",
@@ -81,6 +82,7 @@
     "json-loader": "^0.5.4",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
+    "nodemon": "^1.12.1",
     "npm-run-all": "^4.0.2",
     "postcss-flexbugs-fixes": "^3.2.0",
     "postcss-loader": "^2.0.6",
