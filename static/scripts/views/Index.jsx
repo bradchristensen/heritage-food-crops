@@ -1,10 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import title from '../infrastructure/documentTitle';
+import NameSeedlingCompetition from '../components/NameSeedlingCompetition';
 
 function Index() {
     return (
         <div className="page-index">
+            <div style={{ backgroundColor: '#cbe8a0' }}>
+                <div className="wrapper">
+                    <NameSeedlingCompetition />
+                </div>
+            </div>
+
             <div className="wrapper">
                 <div className="wrapper wrap-900">
                     <div className="feature-text">

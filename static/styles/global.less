@@ -538,6 +538,33 @@ button:focus {
     }
 }
 
+.feature-name-the-tree {
+    display: flex;
+}
+
+.feature-name-tree-image {
+    flex: 1;
+}
+
+.feature-name-tree-text {
+    flex: 1;
+
+    h2 {
+        border: none;
+        color: inherit;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: bold;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    .small-text {
+        font-size: 13px;
+        line-height: 150%;
+    }
+}
+
 .feature-flag {
     background-color: #9e1f7e;
     color: #fff;
@@ -1307,6 +1334,10 @@ ul.bean-list {
     }
     .splitter.right {
         padding: 0;
+    }
+
+    .feature-name-the-tree {
+        flex-direction: column;
     }
 
     .bean-list-item,
