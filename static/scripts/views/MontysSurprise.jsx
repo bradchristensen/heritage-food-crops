@@ -12,6 +12,7 @@ import SectionSubheading from '../components/SectionSubheading';
 import Reference from '../components/Reference';
 import DownloadLink from '../components/DownloadLink';
 import OutboundLink from '../components/OutboundLink';
+import CancerCellsGraph from '../components/MontysSurprise/CancerCellsGraph';
 
 import * as Lightbox from '../actions/lightbox';
 
@@ -986,18 +987,14 @@ function MontysSurprise({ dispatch }) {
                     cell proliferation
                 </SectionSubheading>
                 <p>
-                    A communication from Dr Francis Raul. This shows that after nine days in a cell
-                    culture, the Monty's Surprise cider extract of concentrated procyanidins
-                    performed better at all levels of concentration tested, at inhibiting the colon
-                    cancer cell proliferation, than the positive control.
+                    The following chart was a communication from Dr Francis Raul. It shows that
+                    after nine days in a cell culture, the Monty's Surprise cider extract of
+                    concentrated procyanidins (D185-3) performed better at all levels of
+                    concentration tested, at inhibiting the colon cancer cell proliferation,
+                    than the positive control.
                 </p>
 
-                <p style={{ textAlign: 'center' }}>
-                    <img
-                        src="/static/images/layout/montys-surprise/graph-cancer-cell-proliferation.png"
-                        alt="Effect of Apple Extracts on the Growth of Human Colon Cancer-derived Metastatic Cells (SW620)"
-                    />
-                </p>
+                <CancerCellsGraph />
             </div>
 
             <div className="box">
