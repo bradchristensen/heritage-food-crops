@@ -73,7 +73,7 @@
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-dynamic-import-node": "^1.1.0",
     "babel-plugin-lodash": "^3.3.2",
-    "broken-link-checker": "^0.7.6",
+    "broken-link-checker": "^0.7.8",
     "cli-real-favicon": "0.0.6",
     "css-loader": "^0.28.7",
     "cssnano": "^3.10.0",

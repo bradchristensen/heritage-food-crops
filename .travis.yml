@@ -1,9 +1,7 @@
 language: node_js
 node_js:
-- 8
+- 9
 cache: yarn
-before_script:
-- npm install -g gulp
 script: npm run build && npm test
 env:
   global:
