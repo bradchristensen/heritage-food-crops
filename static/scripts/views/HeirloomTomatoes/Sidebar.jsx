@@ -1,21 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Scrollbars } from 'react-custom-scrollbars';
+import StickyBox from 'react-sticky-box';
 import Contents from '../../components/AffixedTableOfContents';
 
 export default function Sidebar({ page }) {
     return (
         <div className="article-sidebar">
-            <Scrollbars
-                style={{
-                    height: 'calc(100vh - 30px)',
-                    position: 'sticky',
-                    top: '15px',
-                    width: '100%',
-                }}
-                universal
-            >
+            <StickyBox>
                 <ul className="multipage-table-of-contents">
                     <li className={page === 'index' ? 'active' : undefined}>
                         {page === 'index' ? (
@@ -63,7 +55,7 @@ export default function Sidebar({ page }) {
                         )}
                     </li>
                 </ul>
-            </Scrollbars>
+            </StickyBox>
         </div>
     );
 }
