@@ -671,7 +671,19 @@ a:hover {
         padding: 0 0 5px 10px;
     }
 
-    table {
+    table.no-border {
+        border: none;
+        border-collapse: collapse;
+
+        td, th {
+            background-color: none;
+            border: none;
+            padding: 3px 5px;
+        }
+    }
+
+    table:not(.no-border),
+    table.with-borders {
         border-collapse: collapse;
         margin: 7px 17px 7px 17px;
 
