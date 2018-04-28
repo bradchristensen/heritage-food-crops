@@ -5,6 +5,7 @@
  *   2010-2015
  */
 
+@import (inline) '~react-virtualized/styles.css';
 @import '_fonts';
 @import '_reset';
 
@@ -1148,6 +1149,25 @@ blockquote.highlight h3 {
 }
 
 
+.virtualized-table {
+    .row-odd {
+        background-color: #eee;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+}
+
+.ReactVirtualized__Table__rowColumn {
+    align-self: flex-start;
+    flex: 1;
+    display: flex;
+}
+
+.tomato-table-container {
+    padding: 10px 25px;
+}
+
+
 ul.bean-list {
     align-content: flex-end;
     display: flex;
@@ -1403,5 +1423,23 @@ ul.bean-list {
             flex-basis: 100%;
             width: 100%;
         }
+    }
+
+    .tomato-table-container {
+        padding: 10px 5px;
+    }
+
+    .tomato-table {
+        font-size: 14px;
+    }
+
+    .ReactVirtualized__Table__headerColumn,
+    .ReactVirtualized__Table__rowColumn {
+        margin-right: 5px;
+    }
+
+    .ReactVirtualized__Table__headerColumn:first-of-type,
+    .ReactVirtualized__Table__rowColumn:first-of-type {
+        margin-left: 5px;
     }
 }
