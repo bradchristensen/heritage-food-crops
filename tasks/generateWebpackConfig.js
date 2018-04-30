@@ -18,7 +18,7 @@ module.exports = function generateWebpackConfig(forProduction) {
              * This bundle has two of its own "entrypoints", although only one of them is an actual
              * Javascript entrypoint while the other is a stylesheet compiled in parallel. */
             main: [
-                'babel-polyfill',
+                '@babel/polyfill',
 
                 /* Our application's actual entrypoint, which will mount a React root component,
                  * initialise the Redux environment and so on). */
@@ -34,7 +34,7 @@ module.exports = function generateWebpackConfig(forProduction) {
             /* Output the generated bundle file to /dist/scripts/main.js */
             path: path.resolve(__dirname, '../dist'),
             filename: `scripts/[name]${minSuffix}.js`,
-            publicPath: '/',
+            publicPath: '/static/',
             chunkFilename: `scripts/[name]${minSuffix}.js?[chunkhash]`,
         },
         module: {

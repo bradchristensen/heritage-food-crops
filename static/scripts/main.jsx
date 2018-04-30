@@ -3,10 +3,15 @@ import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
+import fontawesome from '@fortawesome/fontawesome';
 import ScrollToTop from './components/ScrollToTop';
 import createApiClientStore from './store/init';
 import routes from './infrastructure/routes';
 import initSmoothScroll from './infrastructure/smoothScroll';
+
+fontawesome.config = {
+    autoAddCss: false,
+};
 
 const store = createApiClientStore();
 
