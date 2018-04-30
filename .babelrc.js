@@ -1,14 +1,11 @@
 const BABEL_PRESET_ENV_BROWSER = {
-    /* This plugin is currently broken and must be excluded, otherwise the script crashes
-     * and throws "Maximum call stack size exceeded". */
-    exclude: ['transform-es2015-typeof-symbol'],
-
     /* Webpack must parse the ES2015 module syntax in order to perform tree shaking,
      * so Babel must not transform it. */
     modules: false,
 
-    /* Don't include inline polyfills - these are provided by babel-polyfill. */
-    useBuiltIns: false,
+    /* Transform the '@babel/polyfill' into individual polyfills.
+     * See: https://git.io/vd0Cq#usebuiltins-entry */
+    useBuiltIns: 'entry',
 };
 
 const BABEL_CONFIG_BROWSER = {
@@ -19,18 +16,21 @@ const BABEL_CONFIG_BROWSER = {
     plugins: [
         'lodash',
 
+        /* See: https://webpack.js.org/guides/code-splitting-async/ */
+        '@babel/syntax-dynamic-import',
+
         /* Required for { ...props } syntax. */
-        'transform-object-rest-spread',
+        ['@babel/proposal-object-rest-spread', { useBuiltIns: true }],
     ],
 
     presets: [
         /* This is the main Babel configuration - using the babel-preset-env preset
          * automatically configures Babel with most of the required plugins, automatically
          * targeting browsers specified by the browserslist config in package.json. */
-        ['env', BABEL_PRESET_ENV_BROWSER],
+        ['@babel/env', BABEL_PRESET_ENV_BROWSER],
 
         /* Transpiles JSX syntax into React function calls. */
-        'react',
+        '@babel/react',
     ],
 };
 
@@ -54,11 +54,14 @@ const BABEL_PRESET_ENV_NODE = {
 
 const BABEL_CONFIG_NODE = {
     presets: [
-        ['env', BABEL_PRESET_ENV_NODE],
-        'react',
+        ['@babel/env', BABEL_PRESET_ENV_NODE],
+        '@babel/react',
     ],
     plugins: [
-        'transform-object-rest-spread',
+        /* See: https://facebook.github.io/jest/docs/webpack.html */
+        'dynamic-import-node',
+
+        ['@babel/proposal-object-rest-spread', { useBuiltIns: true }],
     ],
 };
 
