@@ -21,6 +21,8 @@ const BABEL_CONFIG_BROWSER = {
 
         /* Required for { ...props } syntax. */
         ['@babel/proposal-object-rest-spread', { useBuiltIns: true }],
+
+        '@babel/plugin-proposal-class-properties',
     ],
 
     presets: [
@@ -62,6 +64,8 @@ const BABEL_CONFIG_NODE = {
         'dynamic-import-node',
 
         ['@babel/proposal-object-rest-spread', { useBuiltIns: true }],
+
+        '@babel/plugin-proposal-class-properties',
     ],
 };
 

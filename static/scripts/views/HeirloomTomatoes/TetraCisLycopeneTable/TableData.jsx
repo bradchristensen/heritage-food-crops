@@ -1,4 +1,23 @@
 import React from 'react';
+import flatten from '../../../infrastructure/flatten';
+
+function getPlainText(stringOrJsx) {
+    if (typeof stringOrJsx === 'string') {
+        return stringOrJsx;
+    }
+
+    if (stringOrJsx == null) {
+        return null;
+    }
+
+    const flattenedNodes = flatten(stringOrJsx);
+    return flattenedNodes.reduce((plainText, node) => {
+        if (node && typeof node === 'string') {
+            return plainText + node;
+        }
+        return plainText;
+    }, '');
+}
 
 // Shortcut for applying target='_blank' props in accordance with
 // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md
@@ -107,9 +126,12 @@ const southernExposure = (
 
 const terreDeSemencesUrl = 'http://www.terredesemences.com';
 const terreDeSemences = (
-    <a href={terreDeSemencesUrl} {...targetBlank}>
-        Association Kokopelli (formerly Terre de Semences Organic seeds)
-    </a>
+    <span>
+        <a href={terreDeSemencesUrl} {...targetBlank}>
+            Association Kokopelli
+        </a>
+        {' '}(formerly Terre de Semences Organic seeds)
+    </span>
 );
 
 const seedSaversExchangeUrl = 'http://seedsavers.org';
@@ -673,8 +695,12 @@ export default [
     varietyName: item[0],
     tetraCisLycopene: item[1],
     plantCharacteristics: item[2],
+    plantCharacteristicsPlainText: getPlainText(item[2]),
     fruitCharacteristics: item[3],
+    fruitCharacteristicsPlainText: getPlainText(item[3]),
     flavour: item[4],
+    flavourPlainText: getPlainText(item[4]),
     source: item[5],
+    sourcePlainText: getPlainText(item[5]),
     sourceUrl: item[6],
 }));

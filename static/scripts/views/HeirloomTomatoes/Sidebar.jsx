@@ -24,7 +24,9 @@ export default function Sidebar({ page }) {
 
                     <li className={page === 'tetra-cis-lycopene' ? 'active' : undefined}>
                         {page === 'tetra-cis-lycopene' ?
-                            <span>Table of Tomatoes Containing <nobr>Tetra-cis-lycopene</nobr></span> :
+                            <span>
+                                Table of Tomatoes Containing <nobr>Tetra-cis-lycopene</nobr>
+                            </span> :
                             (
                                 <Link to="/heirloom-tomatoes/tetra-cis-lycopene">
                                     Table of Tomatoes Containing <nobr>Tetra-cis-lycopene</nobr>
@@ -34,11 +36,12 @@ export default function Sidebar({ page }) {
                     </li>
 
                     <li className={page === 'health-potential' ? 'active' : undefined}>
-                        {page === 'health-potential' ? 'The Health Potential of the \'Real\' Tomato' : (
-                            <Link to="/heirloom-tomatoes/health-potential">
+                        {page === 'health-potential' ?
+                            'The Health Potential of the \'Real\' Tomato' : (
+                                <Link to="/heirloom-tomatoes/health-potential">
                                 The Health Potential of the 'Real' Tomato
-                            </Link>
-                        )}
+                                </Link>
+                            )}
 
                     </li>
 
