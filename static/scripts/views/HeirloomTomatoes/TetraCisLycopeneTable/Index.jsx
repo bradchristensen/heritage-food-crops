@@ -11,6 +11,8 @@ import {
     Table,
     WindowScroller,
 } from 'react-virtualized';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faLink from '@fortawesome/fontawesome-free-solid/faLink';
 import title from '../../../infrastructure/documentTitle';
 import Article from '../../../components/Article';
 import SectionHeading from '../../../components/SectionHeading';
@@ -105,7 +107,12 @@ class TetraCisLycopeneTable extends PureComponent {
         let content = this.state.sortedList[rowIndex][dataKey];
         if (this.state.clientWidth <= 1280 && dataKey === 'source') {
             const url = this.state.sortedList[rowIndex].sourceUrl;
-            content = url ? <a href={url} {...targetBlank}>Link</a> : null;
+            const tooltipText = this.state.sortedList[rowIndex].sourcePlainText;
+            content = url ? (
+                <a href={url} title={tooltipText} {...targetBlank}>
+                    <FontAwesomeIcon icon={faLink} />
+                </a>
+            ) : null;
         }
         if (dataKey === 'characteristics') {
             content = (
