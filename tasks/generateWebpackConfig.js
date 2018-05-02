@@ -1,9 +1,8 @@
 const path = require('path');
-const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const postcssFlexbugsFixes = require('postcss-flexbugs-fixes');
 const cssnano = require('cssnano');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 process.env.BABEL_ENV = 'browser';
 
@@ -11,6 +10,7 @@ module.exports = function generateWebpackConfig(forProduction) {
     const minSuffix = forProduction ? '.min' : '';
 
     return {
+        mode: forProduction ? 'production' : 'development',
         context: path.resolve(__dirname, '../'),
         entry: {
             /* Create a bundle which will be the main entrypoint to our application (minus
@@ -54,30 +54,27 @@ module.exports = function generateWebpackConfig(forProduction) {
                      * to apply CSS fixes for older browsers and to minify the bundle
                      * (in production only). */
                     test: /\.less/,
-                    use: ExtractTextPlugin.extract({
-                        publicPath: '/styles/',
-                        fallback: 'style-loader',
-                        use: [
-                            {
-                                loader: 'css-loader',
-                                options: {
-                                    url: false, /* Don't rewrite relative paths to absolute. */
-                                },
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                url: false, /* Don't rewrite relative paths to absolute. */
                             },
-                            {
-                                loader: 'postcss-loader',
-                                options: {
-                                    plugins: () => [
-                                        autoprefixer(),
-                                        postcssFlexbugsFixes(),
-                                    ].concat(!forProduction ? [] : [
-                                        cssnano(),
-                                    ]),
-                                },
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: () => [
+                                    autoprefixer(),
+                                    postcssFlexbugsFixes(),
+                                ].concat(!forProduction ? [] : [
+                                    cssnano(),
+                                ]),
                             },
-                            { loader: 'less-loader' },
-                        ],
-                    }),
+                        },
+                        { loader: 'less-loader' },
+                    ],
                 },
             ],
         },
@@ -90,17 +87,23 @@ module.exports = function generateWebpackConfig(forProduction) {
         },
         plugins: [
             /* Extract the stylesheet into its own bundle. */
-            new ExtractTextPlugin(`styles/global${minSuffix}.css`),
-        ].concat(!forProduction ? [] : [
-            /* Define the "production" environment variable, required to strip out React
-             * performance measurements at runtime. */
-            new webpack.DefinePlugin({
-                'process.env': {
-                    NODE_ENV: JSON.stringify('production'),
-                },
+            new MiniCssExtractPlugin({
+                filename: `styles/global${minSuffix}.css`,
+                chunkFilename: `styles/[id]${minSuffix}.css`,
             }),
-            /* Minify the generated bundle. */
-            new webpack.optimize.UglifyJsPlugin(),
-        ]),
+        ],
+        optimization: {
+            splitChunks: {
+                cacheGroups: {
+                    default: false,
+                    // New in Webpack 4 - without this explicitly set to false,
+                    // chunks would be named "vendors~[chunkname].bundle.js".
+                    // Setting `vendors` to false drops the "vendors~" prefix.
+                    // eslint-disable-next-line max-len
+                    // More info: https://gist.github.com/sokra/1522d586b8e5c0f5072d7565c2bee693#configurate-cache-groups
+                    vendors: false,
+                },
+            },
+        },
     };
 };
