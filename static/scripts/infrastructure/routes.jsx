@@ -8,7 +8,7 @@ import MontysSurprise from '../views/MontysSurprise';
 import HeirloomTomatoes from '../views/HeirloomTomatoes/Index';
 import HeirloomTomatoesHealthPotential from '../views/HeirloomTomatoes/HealthPotential';
 import HeirloomTomatoesPastResearch from '../views/HeirloomTomatoes/PastResearch';
-import HeirloomTomatoesTetraCisLycopeneTable from '../views/HeirloomTomatoes/TetraCisLycopeneTable';
+import HeirloomTomatoesTetraCisLycopeneTable from '../views/HeirloomTomatoes/TetraCisLycopeneTable/Index';
 import HeirloomBeans from '../views/HeirloomBeans';
 import PlumsPeaches from '../views/PlumsPeaches';
 import HuntingtonsDisease from '../views/HuntingtonsDisease';

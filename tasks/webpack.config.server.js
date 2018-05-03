@@ -1,13 +1,10 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const generateWebpackConfig = require('./generateWebpackConfig');
 
 process.env.BABEL_ENV = 'node';
 
-const clientWebpackConfig = generateWebpackConfig();
-const babelRule = clientWebpackConfig.module.rules.find(rule => rule.loader === 'babel-loader');
-
 module.exports = {
+    mode: 'development',
     context: path.resolve(`${__dirname}../`),
     entry: '../app/plumbing/app.js',
     output: {
@@ -17,14 +14,16 @@ module.exports = {
     },
     module: {
         rules: [
-            babelRule,
             {
-                loader: 'json-loader',
-                test: /\.json$/,
+                loader: 'babel-loader',
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
             },
         ],
     },
-    resolve: clientWebpackConfig.resolve,
+    resolve: {
+        extensions: ['.js', '.jsx', '.json'],
+    },
 
     /* We must tell Webpack to target Node.js instead of the browser, which causes it not to
      * inject browser shims for core Node.js functionality, as it would by default. */
