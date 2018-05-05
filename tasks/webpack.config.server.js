@@ -1,10 +1,11 @@
 const path = require('path');
+const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 
 process.env.BABEL_ENV = 'node';
 
 module.exports = {
-    mode: 'development',
+    mode: 'none',
     context: path.resolve(`${__dirname}../`),
     entry: '../app/plumbing/app.js',
     output: {
@@ -37,4 +38,12 @@ module.exports = {
      * as external dependencies. These modules will be loaded externally instead of being included
      * in the bundle. */
     externals: [nodeExternals()],
+
+    plugins: [
+        new webpack.NamedModulesPlugin(),
+        new webpack.DefinePlugin({
+            // Override the default replacement of 'none' (required as of Webpack 4)
+            'process.env.NODE_ENV': 'process.env.NODE_ENV',
+        }),
+    ],
 };
