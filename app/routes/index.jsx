@@ -31,7 +31,7 @@ router.use((req, res) => {
     const title = getDocumentTitle();
 
     res.render('index', {
-        useMinifiedCode: config.debug,
+        useMinifiedCode: !config.debug,
         htmlTitle: title ? `${title} — ${config.title}` : config.title,
         faviconHtml: faviconData.favicon.html_code,
         currentPageTitle: title,

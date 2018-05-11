@@ -89,7 +89,7 @@ export default function (app) {
 
         if (req.accepts('html')) {
             res.render('index', {
-                useMinifiedCode: config.debug,
+                useMinifiedCode: !config.debug,
                 showHeader: true,
                 htmlTitle: `Page not found — ${config.title}`,
                 faviconHtml: faviconData.favicon.html_code,

@@ -19,8 +19,20 @@
             currentPageTitle,
             siteTitle,
             gaTrackingId,
-            debug: useMinifiedCode,
+            debug: !useMinifiedCode,
         }) %>;</script>
-        <script src="/static/scripts/<%= useMinifiedCode ? 'main' : 'main.min' %>.js?build=<%= version %>"></script>
+
+        <% if (!useMinifiedCode) { %>
+            <script src="http://localhost:8080/scripts/main.js?build=<%= version %>"></script>
+
+            <script>
+                if (typeof HFCRT_BUNDLE_LOADED === 'undefined') {
+                    console.log('%c webpack-serve does not seem to be running. Falling back to regular bundle.', 'background: #d1ecf1');
+                    document.write(unescape("%3Cscript src='/static/scripts/main.js' type='text/javascript'%3E%3C/script%3E"));
+                }
+            </script>
+        <% } else { %>
+            <script src="/static/scripts/<%= useMinifiedCode ? 'main.min' : 'main' %>.js?build=<%= version %>"></script>
+        <% } %>
     </body>
 </html>

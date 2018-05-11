@@ -27,10 +27,11 @@
     "test": "npm-run-all test-eslint test-check-broken-links",
     "test-check-broken-links": "node ./test/check-broken-links",
     "test-eslint": "eslint --ext .js --ext .jsx .",
-    "watch": "npm-run-all --parallel watch-js watch-js-server watch-start",
+    "watch": "npm-run-all --parallel watch-js-server watch-start webpack-serve",
     "watch-js": "npm run build-js -- --watch",
     "watch-js-server": "npm run build-js-server -- --watch",
-    "watch-start": "nodemon index"
+    "watch-start": "nodemon index",
+    "webpack-serve": "webpack-serve --config tasks/webpack.config.js"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0-beta.46",
@@ -50,6 +51,7 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-ga": "^2.5.0",
+    "react-hot-loader": "^4.1.3",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
@@ -100,6 +102,8 @@
     "style-loader": "^0.21.0",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.1.2",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "webpack-serve": "^0.3.2",
+    "webpack-visualizer-plugin": "^0.1.11"
   }
 }
