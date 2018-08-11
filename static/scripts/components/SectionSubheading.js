@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 export default class SectionSubheading extends PureComponent {
+    static displayName = 'SectionSubheading';
+
     constructor(props, context) {
         super(props, context);
 

@@ -18,12 +18,6 @@ export default class Article extends PureComponent {
         this.nextReference = 0;
         this.nextSectionSubheading = 0;
         this.nextSectionHeading = 0;
-
-        this.buildTableOfContents = this.buildTableOfContents.bind(this);
-        this.buildReferences = this.buildReferences.bind(this);
-        this.assignReferenceId = this.assignReferenceId.bind(this);
-        this.assignSectionSubheadingId = this.assignSectionSubheadingId.bind(this);
-        this.assignSectionHeadingId = this.assignSectionHeadingId.bind(this);
     }
 
     getChildContext() {
@@ -40,7 +34,7 @@ export default class Article extends PureComponent {
         };
     }
 
-    buildTableOfContents(flattenedNodes) {
+    buildTableOfContents = (flattenedNodes) => {
         this.nextSectionHeading = 0;
 
         const tableOfContents = [];
@@ -49,7 +43,19 @@ export default class Article extends PureComponent {
         let subheadingIds = 0;
 
         _.forEach(flattenedNodes, (node) => {
-            if (node.type && node.type === SectionHeading) {
+            if (node.type && (
+                node.type === SectionHeading || (
+                    // When hot reloading is enabled, components are wrapped in a
+                    // ProxyComponent component. This prevents us from doing an
+                    // equality check on the component type.
+                    // To workaround this, we will explicitly set the Reference
+                    // component's displayName prop and compare against that instead.
+                    module.hot && (
+                        node.type.displayName === 'SectionHeading' ||
+                        node.type.displayName === 'Connect(SectionHeading)'
+                    )
+                )
+            )) {
                 if (!node.props.exclude) {
                     headingIds += 1;
                     tableOfContents.push({
@@ -62,7 +68,19 @@ export default class Article extends PureComponent {
                 }
             }
 
-            if (node.type && node.type === SectionSubheading) {
+            if (node.type && (
+                node.type === SectionSubheading || (
+                    // When hot reloading is enabled, components are wrapped in a
+                    // ProxyComponent component. This prevents us from doing an
+                    // equality check on the component type.
+                    // To workaround this, we will explicitly set the Reference
+                    // component's displayName prop and compare against that instead.
+                    module.hot && (
+                        node.type.displayName === 'SectionSubheading' ||
+                        node.type.displayName === 'Connect(SectionSubheading)'
+                    )
+                )
+            )) {
                 if (!node.props.exclude) {
                     subheadingIds += 1;
                     tableOfContents[tableOfContents.length - 1].children.push({
@@ -75,9 +93,9 @@ export default class Article extends PureComponent {
         });
 
         return tableOfContents;
-    }
+    };
 
-    buildReferences(flattenedNodes) {
+    buildReferences = (flattenedNodes) => {
         this.referenceIds = [];
         this.nextReference = 0;
 
@@ -85,7 +103,19 @@ export default class Article extends PureComponent {
         let referenceIds = 0;
 
         _.forEach(flattenedNodes, (node) => {
-            if (node.type && node.type === Reference) {
+            if (node.type && (
+                node.type === Reference || (
+                    // When hot reloading is enabled, components are wrapped in a
+                    // ProxyComponent component. This prevents us from doing an
+                    // equality check on the component type.
+                    // To workaround this, we will explicitly set the Reference
+                    // component's displayName prop and compare against that instead.
+                    module.hot && (
+                        node.type.displayName === 'Reference' ||
+                        node.type.displayName === 'Connect(Reference)'
+                    )
+                )
+            )) {
                 let markup = node.props.source || node.props.children;
                 if (markup.toString() !== markup) {
                     markup = ReactDOMServer.renderToStaticMarkup(markup);
@@ -109,27 +139,27 @@ export default class Article extends PureComponent {
         });
 
         return references;
-    }
+    };
 
-    assignReferenceId() {
+    assignReferenceId = () => {
         const currentReference = this.nextReference;
         this.nextReference += 1;
         return this.referenceIds[currentReference];
-    }
+    };
 
-    assignSectionSubheadingId() {
+    assignSectionSubheadingId = () => {
         this.nextSectionSubheading += 1;
         return {
             parentId: this.nextSectionHeading,
             id: this.nextSectionSubheading,
         };
-    }
+    };
 
-    assignSectionHeadingId() {
+    assignSectionHeadingId = () => {
         this.nextSectionHeading += 1;
         this.nextSectionSubheading = 0;
         return this.nextSectionHeading;
-    }
+    };
 
     render() {
         const {

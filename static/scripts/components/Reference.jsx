@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 export default class Reference extends PureComponent {
+    static displayName = 'Reference';
+
     constructor(props, context) {
         super(props, context);
 

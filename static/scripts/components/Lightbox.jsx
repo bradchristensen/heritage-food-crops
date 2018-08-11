@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { debounce } from 'lodash';
 import { closeLightbox } from '../actions/lightbox';
 
 class Lightbox extends PureComponent {
@@ -16,7 +17,7 @@ class Lightbox extends PureComponent {
             viewportHeight: 0,
         };
 
-        this.onWindowResize = this.onWindowResize.bind(this);
+        this.onWindowResize = debounce(this.onWindowResize.bind(this), 100);
 
         this.closeLightbox = () => this.props.dispatch(closeLightbox());
         this.closeLightboxOnKeyDown = this.closeLightboxOnKeyDown.bind(this);
