@@ -26,11 +26,9 @@ class ContactUs extends PureComponent {
             submittedContactForm: false,
             submitError: false,
         };
-
-        this.submitContactForm = this.submitContactForm.bind(this);
     }
 
-    async submitContactForm(event) {
+    submitContactForm = async (event) => {
         event.preventDefault();
 
         if (!this.state.name) {
@@ -74,7 +72,7 @@ class ContactUs extends PureComponent {
                 console.error(err);
             }
         }
-    }
+    };
 
     render() {
         const emailLink = (
@@ -134,6 +132,16 @@ class ContactUs extends PureComponent {
                             is <strong>06-0793-0299259-00</strong> (ANZ Bank).
                         </p>
 
+                        <p>
+                            Donations are tax-deductible in New Zealand.{' '}
+                            <strong>
+                                Please provide your name and address using our
+                                contact form below
+                            </strong>
+                            {' '}so that we can send you a donation receipt, which you can
+                            use to claim the tax deduction.
+                        </p>
+
                         <h3>Adopt a Bean</h3>
 
                         <p>
@@ -185,7 +193,7 @@ class ContactUs extends PureComponent {
                             <h4>Email address *</h4>
                             <p>
                                 <input
-                                    type="text"
+                                    type="email"
                                     name="email"
                                     value={this.state.email}
                                     onChange={event => this.setState({ email: event.target.value })}

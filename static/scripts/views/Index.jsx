@@ -25,7 +25,7 @@ function Index() {
                                     className="hero"
                                     alt="Monty's Surprise"
                                 />
-                                <h2>Monty's Surprise</h2>
+                                <h2>The Monty's Surprise apple</h2>
                                 <p>
                                     Research coordinator Mark Christensen is credited with the
                                     discovery of the 'anti-cancer' apple, Monty's Surprise.
