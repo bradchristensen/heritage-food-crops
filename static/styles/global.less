@@ -56,6 +56,10 @@ a img {
     }
 }
 
+.show-mobile-inline, .show-mobile-block {
+    display: none;
+}
+
 .underline-text(@foregroundColor, @backgroundColor) {
     background-image: linear-gradient(to bottom, @foregroundColor 50%, transparent 50%);
     background-position: 0 1.05em;
@@ -472,6 +476,101 @@ button:focus {
     }
 }
 
+.menu-larger {
+    list-style: none;
+    margin-bottom: -25px;
+    margin-top: 25px;
+
+    .menu-banner {
+        .do-not-underline-text;
+        color: #fff;
+        display: block;
+        height: 400px;
+        margin-bottom: 1px;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+    }
+
+    .menu-banner-background-image {
+        height: 100%;
+        left: 50%;
+        margin-left: -700px;
+        position: absolute;
+        z-index: 0;
+    }
+
+    .menu-banner-content {
+        background-image: linear-gradient(to bottom, rgba(17, 17, 17, 0) 0%, rgba(17, 17, 17, 0.5) 100%);
+        box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: flex-end;
+        padding: 40px 260px 40px 80px;
+        position: relative;
+        text-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+        transition: background-color 0.2s;
+        z-index: 1;
+    }
+
+    li:first-child .menu-banner-content {
+        box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+        border: none;
+        color: #fff;
+        font-family: 'Novecento Sans Wide', 'Source Sans Pro', sans-serif;
+        font-size: 42px;
+        font-style: normal;
+        font-weight: 700;
+        padding: 0;
+        text-transform: lowercase;
+    }
+
+    p {
+        font-size: 20px;
+        padding-top: 12px;
+    }
+
+    .visible-on-hover {
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.2s;
+    }
+
+    .menu-banner:hover {
+        .menu-banner-content {
+            background-color: rgba(85, 159, 255, 0.1);
+        }
+
+        .visible-on-hover {
+            height: 65px;
+            opacity: 1;
+        }
+    }
+
+    .menu-banner:active {
+        .menu-banner-content {
+            background-color: rgba(255, 85, 85, 0.8);
+        }
+    }
+
+    .button {
+        background: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+        margin-top: 10px;
+    }
+
+    .button:hover {
+        background: #fff;
+        color: #399cd0;
+    }
+}
+
 .menu-large {
     .clearfix;
     list-style: none;
@@ -626,7 +725,7 @@ button:focus {
     display: inline-block;
     font-family: 'Novecento Sans Wide', 'Source Sans Pro', sans-serif;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 900;
     padding: 0 0 0 10px;
     position: relative;
     text-transform: uppercase;
@@ -935,6 +1034,10 @@ h1 {
     padding: 20px 20px 10px;
     position: relative;
     text-transform: uppercase;
+
+    strong {
+        font-weight: 900;
+    }
 }
 
 h2,
@@ -1332,10 +1435,16 @@ ul.bean-list {
         }
     }
 
+    .menu-larger {
+        .menu-banner-content {
+            padding: 40px 80px 40px 80px;
+        }
+    }
+
     .feature-text {
         font-size: 18px;
         line-height: 170%;
-        padding: 30px 0 10px 0;
+        padding: 10px 0;
     }
 
     .splitter {
@@ -1377,12 +1486,28 @@ ul.bean-list {
     .hide-mobile {
         display: none;
     }
+    .show-mobile-inline {
+        display: inline;
+    }
+    .show-mobile-block {
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 610px) {
     .footer {
         .col-flex {
             flex-grow: 1;
+        }
+    }
+
+    .menu-larger {
+        .menu-banner-content {
+            padding: 40px;
+        }
+
+        p {
+            font-size: 18px;
         }
     }
 
