@@ -488,22 +488,18 @@ button:focus {
         > a {
             .do-not-underline-text;
             color: inherit !important;
-            display: block;
-            float: left;
-            padding: 10px;
             width: 100%;
         }
 
         h2, p {
             clear: none;
-            margin-left: 400px;
         }
 
         h2 {
             background-color: transparent;
             color: #355769;
             font-size: 32px;
-            margin-left: 420px;
+            margin-left: 20px;
             margin-top: 15px;
             padding-left: 5px;
             text-shadow: none;
@@ -511,8 +507,30 @@ button:focus {
     }
 
     .hero {
-        float: left;
-        width: 400px;
+        width: 100%;
+    }
+
+    .col-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .col-flex {
+        flex-basis: 400px;
+        flex-grow: 1;
+        padding: 10px;
+    }
+    .col-flex:first-child {
+        flex-basis: 400px;
+        flex-shrink: 0;
+        padding: 0;
+    }
+    .col-flex:last-child {
+        // Hack to prevent the first column from growing any bigger when it
+        // is on the same line as the second column (but when the second column
+        // drops down, the first column will still be able to grow to fill the
+        // container).
+        flex-grow: 100000;
     }
 }
 
