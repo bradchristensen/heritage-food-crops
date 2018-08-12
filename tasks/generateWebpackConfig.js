@@ -3,13 +3,14 @@ const autoprefixer = require('autoprefixer');
 const postcssFlexbugsFixes = require('postcss-flexbugs-fixes');
 const cssnano = require('cssnano');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Visualizer = require('webpack-visualizer-plugin');
 
 process.env.BABEL_ENV = 'browser';
 
 module.exports = function generateWebpackConfig(forProduction) {
     const minSuffix = forProduction ? '.min' : '';
 
-    return {
+    const webpackConfig = {
         mode: forProduction ? 'production' : 'development',
         context: path.resolve(__dirname, '../'),
         entry: {
@@ -34,7 +35,7 @@ module.exports = function generateWebpackConfig(forProduction) {
             /* Output the generated bundle file to /dist/scripts/main.js */
             path: path.resolve(__dirname, '../dist'),
             filename: `scripts/[name]${minSuffix}.js`,
-            publicPath: '/static/',
+            publicPath: process.env.WEBPACK_SERVE ? 'http://localhost:8080/' : '/static/',
             chunkFilename: `scripts/[name]${minSuffix}.js?[chunkhash]`,
         },
         module: {
@@ -91,6 +92,9 @@ module.exports = function generateWebpackConfig(forProduction) {
                 filename: `styles/global${minSuffix}.css`,
                 chunkFilename: `styles/[id]${minSuffix}.css`,
             }),
+            new Visualizer({
+                filename: `webpack-stats-${forProduction ? 'prod' : 'dev'}.html`,
+            }),
         ],
         optimization: {
             splitChunks: {
@@ -106,4 +110,16 @@ module.exports = function generateWebpackConfig(forProduction) {
             },
         },
     };
+
+    if (process.env.WEBPACK_SERVE) {
+        webpackConfig.serve = {
+            dev: {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                },
+            },
+        };
+    }
+
+    return webpackConfig;
 };

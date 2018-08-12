@@ -35,6 +35,8 @@ function isElementInViewport(el) {
 }
 
 class SectionHeading extends PureComponent {
+    static displayName = 'SectionHeading';
+
     constructor(props, context) {
         super(props, context);
 

@@ -9,12 +9,13 @@ const BABEL_PRESET_ENV_BROWSER = {
 };
 
 const BABEL_CONFIG_BROWSER = {
-    /* The following plugins are not included automatically by the
-     * babel-preset-env preset because they are not part of a current
-     * ECMAScript spec (they may be included in future, but must be referenced
-     * separately for now). */
     plugins: [
         'lodash',
+
+        /* The following plugins are not included automatically by the
+         * babel-preset-env preset because they are not part of a current
+         * ECMAScript spec (they may be included in future, but must be referenced
+         * separately for now). */
 
         /* See: https://webpack.js.org/guides/code-splitting-async/ */
         '@babel/syntax-dynamic-import',
@@ -23,6 +24,8 @@ const BABEL_CONFIG_BROWSER = {
         ['@babel/proposal-object-rest-spread', { useBuiltIns: true }],
 
         '@babel/plugin-proposal-class-properties',
+
+        'react-hot-loader/babel',
     ],
 
     presets: [

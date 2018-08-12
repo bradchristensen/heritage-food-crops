@@ -3,6 +3,7 @@ import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
+import { hot } from 'react-hot-loader';
 import fontawesome from '@fortawesome/fontawesome';
 import ScrollToTop from './components/ScrollToTop';
 import createApiClientStore from './store/init';
@@ -19,15 +20,23 @@ ReactGA.initialize(window.hfcrtAppConfig.gaTrackingId, {
     debug: window.hfcrtAppConfig.debug,
 });
 
-hydrate(
-    <Provider store={store}>
-        <BrowserRouter>
-            <ScrollToTop>
-                {routes}
-            </ScrollToTop>
-        </BrowserRouter>
-    </Provider>,
-    document.getElementById('page'),
-);
+function Root() {
+    return (
+        <Provider store={store}>
+            <BrowserRouter>
+                <ScrollToTop>
+                    {routes}
+                </ScrollToTop>
+            </BrowserRouter>
+        </Provider>
+    );
+}
+
+const HotReloadableRoot = process.env.NODE_ENV === 'development' ?
+    hot(module)(Root) : Root;
+
+hydrate(<HotReloadableRoot />, document.getElementById('page'));
 
 initSmoothScroll();
+
+window.HFCRT_BUNDLE_LOADED = true;
