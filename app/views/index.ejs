@@ -6,7 +6,9 @@
         <meta name="description" content="Established to research the early prevention and treatment of disease through natural, plant-based medicine. This includes research into the anti-cancer apple, Monty's Surprise; heirloom tomatoes; heirloom beans; and Huntington's Disease.">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="/static/styles/global.css?build=<%= version %>">
+        <% if (useMinifiedCode) { %>
+            <link rel="stylesheet" type="text/css" href="/static/styles/global.min.css?build=<%= version %>">
+        <% } %>
 
         <title><%= htmlTitle %></title>
 

@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Link, NavLink } from 'react-router-dom';
+import { hot } from 'react-hot-loader';
 import Lightbox from '../components/Lightbox';
-import OutboundLink from '../components/OutboundLink';
+import Footer from '../components/Layout/Footer';
 
 const noOp = () => {};
 
@@ -18,15 +19,6 @@ class App extends PureComponent {
         this.state = {
             currentlyVisibleSubmenu: null,
         };
-
-        this.hideMenu = this.hideMenu.bind(this);
-        this.hideMenuDelayed = this.hideMenuDelayed.bind(this);
-        this.showResearchTopicsMenu = this.showResearchTopicsMenu.bind(this);
-        this.showPublicationsMenu = this.showPublicationsMenu.bind(this);
-        this.toggleResearchTopicsMenu = this.toggleResearchTopicsMenu.bind(this);
-        this.togglePublicationsMenu = this.togglePublicationsMenu.bind(this);
-        this.renderResearchTopicsMenu = this.renderResearchTopicsMenu.bind(this);
-        this.renderPublicationsMenu = this.renderPublicationsMenu.bind(this);
 
         this.cancelShowingResearchTopicsMenu = () => {
             this.blockShowingResearchTopicsMenu = true;
@@ -43,15 +35,13 @@ class App extends PureComponent {
         this.unmounted = true;
     }
 
-    hideMenu() {
-        return new Promise((resolve) => {
-            this.setState({
-                currentlyVisibleSubmenu: null,
-            }, resolve);
-        });
-    }
+    hideMenu = () => new Promise((resolve) => {
+        this.setState({
+            currentlyVisibleSubmenu: null,
+        }, resolve);
+    });
 
-    hideMenuDelayed() {
+    hideMenuDelayed = () => {
         this.blockHidingMenu = false;
         return new Promise((resolve) => {
             setTimeout(() => {
@@ -62,9 +52,9 @@ class App extends PureComponent {
                 }
             }, 200);
         });
-    }
+    };
 
-    showResearchTopicsMenu() {
+    showResearchTopicsMenu = () => {
         this.blockHidingMenu = true;
         this.blockShowingResearchTopicsMenu = false;
         this.blockTogglingResearchTopicsMenu = true;
@@ -87,9 +77,9 @@ class App extends PureComponent {
                 }, 50);
             }
         });
-    }
+    };
 
-    showPublicationsMenu() {
+    showPublicationsMenu = () => {
         this.blockHidingMenu = true;
         this.blockShowingPublicationsMenu = false;
         this.blockTogglingPublicationsMenu = true;
@@ -112,132 +102,125 @@ class App extends PureComponent {
                 }, 50);
             }
         });
-    }
+    };
 
-    toggleResearchTopicsMenu() {
-        return new Promise((resolve) => {
-            if (!this.blockTogglingResearchTopicsMenu) {
-                this.setState({
-                    currentlyVisibleSubmenu: this.state.currentlyVisibleSubmenu === 'researchTopics' ?
-                        null : 'researchTopics',
-                }, resolve);
-            } else {
-                resolve();
-            }
-        });
-    }
+    toggleResearchTopicsMenu = () => new Promise((resolve) => {
+        if (!this.blockTogglingResearchTopicsMenu) {
+            this.setState({
+                currentlyVisibleSubmenu: this.state.currentlyVisibleSubmenu === 'researchTopics' ?
+                    null : 'researchTopics',
+            }, resolve);
+        } else {
+            resolve();
+        }
+    });
 
-    togglePublicationsMenu() {
-        return new Promise((resolve) => {
-            if (!this.blockTogglingPublicationsMenu) {
-                this.setState({
-                    currentlyVisibleSubmenu: this.state.currentlyVisibleSubmenu === 'publications' ?
-                        null : 'publications',
-                }, resolve);
-            } else {
-                resolve();
-            }
-        });
-    }
+    togglePublicationsMenu = () => new Promise((resolve) => {
+        if (!this.blockTogglingPublicationsMenu) {
+            this.setState({
+                currentlyVisibleSubmenu: this.state.currentlyVisibleSubmenu === 'publications' ?
+                    null : 'publications',
+            }, resolve);
+        } else {
+            resolve();
+        }
+    });
 
-    renderResearchTopicsMenu() {
-        return (
-            <ul>
-                <li>
-                    <NavLink to="/montys-surprise" onClick={this.hideMenu} activeClassName="active">
-                        <img src="/static/images/layout/menu-thumbs/apples.jpg" alt="" />
-                        <h3>Monty's Surprise</h3>
-                        <p>Apple Cancer Prevention Research Project</p>
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to="/heirloom-tomatoes"
-                        onClick={this.hideMenu}
-                        activeClassName="active"
-                    >
-                        <img src="/static/images/layout/menu-thumbs/tomatoes.jpg" alt="" />
-                        <h3>Heirloom Tomatoes</h3>
-                        <p>Investigating the Health Potential of the 'Real' Tomato</p>
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/heirloom-beans" onClick={this.hideMenu} activeClassName="active">
-                        <img src="/static/images/layout/menu-thumbs/beans.png" alt="" />
-                        <h3>Heirloom Beans</h3>
-                        <p>The Great New Zealand Bean Hunt</p>
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/plums-peaches" onClick={this.hideMenu} activeClassName="active">
-                        <img src="/static/images/layout/menu-thumbs/plums.jpg" alt="" />
-                        <h3>Plums and Peaches</h3>
-                        <p>Heritage/European plum varieties and Blackboy peaches</p>
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to="/huntingtons-disease"
-                        onClick={this.hideMenu}
-                        activeClassName="active"
-                    >
-                        <img src="/static/images/layout/menu-thumbs/huntingtons.png" alt="" />
-                        <h3>Huntington's Disease</h3>
-                        <p>Researching a natural trehalose sugar treatment</p>
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/ancient-wheat" onClick={this.hideMenu} activeClassName="active">
-                        <img src="/static/images/layout/menu-thumbs/wheat.png" alt="" />
-                        <h3>Ancient Wheat</h3>
-                        <p>Preserving ancient varieties and researching gluten intolerance</p>
-                    </NavLink>
-                </li>
-            </ul>
-        );
-    }
+    renderResearchTopicsMenu = () => (
+        <ul>
+            <li>
+                <NavLink to="/montys-surprise" onClick={this.hideMenu} activeClassName="active">
+                    <img src="/static/images/layout/menu-thumbs/apples.jpg" alt="" />
+                    <h3>Monty's Surprise Apple</h3>
+                    <p>Apple Cancer Prevention Research Project</p>
+                </NavLink>
+            </li>
+            <li>
+                <NavLink
+                    to="/heirloom-tomatoes"
+                    onClick={this.hideMenu}
+                    activeClassName="active"
+                >
+                    <img src="/static/images/layout/menu-thumbs/tomatoes.jpg" alt="" />
+                    <h3>Heirloom Tomatoes</h3>
+                    <p>Investigating the Health Potential of the 'Real' Tomato</p>
+                </NavLink>
+            </li>
+            <li>
+                <NavLink to="/heirloom-beans" onClick={this.hideMenu} activeClassName="active">
+                    <img src="/static/images/layout/menu-thumbs/beans.png" alt="" />
+                    <h3>Heirloom Beans</h3>
+                    <p>The Great New Zealand Bean Hunt</p>
+                </NavLink>
+            </li>
+            <li>
+                <NavLink to="/plums-peaches" onClick={this.hideMenu} activeClassName="active">
+                    <img src="/static/images/layout/menu-thumbs/plums.jpg" alt="" />
+                    <h3>Plums and Peaches</h3>
+                    <p>Heritage/European plum varieties and Blackboy peaches</p>
+                </NavLink>
+            </li>
+            <li>
+                <NavLink
+                    to="/huntingtons-disease"
+                    onClick={this.hideMenu}
+                    activeClassName="active"
+                >
+                    <img src="/static/images/layout/menu-thumbs/huntingtons.png" alt="" />
+                    <h3>Huntington's Disease</h3>
+                    <p>Researching a natural trehalose sugar treatment</p>
+                </NavLink>
+            </li>
+            <li>
+                <NavLink to="/ancient-wheat" onClick={this.hideMenu} activeClassName="active">
+                    <img src="/static/images/layout/menu-thumbs/wheat.png" alt="" />
+                    <h3>Ancient Wheat</h3>
+                    <p>Preserving ancient varieties and researching gluten intolerance</p>
+                </NavLink>
+            </li>
+        </ul>
+    );
 
-    renderPublicationsMenu() {
-        return (
-            <ul className="publications">
-                <li>
-                    <NavLink
-                        to="/publications#jessica-and-the-golden-orb"
-                        onClick={this.hideMenu}
-                    >
-                        <img src="/static/images/layout/jessica-cover.jpg" alt="" />
-                        <h3>Jessica and the <nobr>Golden Orb</nobr></h3>
-                        <p>
-                            A story for children about the very special properties of
-                            golden-orange tomatoes, written and illustrated
-                            by <strong>Janet Bradbury</strong>.
-                        </p>
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to="/publications#jessica-the-seed-saver"
-                        onClick={this.hideMenu}
-                    >
-                        <img src="/static/images/layout/jessica-seed-saver-cover.jpg" alt="" />
-                        <h3>
-                            Jessica, {
-                                // Force 'the Seed Saver' to wrap (but only when the menu item is
-                                // width-constrained) by adding a few pixels to the line
-                                <span style={{ display: 'inline-block', paddingRight: '20px' }}>
-                                    the Seed Saver
-                                </span>
-                            }
-                        </h3>
-                        <p>
-                            Jessica returns in a story about saving the seeds of heritage tomatoes.
-                        </p>
-                        <p>Written and illustrated by <strong>Janet Bradbury</strong>.</p>
-                    </NavLink>
-                </li>
-            </ul>
-        );
-    }
+    renderPublicationsMenu = () => (
+        <ul className="publications">
+            <li>
+                <NavLink
+                    to="/publications#jessica-and-the-golden-orb"
+                    onClick={this.hideMenu}
+                >
+                    <img src="/static/images/layout/jessica-cover.jpg" alt="" />
+                    <h3>Jessica and the <nobr>Golden Orb</nobr></h3>
+                    <p>
+                        A story for children about the very special properties of
+                        golden-orange tomatoes, written and illustrated
+                        by <strong>Janet Bradbury</strong>.
+                    </p>
+                </NavLink>
+            </li>
+            <li>
+                <NavLink
+                    to="/publications#jessica-the-seed-saver"
+                    onClick={this.hideMenu}
+                >
+                    <img src="/static/images/layout/jessica-seed-saver-cover.jpg" alt="" />
+                    <h3>
+                        Jessica,{' '}
+                        {
+                            // Force 'the Seed Saver' to wrap (but only when the menu item is
+                            // width-constrained) by adding a few pixels to the line
+                            <span style={{ display: 'inline-block', paddingRight: '20px' }}>
+                                the Seed Saver
+                            </span>
+                        }
+                    </h3>
+                    <p>
+                        Jessica returns in a story about saving the seeds of heritage tomatoes.
+                    </p>
+                    <p>Written and illustrated by <strong>Janet Bradbury</strong>.</p>
+                </NavLink>
+            </li>
+        </ul>
+    );
 
     render() {
         const logo = (
@@ -245,26 +228,6 @@ class App extends PureComponent {
                 <NavLink to="/" title="Return to the index page" activeClassName="active" />
                 <img src="/static/images/layout/logo@2x.png" alt="" />
             </div>
-        );
-
-        const githubLink = (
-            <OutboundLink
-                to="https://github.com/bradchristensen/heritage-food-crops"
-                eventLabel="GitHub Project"
-                title="Contribute via GitHub"
-            >
-                open source
-            </OutboundLink>
-        );
-
-        const bradLink = (
-            <OutboundLink
-                to="https://christensen.co.nz"
-                eventLabel="Brad's website"
-                title="Website development by Brad Christensen"
-            >
-                designed with love
-            </OutboundLink>
         );
 
         return (
@@ -325,7 +288,7 @@ class App extends PureComponent {
                             </li>
                             <li>
                                 <NavLink to="/contact-us" onClick={this.hideMenu}>
-                                    Contact Us
+                                    Contact or Donate
                                 </NavLink>
                             </li>
                             <li>
@@ -357,17 +320,7 @@ class App extends PureComponent {
                     <div className="clear" />
                 </div>
 
-                <div className="footer">
-                    <div className="wrapper">
-                        Our website is {githubLink} and {bradLink}.<br />
-                        <small>
-                            Copyright &copy; Heritage Food Crops Research Trust,
-                            <span> {new Date().getFullYear()}. </span>
-                            Verbatim copying and distribution of this page is permitted in any
-                            medium.
-                        </small>
-                    </div>
-                </div>
+                <Footer />
 
                 <Lightbox
                     visible={this.props.lightbox.visible}
@@ -393,6 +346,6 @@ App.defaultProps = {
     title: null,
 };
 
-export default withRouter(connect(state => ({
+export default hot(module)(withRouter(connect(state => ({
     lightbox: state.lightbox,
-}))(App));
+}))(App)));

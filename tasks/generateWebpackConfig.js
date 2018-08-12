@@ -25,11 +25,10 @@ module.exports = function generateWebpackConfig(forProduction) {
                  * initialise the Redux environment and so on). */
                 './static/scripts/main.jsx',
 
-                /* This entrypoint is not really an entrypoint as it won't be bundled into the
-                 * main.js/main.min.js bundle, but instead bundled into its own
-                 * main.css/main.min.css bundle (configured by the ExtractTextPlugin). */
-                './static/styles/global.less',
-            ],
+                /* In production, CSS will be loaded from a separate stylesheet, rather than
+                 * injected at runtime. */
+                forProduction && './static/styles/global.less',
+            ].filter(entryPoint => !!entryPoint),
         },
         output: {
             /* Output the generated bundle file to /dist/scripts/main.js */
@@ -51,12 +50,16 @@ module.exports = function generateWebpackConfig(forProduction) {
                     },
                 },
                 {
-                    /* These loaders are used to compile our SCSS entrypoint into CSS,
+                    /* These loaders are used to compile our LESS entrypoint into CSS,
                      * to apply CSS fixes for older browsers and to minify the bundle
                      * (in production only). */
                     test: /\.less/,
                     use: [
-                        MiniCssExtractPlugin.loader,
+                        /* In production, extract the CSS into a file, but in development,
+                         * load the CSS at runtime so that it can be hot-reloaded. */
+                        forProduction ?
+                            MiniCssExtractPlugin.loader :
+                            { loader: 'style-loader' },
                         {
                             loader: 'css-loader',
                             options: {
@@ -67,11 +70,10 @@ module.exports = function generateWebpackConfig(forProduction) {
                             loader: 'postcss-loader',
                             options: {
                                 plugins: () => [
-                                    autoprefixer(),
                                     postcssFlexbugsFixes(),
-                                ].concat(!forProduction ? [] : [
-                                    cssnano(),
-                                ]),
+                                    autoprefixer({ flexbox: 'no-2009' }),
+                                    forProduction && cssnano(),
+                                ].filter(plugin => !!plugin),
                             },
                         },
                         { loader: 'less-loader' },
@@ -87,15 +89,15 @@ module.exports = function generateWebpackConfig(forProduction) {
             extensions: ['.js', '.jsx'],
         },
         plugins: [
-            /* Extract the stylesheet into its own bundle. */
-            new MiniCssExtractPlugin({
+            /* In production, extract the stylesheet into its own bundle. */
+            forProduction && new MiniCssExtractPlugin({
                 filename: `styles/global${minSuffix}.css`,
                 chunkFilename: `styles/[id]${minSuffix}.css`,
             }),
             new Visualizer({
                 filename: `webpack-stats-${forProduction ? 'prod' : 'dev'}.html`,
             }),
-        ],
+        ].filter(plugin => !!plugin),
         optimization: {
             splitChunks: {
                 cacheGroups: {

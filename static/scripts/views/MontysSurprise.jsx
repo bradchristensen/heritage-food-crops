@@ -181,7 +181,7 @@ function MontysSurprise({ dispatch }) {
 
                 <p>
                     The New Zealand researchers at the Heritage Food Crops Research Trust employed
-                    the services of Dr Tony McGhie at the Plant & Food Research Institute to
+                    the services of Dr Tony McGhie at the Plant &amp; Food Research Institute to
                     chemically analyse over 250 apple varieties. Because many of New Zealand's
                     modern commercial apple cultivars had already been chemically analysed, this
                     study focused principally on heritage varieties. The data readily confirmed
@@ -216,6 +216,7 @@ function MontysSurprise({ dispatch }) {
 
                 <p className="clear" style={{ textAlign: 'center' }}>
                     <a
+                        className="do-not-underline-text"
                         href="/static/images/layout/montys-surprise/graph-procyanidin-compounds.svg"
                         onClick={openLightbox}
                     >
@@ -226,6 +227,7 @@ function MontysSurprise({ dispatch }) {
                         />
                     </a>
                     <a
+                        className="do-not-underline-text"
                         href="/static/images/layout/montys-surprise/graph-comparison-of-flavonoids.svg"
                         onClick={openLightbox}
                     >
@@ -236,6 +238,7 @@ function MontysSurprise({ dispatch }) {
                         />
                     </a>
                     <a
+                        className="do-not-underline-text"
                         href="/static/images/layout/montys-surprise/graph-total-phenolics.svg"
                         onClick={openLightbox}
                     >
@@ -250,7 +253,7 @@ function MontysSurprise({ dispatch }) {
                 <p>
                     In April 2007 we collected sufficient Monty's Surprise apples to make 70 litres
                     of Monty's Surprise cider. Once made, this was delivered to Dr Tony McGhie at
-                    Plant & Food Research for him to convert into powdered extract. This process
+                    Plant &amp; Food Research for him to convert into powdered extract. This process
                     was completed in October and the resulting 35 grams of powdered extract was
                     sent to Dr Raul.
                     In January 2008 we received communication from Dr Raul that his in vitro testing
@@ -742,10 +745,10 @@ function MontysSurprise({ dispatch }) {
                 </p>
 
                 <p>
-                    In investigating which apple varieties to test they discovered that Plant & Food
-                    Research had already tested most New Zealand commercial cultivars, and that
-                    they, like Cornell, considered Red Delicious to be one of the top varieties in
-                    terms of levels of health-promoting compounds.
+                    In investigating which apple varieties to test they discovered that
+                    Plant &amp; Food Research had already tested most New Zealand commercial
+                    cultivars, and that they, like Cornell, considered Red Delicious to be
+                    one of the top varieties in terms of levels of health-promoting compounds.
                 </p>
 
                 <p>
@@ -759,9 +762,9 @@ function MontysSurprise({ dispatch }) {
 
                 <p>
                     In this 2003 study, 59 varieties were tested. The chemical analysis work was
-                    conducted by Plant & Food Research so that results could be compared directly
-                    with the previous Plant & Food Research data on New Zealand commercial
-                    varieties.
+                    conducted by Plant &amp; Food Research so that results could be compared
+                    directly with the previous Plant &amp; Food Research data on New Zealand
+                    commercial varieties.
                 </p>
 
                 <p>
@@ -1001,7 +1004,7 @@ function MontysSurprise({ dispatch }) {
                 <SectionHeading>Our Vision</SectionHeading>
 
                 <p>
-                    Plant & Food Research in their own research have concluded that "to maximise
+                    Plant &amp; Food Research in their own research have concluded that "to maximise
                     intake of apple polyphenols it is necessary to consume apples of cultivars with
                     high polyphenolic concentration...".
                     <Reference

@@ -8,7 +8,11 @@
 @import (inline) '~react-virtualized/styles.css';
 @import (inline) '~@fortawesome/fontawesome/styles.css';
 @import '_fonts';
+
+// Normalize cross-browser behaviour (set baseline)
 @import '_reset';
+
+@import '_lightbox';
 
 @borderColor: rgba(0, 0, 0, 0.05);
 @pageWidth: 1400px;
@@ -30,6 +34,14 @@ body {
     height: 100%;
 }
 
+a {
+    .underline-text(#399cd0, #fff);
+    color: #399cd0;
+}
+a:hover {
+    color: #F26666;
+}
+
 a img {
     transition: all 0.1s;
 }
@@ -42,6 +54,31 @@ a img {
     &:after {
         clear: both;
     }
+}
+
+.show-mobile-inline, .show-mobile-block {
+    display: none;
+}
+
+.underline-text(@foregroundColor, @backgroundColor) {
+    background-image: linear-gradient(to bottom, @foregroundColor 50%, transparent 50%);
+    background-position: 0 1.05em;
+    background-repeat: repeat-x;
+    background-size: 1px 2px;
+    text-decoration: none;
+    text-shadow:
+        // 1px to the right
+        1px 1px 0 @backgroundColor,
+        // 1px to the left
+        -1px 1px 0 @backgroundColor,
+        // 1px upwards catches the rounded bottom of a 'g' character
+        0 -1px 0 @backgroundColor;
+}
+
+.do-not-underline-text {
+    background-image: none;
+    text-decoration: none;
+    text-shadow: none;
 }
 
 a:focus:not(:active):not(.active),
@@ -84,6 +121,7 @@ button:focus {
     }
 
     a {
+        .do-not-underline-text;
         display: block;
         height: 100%;
         opacity: 0;
@@ -213,12 +251,12 @@ button:focus {
 }
 .menu li a,
 .navbar .caption {
+    .do-not-underline-text;
     border-radius: 3px;
     color: #0e202a;
     display: block;
     margin-right: 2px;
     padding: 15px 20px 15px;
-    text-decoration: none;
     text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
 }
 
@@ -292,6 +330,7 @@ button:focus {
 
     ul li a {
         .clearfix;
+        .do-not-underline-text;
         border: 1px solid transparent;
         border-radius: 3px;
         color: #355769;
@@ -299,7 +338,6 @@ button:focus {
         height: 100%;
         overflow: hidden;
         padding: 5px;
-        text-decoration: none;
         width: 100%;
     }
     ul li a:hover,
@@ -338,7 +376,7 @@ button:focus {
     background-color: #fff;
     margin: 0 auto;
     max-width: @pageWidth;
-    padding-bottom: 125px;
+    padding-bottom: 25px;
     padding-top: 25px;
     text-align: justify;
     transition: all 0.1s;
@@ -386,27 +424,150 @@ button:focus {
 }
 
 .footer {
-    bottom: -1px;
-    display: block;
-    height: 125px;
-    left: 0;
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-    transition: all 0.2s;
-    z-index: 199; // below lightbox
+    background-color: #ffea88;
+    color: #222;
+    line-height: 150%;
+    margin: 0 auto;
+    max-width: @pageWidth;
+    padding: 40px 0;
+    text-align: left;
+    transition: all 0.1s;
+    width: 100%;
 
-    .wrapper {
-        line-height: 150%;
-        margin: 0 auto;
-        max-width: 800px;
-        padding: 20px 0 0 0;
-        text-align: center;
+    a {
+        .underline-text(rgba(0, 0, 0, 0.2), #ffea88);
+        color: #20396F;
+
+        &:hover {
+            color: #F26666;
+            .underline-text(#F26666, #ffea88);
+        }
     }
 
     small {
         font-size: 85%;
         font-style: italic;
+    }
+
+    .col-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -10px;
+    }
+
+    .col-flex {
+        flex-basis: 250px;
+        padding: 10px;
+
+        ul {
+            list-style: none;
+            margin-top: -8px;
+        }
+
+        h5 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+    }
+
+    .flex-grow {
+        flex-grow: 1;
+    }
+}
+
+.menu-larger {
+    list-style: none;
+    margin-bottom: -25px;
+    margin-top: 25px;
+
+    .menu-banner {
+        .do-not-underline-text;
+        color: #fff;
+        display: block;
+        height: 400px;
+        margin-bottom: 1px;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+    }
+
+    .menu-banner-background-image {
+        height: 100%;
+        left: 50%;
+        margin-left: -700px;
+        position: absolute;
+        z-index: 0;
+    }
+
+    .menu-banner-content {
+        background-image: linear-gradient(to bottom, rgba(17, 17, 17, 0) 0%, rgba(17, 17, 17, 0.5) 100%);
+        box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: flex-end;
+        padding: 40px 260px 40px 80px;
+        position: relative;
+        text-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+        transition: background-color 0.2s;
+        z-index: 1;
+    }
+
+    li:first-child .menu-banner-content {
+        box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+        border: none;
+        color: #fff;
+        font-family: 'Novecento Sans Wide', 'Source Sans Pro', sans-serif;
+        font-size: 42px;
+        font-style: normal;
+        font-weight: 700;
+        padding: 0;
+        text-transform: lowercase;
+    }
+
+    p {
+        font-size: 20px;
+        padding-top: 12px;
+    }
+
+    .visible-on-hover {
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.2s;
+    }
+
+    .menu-banner:hover {
+        .menu-banner-content {
+            background-color: rgba(85, 159, 255, 0.1);
+        }
+
+        .visible-on-hover {
+            height: 65px;
+            opacity: 1;
+        }
+    }
+
+    .menu-banner:active {
+        .menu-banner-content {
+            background-color: rgba(255, 85, 85, 0.8);
+        }
+    }
+
+    .button {
+        background: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+        margin-top: 10px;
+    }
+
+    .button:hover {
+        background: #fff;
+        color: #399cd0;
     }
 }
 
@@ -424,24 +585,20 @@ button:focus {
         }
 
         > a {
+            .do-not-underline-text;
             color: inherit !important;
-            display: block;
-            float: left;
-            padding: 10px;
-            text-decoration: none;
             width: 100%;
         }
 
         h2, p {
             clear: none;
-            margin-left: 400px;
         }
 
         h2 {
             background-color: transparent;
             color: #355769;
             font-size: 32px;
-            margin-left: 420px;
+            margin-left: 20px;
             margin-top: 15px;
             padding-left: 5px;
             text-shadow: none;
@@ -449,8 +606,30 @@ button:focus {
     }
 
     .hero {
-        float: left;
-        width: 400px;
+        width: 100%;
+    }
+
+    .col-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .col-flex {
+        flex-basis: 400px;
+        flex-grow: 1;
+        padding: 10px;
+    }
+    .col-flex:first-child {
+        flex-basis: 400px;
+        flex-shrink: 0;
+        padding: 0;
+    }
+    .col-flex:last-child {
+        // Hack to prevent the first column from growing any bigger when it
+        // is on the same line as the second column (but when the second column
+        // drops down, the first column will still be able to grow to fill the
+        // container).
+        flex-grow: 100000;
     }
 }
 
@@ -467,8 +646,8 @@ button:focus {
 
 .content a.page-feature,
 .content a.page-feature:hover {
+    .do-not-underline-text;
     color: inherit;
-    text-decoration: none;
 }
 
 .wrap-right {
@@ -480,13 +659,13 @@ button:focus {
 }
 
 .button {
+    .do-not-underline-text;
     background-color: #399cd0;
     border-radius: 3px;
     color: #fff;
     display: inline-block;
     font-weight: bold;
     padding: 8px 16px;
-    text-decoration: none;
     text-shadow: none;
     transition: all 0.2s;
 
@@ -546,7 +725,7 @@ button:focus {
     display: inline-block;
     font-family: 'Novecento Sans Wide', 'Source Sans Pro', sans-serif;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 900;
     padding: 0 0 0 10px;
     position: relative;
     text-transform: uppercase;
@@ -612,14 +791,6 @@ button:focus {
 
 /* ---------------------------------------------------------------------- */
 /*  .box   -------------------------------------------------------------- */
-
-a {
-    color: #399cd0;
-    text-decoration: underline;
-}
-a:hover {
-    color: #F26666;
-}
 
 .box {
     h2,
@@ -754,7 +925,7 @@ a:hover {
         font-weight: normal;
 
         a {
-            text-decoration: none;
+            .do-not-underline-text;
         }
     }
 
@@ -849,7 +1020,7 @@ h3 {
 
     // Extra specificity required here to override '.box a' styles
     a, .box & a {
-        text-decoration: none;
+        .do-not-underline-text;
     }
 }
 
@@ -863,6 +1034,10 @@ h1 {
     padding: 20px 20px 10px;
     position: relative;
     text-transform: uppercase;
+
+    strong {
+        font-weight: 900;
+    }
 }
 
 h2,
@@ -965,6 +1140,7 @@ button[disabled]:active {
 /* Borders -------------------------------------------------------------- */
 
 a.gallery {
+    .do-not-underline-text;
     float: left;
     margin: 5px;
 }
@@ -1055,87 +1231,6 @@ blockquote.highlight h3 {
     width: 100%;
 }
 
-
-/* ---------------------------------------------------------------------- */
-/* A brand new custom lightbox ------------------------------------------ */
-
-.lightbox {
-    background: rgba(0, 0, 0, 0.4);
-    bottom: 0;
-    left: 0;
-    opacity: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    transition: all 0.2s;
-    visibility: hidden;
-    z-index: 200; // todo: shouldn't need to be this high
-}
-
-.lightbox-modal {
-    height: 200px;
-    left: 50%;
-    margin-left: -100px;
-    margin-top: -100px;
-    position: absolute;
-    top: 50%;
-    transition: all 0.2s;
-    width: 200px;
-}
-
-.lightbox-modal-content {
-    border: 1px solid rgba(0, 0, 0, 0.4);
-    border-radius: 3px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    height: 100%;
-    left: 0;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
-
-.lightbox-close,
-.lightbox-close:hover,
-.lightbox-close:active,
-.lightbox-close:focus {
-    background: transparent url('/static/images/icons/fancybox_sprite-2x.png') top left;
-    background-size: 44px 152px;
-    border: none;
-    box-shadow: none;
-    height: 36px;
-    overflow: hidden;
-    position: absolute;
-    right: -20px;
-    text-indent: 40px;
-    top: -20px;
-    white-space: nowrap;
-    width: 38px;
-    z-index: 1;
-}
-
-.lightbox-caption {
-    left: 0;
-    margin-top: 10px;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    top: 100%;
-    z-index: 1;
-}
-
-.lightbox-caption-text {
-    background: rgba(0, 0, 0, 0.7);
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    border-radius: 20px;
-    color: #fff;
-    display: inline-block;
-    font-style: italic;
-    font-weight: bold;
-    padding: 5px 10px;
-    text-shadow: 1px 1px 0 #000;
-}
-
 .fade-visible {
     opacity: 1;
     visibility: visible;
@@ -1188,11 +1283,6 @@ ul.bean-list {
     width: 50%;
 }
 
-.lt-ie10 .bean-list .bean-list-item {
-    clear: both;
-    width: 100%;
-}
-
 .bean-list .bean-list-item:first-child,
 .bean-list .bean-list-item:nth-child(2) {
     border-top: none;
@@ -1243,6 +1333,13 @@ ul.bean-list {
 }
 
 @media only screen and (max-width: 830px) {
+    .footer {
+        .col-flex {
+            flex-basis: 200px;
+            flex-grow: 1;
+        }
+    }
+
     .content-with-sidebar {
         flex-direction: column;
 
@@ -1278,25 +1375,29 @@ ul.bean-list {
         margin: 20px;
     }
 
-    .header .logo {
+    .logo {
         display: none;
     }
 
-    .header .wrapper {
-        padding: 0;
+    .header {
+        .wrapper {
+            padding: 0;
+        }
+    
+        h1 {
+            margin: 10px 20px;
+            padding: 0;
+        }
     }
 
-    .header h1 {
-        margin: 10px 20px;
-        padding: 0;
-    }
-
-    .navbar .wrapper {
-        padding: 0;
-    }
-
-    .navbar .caption {
-        display: none;
+    .navbar {
+        .wrapper {
+            padding: 0;
+        }
+    
+        .caption {
+            display: none;
+        }
     }
 
     .menu {
@@ -1308,32 +1409,42 @@ ul.bean-list {
         }
     }
 
-    .menu-large .box > a {
-        padding-bottom: 20px;
+    .menu-large {
+        .hero {
+            float: none;
+            width: 100%;
+        }
+
+        .box > a {
+            padding-bottom: 20px;
+        }
+        .box > a > * {
+            clear: both;
+            margin-left: 0;
+        }
+
+        .box h2 {
+            font-size: 24px;
+            margin-left: 15px;
+            padding-left: 15px;
+        }
+
+        .box .feature-flag::after {
+            border-width: 15px;
+            border-right-width: 13px;
+        }
     }
 
-    .menu-large .hero {
-        float: none;
-        width: 100%;
-    }
-    .menu-large .box > a > * {
-        clear: both;
-        margin-left: 0;
-    }
-    .menu-large .box h2 {
-        font-size: 24px;
-        margin-left: 15px;
-        padding-left: 15px;
-    }
-    .menu-large .box .feature-flag::after {
-        border-width: 15px;
-        border-right-width: 13px;
+    .menu-larger {
+        .menu-banner-content {
+            padding: 40px 80px 40px 80px;
+        }
     }
 
     .feature-text {
         font-size: 18px;
         line-height: 170%;
-        padding: 30px 0 10px 0;
+        padding: 10px 0;
     }
 
     .splitter {
@@ -1361,6 +1472,12 @@ ul.bean-list {
         padding: 0 10px;
     }
 
+    .footer {
+        .wrapper {
+            padding: 0 40px; // (No change from previous breakpoints)
+        }
+    }
+
     .submenu ul li {
         float: none;
         width: 100%;
@@ -1369,9 +1486,31 @@ ul.bean-list {
     .hide-mobile {
         display: none;
     }
+    .show-mobile-inline {
+        display: inline;
+    }
+    .show-mobile-block {
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 610px) {
+    .footer {
+        .col-flex {
+            flex-grow: 1;
+        }
+    }
+
+    .menu-larger {
+        .menu-banner-content {
+            padding: 40px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+    }
+
     .page-heirloom-tomatoes .page-feature .react-parallax-wrapper {
         height: 200px;
 

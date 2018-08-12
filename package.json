@@ -52,6 +52,7 @@
     "react-dom": "^16.3.2",
     "react-ga": "^2.5.0",
     "react-hot-loader": "^4.3.4",
+    "react-progressive-image": "^0.3.0",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
@@ -62,6 +63,7 @@
     "response-time": "^2.3.2",
     "robots.txt": "^1.1.0",
     "serve-favicon": "^2.5.0",
+    "smartquotes": "^2.3.1",
     "smooth-scroll": "^12.1.5",
     "sparkpost": "^2.1.2",
     "victory": "^0.26.0"

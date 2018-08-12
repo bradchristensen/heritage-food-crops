@@ -1,6 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProgressiveImage from 'react-progressive-image';
+import { string as smartQuote } from 'smartquotes';
 import title from '../infrastructure/documentTitle';
+
+function ReadMore() {
+    return (
+        <p className="visible-on-hover">
+            <span className="button">
+                Read more
+            </span>
+        </p>
+    );
+}
 
 function Index() {
     return (
@@ -16,108 +28,129 @@ function Index() {
                             natural <strong>plant-based medicine</strong>.
                         </p>
                     </div>
+                </div>
+            </div>
 
-                    <ul className="menu-large">
-                        <li className="box">
-                            <Link to="/montys-surprise">
-                                <img
-                                    src="/static/images/layout/menu-large/apples.jpg"
-                                    className="hero"
-                                    alt="Monty's Surprise"
-                                />
-                                <h2>Monty's Surprise</h2>
-                                <p>
+            <ul className="menu-larger">
+                <li>
+                    <Link to="/montys-surprise" className="menu-banner">
+                        <ProgressiveImage
+                            src="/static/images/layout/menu-larger/apples.jpg"
+                            placeholder="/static/images/layout/menu-larger/apples-blurred.jpg"
+                        >
+                            {src => <img src={src} alt="The Monty's Surprise apple" className="menu-banner-background-image" />}
+                        </ProgressiveImage>
+                        <div className="menu-banner-content">
+                            <div className="menu-banner-content-flex-end">
+                                <h2 className="hide-mobile">{smartQuote("The Monty's Surprise apple")}</h2>
+                                <h2 className="show-mobile-block">{smartQuote("Monty's Surprise")}</h2>
+                                <p className="hide-mobile">
+                                    {smartQuote(`
                                     Research coordinator Mark Christensen is credited with the
                                     discovery of the 'anti-cancer' apple, Monty's Surprise.
+                                    `)}
                                 </p>
                                 <p>
+                                    {smartQuote(`
                                     The Trust has investigated the anti-cancer properties and
                                     preventative benefits of the Monty's Surprise apple variety,
                                     and now promotes the growing and distribution of this very
                                     special variety.
+                                    `)}
                                 </p>
-                            </Link>
-                        </li>
-                        <li className="box">
-                            <Link to="/heirloom-tomatoes">
-                                <img
-                                    src="/static/images/layout/menu-large/tomatoes.jpg"
-                                    className="hero"
-                                    alt="Heirloom Tomatoes"
-                                />
+                                <ReadMore />
+                            </div>
+                        </div>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/heirloom-tomatoes" className="menu-banner">
+                        <ProgressiveImage
+                            src="/static/images/layout/menu-larger/tomatoes.jpg"
+                            placeholder="/static/images/layout/menu-larger/tomatoes-blurred.jpg"
+                        >
+                            {src => <img src={src} alt="Heirloom Tomatoes" className="menu-banner-background-image" />}
+                        </ProgressiveImage>
+                        <div className="menu-banner-content">
+                            <div className="menu-banner-content-flex-end">
                                 <h2>Heirloom Tomatoes</h2>
                                 <p>
-                                    Research into the nutritional benefits and cancer preventative
-                                    properties of tomatoes, which has led to evidence suggesting
-                                    that "Golden Orange" heirloom tomatoes that contain the more
-                                    bio-available tetra-cis-lycopene could be superior for human
-                                    health.
+                                    {smartQuote(`
+                                    Research into the nutritional benefits and cancer
+                                    preventative properties of tomatoes, which has led to
+                                    evidence suggesting that "Golden Orange" heirloom tomatoes
+                                    that contain the more bio-available tetra-cis-lycopene could
+                                    be superior for human health.
+                                    `)}
                                 </p>
-                            </Link>
-                        </li>
-                        <li className="box">
-                            <Link to="/heirloom-beans">
-                                <img
-                                    src="/static/images/layout/menu-large/beans.jpg"
-                                    className="hero"
-                                    alt="Heirloom Beans"
-                                />
+                                <ReadMore />
+                            </div>
+                        </div>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/heirloom-beans" className="menu-banner">
+                        <ProgressiveImage
+                            src="/static/images/layout/menu-larger/beans.jpg"
+                            placeholder="/static/images/layout/menu-larger/beans-blurred.jpg"
+                        >
+                            {src => <img src={src} alt="Heirloom Beans" className="menu-banner-background-image" />}
+                        </ProgressiveImage>
+                        <div className="menu-banner-content">
+                            <div className="menu-banner-content-flex-end">
                                 <h2>Heirloom Beans</h2>
                                 <p>
                                     Searching for, preserving and distributing heirloom bean
                                     varieties.
                                 </p>
-                            </Link>
-                        </li>
-                        <li className="box">
-                            <Link to="/plums-peaches">
-                                <img
-                                    src="/static/images/layout/menu-large/plums.jpg"
-                                    className="hero"
-                                    alt="Plums and Peaches"
-                                />
-                                <h2>Plums and Peaches</h2>
+                                <ReadMore />
+                            </div>
+                        </div>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/plums-peaches" className="menu-banner">
+                        <ProgressiveImage
+                            src="/static/images/layout/menu-larger/peaches.jpg"
+                            placeholder="/static/images/layout/menu-larger/peaches-blurred.jpg"
+                        >
+                            {src => <img src={src} alt="Plums &amp; Peaches" className="menu-banner-background-image" />}
+                        </ProgressiveImage>
+                        <div className="menu-banner-content">
+                            <div className="menu-banner-content-flex-end">
+                                <h2>Plums &amp; Peaches</h2>
                                 <p>
                                     Research into the nutritional benefits of heritage plums and
                                     peaches.
                                 </p>
-                            </Link>
-                        </li>
-                        <li className="box">
-                            <Link to="/huntingtons-disease">
-                                <img
-                                    src="/static/images/layout/menu-large/huntingtons.jpg"
-                                    className="hero"
-                                    alt="Huntington's Disease"
-                                />
-                                <h2>Huntington's Disease</h2>
-                                <p>
-                                    Research into a natural treatment to treat the symptoms and
-                                    delay the onset of Huntington's disease.
-                                </p>
-                            </Link>
-                        </li>
-                        <li className="box">
-                            <Link to="/ancient-wheat">
-                                <img
-                                    src="/static/images/layout/menu-large/wheat.jpg"
-                                    className="hero"
-                                    alt="Ancient Wheat"
-                                />
+                                <ReadMore />
+                            </div>
+                        </div>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/ancient-wheat" className="menu-banner">
+                        <ProgressiveImage
+                            src="/static/images/layout/menu-larger/wheat.jpg"
+                            placeholder="/static/images/layout/menu-larger/wheat-blurred.jpg"
+                        >
+                            {src => <img src={src} alt="Ancient Wheat" className="menu-banner-background-image" />}
+                        </ProgressiveImage>
+                        <div className="menu-banner-content">
+                            <div className="menu-banner-content-flex-end">
                                 <h2>Ancient Wheat</h2>
                                 <p>
-                                    This research involves importing ancient wheat varieties into
-                                    New Zealand in order to measure comparable symptoms of any
-                                    gluten intolerance between bread made with these ancient
-                                    grains compared to their modern wheat counterparts.
+                                    This research involves importing ancient wheat varieties
+                                    into New Zealand in order to measure comparable symptoms
+                                    of any gluten intolerance between bread made with these
+                                    ancient grains compared to their modern wheat counterparts.
                                 </p>
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-
-                <hr />
-            </div>
+                                <ReadMore />
+                            </div>
+                        </div>
+                    </Link>
+                </li>
+            </ul>
         </div>
     );
 }
