@@ -4,6 +4,7 @@ const postcssFlexbugsFixes = require('postcss-flexbugs-fixes');
 const cssnano = require('cssnano');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Visualizer = require('webpack-visualizer-plugin');
+const markdownLoaderRule = require('./markdownLoaderRule');
 
 process.env.BABEL_ENV = 'browser';
 
@@ -79,6 +80,7 @@ module.exports = function generateWebpackConfig(forProduction) {
                         { loader: 'less-loader' },
                     ],
                 },
+                markdownLoaderRule,
             ],
         },
         resolve: {

@@ -1,13 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
+const markdownLoaderRule = require('./markdownLoaderRule');
 
 process.env.BABEL_ENV = 'node';
 
 module.exports = {
     mode: 'none',
-    context: path.resolve(`${__dirname}../`),
-    entry: '../app/plumbing/app.js',
+    context: path.resolve(__dirname, '../'),
+    entry: './app/plumbing/app.js',
     output: {
         path: path.resolve(__dirname, '../'),
         filename: 'index.js',
@@ -20,10 +21,14 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
             },
+            markdownLoaderRule,
         ],
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
+    },
+    resolveLoader: {
+        modules: ['node_modules', path.resolve(__dirname, '../')],
     },
 
     /* We must tell Webpack to target Node.js instead of the browser, which causes it not to
