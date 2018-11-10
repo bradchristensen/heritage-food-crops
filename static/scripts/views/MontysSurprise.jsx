@@ -388,16 +388,11 @@ function MontysSurprise({ dispatch }) {
 
                 <div className="box">
                     <img
-                        src="/static/images/layout/montys-surprise/roles/steph-apple-cake.jpg"
-                        alt="Steph Lambert with her Monty's Surprise Winter apple cake, made from Monty's Surprise dried apple pulp"
+                        src="/static/images/layout/montys-surprise/roles/flowers-2.jpg"
+                        alt="Monty's Surprise flowers"
                         className="fill"
                     />
-                    <p>
-                        <em>
-                            Steph Lambert with her Monty's Surprise Winter apple cake, made from
-                            Monty's Surprise dried apple pulp.
-                        </em>
-                    </p>
+                    <p><em>Monty's Surprise flowers.</em></p>
                 </div>
             </div>
 
@@ -428,15 +423,6 @@ function MontysSurprise({ dispatch }) {
                             for making a Monty's Surprise Bach flower essence.
                         </em>
                     </p>
-                </div>
-
-                <div className="box">
-                    <img
-                        src="/static/images/layout/montys-surprise/roles/flowers-2.jpg"
-                        alt="Monty's Surprise flowers"
-                        className="fill"
-                    />
-                    <p><em>Monty's Surprise flowers.</em></p>
                 </div>
 
                 <div className="box">
