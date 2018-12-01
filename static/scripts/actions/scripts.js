@@ -25,7 +25,7 @@ export function fetchVictory() {
 
 export function fetchVictoryIfNeeded() {
     return async (dispatch, getState) => {
-        if (!getState().scripts.zxcvbn) {
+        if (!getState().scripts.victory) {
             return dispatch(fetchVictory());
         }
         return Promise.resolve();
