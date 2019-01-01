@@ -1,3 +1,7 @@
+// Polyfill IE11
+import '@babel/polyfill';
+
+// Import styles
 import './styles/global.scss';
 
 import React from 'react';
