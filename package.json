@@ -25,9 +25,7 @@
     "start": "run-p start:**",
     "start:app": "react-scripts start",
     "start:lambda": "netlify-lambda serve src/lambda -c webpack.server.js",
-    "test": "npm-run-all test-eslint test-check-broken-links",
-    "test-check-broken-links": "node ./test/check-broken-links",
-    "test-eslint": "react-scripts test"
+    "test": "react-scripts test"
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
