@@ -41,7 +41,7 @@ class ContactUs extends PureComponent {
             this.setState({ submittingContactForm: true });
 
             try {
-                const response = await fetch('/api/contact', {
+                const response = await fetch('/.netlify/functions/contact', {
                     method: 'POST',
                     headers: {
                         Accept: 'application/json',
