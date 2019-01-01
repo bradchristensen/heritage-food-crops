@@ -10,7 +10,7 @@ describe('flatten', () => {
         const span1 = React.createElement('span', { key: 1 }, innerInnerDiv);
         const span2 = React.createElement('span', { key: 2 }, [
             innerDiv,
-            innerH1
+            innerH1,
         ]);
 
         const testWrapper = React.createElement('div', {}, [
@@ -23,7 +23,7 @@ describe('flatten', () => {
             innerInnerDiv,
             span2,
             innerDiv,
-            innerH1
+            innerH1,
         ]);
     });
 });

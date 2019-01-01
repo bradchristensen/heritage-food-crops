@@ -10,7 +10,8 @@ const trackPage = (page) => {
 export default function withTracker(WrappedComponent) {
     class HOC extends PureComponent {
         componentDidMount() {
-            trackPage(this.props.location.pathname);
+            const { location } = this.props;
+            trackPage(location.pathname);
         }
 
         render() {
