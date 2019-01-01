@@ -1,5 +1,5 @@
 {
-    "masterPicture": "./static/images/layout/logo@2x.png",
+    "masterPicture": "./src/images/layout/logo@2x.png",
     "iconsPath": "/",
     "design": {
         "ios": {

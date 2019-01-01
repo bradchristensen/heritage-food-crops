@@ -27,6 +27,7 @@ build/Release
 node_modules
 bower_components
 
+build/
 dist/
 
 *~
@@ -35,3 +36,7 @@ dist/
 thumbs.db
 
 /index.js
+
+.env.local
+.env.development
+.env.production
