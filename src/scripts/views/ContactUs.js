@@ -84,6 +84,7 @@ class ContactUs extends PureComponent {
         submittedContactForm: true,
         submitError: true
       });
+      // eslint-disable-next-line no-console
       console.error(err);
     }
   };

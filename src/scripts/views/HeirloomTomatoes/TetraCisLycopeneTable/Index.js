@@ -1,5 +1,3 @@
-/* eslint shopify/jsx-no-complex-expressions: [1], react/jsx-no-bind: [1] */
-
 import React, { Fragment, PureComponent } from "react";
 import PropTypes from "prop-types";
 import orderBy from "lodash/orderBy";
@@ -136,6 +134,46 @@ class TetraCisLycopeneTable extends PureComponent {
     return children;
   };
 
+  varietyNameHeaderRenderer = args =>
+    this.headerRenderer({ shortName: "Variety", ...args });
+
+  tetraCisLycopeneHeaderRenderer = args =>
+    this.headerRenderer({
+      shortName: "TCL",
+      tooltipText: "Tetra-cis-lycopene (mg/100g FW)",
+      ...args
+    });
+
+  plantCharacteristicsHeaderRenderer = args =>
+    this.headerRenderer({
+      shortName: "Plant *",
+      tooltipText: "Plant characteristics",
+      ...args
+    });
+
+  fruitCharacteristicsHeaderRenderer = args =>
+    this.headerRenderer({
+      shortName: "Fruit †",
+      tooltipText: "Fruit characteristics",
+      ...args
+    });
+
+  plantAndFruitCharacteristicsHeaderRenderer = args =>
+    this.headerRenderer({
+      tooltipText: "Plant and Fruit characteristics",
+      ...args
+    });
+
+  flavourHeaderRenderer = args =>
+    this.headerRenderer({
+      shortName: "Flavour ‡",
+      tooltipText: "Flavour",
+      ...args
+    });
+
+  sourceHeaderRenderer = args =>
+    this.headerRenderer({ shortName: "Source", ...args });
+
   highlightRow = ({ index }) => {
     this.setState(prevState => ({
       highlightedRow: index === prevState.highlightedRow ? null : index
@@ -163,6 +201,40 @@ class TetraCisLycopeneTable extends PureComponent {
   renderTomatoTable = () => {
     const overscanRowCount =
       this.state.clientWidth > 800 ? this.state.sortedList.length : 10;
+
+    const responsiveCharacteristicsColumns =
+      this.state.clientWidth > 800 ? (
+        [
+          <Column
+            key="plantCharacteristics"
+            dataKey="plantCharacteristics"
+            label="Plant characteristics *"
+            cellRenderer={this.cellRenderers[2]}
+            headerRenderer={this.plantCharacteristicsHeaderRenderer}
+            width={160}
+          />,
+
+          <Column
+            key="fruitCharacteristics"
+            dataKey="fruitCharacteristics"
+            label="Fruit characteristics †"
+            cellRenderer={this.cellRenderers[3]}
+            headerRenderer={this.fruitCharacteristicsHeaderRenderer}
+            width={160}
+          />
+        ]
+      ) : (
+        <Column
+          dataKey="characteristics"
+          label="Characteristics *†"
+          cellRenderer={this.cellRenderers[2]}
+          headerRenderer={this.plantAndFruitCharacteristicsHeaderRenderer}
+          width={250}
+        />
+      );
+
+    const sourceColumnWidth = this.state.clientWidth <= 1280 ? 60 : 150;
+
     return (
       <WindowScroller>
         {({ height, isScrolling, registerChild, onChildScroll, scrollTop }) => (
@@ -199,97 +271,26 @@ class TetraCisLycopeneTable extends PureComponent {
                   <Column
                     dataKey="varietyName"
                     label="Variety Name"
-                    cellRenderer={args =>
-                      this.cellRenderer({ columnIndex: 0, ...args })
-                    }
-                    headerRenderer={args =>
-                      this.headerRenderer({ shortName: "Variety", ...args })
-                    }
+                    cellRenderer={this.cellRenderers[0]}
+                    headerRenderer={this.varietyNameHeaderRenderer}
                     width={150}
                   />
 
                   <Column
                     dataKey="tetraCisLycopene"
                     label="Tetra-cis-lyc"
-                    cellRenderer={args =>
-                      this.cellRenderer({ columnIndex: 1, ...args })
-                    }
-                    headerRenderer={args =>
-                      this.headerRenderer({
-                        shortName: "TCL",
-                        tooltipText: "Tetra-cis-lycopene (mg/100g FW)",
-                        ...args
-                      })
-                    }
+                    cellRenderer={this.cellRenderers[1]}
+                    headerRenderer={this.tetraCisLycopeneHeaderRenderer}
                     width={60}
                   />
 
-                  {this.state.clientWidth > 800 ? (
-                    [
-                      <Column
-                        key="plantCharacteristics"
-                        dataKey="plantCharacteristics"
-                        label="Plant characteristics *"
-                        cellRenderer={args =>
-                          this.cellRenderer({ columnIndex: 2, ...args })
-                        }
-                        headerRenderer={args =>
-                          this.headerRenderer({
-                            shortName: "Plant *",
-                            tooltipText: "Plant characteristics",
-                            ...args
-                          })
-                        }
-                        width={160}
-                      />,
-
-                      <Column
-                        key="fruitCharacteristics"
-                        dataKey="fruitCharacteristics"
-                        label="Fruit characteristics †"
-                        cellRenderer={args =>
-                          this.cellRenderer({ columnIndex: 3, ...args })
-                        }
-                        headerRenderer={args =>
-                          this.headerRenderer({
-                            shortName: "Fruit †",
-                            tooltipText: "Fruit characteristics",
-                            ...args
-                          })
-                        }
-                        width={160}
-                      />
-                    ]
-                  ) : (
-                    <Column
-                      dataKey="characteristics"
-                      label="Characteristics *†"
-                      cellRenderer={args =>
-                        this.cellRenderer({ columnIndex: 2, ...args })
-                      }
-                      headerRenderer={args =>
-                        this.headerRenderer({
-                          tooltipText: "Plant and Fruit characteristics",
-                          ...args
-                        })
-                      }
-                      width={250}
-                    />
-                  )}
+                  {responsiveCharacteristicsColumns}
 
                   <Column
                     dataKey="flavour"
                     label="Flavour ‡"
-                    cellRenderer={args =>
-                      this.cellRenderer({ columnIndex: 4, ...args })
-                    }
-                    headerRenderer={args =>
-                      this.headerRenderer({
-                        shortName: "Flavour ‡",
-                        tooltipText: "Flavour",
-                        ...args
-                      })
-                    }
+                    cellRenderer={this.cellRenderers[4]}
+                    headerRenderer={this.flavourHeaderRenderer}
                     width={160}
                   />
 
@@ -297,13 +298,9 @@ class TetraCisLycopeneTable extends PureComponent {
                     <Column
                       dataKey="source"
                       label="Sourced from"
-                      cellRenderer={args =>
-                        this.cellRenderer({ columnIndex: 5, ...args })
-                      }
-                      headerRenderer={args =>
-                        this.headerRenderer({ shortName: "Source", ...args })
-                      }
-                      width={this.state.clientWidth <= 1280 ? 60 : 150}
+                      cellRenderer={this.cellRenderers[5]}
+                      headerRenderer={this.sourceHeaderRenderer}
+                      width={sourceColumnWidth}
                     />
                   )}
                 </Table>
@@ -315,8 +312,8 @@ class TetraCisLycopeneTable extends PureComponent {
     );
   };
 
-  constructor(...args) {
-    super(...args);
+  constructor(props) {
+    super(props);
 
     const sortBy = "varietyName";
     const sortDirection = SortDirection.ASC;
@@ -344,6 +341,10 @@ class TetraCisLycopeneTable extends PureComponent {
       fixedHeight: false,
       fixedWidth: true,
       minHeight: 40
+    });
+
+    this.cellRenderers = new Array(6).fill(0).map((_0, columnIndex) => {
+      return args => this.cellRenderer({ columnIndex, ...args });
     });
   }
 

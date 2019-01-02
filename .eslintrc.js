@@ -61,6 +61,7 @@ module.exports = {
         process: false
       },
       rules: {
+        "no-console": "off",
         "no-process-env": "off"
       }
     }
