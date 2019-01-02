@@ -1,5 +1,3 @@
-/* eslint no-alert: [1], react/jsx-no-bind: [1] */
-
 import React, { PureComponent } from "react";
 import fetch from "isomorphic-fetch";
 import title from "../infrastructure/documentTitle";
@@ -19,17 +17,38 @@ class ContactUs extends PureComponent {
     event.preventDefault();
 
     if (!this.state.name) {
-      alert("Please enter your name");
+      this.setState({ validationError: "Please enter your name." });
       return;
     }
 
     if (!this.state.email) {
-      alert("Please enter your email address");
+      this.setState({ validationError: "Please enter your email address." });
+      return;
+    }
+
+    // Check basic email address format without checking content
+    // https://stackoverflow.com/a/742588
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(this.state.email)) {
+      const validationError = (
+        <span>
+          The email address ‘
+          {
+            // If we used a setState callback here, technically the value
+            // could have changed between when we checked to see if it was
+            // valid and when we accessed it again, so using the current
+            // state is more correct here.
+            // eslint-disable-next-line react/no-access-state-in-setstate
+            this.state.email
+          }
+          ’ appears to be invalid. Please enter a valid email address.
+        </span>
+      );
+      this.setState({ validationError });
       return;
     }
 
     if (!this.state.message) {
-      alert("Please enter a message");
+      this.setState({ validationError: "Please enter a message." });
       return;
     }
 
@@ -68,6 +87,19 @@ class ContactUs extends PureComponent {
       console.error(err);
     }
   };
+
+  onInputChange = (event, fieldName) => {
+    this.setState({
+      [fieldName]: event.target.value,
+      validationError: undefined
+    });
+  };
+
+  onNameChange = event => this.onInputChange(event, "name");
+  onEmailChange = event => this.onInputChange(event, "email");
+  onPhoneChange = event => this.onInputChange(event, "phone");
+  onLocationChange = event => this.onInputChange(event, "location");
+  onMessageChange = event => this.onInputChange(event, "message");
 
   constructor(props) {
     super(props);
@@ -199,9 +231,7 @@ class ContactUs extends PureComponent {
                   type="text"
                   name="name"
                   value={this.state.name}
-                  onChange={event =>
-                    this.setState({ name: event.target.value })
-                  }
+                  onChange={this.onNameChange}
                 />
               </p>
 
@@ -211,9 +241,7 @@ class ContactUs extends PureComponent {
                   type="email"
                   name="email"
                   value={this.state.email}
-                  onChange={event =>
-                    this.setState({ email: event.target.value })
-                  }
+                  onChange={this.onEmailChange}
                 />
               </p>
 
@@ -223,9 +251,7 @@ class ContactUs extends PureComponent {
                   type="text"
                   name="phone"
                   value={this.state.phone}
-                  onChange={event =>
-                    this.setState({ phone: event.target.value })
-                  }
+                  onChange={this.onPhoneChange}
                 />
               </p>
 
@@ -235,9 +261,7 @@ class ContactUs extends PureComponent {
                   type="text"
                   name="location"
                   value={this.state.location}
-                  onChange={event =>
-                    this.setState({ location: event.target.value })
-                  }
+                  onChange={this.onLocationChange}
                 />
               </p>
 
@@ -247,11 +271,13 @@ class ContactUs extends PureComponent {
                   rows="10"
                   name="message"
                   value={this.state.message}
-                  onChange={event =>
-                    this.setState({ message: event.target.value })
-                  }
+                  onChange={this.onMessageChange}
                 />
               </p>
+
+              {Boolean(this.state.validationError) && (
+                <p className="validation-error">{this.state.validationError}</p>
+              )}
 
               <p>
                 {!this.state.submittedContactForm && (

@@ -47,12 +47,10 @@ body {
   background-repeat: repeat-x;
   background-size: 1px 2px;
   text-decoration: none;
-  text-shadow:
-        // 1px to the right 1px 1px 0 $background-color,
-    // 1px to the left
-      -1px 1px 0 $background-color,
-    // 1px upwards catches the rounded bottom of a 'g' character
-      0-1px 0 $background-color;
+  // 1px to the right, 1px to the left, then 1px upwards
+  // to catch the rounded bottom of a 'g' character
+  text-shadow: 1px 1px 0 $background-color, -1px 1px 0 $background-color,
+    0 -1px 0 $background-color;
 }
 
 @mixin do-not-underline-text {
@@ -706,66 +704,6 @@ button:focus {
   }
 }
 
-.feature-jessica {
-  padding: 0;
-
-  .feature-jessica-cover {
-    border-radius: 4px;
-    flex: 0 0 250px;
-    height: 338.33px;
-  }
-
-  .feature-jessica-flex {
-    align-items: center;
-    display: flex !important;
-    justify-content: center;
-  }
-
-  &.box h2 {
-    border-bottom: none;
-    color: #f9ab1a;
-    font-size: 42px;
-    font-weight: bold;
-    margin-bottom: 0;
-    margin-left: 20px;
-    padding-bottom: 0;
-    text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, -1px 1px 0 #fff,
-      1px -1px 0 #fff, 2px 2px 0 rgba(255, 255, 255, 0.5),
-      -2px -2px 0 rgba(255, 255, 255, 0.5), -2px 2px 0 rgba(255, 255, 255, 0.5),
-      2px -2px 0 rgba(255, 255, 255, 0.5), 3px 3px 3px rgba(0, 0, 0, 0.2);
-  }
-
-  &.box p {
-    line-height: 170%;
-    margin-bottom: 0;
-    margin-left: 0;
-    padding-bottom: 0;
-  }
-}
-
-.feature-flag {
-  background-color: #9e1f7e;
-  color: #fff;
-  display: inline-block;
-  font-family: "Novecento Sans Wide", "Source Sans Pro", sans-serif;
-  font-size: 24px;
-  font-weight: 900;
-  padding: 0 0 0 10px;
-  position: relative;
-  text-transform: uppercase;
-
-  &::after {
-    border: 17px solid #9e1f7e;
-    border-right: 13px solid transparent;
-    bottom: 0px;
-    content: "";
-    display: block;
-    position: absolute;
-    left: 100%;
-    top: 0px;
-  }
-}
-
 .publication-box-jessica {
   display: flex;
   justify-content: center;
@@ -1389,6 +1327,10 @@ ul.bean-list {
     height: 100%;
     width: 50%;
   }
+}
+
+.validation-error {
+  color: #f26666;
 }
 
 @media only screen and (max-width: 830px) {
