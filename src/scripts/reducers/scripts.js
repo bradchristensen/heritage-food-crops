@@ -1,14 +1,14 @@
-import { FETCH_VICTORY_SUCCESS } from '../actions/scripts';
+import { FETCH_VICTORY_SUCCESS } from "../actions/scripts";
 
 export default function scriptsReducer(state = {}, action) {
-    switch (action.type) {
+  switch (action.type) {
     case FETCH_VICTORY_SUCCESS:
-        return {
-            ...state,
-            victory: action.script,
-        };
+      return {
+        ...state,
+        victory: action.script
+      };
 
     default:
-        return state;
-    }
+      return state;
+  }
 }

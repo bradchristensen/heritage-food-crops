@@ -1,6 +1,8 @@
+/* globals require */
+
 import React from "react";
 
-export default [
+const data = [
   {
     name: "Apache Red Bean",
     description:
@@ -205,3 +207,5 @@ export default [
       "An unusual heirloom variety from Mexico. Also called the Prairie Appaloosa or Raquel bean. A dry bean."
   }
 ];
+
+export default data;

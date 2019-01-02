@@ -7,11 +7,12 @@ if (!Element.prototype.matches) {
 }
 
 if (!Element.prototype.closest) {
-  Element.prototype.closest = function(s) {
-    var el = this;
+  Element.prototype.closest = function closest(selector) {
+    // eslint-disable-next-line consistent-this
+    let el = this;
     if (!document.documentElement.contains(el)) return null;
     do {
-      if (el.matches(s)) return el;
+      if (el.matches(selector)) return el;
       el = el.parentElement || el.parentNode;
     } while (el !== null && el.nodeType === 1);
     return null;
@@ -29,8 +30,10 @@ export default function init() {
       const anchor = document.querySelector(toggle.hash);
       if (!anchor) return;
 
-      event.preventDefault(); // Prevent default click event
-      scroll.animateScroll(anchor, toggle, {}); // Animate scroll
+      // Prevent default click event
+      event.preventDefault();
+      // Animate scroll
+      scroll.animateScroll(anchor, toggle, {});
     },
     false
   );

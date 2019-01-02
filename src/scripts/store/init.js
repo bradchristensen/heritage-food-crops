@@ -1,4 +1,4 @@
-/* eslint-disable global-require */
+/* globals module process require */
 
 /**
  * Initialise the store differently for dev and production environments.
@@ -7,8 +7,8 @@
  * https://github.com/gaearon/redux-devtools/blob/master/docs/Walkthrough.md#storeconfigurestorejs-1
  */
 
-if (process.env.NODE_ENV === 'production') {
-    module.exports = require('./init.prod');
+if (process.env.NODE_ENV === "production") {
+  module.exports = require("./init.prod");
 } else {
-    module.exports = require('./init.dev');
+  module.exports = require("./init.dev");
 }
