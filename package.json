@@ -11,6 +11,7 @@
     "name": "Brad Christensen",
     "email": "brad@christensen.co.nz"
   },
+  "license": "ISC",
   "browserslist": [
     "last 3 versions",
     "Firefox ESR",
@@ -26,7 +27,9 @@
     "start": "run-p start:**",
     "start:app": "react-scripts start",
     "start:lambda": "netlify-lambda serve src/lambda -c webpack.server.js",
-    "test": "react-scripts test"
+    "test": "run-s test:**",
+    "test:app": "react-scripts test",
+    "test:lint": "yarn lint"
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
