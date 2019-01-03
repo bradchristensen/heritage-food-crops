@@ -1,8 +1,4 @@
 {
-    "cSpell.words": [
-        "flavourful",
-        "lutein",
-        "lycopene",
-        "overscan"
-    ]
+  "cSpell.words": ["flavourful", "lutein", "lycopene", "overscan"],
+  "editor.formatOnSave": true
 }

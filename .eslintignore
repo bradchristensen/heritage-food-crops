@@ -1,4 +1,6 @@
+build/
 dist/
+/lambda/
 node_modules/
 /index.js
 !.babelrc.js

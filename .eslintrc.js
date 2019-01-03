@@ -1,61 +1,77 @@
-const restrictedGlobals = require('eslint-restricted-globals');
-
 module.exports = {
-    env: {
-        node: true,
+  env: {
+    // Set the default environment to `node` - we will override this
+    // for the scripts loaded into the browser in the `overrides` section
+    browser: false,
+    es6: true,
+    node: true
+  },
+  extends: [
+    "plugin:shopify/esnext",
+    "plugin:shopify/lodash",
+    "plugin:shopify/react",
+    "plugin:shopify/mocha",
+    "plugin:shopify/prettier"
+  ],
+  parserOptions: {
+    ecmaVersion: 2016,
+    sourceType: "module"
+  },
+  rules: {
+    "babel/object-curly-spacing": "off",
+    "linebreak-style": ["error", "unix"],
+    "lodash/matches-shorthand": ["on", "never"],
+    "no-console": "warn",
+    "no-warning-comments": "warn",
+    // Allow quotes (' and ")
+    "react/no-unescaped-entities": ["error", { forbid: [">", "}"] }],
+    semi: ["error", "always"],
+    // This rule appears to be triggered intermittently between local
+    // development and CI environments, so easiest to switch it off for now
+    "shopify/strict-component-boundaries": "off"
+  },
+  overrides: [
+    {
+      // Configure the default environment for browser scripts
+      files: ["src/scripts/**/*", "src/index.js"],
+      env: {
+        browser: true,
+        commonjs: true,
+        node: false
+      }
     },
-    extends: 'airbnb',
-    parser: 'babel-eslint',
-    parserOptions: {
-        ecmaFeatures: {
-            experimentalObjectRestSpread: true,
-        },
+    {
+      // Configure the Jest environment for tests
+      files: ["src/**/*.test.js"],
+      env: {
+        jest: true
+      }
     },
-    plugins: ['babel'],
-    rules: {
-        'babel/no-invalid-this': [2],
-        'babel/semi': [2, 'always'],
-        'import/no-extraneous-dependencies': [2, {
-            devDependencies: [
-                '**/*/test/**/*.js',
-                '**/*/tasks/**/*.js',
-                '**/*/gulpfile.js',
-                '**/*/*.dev.js*',
-                '**/*/DevTools.jsx',
-                '.eslintrc.js',
-            ],
-        }],
-        indent: [2, 4],
-        'jsx-a11y/anchor-is-valid': ['error', {
-            components: ['Link'],
-            specialLink: ['to'],
-            aspects: ['noHref', 'invalidHref', 'preferButton'],
-        }],
-        'max-len': [2, {
-            code: 100,
-            ignorePattern: '=(".*"|\'.*\'|{.*})$',
-            ignoreStrings: true,
-            ignoreTemplateLiterals: true,
-        }],
-        'no-param-reassign': [2, { props: false }],
-        'no-restricted-globals': [2, 'URL'].concat(restrictedGlobals),
-        'no-restricted-syntax': [
-            'error',
-            {
-                selector: 'ForInStatement',
-                message: 'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
-            },
-            {
-                selector: 'LabeledStatement',
-                message: 'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
-            },
-            {
-                selector: 'WithStatement',
-                message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
-            },
-        ],
-        'react/jsx-indent': [2, 4],
-        'react/jsx-indent-props': [2, 4],
-        'react/no-unescaped-entities': [0],
-    },
+    {
+      // Top-level and config files should be able to reference process.env
+      // directly - other modules would normally have configuration passed
+      // into them.
+      files: [
+        ".eslintrc.js",
+        "webpack.server.js",
+        "src/lambda/**/*",
+        "src/index.js",
+        "src/scripts/infrastructure/documentTitle.js",
+        "src/scripts/store/init.js",
+        "setupProxy.js"
+      ],
+      globals: {
+        process: false
+      },
+      rules: {
+        "no-console": "off",
+        "no-process-env": "off"
+      }
+    }
+  ],
+  settings: {
+    react: {
+      version: "16.0"
+    }
+  }
 };

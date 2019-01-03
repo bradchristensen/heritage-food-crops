@@ -27,11 +27,15 @@ build/Release
 node_modules
 bower_components
 
+build/
 dist/
+/lambda
 
 *~
 *.bak
 .fuse_hidden*
 thumbs.db
 
-/index.js
+.env.local
+.env.development
+.env.production
