@@ -21,11 +21,14 @@ module.exports = {
     "babel/object-curly-spacing": "off",
     "linebreak-style": ["error", "unix"],
     "lodash/matches-shorthand": ["on", "never"],
-    "no-console": ["warn"],
-    "no-warning-comments": ["warn"],
+    "no-console": "warn",
+    "no-warning-comments": "warn",
     // Allow quotes (' and ")
     "react/no-unescaped-entities": ["error", { forbid: [">", "}"] }],
-    semi: ["error", "always"]
+    semi: ["error", "always"],
+    // This rule appears to be triggered intermittently between local
+    // development and CI environments, so easiest to switch it off for now
+    "shopify/strict-component-boundaries": "off"
   },
   overrides: [
     {

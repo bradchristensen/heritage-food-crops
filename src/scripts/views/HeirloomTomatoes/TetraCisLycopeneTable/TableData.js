@@ -564,6 +564,8 @@ export default [
   ],
   [
     "Russian Persimmon",
+    // Known issue #22
+    // eslint-disable-next-line no-warning-comments
     // TODO: Check value
     3.1,
     "Indeterminate; 75-80 days. Very productive.",

@@ -82,7 +82,12 @@ const readMoreSecretToOurHealth = (
       ‘Moonglow’ tomato and other golden/orange varieties that have been
       chemically analysed and shown to contain tetra-cis-lycopene are strains
       from those original golden fruit.
-      {/* TODO: See our list of tetra-cis-lycopene varieties. */}
+    </p>
+
+    <p>
+      <Link className="button" to="/heirloom-tomatoes/tetra-cis-lycopene">
+        See our list of tetra-cis-lycopene varieties...
+      </Link>
     </p>
 
     <p>
