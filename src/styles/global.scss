@@ -6,7 +6,6 @@
  */
 
 @import "~react-virtualized/styles.css";
-@import "~@fortawesome/fontawesome/styles.css";
 @import "_fonts";
 
 // Normalize cross-browser behaviour (set baseline)
@@ -1096,6 +1095,50 @@ button[disabled]:active {
   color: #ccc;
   cursor: default;
   text-shadow: 1px 1px 0 #fff;
+}
+
+.paypal-donate-button-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 25px auto 35px;
+  max-width: 300px;
+  width: 100%;
+
+  .label-donate {
+    margin-bottom: 7px;
+    text-align: center;
+  }
+
+  .paypal-credit-cards {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  img {
+    margin-right: 1rem;
+  }
+
+  img:last-child {
+    margin-right: 0;
+  }
+}
+
+.paypal-donate-button {
+  background-color: #ffc439;
+  border: none;
+
+  &:hover {
+    background-color: #ffc439;
+    box-shadow: inset 0 0 100px 100px rgba(0, 0, 0, 0.05);
+  }
+
+  &:focus,
+  &:active {
+    background-color: #ffc439;
+    box-shadow: inset 0 0 100px 100px rgba(0, 0, 0, 0.05),
+      0px 3px 5px rgba(0, 0, 0, 0.125) inset;
+  }
 }
 
 /* ---------------------------------------------------------------------- */

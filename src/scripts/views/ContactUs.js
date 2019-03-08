@@ -1,6 +1,12 @@
 import React, { PureComponent } from "react";
 import fetch from "isomorphic-fetch";
 import title from "../infrastructure/documentTitle";
+import {
+  PayPalGlyph,
+  PayPalText,
+  Visa,
+  MasterCard
+} from "../components/PayPal";
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
@@ -165,9 +171,42 @@ class ContactUs extends PureComponent {
               vegetable varieties for human health.
             </p>
 
+            <form
+              action="https://www.paypal.com/cgi-bin/webscr"
+              method="post"
+              target="_top"
+            >
+              <input type="hidden" name="cmd" value="_s-xclick" />
+              <input
+                type="hidden"
+                name="hosted_button_id"
+                value="AQLFA9KSTSCCS"
+              />
+
+              <div className="paypal-donate-button-wrapper">
+                <span className="label-donate">
+                  <strong>Donate with a credit card using PayPal:</strong>
+                </span>
+                <button
+                  className="paypal-donate-button"
+                  type="submit"
+                  name="submit"
+                  title="PayPal - The safer, easier way to pay online!"
+                  alt="Donate with PayPal button"
+                >
+                  <img src={PayPalGlyph} alt="pp" height="30" />
+                  <img src={PayPalText} alt="PayPal" height="22" />
+                </button>
+                <span className="paypal-credit-cards">
+                  <img src={Visa} alt="Visa" height="30" />
+                  <img src={MasterCard} alt="MasterCard" height="30" />
+                </span>
+              </div>
+            </form>
+
             <p>
-              Donations may be made by cheque or bank deposit. Cheques may be
-              sent to the following address:
+              Donations may be made by cheque, bank deposit, or credit card (via
+              PayPal). Cheques may be sent to the following address:
             </p>
 
             {physicalAddress}

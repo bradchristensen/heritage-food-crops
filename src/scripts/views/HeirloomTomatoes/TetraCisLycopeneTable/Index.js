@@ -11,8 +11,8 @@ import {
   Table,
   WindowScroller
 } from "react-virtualized";
-import FontAwesomeIcon from "@fortawesome/react-fontawesome";
-import faLink from "@fortawesome/fontawesome-free-solid/faLink";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLink } from "@fortawesome/free-solid-svg-icons/faLink";
 import title from "../../../infrastructure/documentTitle";
 import Article from "../../../components/Article";
 import SectionHeading from "../../../components/SectionHeading";
