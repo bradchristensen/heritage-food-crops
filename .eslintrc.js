@@ -23,6 +23,8 @@ module.exports = {
     "lodash/matches-shorthand": ["on", "never"],
     "no-console": "warn",
     "no-warning-comments": "warn",
+    // This interferes with Prettier
+    "react/jsx-child-element-spacing": "off",
     // Allow quotes (' and ")
     "react/no-unescaped-entities": ["error", { forbid: [">", "}"] }],
     semi: ["error", "always"],

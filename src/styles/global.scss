@@ -1376,6 +1376,13 @@ ul.bean-list {
   color: #f26666;
 }
 
+.contact-card {
+  .svg-inline--fa {
+    color: #399cd0;
+    margin-right: 0.5rem;
+  }
+}
+
 @media only screen and (max-width: 830px) {
   .footer {
     .col-flex {
