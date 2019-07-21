@@ -5,3 +5,4 @@ https://www.montyssurpriseapple.com/* https://www.heritagefoodcrops.org.nz/:spla
 https://montyssurpriseapple.com/* https://www.heritagefoodcrops.org.nz/:splat 301!
 
 /*    /index.html   200
+/static/img/mail/* /mail/:splat
