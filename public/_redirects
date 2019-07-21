@@ -4,5 +4,5 @@ https://heritagefoodcrops.co.nz/* https://www.heritagefoodcrops.org.nz/:splat 30
 https://www.montyssurpriseapple.com/* https://www.heritagefoodcrops.org.nz/:splat 301!
 https://montyssurpriseapple.com/* https://www.heritagefoodcrops.org.nz/:splat 301!
 
+/static/img/mail/* /mail/:splat 200
 /*    /index.html   200
-/static/img/mail/* /mail/:splat
